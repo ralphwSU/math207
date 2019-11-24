@@ -1,0 +1,202 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.6in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.15in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-func}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small{\ }\hfill
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Regression and the Normal Curve}
+\end{center}
+\newcommand{\Z}{\hphantom{0}}
+\newcommand{\VP}{\vphantom{\Large Y}}
+\newcommand{\M}{\hphantom{$-$}}
+
+Suppose we have a list of points $(x_1, y_1)$, $(x_2, y_2)$, $\dots$, $(x_n, y_n)$
+and we draw a line (such as the regression line or perhaps some other line) to 
+try to predict $y$ from $x$.  
+For each of the $x$-values
+$x_i$ in our data list, we can use the  line to get a  predicted value 
+ $y_{\mbox{\footnotesize predicted}}$ of $y$.  
+We also have the true value $y_i$ of $y$.  
+The difference\vspace{-3pt}
+\[y_{\mbox{\footnotesize predicted}} \; -\; y_i\vspace{-3pt}\]
+is the \textit{residual error} at $x_i$.  
+The  RMS (root-mean-squared) size of these errors is:\vspace{-3pt}
+\[\mbox{RMS} = \sqrt{\frac{1}{n}\,\sum_{i=1}^n\,(\mbox{residual error}_i)^2}\vspace{-3pt}\]
+It is a measure of the total error of the line that we are using  to fit the data.
+The regression line is the line that minimizes this error.  
+It is the \textit{best fit} line.
+Its RMS can be computed using:\vspace{-3pt}
+\[\mbox{RMS}_{\mbox{\footnotesize reg}} = \mbox{sd}_y\,\sqrt{1-r^2}\vspace{-3pt}\]
+where $r$ is the correlation and $\mbox{sd}_y$ is the standard deviation of the $y$-values
+in our data set.
+Notice that:
+\begin{itemize}
+\item For a fixed value of $r$, RMS increases with $\mbox{sd}_y$.
+\item If $r=1$ or $r=-1$, the RMS is zero (since the points fall exactly on a line).
+\item If $r=0$, then $\mbox{RMS}=\mbox{sd}_y$.
+\end{itemize}
+
+\begin{center}
+\begin{pspicture}(0,-0.7)(7,7.7)
+\psset{yunit=0.6,dotsize=0.15}
+\psdot(1,10)
+\psdot(3,9)
+\psdot(4,8)
+\psdot(4,7)
+\psdot(5,1)
+\psdot(7,13)
+\psline[linewidth=0.02](0,7.8)(7,8.15)(8,8.2)
+\rput(3.5,-1.7){$x$}\rput(-1,6.5){$y$}
+\psaxes(0,0)(7,13)
+%
+\psline[linestyle=dotted](7,8.15)(7,13)
+\psdot*[linecolor=red](7,8.15)
+\rput[l](7,10.575){\ error}
+%
+\psline[linestyle=dotted](3,7.95)(3,9)
+\psdot*[linecolor=red](3,7.95)
+\rput[r](3,8.475){error\ }
+%
+\psline[linestyle=dotted](1,7.85)(1,10)
+\psdot*[linecolor=red](1,7.85)
+%
+\psline[linestyle=dotted](4,8)(4,7)
+\psdot*[linecolor=red](4,8)
+%
+\psline[linestyle=dotted](5,8.05)(5,1)
+\psdot*[linecolor=red](5,8.05)
+%
+\rput(8,5.4){regression line:}
+\rput(8,4.5){$y-8\; = \; \frac{1}{20}\,(x - 4)$}
+\end{pspicture}
+\end{center}
+
+1. Compute the regression line RMS given $\mbox{sd}_y$ and $r$
+
+\hspace{10pt} a) $\mbox{sd}_y=8$ and $r=\frac{\sqrt{3}}{2}$
+\vspace{.2in}
+
+\hspace{10pt} b) $\mbox{sd}_y=1$ and $r=\frac{\sqrt{3}}{2}$
+\vspace{.2in}
+
+\hspace{10pt} c) $\mbox{sd}_y=1$ and $r=-\frac{\sqrt{3}}{2}$
+\vspace{.2in}
+
+\hspace{10pt} d) $\mbox{sd}_y=5$ and $r=0.1$
+
+
+\vfill
+\eject
+{\ }
+
+One of the assumptions of the regression model is that for any given $x$, the 
+histogram of the possible $y$ values is a normal curve.  
+Its mean is the predicted $y$ value (the point on the line).  Its sd is the RMS.  
+The figure below shows a normal curve moving along with the regression line.
+The $y$-value of each red dot is the mean of the corresponding normal curve.
+
+\begin{center}
+\begin{pspicture}(0,-0.7)(7,7.7)
+\psset{yunit=0.6,dotsize=0.15}
+\psdot(1,10)
+\psdot(3,9)
+\psdot(4,8)
+\psdot(4,7)
+\psdot(5,1)
+\psdot(7,13)
+\psline[linewidth=0.02](0,7.8)(7,8.15)(8,8.2)
+\rput(3.5,-1.7){$x$}\rput(-1,6.5){$y$}
+\psaxes(0,0)(7,13)
+%
+\psdot*[linecolor=red](7,8.15)
+     \rput{-90}(7,8.15){\psGauss[sigma=0.6]{-2}{2}}
+%
+\psdot*[linecolor=red](3,7.95)
+     \rput{-90}(3,7.95){\psGauss[sigma=0.6]{-2}{2}}
+%
+\psdot*[linecolor=red](1,7.85)
+     \rput{-90}(1,7.85){\psGauss[sigma=0.6]{-2}{2}}
+%
+\psdot*[linecolor=red](4,8)
+     \rput{-90}(4,8){\psGauss[sigma=0.6]{-2}{2}}
+%
+\psdot*[linecolor=red](5,8.05)
+     \rput{-90}(5,8.05){\psGauss[sigma=0.6]{-2}{2}}
+%
+\end{pspicture}
+\end{center}
+
+2. Use the information given to find the mean and sd of the moving normal curve.
+If $x=3$,  find a range for 68\% of the $y$-values.
+
+\hspace{10pt} a) $y-8\;=\;2\,(x-4)$, $\mbox{sd}_y=8$, $r=\frac{\sqrt{3}}{2}$.
+\vspace{1.5in}
+
+\hspace{10pt} b) $y-2\;=\;5\,(x-1)$, $\mbox{sd}_y=1$, $r=\frac{\sqrt{3}}{2}$.
+\vspace{1.5in}
+
+\hspace{10pt} c) $y-8\;=\;-2\,(x-2)$, $\mbox{sd}_y=1$, $r=-\frac{\sqrt{3}}{2}$.
+
+
+\vfill
+\eject
+
+\end{document}
+

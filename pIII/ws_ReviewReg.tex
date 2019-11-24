@@ -1,0 +1,171 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to  Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Regression Review Exercises}
+\end{center}
+
+1. Here is some data:
+\begin{center}
+\begin{tabular}{cc}
+$x$ & $y$\\\hline
+0   & 1\\
+1   & 3\\
+2   & 2
+\end{tabular}
+\end{center}
+
+\hspace{10pt} a) Sketch the data and the line $y=x+1$ then calculate the RMS error for the line 
+\vspace{1.4in}
+
+\hspace{10pt} b) Sketch the data and the line $y=\frac{3}{2}\,x+1$ 
+then calculate the RMS error for the line 
+\vspace{1.3in}
+
+\hspace{10pt} c) Sketch the data and the line $y=\frac{2}{3}\,x+1$ 
+then calculate the RMS error for the line 
+\vspace{1.3in}
+
+\hspace{10pt} d) For the given data, $\mbox{sd}_x=\mbox{sd}_y=\sqrt{2/3}$ and $r=1/2$.
+Calculate
+the {sd} line and find its RMS error.
+\vspace{1.4in}
+
+\hspace{10pt} e) Calculate the regression line and find its RMS error.  
+\vfill
+\eject
+
+2.  For a given data set we find that
+$\mbox{mean}(x)=10$, $\mbox{mean}(y)=0$, ${sd}_x=1$, ${sd}_y=2$ and  $r=1/5$.
+
+\hspace{10pt} a) Predict $y$ if $x=11$.
+\vspace{1.2in}
+
+\hspace{10pt} b)  If $x=11$, about what range of $y$ values contains about 68\% of the data?
+\vspace{.5in}
+
+\hspace{10pt} c)  If $x=11$, about what range of $y$ values contains about 95\% of the data?
+\vspace{.5in}
+
+\hspace{10pt} d)  If $x=8$, about what range of $y$ values contains about 68\% of the data?
+\vspace{.5in}
+
+\hspace{10pt} e)  If $x=8$, about what range of $y$ values contains about 95\% of the data?
+\vspace{.5in}
+
+
+\hspace{10pt} f) Predict $x$ if $y=2$.
+\vspace{1.2in}
+
+\hspace{10pt} g)  If $y=2$, about what range of $x$ values contains about 68\% of the data?
+\vspace{.5in}
+
+\hspace{10pt} h)  If $y=2$, about what range of $x$ values contains about 95\% of the data?
+\vspace{.5in}
+
+\hspace{10pt} i)  If $y=-1$, about what range of $x$ values contains about 68\% of the data?
+\vspace{.5in}
+
+\hspace{10pt} j)  If $y=-1$, about what range of $x$ values contains about 95\% of the data?
+\vfill
+\eject
+
+3. Calculate the given area under the standard normal curve.
+
+\hspace{10pt} a) to the left of $z=1.5$
+\vspace{.5in}
+
+\hspace{10pt} b) to the right of $z=2.5$
+\vspace{.5in}
+
+\hspace{10pt} c) between $-1.5$ and $2.5$
+\vspace{1in}
+
+4. For what value of $z$ is each statement true?
+
+\hspace{10pt} a) area to the left of $z$ is 35\%
+\vspace{.5in}
+
+\hspace{10pt} b) area to the right of $z$ is 10\%
+\vspace{.5in}
+
+\hspace{10pt} c) area between $z$ and $-z$  is 10\%
+\vspace{.5in}
+
+5. Suppose a measurement has a normal distribution with $\mbox{mean}=10$ and $\mbox{{sd}}=4$.
+Calculate the percent of measurements that satisfy the following.
+
+\hspace{10pt} a) at most 16
+\vspace{1in}
+
+\hspace{10pt} b) at least 0
+\vspace{1in}
+
+\hspace{10pt} c) between 4 and 20
+\vfill
+\eject
+
+
+\end{document}
+

@@ -1,0 +1,138 @@
+---
+title: "Report_2"
+author: "Your Name"
+date: "16 October 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading the Data Files
+The NHANES data set consists of four data files:  adult.csv, youth.csv, lab.csv and 
+exam.csv.  The adult file contains information about subjects who were over 17 years
+old.  The youth file contains information about younger subjects.  The lab and exam
+files contain additional data about both adults and youth.
+
+### Reading the adult.csv file
+The following command reads the adult.csv file into R.
+```{r}
+adult = read.csv("/Users/ralphwojtowicz/Desktop/math207/data/adult.csv", header=TRUE)
+```
+
+The size of this data set is
+```{r}
+dim(adult)
+```
+
+This means that the file has 20,050 rows and 1238 columns.  So, there are 20,050 adults
+in the data set and 1238 pieces of information about each in this file.  The lab.csv and exam.csv files include additional information about these subjects.
+
+### Reading the youth.csv file
+The following command reads the youth.csv file into R.
+```{r}
+youth = read.csv("/Users/ralphwojtowicz/Desktop/math207/data/youth.csv", header=TRUE)
+```
+
+The size of this data set is
+```{r}
+dim(youth)
+```
+
+This means that the file has 13,944 rows and 687 columns.  
+
+### Reading the exam.csv file
+The following command reads the exam.csv file into R.
+```{r}
+exam = read.csv("/Users/ralphwojtowicz/Desktop/math207/data/exam.csv", header=TRUE)
+```
+
+The exam of this data set is
+```{r}
+dim(exam)
+```
+
+There are 31,311 rows and 2368 columns in the exam file.
+
+### Reading the lab.csv file
+
+The following command reads the lab.csv file into R.
+```{r}
+lab = read.csv("/Users/ralphwojtowicz/Desktop/math207/data/lab.csv", header=TRUE)
+```
+
+The size of this data set is
+```{r}
+dim(lab)
+```
+
+There are 29,314 rows and 356 columns in the lab file.
+
+\newpage
+
+## Regression Examples
+
+### Measured Height vs Self-Reported Height
+
+Extract the subject ID, measured height and self-reported height.  Then remove the NA (blank) values and remove the missing values (error codes 88888 and 888).  Finally, convert self-reported height from inches to cm.  See page 199 of the exam-acc.pdf code book.
+```{r}
+x1 <- data.frame(SEQN=exam$SEQN, BMPHT=exam$BMPHT, BMPSRHIS=exam$BMPSRHIS)
+x2 <- na.omit(x1)
+x3 <- x2[(x2$BMPH != 888888) & (x2$BMPSRHIS != 888), ]
+x3$BMPSRHIS <- 2.54 * x3$BMPSRHIS
+```
+
+Plot the measured and reported heights.
+```{r}
+plot(x3$BMPHT, x3$BMPSRHIS, xlab="Measured Height (cm)", 
+     ylab="Self-Reported Height (cm)")
+```
+
+The correlation appears to be strong and positive.  
+```{r}
+cor(x3$BMPHT, x3$BMPSRHIS)
+```
+
+Now compute the regression line and add it to the plot.
+```{r}
+model = lm(x3$BMPSRHIS ~ x3$BMPHT)
+plot(x3$BMPHT, x3$BMPSRHIS, xlab="Measured Height (cm)", 
+     ylab="Self-Reported Height (cm)")
+abline(model, col='blue')
+summary(model)
+```
+
+From the output we determine that the regression line is
+$$\mbox{self-reported height} = 1.11\times \mbox{measured height} - 20.48$$
+This equation suggests that taller people in the study tended to overestimate their heights.
+
+\newpage
+
+### Measured Height vs Recumbent Length
+
+Do a similar regression calculation to compare BMPHT and BMPRECUM.
+
+\newpage
+
+### Measured Height vs Weight
+
+Do a similar regression calculation to compare BMPHT and BMPWT.
+
+\newpage
+
+### Measured Height vs Head Circumference
+
+Do a similar regression calculation to compare BMPHT and BMPHEAD.
+
+\newpage
+
+### Age vs Body Mass Index
+
+Do a similar regression calculation to compare HSAGEIR and BMPBMI.
+
+\newpage
+
+### White Blood Cell Count vs Red Blood Cell Count
+
+Do a similar regression calculation to compare WCPSI and RCPSI in the lab data set.  See pages 70 and 71 of the lab-acc.pdf code book.
