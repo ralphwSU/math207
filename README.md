@@ -1,4 +1,4 @@
-# math207
+# Math 207.  Introduction to Statistics 
 
 Course materials for a one-semester, algebra-based statistics course using
 the 4th edition of *Statistics* by David Freedman, Robert Pisani and Roger Purves.
@@ -34,6 +34,9 @@ from the command line.  For example:
 convert  fig.jpg  fig.eps
 ```
 
+In the near future, I may be migrating to use of [pgf/TikZ](https://en.wikipedia.org/wiki/PGF/TikZ)
+for generating graphics.
+
 I also make use of the tweaklist package to modify the formatting of itemize and enumerate
 environments.  The package is included in each of the directories of this repository.  If
 you have the tweaklist.sty file in the same directory as your TeX file, then compilation
@@ -42,7 +45,7 @@ should work.
 ## Statistical Software
 
 I use the R environment for statistical computing [r-project.org](http://www.r-project.org)
-regularly in class and occasiontally on assignments.  [RStudio](https://rstudio.com) is a
+regularly in class and occasionally on assignments.  [RStudio](https://rstudio.com) is a
 graphical interface for R which can help new users get started with the software.
 
 Recently I have experimented with use of the large
