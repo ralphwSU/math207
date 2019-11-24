@@ -27,7 +27,7 @@ ps2pdf doc.ps
 Use of this compilation sequence also necessitates use of eps format for external graphics.
 For example, the university logo is included as an eps.
 Some graphics packages allow you to export eps graphics.  You can use
-[imagemagic](https://imagemagick.org) to convert most any kind of graphics to eps
+[imagemagick](https://imagemagick.org) to convert most any kind of graphics to eps
 from the command line.  For example:
 
 ```
