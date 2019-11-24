@@ -1,0 +1,216 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+%\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,pst-func,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\newcommand{\HH}{\hspace{20pt}\hphantom{a) } }
+
+
+\begin{center}
+\textbf{\large  $z$- and $t$-Test Exercises}
+\end{center}
+\smallskip
+
+1. A coin is tossed 10,000 times, and it lands heads 5,167 times.  Is the chance
+of heads equal to 50\%?  Or are there too many heads for that?
+State the null and alternative hypotheses.  Compute $z$ and $P$.
+\vspace{2in}
+
+2. Use the table below to find the specified 
+area under the $t$-distribution (Student's curve).
+
+\hspace{20pt} a) To the left of $-1.0$ if degrees of freedom is $3$.
+\bigskip
+
+\hspace{20pt} b) To the right of $1.0$ if degrees of freedom is $3$.
+\bigskip
+
+\hspace{20pt} c) To the right of $1.5$ if degrees of freedom is $2$.
+\bigskip
+
+\hspace{20pt} d) To the left of $0.5$ if degrees of freedom is $2$.
+\bigskip
+
+\begin{tabular}{ccc}
+\begin{tabular}{|c|cccc|}\hline
+Degrees\vphantom{\LARGE Y} & &&&\\
+of      & &\rput(20pt, 10pt){$t$}&&\\
+Freedom & $-2.0$ & $-1.5$ & $-1.0$ & $-0.5$\\[3pt]\hline
+1       & $0.148$ & $0.187$ & $0.250$ & $0.352$\vphantom{\LARGE Y}\\
+2       & $0.092$ & $0.136$ & $0.211$ & $0.333$\\
+3       & $0.070$ & $0.115$ & $0.196$ & $0.326$\\\hline
+\end{tabular}
+&\hspace{1in} &
+\definecolor{lg}{rgb}{.8,.8,.8}
+\begin{pspicture}(-2.5,0.5)(2.5,1.5)
+\psframe[linewidth=0.02](-3.2,-0.88)(3.2,2.05)
+\rput(0,1.7){$t$ distribution with $2$ degrees of freedom}
+\psset{yunit=4}
+\pscustom[linestyle=none,fillstyle=solid,fillcolor=lg]{%
+\psTDist*[linewidth=0,linecolor=blue,nue=2]{-2.25}{-0.5}
+\psline(-0.5,0.2963)(-0.5,0)(-2.25,0)(-2.25,0.0533)
+}
+\psTDist[linecolor=blue,nue=2]{-2.25}{2.25}
+\psline{<->}(-2.5,0)(2.5,0)
+\psline(-0.5,0)(-0.5,-0.05)\rput[t](-0.5,-0.08){\footnotesize$-0.5\hphantom{-}$}
+\psline(-2,0)(-2,-0.05)    \rput[t](-2,-0.08){\footnotesize$-2\hphantom{-}$}
+\psline(-1,0)(-1,-0.05)   % \rput[tr](-1,-0.08){\footnotesize$-1$}
+\psline(0,0)(0,-0.05)      \rput[t]( 0,-0.08){\footnotesize$0$}
+\psline(1,0)(1,-0.05)      \rput[t]( 1,-0.08){\footnotesize$1$}
+\psline(2,0)(2,-0.05)      \rput[t]( 2,-0.08){\footnotesize$2$}
+\psbezier{->}(-6.13,-0.05)(-4,0.3)(-2,0.5)(-1,0.1)
+\end{pspicture}
+\end{tabular}
+\bigskip
+\bigskip
+
+3. A spectrophotometer is being calibrated for its daily use.  Two measurements are
+taken which give readings of 71 and 84.  The device is well-calibrated if its
+average measurement is 70.  Perform a $t$-test to conclude whether or not the 
+device is well-calibrated.
+\vfill
+\eject
+
+{\ }
+
+4. (\#4 on page 496) One large course has 900 students, broken down into sections meeting with
+30 students each.  The section meetings are led by teaching assistants.  On the final, the
+class average is 63, and the SD is 20.  However, in one section the 
+average is only 55.  The TA argues this way:
+
+\begin{quote}
+If you took 30 students at random from the class, there is a pretty good chance 
+they would average
+below 55 on the final.  That's what happened to me --- chance variation.
+\end{quote}
+
+Is this a good defense?  Answer yes or no, and explain briefly.
+\vspace{3in}
+
+5. If you used a $z$-test to answer the previous question, redo it using a $t$-test.
+If you used $t$, redo it using $z$.
+\vfill
+\eject
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\medskip
+
+\begin{center}
+\textbf{\large  The Two-Sample $z$-Test to Compare Two Boxes}
+\end{center}
+\smallskip
+
+1. 
+Four hundred draws are made at random with replacement from box $A$.  The
+average of these draws is 110 and their SD is 60.
+Independently, 100 draws are made at random from box $B$.  Their average is 90
+and SD is 40.  Formulate the null and alternative hypotheses.  Calculate the $z$
+and $P$ values.
+% SE1 = 3.  SE2 = 4.   SE_diff = 5.  
+\vspace{1.5in}
+
+
+2. Repeat the previous exercise if the average of the draws from $A$ was
+95.
+\vspace{1.5in}
+
+3. Repeat Exercise 1 if the number of draws from $A$ was 100 and the number
+of draws from $B$ was 36.
+\vspace{1.5in}
+
+4. (\#3 from page 506)
+In 1970, 59\% of college freshmen thought that capital punishment
+should be abolished;  by 2005, the percentage had dropped to 35\%.
+Is the difference real, or can it be explained by chance? You may assume that
+the percentages are based on two independent simple random samples, each of
+size 1,000.
+
+\vfill
+\eject
+{\ }
+
+5. (\#5 from page 507)
+A university takes a simple random sample of 132 male students and 279 females;
+41\% of the men and 17\% of the women report working more than 10 hours 
+during the survey week.  To find out whether the difference in percentages is 
+statistically significant, the investigator starts by computing
+$z=(41-17)/0.048$.  Is anything wrong?    If so fix it.  Then do the test.
+\vspace{2in}
+
+
+6. (\#1 from page 518)
+Five hundred draws are made at random with replacement from a box
+of numbered tickets;  276 are positive.  Someone tells you that
+50\% of the tickets in the box show positive numbers.  Do you believe it?  
+Answer yes or no, and explain.
+\vspace{2in}
+
+\vfill
+\eject
+
+\end{document}
+

@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+
+\begin{center}
+\textbf{\large  Worksheet:  The $\chi^2$ Test}
+\end{center}
+\smallskip
+
+
+1. As part of a study on the selection of grand juries in Alameda county, the 
+educational level of grand jurors was compared with the county distribution
+tabulated below.  Could a simple random sample of 62 people from 
+the county show a distribution of educational level so different from the 
+county-wide one?
+
+\begin{tabular}{|lcc|}\hline
+Educational    &        & Number of\vphantom{\Large Y}\\
+level          & County & jurors\\\hline
+Elementary     & \Z28.4\% & \Z1\\
+Secondary      & \Z48.5\% & 10\\
+Some college   & \Z11.9\% & 16\\
+College degree & \Z11.2\% & 35\\\hline
+Total &        100.0\%  & 62\\\hline
+\end{tabular}
+\vspace{1in}
+
+2. (Hypothetical.) In a certain town, there are about one million eligible voters.  A
+simple random sample of size 10,000 was chosen, to study the relationship 
+between gender and participation in the last election.  The results are tabulated below.
+Are gender and voting rate independent?
+
+\begin{tabular}{|lcc|}\hline
+            & Men & Women\vphantom{\Large Y}\\\hline
+Voted       & 2,792 & 3,591\\
+Didn't Vote & 1,486 & 2,131\\\hline
+\end{tabular}
+
+\vfill
+\eject
+{\ }
+
+3. Use the table below to say whether or not handedness and gender are independent.
+
+\begin{tabular}{|lrr|}\hline
+& Men & Women\vphantom{\Large Y}\\\hline
+Right-handed & 934 & 1,070\vphantom{\Large Y}\\
+Left-handed  & 113 & 92\\
+Ambidextrous & 20 & 8\\\hline
+\end{tabular}
+% 934   1070   2004  = 89.58%
+% 113     92    205  =  9.16%
+%  20      8     28  =  1.25%
+% 1067  1170   2237
+%
+% 956   1048
+%  98    107
+%  13     15
+%
+% x2 = (934-956)^2 / 956 + ...
+% 
+\vfill
+
+Solutions: 
+1.  No: $\chi^2=152$ and $P\approx 0\%$ \hspace{20pt} 
+2. No: $\chi^2=6.58$ and $P=1.0\%$\hspace{20pt} 
+
+3. No: $\chi^2=12.4$ and $P=2.2\%$
+\eject
+\end{document}
+

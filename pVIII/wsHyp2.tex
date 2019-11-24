@@ -1,0 +1,158 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+
+\setlength{\baselineskip}{1.05\baselineskip}
+\newcommand{\HH}{\hspace{20pt}\hphantom{a) } }
+
+
+\begin{center}
+\textbf{\large  $t$-Test}
+\end{center}
+\smallskip
+
+When the sample size is small, we use the $t$-test and the $t$ distribution
+instead of the $z$-test and the normal distribution to test hypotheses about
+the unknown population (box model).  Here are the steps.
+\begin{enumerate}
+\item When the number of measurements $n$ is small, use $\mbox{SD}^+$ 
+  instead of $\mbox{SD}$.
+%\[\mbox{SD}^+ = \mbox{SD}\,\sqrt{\frac{\mbox{number of measurements}}{\mbox{number
+%  of measurements}\, -\, 1}}\]
+\[\mbox{SD}^+ = \mbox{SD}\,\sqrt{\frac{n}{n\,-\,1}}\]
+\item Calculate the SE for the sum, average, or percent using $\mbox{SD}^+$
+  and the number of measurements.
+\[\mbox{SE}_{\scriptsize\mbox{sum}}=\sqrt{n}\;\mbox{SD}^+\hspace{30pt}
+ \mbox{SE}_{\scriptsize\mbox{av}}=\frac{\mbox{SD}^+}{\sqrt{n}}\hspace{30pt}
+ \mbox{SE}_{\scriptsize\mbox{\%}}=\frac{\mbox{SD}^+}{\sqrt{n}}\]
+\item Calculate the test statistic.
+\[\frac{\mbox{observed} \, -\, \mbox{expected}}{\mbox{SE}}.\]
+\item Calculate the $P$-value using the $t$-distribution with 
+  $n-1$ degrees of freedom.
+\end{enumerate}
+
+\textbf{Example}:
+The five calibration readings of a spectrophotometer (see page~488) are:
+78, 83, 68, 72 and 88.  If the machine reads close to 70, then it is ready for
+use.  We can use the $t$-test 
+to test the null hypothesis \lq\lq the average of the machine is 70\rq\rq\ as
+follows.
+\begin{align*}
+\mbox{average of the readings} &= \frac{78+83+68+72+88}{5}\\ & = 77.8\\[5pt]
+\mbox{SD of the readings}      &=\sqrt{\frac{(78-77.8)^2 + \cdots + (88-77.8)^2}{5}}\\
+   &= 7.22\\[5pt]
+\mbox{SD$^+$ of the readings}   &=\sqrt{(5/4)}\;\;7.22 \\ &= 8.07\\[5pt]
+\mbox{SE}_{\mbox{\scriptsize av}}    &= \frac{8.07}{\sqrt{5}}\\ &= 3.6\\[5pt]
+\mbox{test statistic}          &= \frac{77.8-70}{3.6}\\ & = 2.2\\[5pt]
+\mbox{$P$-value}               &= 1-\mbox{pt}(2.2,\;\;\mbox{df}=4)\\ &= 4.6\%
+\end{align*}
+If we had used the $z$-test, we would have calculated
+$\mbox{SE}_{\scriptsize\mbox{av}}=3.22$, $z=2.4$ and $P=1-\mbox{pnorm}(2.4)=0.9$\%.
+Use of the $t$-test instead of the $z$-test corrects for the small sample size
+and makes a big difference in the computed $P$-value.
+\vfill
+\eject
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\medskip
+
+\begin{center}
+\textbf{\large  Worksheet:  $t$-Test}
+\end{center}
+\smallskip
+
+1. Compare the $t$-distribution to the standard normal distribution.
+
+\hspace{20pt} a) Calculate the area under the normal curve between 
+  $\pm 1$  using \lstinline!pnorm(1)-pnorm(-1)!
+\bigskip
+
+\hspace{20pt} b) Calculate the corresponding area under the $t$-distribution with 
+$5$ degrees of freedom using\vspace{-4pt}
+
+\HH \lstinline!pt(1, df=5) - pt(-1, df=5)!
+\bigskip
+
+\hspace{20pt} c) How many degrees of freedom do you need before the areas 
+  under the normal and $t$-distributions\vspace{-4pt}
+
+\HH agree to two decimal places?
+\bigskip
+
+\hspace{20pt} d) Repeat b)--c) for the area between $\pm 2$.
+\bigskip
+
+2. Use \texttt{R} to do exercises 1--2 on page 494.
+\vspace{1.5in}
+
+3. Do exercise 4 on page 494.
+\vfill
+\eject
+
+
+\end{document}
+
