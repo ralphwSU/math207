@@ -1,0 +1,226 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\hspace{5.28in} & %17 February 2012
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Probability Exercises}
+\end{center}
+\medskip
+\newcommand{\Z}{\hphantom{0}}
+
+1. A box has 3 green marbles and 2 red marbles.  Calculate the following probabilities:
+
+\hspace{20pt} a)  Drawing a green marble.
+\bigskip
+
+\hspace{20pt} b)  Drawing a red marble.
+\bigskip
+
+\hspace{20pt} c) Drawing a two red marbles in a row (with replacement).
+\bigskip
+
+\hspace{20pt} d) Drawing a two red marbles in a row (without replacement).
+\bigskip
+
+\hspace{20pt} e) Drawing a two green marbles in a row (with replacement).
+\bigskip
+
+\hspace{20pt} f) Drawing a two green marbles in a row (without replacement).
+\bigskip
+
+\hspace{20pt} g) Drawing a two green marbles out
+  of the first three (with replacement).
+\bigskip
+
+\hspace{20pt} h) Drawing a two green marbles out
+  of the first three (without replacement).
+\bigskip
+
+\hspace{20pt} i) Drawing a three green marbles in a row
+  (with replacement).
+\bigskip
+
+\hspace{20pt} j) Drawing a three green marbles in a row
+  (without replacement).
+\bigskip
+
+\hspace{20pt} k) Drawing a three red marbles in a row
+  (with replacement).
+\bigskip
+
+\hspace{20pt} $\ell$) Drawing a three red marbles in a row
+  (without replacement).
+\bigskip
+
+2. Cards are drawn at random from a well-shuffled deck.
+Calculate the following probabilities.
+\medskip
+
+\hspace{20pt} a) First card is $\mbox{J}\heartsuit$
+\bigskip
+
+\hspace{20pt} b) Second card is $\mbox{K}\spadesuit$
+\bigskip
+
+\hspace{20pt} c) Second card is $\mbox{K}\spadesuit$ given that 
+the first was $\mbox{J}\heartsuit$
+\bigskip
+
+\hspace{20pt} d) First two cards are $\mbox{J}\heartsuit$ followed by $\mbox{K}\spadesuit$
+\bigskip
+
+\hspace{20pt} e) First two cards are $\mbox{J}\heartsuit$ 
+and $\mbox{K}\spadesuit$ (either order)
+\bigskip
+
+\hspace{20pt} f) First two cards are a $\heartsuit$ followed by a $10$
+\bigskip
+
+\hspace{20pt} g) First five cards are four 10s followed by a $\clubsuit$
+\vfill
+\eject
+
+
+{\ }
+
+3. Two fair dice are tossed. Calculate the following probabilities
+\medskip
+
+\hspace{20pt} a) Sum is even given that it is less than 3
+\bigskip
+
+\hspace{20pt} b) Sum is even and less than 3
+\bigskip
+
+\hspace{20pt} c) One die shows a 4
+\bigskip
+\bigskip
+
+
+3. \textbf{Sum Rule}.
+
+\hspace{20pt} a) Cards are drawn at random from a well-shuffled deck.
+Calculate the following probabilities.
+\medskip
+\bigskip
+
+\hspace{30pt} i) First card is $10\heartsuit$ or $\mbox{K}$
+\bigskip
+\bigskip
+
+\hspace{30pt} ii) First card is $\heartsuit$ or $\mbox{K}$
+\bigskip
+\bigskip
+
+\hspace{30pt} iii) First card is an $\heartsuit$ or $\diamondsuit$
+\bigskip
+\bigskip
+
+\hspace{30pt} iv) First card is not a $\heartsuit$ or is $\diamondsuit$
+\bigskip
+\bigskip
+
+\hspace{30pt} v) First two cards are both $\heartsuit$ or both 10
+\bigskip
+\bigskip
+
+\hspace{20pt} b) Two dice are rolled. Calculate the following probabilities.
+\medskip
+\bigskip
+
+\hspace{30pt} i) Sum is three or four
+\bigskip
+\bigskip
+
+\hspace{30pt} ii) Sum is three or odd
+\bigskip
+\bigskip
+
+\hspace{30pt} iii) Sum is three or four or odd
+\vfill
+\eject
+
+4. \textbf{Independent / Mutually Exclusive Events}. 
+For each event $A$ described below, describe events $B$ for which
+$A$ and $B$ are
+i)~independent, ii)~dependent,
+iii)~mutually exclusive, iv) not mutually exlusive.
+\medskip
+
+\hspace{20pt} a) The first of two dice will show an even number of dots
+\vspace{1in}
+
+
+\hspace{20pt} b) The first card drawn from a deck will be a $\clubsuit$
+\vspace{1in}
+
+
+\hspace{20pt} c) The second card drawn from a deck will be a $\heartsuit$
+\vspace{1in}
+
+
+\vfill
+\eject
+\end{document}
+

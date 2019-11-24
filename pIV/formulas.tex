@@ -1,0 +1,112 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+
+Multiplication Rule:  
+\begin{itemize}
+\item $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B\,\vert\,A)$.
+\item If $A$ and $B$ are independent, then $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B)$.
+\end{itemize}
+Sum Rule:
+\begin{itemize}
+\item $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B) - P(A\;\;\mbox{and}\;\;B)$
+\item If $A$ ane $B$ are mutually exclusive, then $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B)$
+\end{itemize}  
+\bigskip
+
+The chance that an event will occur exactly $k$ times out of $n$ is given by 
+the binomial formula:
+\[\frac{n!}{k!\,(n-k)!}\,p^k\,(1-p)^{n-k}\]
+
+A standard deck of cards has the following properties.
+\begin{itemize}
+\item 52 cards
+\item 4 suits:  hearts $\heartsuit$, spades $\spadesuit$, clubs $\clubsuit$,
+  and diamonds $\diamondsuit$
+\item Hearts and diamonds are red.  Spades and clubs are black
+\item 13 cards of each suit:  2 -- 10, J, Q, K, and ace
+\item 4 cards of each rank:  2 -- 10, J, Q, K, and ace
+\item J, Q, and K are face cards
+\end{itemize}
+
+\vfill
+Multiplication Rule:  
+\begin{itemize}
+\item $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B\,\vert\,A)$.
+\item If $A$ and $B$ are independent, then $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B)$.
+\end{itemize}
+Sum Rule:
+\begin{itemize}
+\item $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B) - P(A\;\;\mbox{and}\;\;B)$
+\item If $A$ ane $B$ are mutually exclusive, then $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B)$
+\end{itemize}  
+\bigskip
+
+The chance that an event will occur exactly $k$ times out of $n$ is given by 
+the binomial formula:
+\[\frac{n!}{k!\,(n-k)!}\,p^k\,(1-p)^{n-k}\]
+
+A standard deck of cards has the following properties.
+\begin{itemize}
+\item 52 cards
+\item 4 suits:  hearts $\heartsuit$, spades $\spadesuit$, clubs $\clubsuit$,
+  and diamonds $\diamondsuit$
+\item Hearts and diamonds are red.  Spades and clubs are black
+\item 13 cards of each suit:  2 -- 10, J, Q, K, and ace
+\item 4 cards of each rank:  2 -- 10, J, Q, K, and ace
+\item J, Q, and K are face cards
+\end{itemize}
+\bigskip
+\bigskip
+
+\eject
+
+\end{document}
+

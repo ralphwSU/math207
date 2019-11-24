@@ -1,0 +1,183 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %5 October 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Warmup Exercises}
+\end{center}
+\medskip
+\newcommand{\Z}{\hphantom{0}}
+
+1. \textbf{Multiplication Rule}. 
+Cards are drawn at random without replacement from a well-shuffled deck.
+Calculate the following probabilities.
+\medskip
+
+\hspace{20pt} a) First card is $\mbox{2}\heartsuit$
+\bigskip\medskip
+
+\hspace{20pt} b) Second card is $\mbox{5}\spadesuit$
+\bigskip\medskip
+
+\hspace{20pt} c) Second card is $\mbox{5}\spadesuit$ given that 
+the first was $\mbox{2}\heartsuit$
+\bigskip\medskip
+
+\hspace{20pt} d) First two cards are $\mbox{2}\heartsuit$ followed by $\mbox{5}\spadesuit$
+\bigskip\medskip
+
+\hspace{20pt} e) First two cards are $\mbox{2}\heartsuit$ 
+and $\mbox{5}\spadesuit$ (either order)
+\bigskip\medskip
+
+\hspace{20pt} f) First two cards are an $8$ followed by a $10$
+\bigskip\medskip
+
+\hspace{20pt} g) First five cards are four clubs followed by a $10$
+\bigskip\bigskip
+
+2. Two fair dice are tossed. Calculate the following probabilities
+\medskip
+
+\hspace{20pt} a) Sum is even given that it is less than 7
+\bigskip
+
+\hspace{20pt} b) Sum is even and less than 7
+\bigskip\bigskip
+
+\hspace{20pt} c) One die shows a 6
+\bigskip\bigskip
+
+\hspace{20pt} d) Sum is four.
+\bigskip\bigskip
+
+\hspace{20pt} e) Sum is at most four.
+\bigskip\bigskip
+
+\hspace{20pt} f) Sum is greater than four.
+\bigskip\bigskip
+
+\hspace{20pt} g) Sum is at least four.
+
+\vfill
+\eject
+{\ }
+
+
+3. \textbf{Sum Rule}. Cards are drawn at random without replacement from a well-shuffled deck.
+Calculate the following probabilities.
+\medskip
+
+\hspace{20pt} a) First card is $K\heartsuit$ or $\mbox{J}\clubsuit$
+\bigskip\medskip
+
+\hspace{20pt} b) First card is $\heartsuit$ or $\mbox{J}\clubsuit$
+\bigskip\medskip
+
+\hspace{20pt} c) First card is an ace or $\diamondsuit$
+\bigskip\medskip
+
+\hspace{20pt} d) First card is not an ace or is $\diamondsuit$
+\bigskip\medskip
+
+\hspace{20pt} e) First two cards are both $\heartsuit$ or both 10
+\bigskip\medskip
+
+4. \textbf{Sum Rule}. Two dice are rolled. Calculate the following probabilities.
+\medskip
+
+\hspace{20pt} a) Sum is four or seven
+\bigskip
+
+\hspace{20pt} b) Sum is four or even
+\bigskip
+
+\hspace{20pt} c) Sum is four or seven or even
+\bigskip\bigskip
+
+5. \textbf{Independent / Mutually Exclusive Events}. 
+For each event $A$ described below, describe events $B$ for which
+$A$ and $B$ are
+i)~independent, ii)~dependent,
+iii)~mutually exclusive, iv) not mutually exlusive.
+\medskip
+
+\hspace{20pt} a) It will snow in Shepherdstown on February 21 2012
+\vspace{1in}
+
+
+\hspace{20pt} b) Ron Paul will win the presidential election this year
+\vspace{1in}
+
+
+\hspace{20pt} c) Ron Paul will be the Republican candidate in the presidential
+   election this year
+\vspace{1in}
+
+
+\vfill
+\eject
+\end{document}
+

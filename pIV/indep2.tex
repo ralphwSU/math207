@@ -1,0 +1,376 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{10.3in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.1in}
+\setlength{\voffset}{-1.2in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+\usepackage[all]{xy}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.2,.2,.2}
+\definecolor{MyCiteColor}{rgb}{.2,.2,.9}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=black,urlcolor=MyURLColor,citecolor=MyCiteColor]{hyperref}
+
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+
+\begin{document}
+\pagestyle{empty}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small\hfill
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics
+\end{tabular}
+}\vspace{-10pt}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large Warmup Exercises:  Independence}
+\end{center}\vspace{-5pt}
+Multiplication Rule:  
+\begin{itemize}
+\item $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B\,\vert\,A)$.
+\item If $A$ and $B$ are independent, then $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B)$.
+\end{itemize}
+Events $A$ and $B$ are independent if and only if $P(B\vert A)=P(B)$.
+This is true if and only if $P(B\vert A)=P(B)$.  In other words, knowing $A$ doesn't change
+the chance of $B$; knowing $B$ doesn't change the chance of $A$.
+\newcommand{\ticket}[2]{\psframe(0,0)(0.5,0.5)\psframe(0.5,0)(1,0.5)\rput(0.25,0.25){#1}\rput(0.75,0.25){#2}}
+\medskip
+
+1. Sets of paper tickets are shown below.
+Each ticket has a number on the left and a shape on the right.  
+For each set of tickets, 
+Determine if number and shape are
+independent or dependent.
+
+\hspace{10pt} a)
+\begin{pspicture}(0,0.15)(15,0.5)
+\rput(0,0){\ticket{1}{$\triangle$}}
+\rput(2,0){\ticket{1}{$\square$}}
+\rput(4,0){\ticket{1}{$\square$}}
+\rput(6,0){\ticket{1}{$\star$}}
+\rput(8,0){\ticket{5}{$\triangle$}}
+\rput(10,0){\ticket{5}{$\square$}}
+\rput(12,0){\ticket{5}{$\square$}}
+\rput(14,0){\ticket{5}{$\star$}}
+\end{pspicture}
+\smallskip
+
+\hspace{10pt} b)
+\begin{pspicture}(0,0.15)(15,0.5)
+\rput(0,0){\ticket{1}{$\triangle$}}
+\rput(2,0){\ticket{1}{$\square$}}
+\rput(4,0){\ticket{1}{$\square$}}
+\rput(6,0){\ticket{1}{$\star$}}
+\rput(8,0){\ticket{5}{$\triangle$}}
+\rput(10,0){\ticket{5}{$\square$}}
+\rput(12,0){\ticket{5}{$\star$}}
+\rput(14,0){\ticket{5}{$\star$}}
+\end{pspicture}
+\smallskip
+
+\hspace{10pt} c)
+\begin{pspicture}(0,0.15)(15,0.5)
+\rput(0,0){\ticket{1}{$\triangle$}}
+\rput(2,0){\ticket{1}{$\square$}}
+\rput(4,0){\ticket{1}{$\star$}}
+\rput(6,0){\ticket{1}{$\circ$}}
+\rput(8,0){\ticket{5}{$\triangle$}}
+\rput(10,0){\ticket{5}{$\square$}}
+\rput(12,0){\ticket{5}{$\star$}}
+\rput(14,0){\ticket{5}{$\circ$}}
+\end{pspicture}
+\smallskip
+
+\hspace{10pt} d)
+\begin{pspicture}(0,0.15)(15,0.5)
+\rput(0,0){\ticket{9}{$\triangle$}}
+\rput(2,0){\ticket{9}{$\triangle$}}
+\rput(4,0){\ticket{9}{$\triangle$}}
+\rput(6,0){\ticket{9}{$\triangle$}}
+\rput(8,0){\ticket{3}{$\square$}}
+\rput(10,0){\ticket{3}{$\square$}}
+\rput(12,0){\ticket{3}{$\square$}}
+\rput(14,0){\ticket{3}{$\square$}}
+\end{pspicture}
+\medskip
+
+2. Referring to the polio vaccine trials, are the  events $A$ and $B$
+independent or dependent?
+
+\hspace{10pt} a)
+\begin{tabular}{l}
+ $A=\mbox{a randomly selected subject is from a high-income family}$\\[2pt]
+ $B=\mbox{a randomly selected subject will get polio}$\\
+\end{tabular}
+\smallskip
+
+\hspace{10pt} b) 
+\begin{tabular}{l}
+$A=\mbox{a randomly selected subject is from a high-income family}$\\[2pt]
+$B=\mbox{the parents of the randomly selected subject will consent to 
+their child getting the vaccine}$\\
+\end{tabular}
+\smallskip
+
+\hspace{10pt} c) 
+\begin{tabular}{l}
+$A=\mbox{a randomly selected subject will be diagnosed with polio}$\\[2pt]
+$B=\mbox{the medical examiner will know that the patient received the vaccine}$\\
+\end{tabular}
+\medskip
+\medskip
+\medskip\medskip
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small\hfill
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics
+\end{tabular}
+}\vspace{-10pt}
+
+\begin{center}
+\textbf{\large Warmup Exercises:  Independence}
+\end{center}\vspace{-5pt}
+Multiplication Rule:  
+\begin{itemize}
+\item $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B\,\vert\,A)$.
+\item If $A$ and $B$ are independent, then $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B)$.
+\end{itemize}
+Events $A$ and $B$ are independent if and only if $P(A\vert B)=P(A)$.
+This is true if and only if $P(B\vert A)=P(B)$.  In other words, knowing $A$ doesn't change
+the chance of $B$; knowing $B$ doesn't change the chance of $A$.
+\medskip
+
+1. Sets of paper tickets are shown below.
+Each ticket has a number on the left and a shape on the right.  
+For each set of tickets, determine if number and shape are
+independent or dependent.
+
+\hspace{10pt} a)
+\begin{pspicture}(0,0.15)(15,0.5)
+\rput(0,0){\ticket{1}{$\triangle$}}
+\rput(2,0){\ticket{1}{$\square$}}
+\rput(4,0){\ticket{1}{$\square$}}
+\rput(6,0){\ticket{1}{$\star$}}
+\rput(8,0){\ticket{5}{$\triangle$}}
+\rput(10,0){\ticket{5}{$\square$}}
+\rput(12,0){\ticket{5}{$\square$}}
+\rput(14,0){\ticket{5}{$\star$}}
+\end{pspicture}
+\smallskip
+
+\hspace{10pt} b)
+\begin{pspicture}(0,0.15)(15,0.5)
+\rput(0,0){\ticket{1}{$\triangle$}}
+\rput(2,0){\ticket{1}{$\square$}}
+\rput(4,0){\ticket{1}{$\square$}}
+\rput(6,0){\ticket{1}{$\star$}}
+\rput(8,0){\ticket{5}{$\triangle$}}
+\rput(10,0){\ticket{5}{$\square$}}
+\rput(12,0){\ticket{5}{$\star$}}
+\rput(14,0){\ticket{5}{$\star$}}
+\end{pspicture}
+\smallskip
+
+\hspace{10pt} c)
+\begin{pspicture}(0,0.15)(15,0.5)
+\rput(0,0){\ticket{1}{$\triangle$}}
+\rput(2,0){\ticket{1}{$\square$}}
+\rput(4,0){\ticket{1}{$\star$}}
+\rput(6,0){\ticket{1}{$\circ$}}
+\rput(8,0){\ticket{5}{$\triangle$}}
+\rput(10,0){\ticket{5}{$\square$}}
+\rput(12,0){\ticket{5}{$\star$}}
+\rput(14,0){\ticket{5}{$\circ$}}
+\end{pspicture}
+\medskip
+
+\hspace{10pt} d)
+\begin{pspicture}(0,0.15)(15,0.5)
+\rput(0,0){\ticket{9}{$\triangle$}}
+\rput(2,0){\ticket{9}{$\triangle$}}
+\rput(4,0){\ticket{9}{$\triangle$}}
+\rput(6,0){\ticket{9}{$\triangle$}}
+\rput(8,0){\ticket{3}{$\square$}}
+\rput(10,0){\ticket{3}{$\square$}}
+\rput(12,0){\ticket{3}{$\square$}}
+\rput(14,0){\ticket{3}{$\square$}}
+\end{pspicture}
+\medskip
+
+2. Referring to the polio vaccine trials, are the  events $A$ and $B$
+independent or dependent?
+
+\hspace{10pt} a)
+\begin{tabular}{l}
+ $A=\mbox{a randomly selected subject is from a high-income family}$\\[2pt]
+ $B=\mbox{a randomly selected subject will get polio}$\\
+\end{tabular}
+\medskip
+
+\hspace{10pt} b) 
+\begin{tabular}{l}
+$A=\mbox{a randomly selected subject is from a high-income family}$\\[2pt]
+$B=\mbox{the parents of the randomly selected subject will consent to 
+their child getting the vaccine}$\\
+\end{tabular}
+\medskip
+
+\hspace{10pt} c) 
+\begin{tabular}{l}
+$A=\mbox{a randomly selected subject will be diagnosed with polio}$\\[2pt]
+$B=\mbox{the medical examiner will know that the patient received the vaccine}$\\
+\end{tabular}
+\eject
+
+3. Are the two events independent or dependent.
+
+\hspace{20pt} a)
+\begin{tabular}{l}
+$A=\mbox{it will snow on 21 December}$\\[2pt]
+$B=\mbox{the high temp on 21 December will be 31$^\circ$ F}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} b) 
+\begin{tabular}{l}
+$A=\mbox{it will snow on 21 December}$\\[2pt]
+$B=\mbox{21 December will be a Saturday}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} c)
+\begin{tabular}{l}
+$A=\mbox{it will snow on 21 December}$\\[2pt]
+$B=\mbox{the next coin flip will be tails}$\\
+\end{tabular}
+\medskip
+
+4. Are the two events independent or dependent.
+
+\hspace{20pt} a)
+\begin{tabular}{l}
+$A=\mbox{first card drawn will be a $\heartsuit$}$\\[2pt]
+$B=\mbox{first card drawn will be a 10}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} b)
+\begin{tabular}{l}
+$A=\mbox{first card drawn will be a face card}$\\[2pt]
+$B=\mbox{first card drawn will be a king}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} c)
+\begin{tabular}{l}
+$A=\mbox{first card drawn will be a $\clubsuit$}$\\[2pt]
+$B=\mbox{second card drawn will be a $\clubsuit$}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} d)
+\begin{tabular}{l}
+$A=\mbox{first card drawn will be a $\clubsuit$}$\\[2pt]
+$B=\mbox{second card drawn will be a $\diamondsuit$}$\\
+\end{tabular}
+\medskip
+
+{\scriptsize \textbf{Solutions:} 1.a) independent; b) dependent; c) independent; d) dependent.\hspace{10pt}
+2. all are dependent.\vspace{-5pt}
+
+3.a) dependent; b) independent; c)~independent\hspace{10pt}
+4.a) independent; b) dependent; c) dependent; d) dependent}
+\vfill
+
+3. Are the two events independent or dependent.
+
+\hspace{20pt} a)
+\begin{tabular}{l}
+$A=\mbox{it will snow on 21 December}$\\[2pt]
+$B=\mbox{the high temp on 21 December will be 31$^\circ$ F}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} b) 
+\begin{tabular}{l}
+$A=\mbox{it will snow on 21 December}$\\[2pt]
+$B=\mbox{21 December will be a Saturday}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} c)
+\begin{tabular}{l}
+$A=\mbox{it will snow on 21 December}$\\[2pt]
+$B=\mbox{the next coin flip will be tails}$\\
+\end{tabular}
+\medskip
+
+4. Are the two events independent or dependent.
+
+\hspace{20pt} a)
+\begin{tabular}{l}
+$A=\mbox{first card drawn will be a $\heartsuit$}$\\[2pt]
+$B=\mbox{first card drawn will be a 10}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} b)
+\begin{tabular}{l}
+$A=\mbox{first card drawn will be a face card}$\\[2pt]
+$B=\mbox{first card drawn will be a king}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} c)
+\begin{tabular}{l}
+$A=\mbox{first card drawn will be a $\clubsuit$}$\\[2pt]
+$B=\mbox{second card drawn will be a $\clubsuit$}$\\
+\end{tabular}
+\medskip
+
+\hspace{20pt} d)
+\begin{tabular}{l}
+$A=\mbox{first card drawn will be a $\clubsuit$}$\\[2pt]
+$B=\mbox{second card drawn will be a $\diamondsuit$}$\\
+\end{tabular}
+\medskip
+
+
+{\scriptsize \textbf{Solutions:} 1.a) independent; b) dependent; c) independent; d) dependent.\hspace{10pt}
+2. all are dependent.\vspace{-5pt}
+
+3.a) dependent; b) independent; c)~independent\hspace{10pt}
+4.a) independent; b) dependent; c) dependent; d) dependent}
+\eject
+
+\end{document}

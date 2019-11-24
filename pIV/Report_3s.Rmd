@@ -1,0 +1,187 @@
+---
+title: "Report_3"
+author: "Your Name"
+date: "11 November 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Instructions:  
+
+1. Update the read.csv command so that R knows where to find the data on your computer. 
+2. Set the random number seed (see below) to a unique value.
+3. Replace all the italic text with your own discussion (this is a focus of this report).
+4. After you have completed the blood pressure vs pulse rate section, repeat the analysis for blood pressure and age (copy and paste your code, change the variable names, then update the discussion).
+
+
+## Introduction
+The NHANES data set consists of four data files:  adult.csv, youth.csv, lab.csv and 
+exam.csv.  The adult file contains information about subjects who were over 17 years
+old.  The youth file contains information about younger subjects.  The lab and exam
+files contain additional data about both adults and youth.
+
+
+### Reading the data into R
+For this report, we only need to read the exam.csv file into R.
+```{r}
+exam = read.csv("../nhanes/exam.csv", header=TRUE)
+```
+
+The size of this data set is
+```{r}
+dim(exam)
+```
+
+There are `r dim(exam)[1]` rows and `r dim(exam)[2]` columns in the exam file.
+
+### Setting a Random Number Seed.
+
+_Change the 10 in the following command to some other positive whole number.  Pick a number that is different from that of other students.  This value is used to randomly select a subject from the data set._
+```{r}
+set.seed(10)
+```
+
+\newpage
+
+## Blood Pressure and Pulse Rate
+
+_Explain what the variables PEP6DR and PEPMNK1R mean._
+```{r}
+x1 <- data.frame(SEQN=exam$SEQN, PEP6DR=exam$PEP6DR, PEPMNK1R=exam$PEPMNK1R)
+x2 <- na.omit(x1)
+x3 <- x2[(x2$PEP6DR != 888) & (x2$PEPMNK1R != 888),  ]
+```
+
+Plot the pulse rate and average systolic blood pressure.
+```{r}
+plot(x3$PEP6DR, x3$PEPMNK1R, xlab="Pulse Rate (bpm)", 
+     ylab="Average Systolic Blood Pressure (mm Hg)")
+```
+
+_Comment on any features you notice about the graph._
+
+\newpage
+
+### Regression Line 
+The correlation between the blood pressure and pulse rates is. 
+```{r}
+r = cor(x3$PEP6DR, x3$PEPMNK1R)
+r
+```
+
+Now compute the regression line and add it to the plot.
+```{r}
+model = lm(x3$PEPMNK1R ~ x3$PEP6DR)
+plot(x3$PEP6DR, x3$PEPMNK1R, xlab="Pulse Rate (bpm)", 
+     ylab="Average Systolic Blood Pressure (mm Hg)")
+abline(model, col='blue')
+summary(model)
+```
+
+The slope of the regression line is 
+```{r} 
+slope = as.vector(model$coefficients[2])
+slope
+```  
+The y-intercept is 
+```{r} 
+y.int = as.vector(model$coefficients[1])
+y.int
+```
+
+The RMS error for the regression line is
+```{r}
+rms = sd(x3$PEPMNK1R)*sqrt(1 - r * r)
+rms
+```
+
+_Comment on the magnitude and sign of the correlation.  Do you think an increase in pulse rate causes an increase in blood pressure?  Decrease?  What else might account for the value of the correlation?_
+
+\newpage
+
+### Study a Randomly-Selected Subject.
+
+We randomly select a subject for which the pulse rate and average systolic
+blood pressure measurements are available (not blank).  
+```{r}
+row.number    = sample(1:dim(x3)[1], 1)
+subject_id    = x3$SEQN[row.number]
+subject_pulse = x3$PEP6DR[row.number]
+subject_bp    = x3$PEPMNK1R[row.number]
+```
+
+The value of the HSSEX variable is 
+```{r} 
+exam[exam$SEQN == subject_id,]$HSSEX
+```
+_Comment on the meaning of this value._
+
+The age of the subject is 
+```{r} 
+exam[exam$SEQN == subject_id,]$HSAGEIR
+```
+
+The value of DMPCREGN is 
+```{r} 
+exam[exam$SEQN == subject_id,]$DMPCREGN
+```
+_Comment on the meaning of this value._
+
+The value of DMARACER is 
+```{r} 
+exam[exam$SEQN == subject_id,]$DMARACER
+```
+_Comment on the meaning of this value._
+
+
+We randomly selected patient `r subject_id`.  This subject's pulse rate
+was `r subject_pulse` and average systolic blood pressure was
+`r subject_bp`.
+
+Compared to all subjects, the z-score for this pulse rate is 
+```{r} 
+(subject_pulse - mean(x3$PEP6DR))/sd(x3$PEP6DR)
+```
+_Comment on this z-score_
+
+
+Compared to all subjects, the z-score for this blood pressure measurement is 
+```{r} 
+(subject_bp - mean(x3$PEPMNK1R))/sd(x3$PEPMNK1R)
+```
+_Comment on this z-score_
+
+The blood pressure predicted by the regression line is 
+```{r}
+predicted_bp = slope * subject_pulse + y.int
+predicted_bp
+```
+
+Compared to subjects with the same pulse rate, the z-score of this subject's 
+pulse rate is
+```{r}
+(subject_bp - predicted_bp) / rms
+```
+_Comment on this z-score_
+
+\newpage
+
+
+## Blood Pressure and Age
+
+_Explain what the variables PEPMNK1R and HSAGEIR mean. Repeat the analysis that you did for PEP6DR and PEPMNK1R using HSAGEIR and PEPMNK1R._
+
+\newpage
+
+### Regression Line
+
+_Repeat the regression line analysis that you did for blood pressure and pulse._
+
+\newpage
+
+### Study a Randomly-Selected Subject
+
+_Repeat the analysis that you did for blood pressure and pulse._

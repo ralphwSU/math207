@@ -1,0 +1,205 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small{\ }\hfill
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+
+\begin{center}
+\textbf{\large  Multiplication and Sum Rule Exercises}
+\end{center}\vspace{-5pt}
+\newcommand{\Z}{\hphantom{0}}
+
+Multiplication Rule:  
+\begin{itemize}
+\item $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B\,\vert\,A)$.
+\item If $A$ and $B$ are independent, then $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B)$.
+\end{itemize}
+Sum Rule:
+\begin{itemize}
+\item $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B) - P(A\;\;\mbox{and}\;\;B)$
+\item If $A$ ane $B$ are mutually exclusive, then $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B)$
+\end{itemize}  
+\bigskip
+
+1. Cards are drawn at random without replacement from a 
+well-shuffled deck. Calculate the following probabilities.
+\medskip
+
+\hspace{20pt} a) First card is a $\heartsuit$
+\bigskip\medskip
+
+\hspace{20pt} b) First card is a $K$
+\bigskip\medskip
+
+\hspace{20pt} c) First card is a $K\heartsuit$
+\bigskip\medskip
+
+\hspace{20pt} d) First card is a $K\heartsuit$ and the second is $Q\heartsuit$
+\bigskip\medskip
+
+\hspace{20pt} e) Both the first card and the second card are  $10\clubsuit$
+\bigskip\medskip
+
+\hspace{20pt} f) The second card is a $10$ given that the first card was.
+\bigskip\medskip
+
+\hspace{20pt} g) The first and second cards are both $10$s
+\bigskip\medskip
+
+\hspace{20pt} h) First card is a $\heartsuit$ or a 10
+\bigskip\medskip
+
+\hspace{20pt} i) First card is a $\clubsuit$ or a face card
+\bigskip\medskip
+
+\hspace{20pt} j) First card is a 10 or a 3
+\bigskip\medskip
+
+\hspace{20pt} k) First card is $Q\spadesuit$ or $\mbox{J}\clubsuit$
+\bigskip\medskip
+
+\hspace{20pt} $\ell$) First card is $\diamondsuit$ or $\mbox{3}\clubsuit$
+\bigskip\medskip
+
+\hspace{20pt} m) First card is an 5 or $\clubsuit$
+\bigskip\medskip
+
+\hspace{20pt} n) At least one of the first two cards is a $\diamondsuit$
+\bigskip\medskip
+
+2. Two dice are rolled. Calculate the following probabilities.
+\medskip
+
+\hspace{20pt} a) Sum is 12
+\bigskip\medskip
+
+\hspace{20pt} b) Sum is 12 or 2
+\bigskip\medskip
+
+\hspace{20pt} c) Sum is even and at least 10
+\bigskip\medskip
+
+\hspace{20pt} d) Sum is even
+\bigskip\medskip
+
+\hspace{20pt} e) Sum is even or at least 10
+\bigskip\medskip
+
+\hspace{20pt} f) Sum is six or even
+\bigskip\medskip
+
+\hspace{20pt} g) Sum is six given that it is even
+\bigskip\medskip
+
+\hspace{20pt} h) At least one die shows an even number
+\bigskip\medskip
+
+\hspace{20pt} i) Exactly one die shows an even number
+\bigskip\medskip
+
+3. A box contains 6 red marbles and 4 green ones.  Calculate the following probabilities
+assuming that two marbles are drawn with replacement.
+\medskip
+
+\hspace{20pt} a) Exactly one of the marbles is red
+\medskip\bigskip\bigskip
+
+\hspace{20pt} b) Exactly two of the marbles are red
+\medskip\bigskip\bigskip
+
+\hspace{20pt} c) None of the marbles are red.
+\medskip\bigskip\bigskip
+
+4. Repeat exercise 3 assuming that two marbles are drawn without replacement.
+\vspace{.7in}
+
+5. Repeat exercise 4 assuming that three marbles are drawn without replacement.
+\vfill
+\eject
+{\ }
+
+6. \textbf{Independent / Mutually Exclusive Events}. 
+For each event $A$ described below, describe events $B$ for which
+$A$ and $B$ are
+i)~independent, ii)~dependent,
+iii)~mutually exclusive, iv) not mutually exlusive.
+\medskip
+
+\hspace{20pt} a) The first card drawn from a deck is a 7.
+\vspace{1.75in}
+
+\hspace{20pt} b) The first card drawn from a deck is a $\heartsuit$.
+\vspace{1.75in}
+
+\hspace{20pt} c) It will snow in Winchester on February 21 of next year.
+\vspace{1.75in}
+
+\hspace{20pt} d) Candidate $X$  will win the Michigan primary in the next presidential election.
+\vspace{1.75in}
+
+
+
+
+\vfill
+\eject
+\end{document}
+

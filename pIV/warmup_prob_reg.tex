@@ -1,0 +1,188 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Warmup Exercises}
+\end{center}
+\medskip
+\newcommand{\Z}{\hphantom{0}}
+
+1. \textbf{Regression}. Find the equation for the regression line 
+given the following data. In each case, the averages for $x$ and $y$ are
+3 and 5 respecitvely.
+\medskip
+
+\begin{tabular}{lll}
+$\mbox{sd}_x=12$ & $\mbox{sd}_y=3$ & $r=-0.1$\\[25pt]
+$\mbox{sd}_x=3$ & $\mbox{sd}_y=12$ & $r=0.1$\\[25pt]
+$\mbox{sd}_x=2$ & $\mbox{sd}_y=4$ & $r=0.5$\\[25pt]
+$\mbox{sd}_x=5$ & $\mbox{sd}_y=3$ & $r=0.4$\\[25pt]
+$\mbox{sd}_x=5$ & $\mbox{sd}_y=2$ & $\mbox{RMS}=\sqrt{3}$\\[25pt]
+\end{tabular}
+\bigskip
+
+2. \textbf{Multiplication Rule}.  
+
+\hspace{20pt} a)  Cards are drawn at random from a well-shuffled deck.
+Calculate the following probabilities.
+\medskip
+
+\hspace{30pt} i) First card is $\mbox{K}\heartsuit$
+\bigskip
+
+\hspace{30pt} ii) Second card is $\mbox{J}\spadesuit$
+\bigskip
+
+\hspace{30pt} iii) Second card is $\mbox{J}\spadesuit$ given that 
+the first was $\mbox{K}\heartsuit$
+\bigskip
+
+\hspace{30pt} iv) First two cards are $\mbox{K}\heartsuit$ followed by $\mbox{J}\spadesuit$
+\bigskip
+
+\hspace{30pt} v) First two cards are $\mbox{K}\heartsuit$ 
+and $\mbox{J}\spadesuit$ (either order)
+\bigskip
+
+\hspace{30pt} vi) First two cards are a $\heartsuit$ followed by a $\diamondsuit$
+\bigskip
+
+\hspace{30pt} vii) First five cards are four aces followed by a $\clubsuit$
+\bigskip
+
+\hspace{20pt} b)  Two fair dice are tossed. Calculate the following probabilities
+\medskip
+
+\hspace{30pt} i) Sum is even given that it is less than 7
+\bigskip
+
+\hspace{30pt} ii) Sum is even and less than 7
+\bigskip
+
+\hspace{30pt} iii) One die shows a 6
+\vfill
+\eject
+{\ }\vspace{20pt}
+
+3. \textbf{Sum Rule}.
+
+\hspace{20pt} a) Cards are drawn at random from a well-shuffled deck.
+Calculate the following probabilities.
+\medskip
+
+\hspace{30pt} i) First card is $K\heartsuit$ or $\mbox{J}\clubsuit$
+\bigskip
+
+\hspace{30pt} ii) First card is $\heartsuit$ or $\mbox{J}\clubsuit$
+\bigskip
+
+\hspace{30pt} iii) First card is an ace or $\diamondsuit$
+\bigskip
+
+\hspace{30pt} iv) First card is not an ace or is $\diamondsuit$
+\bigskip
+
+\hspace{30pt} v) First two cards are both $\heartsuit$ or both 10
+\bigskip
+
+
+\hspace{20pt} b) Two dice are rolled. Calculate the following probabilities.
+\medskip
+
+\hspace{30pt} i) Sum is four or seven
+\bigskip\bigskip
+
+\hspace{30pt} ii) Sum is four or even
+\bigskip\bigskip
+
+\hspace{30pt} iii) Sum is four or seven or even
+\vspace{.6in}
+\vfill
+\eject
+\end{document}
+
+4. \textbf{Independent / Mutually Exclusive Events}. 
+For each event $A$ described below, describe events $B$ for which
+$A$ and $B$ are
+i)~independent, ii)~dependent,
+iii)~mutually exclusive, iv) not mutually exlusive.
+\medskip
+
+\hspace{20pt} a) We will get  snow  three weeks from today.
+\vspace{1in}
+
+
+\hspace{20pt} b) The Detroit Tigers will win The World Series this year.
+\vspace{1in}
+
+
+\hspace{20pt} c) The Detroit Tigers will be in The World Series this year.
+\vspace{1in}
+
+
+\vfill
+\eject
+\end{document}
+

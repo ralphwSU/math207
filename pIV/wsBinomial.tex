@@ -1,0 +1,172 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small{\ }\hfill
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  The Binomial Formula}
+\end{center}
+\newcommand{\Z}{\hphantom{0}}
+
+The chance that an event will occur exactly $k$ times out of $n$ is given by 
+the binomial formula:
+\[\frac{n!}{k!\,(n-k)!}\,p^k\,(1-p)^{n-k}\]
+In this formula, $n$ is the number of trials, $k$ is the number of times
+the event is to occur, and $p$ is the probability that the event will occur
+on any particular trial.    The assumptions:
+\begin{itemize}
+\item The value of $n$ must be fixed in advance.
+\item $p$ must be the same from trial to trial.
+\item The trials must be independent.
+\end{itemize}
+\medskip
+
+1. A coin is to be flipped 5 times. 
+Use the binomial formula to calculate the following probabilities.
+
+\hspace{20pt} a)   Exactly 3 heads
+\vspace{.4in}
+
+\hspace{20pt} b)   Exactly 4 heads
+\vspace{.4in}
+
+\hspace{20pt} c) Exactly 2 tails
+\vspace{.4in}
+
+\hspace{20pt} d) 3 or 4 tails
+\vspace{.4in}
+
+\hspace{20pt} e) At least 3 heads
+\vspace{.4in}
+
+2. Find the number of different ways of arranging one R and three Gs 
+in a row.  Write out all the patterns.
+\vspace{.4in}
+
+3. Find the number of different ways of arranging two Rs and two Gs in a row.
+Write out all the patterns.
+\vspace{.4in}
+
+4.  A die is rolled four times.  Find the chance that---
+
+\hspace{20pt} a) an ace (one dot) never appears
+\bigskip
+
+\hspace{20pt} b) an ace appears exactly once
+\bigskip
+
+\hspace{20pt} c) an ace appears exactly twice.
+
+\vfill
+\eject
+{\ }
+
+5. A box contains one red marble and five green ones.  Four draws are made at 
+random with replacement.  Find the chance that---
+
+\hspace{20pt} a) a red marble is never drawn
+\vspace{.4in}
+
+\hspace{20pt} b) a red marble appears exactly once
+\vspace{.4in}
+
+\hspace{20pt} c) a red marble appears exactly twice
+\vspace{.4in}
+
+\hspace{20pt} d) a red marble appears exactly three times
+\vspace{.4in}
+
+\hspace{20pt} e) a red marble appears on all the draws
+\vspace{.4in}
+
+\hspace{20pt} f) a red marble appears at least twice
+\vspace{.4in}
+\vfill
+
+5. (Review) An investigator wants to use a straight line to predict IQ from lead 
+levels in the blood, for a representative group of children aged 5--9.  There is a weak
+positive association in the data.  True or false, and explain---
+
+\hspace{20pt} a) The investigator can use many different lines.
+\bigskip
+ 
+\hspace{20pt} b) The investigator has to use the regression line.
+\bigskip
+
+\hspace{20pt} c) Only the regression line has an r.m.s. error.
+\bigskip
+
+\hspace{20pt} d) Any line the investigator uses will have an r.m.s. error.
+\bigskip
+
+\hspace{20pt} e) Among all lines, the regression line has the smallest r.m.s. error.
+\bigskip
+
+\hspace{20pt} f) The r.m.s. error of his line will be $\mbox{SD}_y\,\sqrt{1-r^2}$.
+\bigskip
+%\vfill
+\eject
+
+
+\end{document}
+

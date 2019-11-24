@@ -1,0 +1,211 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Probability Introduction}
+\end{center}
+
+1. A standard deck of cards has the following properties.
+\begin{itemize}
+\item 52 cards
+\item 4 suits:  hearts $\heartsuit$, spades $\spadesuit$, clubs $\clubsuit$,
+  and diamonds $\diamondsuit$
+\item Hearts and diamonds are red.  Spades and clubs are black
+\item 13 cards of each suit:  2 -- 10, J, Q, K, and ace
+\item 4 cards of each rank:  2 -- 10, J, Q, K, and ace
+\item J, Q, and K are face cards
+\end{itemize}
+\medskip
+
+\hspace{10pt} a) How many red cards are in a deck?
+\medskip
+
+\hspace{10pt} b) How many kings (K) are in a deck?
+\medskip
+
+\hspace{10pt} c) How many face cards are in a deck?
+\medskip
+
+\hspace{10pt} d) How many black 10s are in a deck?
+\medskip
+
+\hspace{10pt} e) How many 3$\heartsuit$ cards are in the deck?
+\medskip
+
+\hspace{10pt} f) How many cards are there that are not $\clubsuit$?
+\medskip
+\bigskip
+
+2.  You draw one card from a standard deck.  What are the
+chances of the following events?
+
+\hspace{10pt} a) Top card is is a $\heartsuit$
+\bigskip
+
+\hspace{10pt} b) Top card is black
+\bigskip
+
+\hspace{10pt} c) Top card is an ace
+\bigskip
+
+\hspace{10pt} d) Top card is a face card
+\bigskip
+
+\hspace{10pt} e) Top card is not a face card
+\bigskip
+
+\hspace{10pt} f) Last card is a 3
+\bigskip
+
+\hspace{10pt} g) Last card is a not a face card
+\bigskip
+
+\hspace{10pt} h)  Last card is a K or Q
+\bigskip
+
+\hspace{10pt} i) Last card is a K$\clubsuit$
+\bigskip
+
+\hspace{10pt} j) Last card is a number less than 7
+\bigskip
+
+\hspace{10pt} k) A randomly drawn card is the Q$\heartsuit$
+
+
+\vfill
+\eject
+
+
+3. A fair, six-sided die is rolled once.  What are the chances of
+the following events.
+
+\hspace{10pt} a) an even number
+\bigskip
+
+\hspace{10pt} b) a number less than 3
+\bigskip
+
+\hspace{10pt} c) a number less than or equal to 3
+\bigskip
+
+\hspace{10pt} d) a five
+\bigskip
+\medskip
+
+4. A box contains the following numbered tickets:  0, 0, 1, 1, 1, 2, 2, 2, 2, 2.  
+One ticket is drawn at random.  What are the chances of
+the following events.
+
+\hspace{10pt} a) the ticket is a 0
+\bigskip
+
+\hspace{10pt} b) the ticket is a 1
+\bigskip
+
+\hspace{10pt} c) the ticket is a 2
+\bigskip
+
+\hspace{10pt} d) the ticket is even
+\bigskip
+
+\hspace{10pt} e) the ticket is less than 2
+\bigskip
+\medskip
+
+5. Two fair, six-sided dice are rolled.
+What are the chances of the following events.
+
+\hspace{10pt} a) double-sixes
+\bigskip
+\bigskip
+
+\hspace{10pt} b) double-twos
+\bigskip
+\bigskip
+
+\hspace{10pt} c) the sum is 3 or less
+\bigskip
+\bigskip
+
+\hspace{10pt} d) the sum is greater than 3
+\bigskip
+\bigskip
+
+\hspace{10pt} e) the sum is 4 or less
+\bigskip
+\bigskip
+
+\hspace{10pt} f) the sum is greater than 4
+\bigskip
+\bigskip
+
+\hspace{10pt} g) the sum is even
+\bigskip
+\bigskip
+
+\hspace{10pt} h) doubles
+\vfill
+\eject
+
+\end{document}
+
