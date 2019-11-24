@@ -39,7 +39,7 @@ for generating graphics.
 
 I also make use of the tweaklist package to modify the formatting of itemize and enumerate
 environments.  The package is included in each of the directories of this repository.  If
-you have the tweaklist.sty file in the same directory as your TeX file, then compilation
+you have the tweaklist.sty file in the same directory as your tex file, then compilation
 should work.
 
 ## Statistical Software
@@ -49,7 +49,7 @@ regularly in class and occasionally on assignments.  [RStudio](https://rstudio.c
 graphical interface for R which can help new users get started with the software.
 
 Recently I have experimented with use of the large
-[NHANESIII](https://wwwn.cdc.gov/nchs/nhanes/nhanes3) data set
+[NHANESIII](https://wwwn.cdc.gov/nchs/nhanes/nhanes3) data set.
 A zip file that includes the code books and data in csv format
 are available here:
 [NHANESIII.zip](https://drive.google.com/open?id=1S9FDJF15gQxpc_zat2LsofS73TNMm_cF).
