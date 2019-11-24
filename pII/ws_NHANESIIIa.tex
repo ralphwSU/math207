@@ -1,0 +1,297 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.2,.2,.6}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+\medskip
+
+\begin{center}
+\textbf{\large  First Experiments with the NHANESIII Data Set}
+\end{center}
+
+\newcommand{\SUBX}{\smallskip\hspace{10pt}}
+\newcommand{\BSK}{\vspace{.14in}}
+
+For much of this course we will explore the NHANESIII data set
+in order to illustrate the concepts that we cover.  This is a large survey of
+health statistics of U.S. residents.  The data set website is:\vspace{-8pt}
+\begin{center}
+\href{https://wwwn.cdc.gov/nchs/nhanes/nhanes3/datafiles.aspx}{https://wwwn.cdc.gov/nchs/nhanes/nhanes3/datafiles.aspx}\vspace{-8pt}
+\end{center}
+The data consists of four large files.  On the CDC website these are in a format 
+developed for the SAS statistical software package.  I had these converted to 
+csv (comma-separated-value) text files then put them in a zip file which is on our course website.
+
+\EXERCISE \textbf{Download the data set}.
+\begin{itemize}
+\item Create a folder called \texttt{math207} on your desktop.
+\item Download the \texttt{NHANESIII.zip} file from Canvas.
+\item Move the \texttt{NHANESIII.zip} file into your \texttt{math207} directory.
+\item Open a terminal and type the following:\\
+  \texttt{cd  Desktop}\\
+  \texttt{cd  math207}\\
+  \texttt{unzip  NHANESIII.zip}
+\end{itemize}
+
+The \texttt{math207} folder should contain the following files:\vspace{-6pt}
+\begin{center}
+\begin{tabular}{|ll|}\hline
+Data File & Contents\\\hline
+adult.csv  & survey information about adults subjects\\
+youth.csv  & survey information about youth subjects\\
+lab.csv    & blood and urine test data\\
+exam.csv   & large collection of medical exam data\\[4pt]
+%
+ADULT-acc.pdf & information file for the adult.csv data file\\
+YOUTH-acc.pdf & information file for the youth.csv data file\\
+lab-acc.pdf   & information file for the lab.csv data file\\
+exam-acc.pdf  & information file for the exam.csv data file\\\hline
+\end{tabular}
+\end{center}\vspace{-3pt}
+
+
+\EXERCISE \textbf{Experimenting with the Adult Survey Data}. 
+Open RStudio and the ADULT-acc.pdf code book (statisticians' term for a 
+document that describes what is in a data set).
+Try the following in RStudio.  
+Explain to yourself what \texttt{R} thinks it is doing.\vspace{-6pt}
+\begin{verbatim}
+# First, load the data <- This is a comment, you don't have to type it.
+# USE YOUR USERNAME not the word "username".
+adult = read.csv("/Users/username/Desktop/math207/adult.csv", header=TRUE)
+class(adult)
+
+# This will tell you the number of rows (20,050) and columns (1238).
+dim(adult)
+
+# Here are the 1238 (cryptic) variable names.  They are desribed briefly
+# on pages 30 -- 66 of the code book.  Pages 66 -- 391 give some basic
+# statistics for each variable.  The rest of the document gives more
+# detailed descriptions.
+names(adult)
+
+# The first variable of interest is SEQN.  It stores the anonymous ID
+# numbers for participants.  Each subject has data stored in multiple files.
+# SEQN allows us to collect such disparate information for participants.
+head(adult$SEQN)
+
+# The following tells us that there is only one row in adult.csv for
+# subject number 4.
+dim(adult[adult$SEQN == 4,])
+
+# Confirm the range stated on page 66 of the code book.
+range(adult$SEQN)
+
+# Confirm the race distribution stated on page 67 of the code book.
+table(adult$DMARACER)
+\end{verbatim}
+
+\EXERCISE Continue using the adult survey data set in the following.
+
+\hspace{10pt} a) Confirm the sex distribution stated on page 68 of the code book.
+
+\hspace{10pt} b) Confirm the family size distribution using \texttt{HSFSIZER} (page 70).
+
+\hspace{10pt} c) 
+ Make a histogram of the age distribution.\vspace{-6pt}
+\begin{verbatim}
+hist(adult$HSAGEIR, breaks=seq(15,95,by=5), xlab="Age", 
+     ylab="Percent per Year", probability=TRUE)
+\end{verbatim}\vspace{-4pt}
+
+\hspace{10pt} d) Confirm the census region distribution using \texttt{DMPCREGN} (page 71)
+then make a barplot.\vspace{-6pt}
+\begin{verbatim}
+barplot(table(adult$DMPCREGN), names.arg=c("Northeast", "Midwest", "South", "West"))
+\end{verbatim}\vspace{-4pt}
+
+\hspace{10pt} e) Were the days of the week of the survey exams fairly uniform?
+Use variable \texttt{MXPTIDW}.  If not, can you suggest a reason?
+
+\hspace{10pt} f) What percent of respondents worked for the federal government?
+Use variable HFD12 (page 124).  
+
+\hspace{10pt} g) What percent of respondents worked for the either federal, state or local
+ government?
+Again, use variable HFD12 (page 124).  
+
+\hspace{10pt} h) Did more respondents own cats or fish?  Use variables HFE8B and HFE8D.
+
+\hspace{10pt} i) Is it possible that  more respondents owned either a bird or fish 
+(or both) than  owned cats?  Use variables HFE8B and HFE8D.
+\medskip
+
+\EXERCISE  The variables on pages 131 -- 132 give information about smoking habits in 
+ subjects' homes.  Let's construct a barplot of the number of cigarettes a day
+smoked by person 1 in subjects' homes.  Do the following in RStudio.
+\begin{verbatim}
+cigs1  = adult$HFF3A
+cigs1b = cigs1[cigs1 < 800]  # What are responses 888 and 999?
+table(cigs1b)                # What does the value 777 mean?
+
+cigs1b[cigs1b == 777] <- 0   # Look at the table below to see what this does.
+table(cigs1b)
+
+barplot(table(cigs1b))       # Now make the barplot.
+\end{verbatim}
+\vfill
+\eject
+
+\EXERCISE \textbf{Experimenting with the Exam Data}.  Open the \texttt{exam-acc.pdf}
+code book.  In RStudio, load the exam data set.\vspace{-6pt}
+\begin{verbatim}
+exam = read.csv("/Users/username/Desktop/math207/exam.csv", header=TRUE)
+
+# It's a data frame too.
+class(exam) 
+
+# How big is it?
+dim(exam)
+
+# Subject ID numbers are stored in both files.
+head(adult$SEQN)
+head(exam$SEQN)
+
+# Here is survey information for subject 11.
+adult[adult$SEQN == 11, ]
+
+# Here is exam information for that subject.
+exam[exam$SEQN == 11, ]
+
+\end{verbatim}
+
+
+\begin{verbatim}
+# How tall (in cm) was subject 11? See page 199 of the code book
+exam[exam$SEQN==11, ]$BMPHT
+
+# How much did that subject weigh (in kg)?  See page 198.
+exam[exam$SEQN==11, ]$BMPWT
+
+# Let's examine the variation of weight with height.  
+# Try the following then explain what goes wrong.
+plot(exam$BMPHT, exam$BMPWT, xlab="height (cm)", ylab="weight (kg)")
+
+# We need to extract the blank values.
+w1 = exam[(exam$BMPWT != 888888) & (exam$BMPHT != 88888), ]$BMPWT
+h1 = exam[(exam$BMPWT != 888888) & (exam$BMPHT != 88888), ]$BMPHT
+
+plot(h1, w1, xlab="height (cm)", ylab="weight (kg)")
+\end{verbatim}
+
+Does weight increase with height?  Is the variation linear?  That is, does a straight
+line fit the data  well?
+\bigskip\bigskip\bigskip
+
+\vfill
+\eject
+\end{document}
+
+
+A (random) \textbf{variable} is a measurement that depends on the outcome 
+   of a (random) event.
+\begin{itemize}
+\item \textbf{Quantitative} variables have numeric values.  
+  \begin{itemize} 
+     \item \textbf{Continuous} variables can assume a continuum of values:  Examples include 
+      income, temperature, pressure, mass, and speed. 
+     \item A \textbf{discrete} variable can assume only finitely (or countably) many values.
+       Examples include: family size, and number of engine cylinders.
+  \end{itemize}
+\item \textbf{Qualitative} variables are non-numeric.  
+   \begin{itemize}
+      \item A qualitative variable can be \textbf{ordered} such as customer 
+          satisfaction (good, better or best)
+      \item or \textbf{unordered} such as eye color or automobile transmission type.
+   \end{itemize}
+\end{itemize}
+
+We can compute averages, standard deviations and other numeric statistics for 
+quantitative variables.  We can't do this for qualitative variables.
+
+\begin{center}
+{\footnotesize\begin{pspicture}(-1.5,0)(7.5,2.2)
+\psset{linewidth=0.02, nodesep=2pt, xunit=3}
+\rput(1,2){\rnode{Variables}{Variables}}
+\rput(0,1){\rnode{Qualitative}{Qualitative}}
+\rput(2,1){\rnode{Quantitative}{Quantitative}}
+\rput(1.5,0){\rnode{Discrete}{Discrete}}
+\rput(2.5,0){\rnode{Continuous}{Continuous}}
+\rput(-0.5,0){\rnode{Ordered}{Ordered}}
+\rput(0.5,0){\rnode{Unordered}{Unordered}}
+\ncline{Variables}{Qualitative}
+\ncline{Variables}{Quantitative}
+\ncline{Quantitative}{Discrete}
+\ncline{Quantitative}{Continuous}
+\ncline{Qualitative}{Ordered}
+\ncline{Qualitative}{Unordered}
+\end{pspicture}}
+\end{center}
+
+\EXERCISE  Classify each of the variables encountered in the previous exercises
+as discrete, continuous, ordered or unordered.
+
+\vfill
+\eject
+
+
+\end{document}
+

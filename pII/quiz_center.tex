@@ -1,0 +1,241 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.6in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Quiz:  Measures of Centrality and Variability}
+\end{center}
+\newcommand{\Z}{\hphantom{0}}
+
+The \textbf{mean} of a list of numbers $x_1$, $x_2$, $\dots$, $x_n$ is 
+\[\mbox{mean}\;=\; \frac{x_1+x_2+\cdots+x_n}{n}\; = \; \frac{1}{n}\sum_{i=1}^n\,x_i\]
+The \textbf{median} is a number $m$ for which half the data values are less than or equal to $m$.
+To find the median, sort the data then count to the center.
+The \textbf{population standard deviation} is \vspace{-3pt}
+\[\mbox{SD} = \sqrt{\frac{1}{n}\,\sum_{i=1}^n\,\left(x_i - \mbox{mean}_x\right)^2}\vspace{-3pt}\]
+If the data values are only a sample from the population, then the
+\textbf{sample standard deviation} is\vspace{-3pt}
+\[\mbox{sd} = \sqrt{\frac{1}{n-1}\,\sum_{i=1}^n\,\left(x_i - \mbox{mean}_x\right)^2}\vspace{-3pt}\]
+
+1. Find the mean, median and sd for each list.  
+Explain how lists b)--d) are related to list a) and what impact
+that has on the three statistics.
+
+\hspace{10pt} a) 1, 3, 4, 4, 5, 7
+\vspace{1.3in}
+
+\hspace{10pt} b) 11, 13, 14, 14, 15, 17
+\vspace{1.3in}
+
+\hspace{10pt} c) 2, 6, 8, 8, 10, 14
+\vspace{1.3in}
+
+\hspace{10pt} d) $-3$, $-9$, $-12$, $-12$, $-15$, $-7$
+\vfill
+\eject
+
+
+
+2. Two histograms are shown below.   Indicate the approximate locations of the mean and 
+median for each.\begin{center}
+{\setlength{\tabcolsep}{20pt}\begin{tabular}{cc}
+\begin{pspicture}(0,0)(5,1)
+\psset{xunit=4, yunit=3}
+\psline(0,0)(.5,.13)(.55,.16)(.6,.2)(.65,.24)(.7,.3)(.75,.35)(.8,.38)(.85,.35)%
+(.9,.3)(.95,.22)(1,0)
+\psset{linewidth=0.02}
+\psline(0,0)(1,0)
+\psline(0.25,0.05)(0.25,-0.05)\rput(0.25,-0.15){\small 25}
+\psline(0.5 ,0.05)(0.5 ,-0.05)\rput(0.5 ,-0.15){\small 50}
+\psline(0.75,0.05)(0.75,-0.05)\rput(0.75,-0.15){\small 75}
+\psline(1   ,0.05)(1   ,-0.05)\rput(1   ,-0.15){\small 100}
+%\rput(0,0.25){(a)}
+\end{pspicture}
+&
+\begin{pspicture}(-1,0)(4,1)
+\psset{xunit=4, yunit=3}
+\psline(1,0)(.5,.13)(.45,.16)(.4,.2)(.35,.24)(.3,.3)(.25,.35)(.2,.38)(.15,.35)%
+(.1,.3)(.05,.22)(0,0)
+\psset{linewidth=0.02}
+\psline(0,0)(1,0)
+\psline(0.25,0.05)(0.25,-0.05)\rput(0.25,-0.15){\small 25}
+\psline(0.5 ,0.05)(0.5 ,-0.05)\rput(0.5 ,-0.15){\small 50}
+\psline(0.75,0.05)(0.75,-0.05)\rput(0.75,-0.15){\small 75}
+\psline(1   ,0.05)(1   ,-0.05)\rput(1   ,-0.15){\small 100}
+%\rput(-0.05,0.25){(b)}
+\end{pspicture}
+\end{tabular}}
+\end{center}
+\bigskip
+
+3. True or false and explain:  The mean and the median can't be negative.
+\vspace{0.9in}
+
+4. True or false and explain:  The mean and the median must be equal.
+\vspace{0.9in}
+
+5. True or false:  the mean is always greater than the sd?  
+Find an example to justify your answer.
+\vspace{0.9in}
+
+6. True or false and explain:  SD and sd can't be negative.
+\vspace{0.9in}
+
+7. What are the SD and sd of the list 5, 5, 5, 5, 5?
+\vspace{0.9in}
+
+8. Make a rough sketch of a histogram of family incomes in the U.S.  Which is greater, the mean 
+income or the median income? Why?
+\vspace{0.9in}
+
+9. Find a value $x$ to make the mean of the list $1$, $2$, $x$ equal to $2$.  Justify your answer.
+\vspace{0.9in}
+
+10. Find a value $x$ to make the mean of the list $1$, $2$, $x$ equal to $100$.  Justify your answer.
+\vfill
+\eject
+
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+\medskip
+
+\begin{center}
+\textbf{\large  Quiz (Continued): Percentiles and Quantiles}
+\end{center}
+
+The mean and standard deviation can be used to summarize a data set.  
+Frequency tables and histograms give more details about the distribution
+of the data.  Percentiles (including quantiles) are another tool for 
+summarizing the data distribution.
+The median is an example of a percentile.  It is the 50th percentile.  Half
+the data is less than the median and half is greater.
+\newcommand{\HS}{\hspace{20pt}}
+
+\textbf{Example}.  Here is a small data set:\vspace{-5pt}
+\[6\HS 2\HS 17\HS 5\HS 5\HS 3\HS 20\HS 19\HS 10\HS 12\HS 19\vspace{-5pt}\]
+To compute the median, we first need to sort the data.\vspace{-5pt}
+\[2\HS 3\HS  5\HS  5\HS  6\HS 10\HS 12\HS 17\HS 19\HS 19\HS 20\vspace{-5pt}\]
+Here are a few examples of percentiles:
+\begin{itemize}
+\item The minimum is the 0\% since none of the data is smaller.  The 0\% is 2.
+\item The median is 10.
+\item The maximum is the 100\% since none of the data is greater.  The 100\% is 20.
+\item The 25\% is a value $v$ for which 25\% of the data is at most $v$.  It is 
+   the median of the first half of the data: 2, 3, 5, 5, 6, 10.  So, the 25\% is 5.
+\item The 75\% is the median of the second half of the data:  10, 12, 17, 19, 19, 20.
+   So, the 75\% is any value  between 17 and 19.  Most statistical software will 
+   take the average and output 18.
+\end{itemize}
+Here is how to do this in \texttt{R}.\vspace{-8pt}
+\begin{verbatim}
+> x = c(6, 2, 17, 5, 5, 3, 20, 19, 10, 12, 19)
+> summary(x)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   2.00    5.00   10.00   10.73   18.00   20.00 
+> fivenum(x)  
+[1]  2  5 10 18 20
+> range(x)
+[1]  2 20
+\end{verbatim}\vspace{-5pt}
+
+11. Explain in words what the \texttt{summary}, \texttt{fivenum} and
+\texttt{range} commands in \texttt{R} do.
+\vspace{.7in}
+
+12. For the following data, find the 0\%, 25\%, 50\%, 75\% and 100\%
+by hand then check your answers with \texttt{R}.\vspace{-3pt}
+\[6\HS 10\HS 20\HS 19\HS  1\HS  1\HS 11\HS 13\HS 13\HS 17\HS  2\].
+\vspace{.7in}
+
+13. Repeat \#2 using the following data.\vspace{-3pt}
+\[98\HS 83\HS 65\HS 56\HS  58\HS  13\HS 97\HS 4\HS 100\HS 63\].
+
+
+\vfill
+\eject
+\end{document}
+
+1. Calculate the mean and median of each data set.  Show your work.
+
+\hspace{10pt}  a) 0, 1, 50, 99, 100
+\vspace{1.5in}
+
+\hspace{10pt}  a) 48, 49, 50, 51, 52
+\vspace{1.5in}
+
+\hspace{10pt}  c) 4, 7, 1, 5, 6, 1, 9
+\vspace{1.7in}
+
+\end{document}
+
+
+

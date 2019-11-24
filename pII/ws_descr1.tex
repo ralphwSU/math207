@@ -1,0 +1,111 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.1in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-func,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\N}{\ensuremath\mathbb{N}}
+\newcommand{\Q}{\ensuremath\mathbb{Q}}
+\newcommand{\R}{\ensuremath\mathbb{R}}
+\newcommand{\C}{\ensuremath\mathbb{C}}
+\newcommand{\z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small{\ }\hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+
+{\setlength{\baselineskip}{1.05\baselineskip}
+\begin{center}
+\textbf{\large  Worksheet:  Introduction to Descriptive Statistics}
+\end{center}
+
+
+1. Summer camp attendees are asked to rate food quality at the camp.  Here are the results:\vspace{-3pt}
+\begin{center}
+Good, Good, Good, Fair, Good, Fair, Poor, Good, Poor, Fair, Good, Good, Fair, Good, Fair, Fair\vspace{-4pt}
+\end{center}
+Make a frequency table then a bar plot of the data.  
+\vspace{2.5in}
+
+2. Over many years, final class averages are compiled for a math class.  The results are tabulated below.
+
+\begin{tabular}{|cc|}\hline
+Score  & Percent\vphantom{\LARGE V}\\\hline
+\z0 -- 60  & \z5\vphantom{\LARGE Y}\\
+60 -- 70 & 10\\
+70 -- 80 & 23\\
+80 -- 90 & 35\\
+\z90 -- 100 & 27\\\hline
+\end{tabular}
+%\end{center}
+
+\hspace{10pt} a) Draw a histogram of the data.
+\vspace{.5in}
+
+\hspace{10pt} b) If a student scored exactly 90\%, in which bin would the score be classified?  (trick question)
+\vspace{.4in}
+
+\hspace{10pt} c) About what percent of students scored between 90 and 93?
+\vspace{.4in}
+
+3. A computer simulation of flipping coins is being tested.  The results are tabulated below.\vspace{-4pt}
+\begin{center}
+\begin{tabular}{|cc|}\hline
+Number of Coin Flips & Percent of Heads\vphantom{\LARGE V}\\\hline
+\hphantom{,000}10                  & 80\vphantom{\LARGE V}\\
+\hphantom{,00}100                  & 55\\
+\hphantom{,0}1000                  & 57\\
+10,000                             & 57\\\hline
+\end{tabular}\vspace{-4pt}
+\end{center}
+Is the simulation working correctly?  Which row of the table gives the strongest evidence to support your claim?
+
+\vfill
+\eject
+\end{document}

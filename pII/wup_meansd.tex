@@ -1,0 +1,149 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-func,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\N}{\ensuremath\mathbb{N}}
+\newcommand{\Q}{\ensuremath\mathbb{Q}}
+\newcommand{\R}{\ensuremath\mathbb{R}}
+\newcommand{\C}{\ensuremath\mathbb{C}}
+\newcommand{\z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small\hfill
+\begin{tabular}{cl}
+ & Math 207\\ & Introduction to Statistics\\
+\end{tabular}
+}
+
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip\bigskip
+
+1. For each list of numbers, calculate the mean, median and sample
+standard deviation.
+
+\hspace{10pt} a) 9, 9, 10, 10, 10, 12
+\vspace{.45in}
+
+\hspace{10pt} b) 7, 8, 10, 11, 11, 13
+\vspace{.45in}
+
+2. For each list of numbers, calculate the mean, median and sample
+standard deviation.  
+
+\hspace{10pt} a) 1, 3, 4, 5, 7
+\vspace{.45in}
+
+\hspace{10pt} b) 6, 8, 9, 10, 12
+\vspace{.45in}
+
+\hspace{10pt} c)  How are the lists in this exercise related to each other?
+How does that property carry over to the mean, median and sd?
+\vspace{.7in}
+
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small\hfill
+\begin{tabular}{cl}
+ & Math 207\\ & Introduction to Statistics\\
+\end{tabular}
+}
+
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip\bigskip
+
+1. For each list of numbers, calculate the mean, median and sample
+standard deviation.
+
+\hspace{10pt} a) 9, 9, 10, 10, 10, 12
+\vspace{.45in}
+
+\hspace{10pt} b) 7, 8, 10, 11, 11, 13
+\vspace{.45in}
+
+2. For each list of numbers, calculate the mean, median and sample
+standard deviation.  
+
+\hspace{10pt} a) 1, 3, 4, 5, 7
+\vspace{.45in}
+
+\hspace{10pt} b) 6, 8, 9, 10, 12
+\vspace{.45in}
+
+\hspace{10pt} c)  How are the lists in this exercise related to each other?
+How does that property carry over to the mean, median and sd?
+\vspace{.7in}
+
+\eject
+{\ }
+
+3. Repeat exercise 2 for the following two lists.
+
+\hspace{10pt} a) 1, 3, 4, 5, 7
+\vspace{.6in}
+
+\hspace{10pt} b) 3, 9, 12, 15, 21
+\vspace{.6in}
+
+%Calculate $\mbox{SD}^+$ for each of the lists in exercise 6.
+\vfill
+
+3. Repeat exercise 2 for the following two lists.
+
+\hspace{10pt} a) 1, 3, 4, 5, 7
+\vspace{.6in}
+
+\hspace{10pt} b) 3, 9, 12, 15, 21
+\vspace{.6in}
+
+%Calculate $\mbox{SD}^+$ for each of the lists in exercise 6.
+\vspace{1.5in}
+
+\eject
+
+\end{document}

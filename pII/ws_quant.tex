@@ -1,0 +1,120 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+\medskip
+
+\begin{center}
+\textbf{\large  Percentiles and Quantiles}
+\end{center}
+
+The mean and standard deviation can be used to summarize a data set.  
+Frequency tables and histograms give more details about the distribution
+of the data.  Percentiles (including quantiles) are another tool for 
+summarizing the data distribution.
+The median is an example of a percentile.  It is the 50th percentile.  Half
+the data is less than the median and half is greater.
+\newcommand{\HS}{\hspace{20pt}}
+
+\textbf{Example}.  Here is a small data set:\vspace{-5pt}
+\[6\HS 2\HS 17\HS 5\HS 5\HS 3\HS 20\HS 19\HS 10\HS 12\HS 19\vspace{-5pt}\]
+To compute the median, we first need to sort the data.\vspace{-5pt}
+\[2\HS 3\HS  5\HS  5\HS  6\HS 10\HS 12\HS 17\HS 19\HS 19\HS 20\vspace{-5pt}\]
+Here are a few examples of percentiles:
+\begin{itemize}
+\item The minimum is the 0\% since none of the data is smaller.  The 0\% is 2.
+\item The median is 10.
+\item The maximum is the 100\% since none of the data is greater.  The 100\% is 20.
+\item The 25\% is a value $v$ for which 25\% of the data is at most $v$.  It is 
+   the median of the first half of the data: 2, 3, 5, 5, 6, 10.  So, the 25\% is 5.
+\item The 75\% is the median of the second half of the data:  10, 12, 17, 19, 19, 20.
+   So, the 75\% is any value  between 17 and 19.  Most statistical software will 
+   take the average and output 18.
+\end{itemize}
+Here is how to do this in \texttt{R}.\vspace{-8pt}
+\begin{verbatim}
+> x = c(6, 2, 17, 5, 5, 3, 20, 19, 10, 12, 19)
+> summary(x)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   2.00    5.00   10.00   10.73   18.00   20.00 
+> fivenum(x)  
+[1]  2  5 10 18 20
+> range(x)
+[1]  2 20
+\end{verbatim}\vspace{-5pt}
+
+1. Explain in words what the \texttt{summary}, \texttt{fivenum} and
+\texttt{range} commands in \texttt{R} do.
+\vspace{.7in}
+
+2. For the following data, find the 0\%, 25\%, 50\%, 75\% and 100\%
+by hand then check your answers with \texttt{R}.\vspace{-3pt}
+\[6\HS 10\HS 20\HS 19\HS  1\HS  1\HS 11\HS 13\HS 13\HS 17\HS  2\].
+\vspace{.7in}
+
+3. Repeat \#2 using the following data.\vspace{-3pt}
+\[98\HS 83\HS 65\HS 56\HS  58\HS  13\HS 97\HS 4\HS 100\HS 63\].
+
+
+\vfill
+\eject
+\end{document}

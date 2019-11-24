@@ -1,0 +1,268 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+\medskip
+
+\begin{center}
+\textbf{\large  Variables}
+\end{center}
+
+\newcommand{\SUBX}{\smallskip\hspace{10pt}}
+\newcommand{\BSK}{\vspace{.14in}}
+
+A (random) \textbf{variable} is a measurement that depends on the outcome 
+   of a (random) event.
+\begin{itemize}
+\item \textbf{Quantitative} variables have numeric values.  
+  \begin{itemize} 
+     \item \textbf{Continuous} variables can assume a continuum of values:  Examples include 
+      income, temperature, pressure, mass, and speed. 
+     \item A \textbf{discrete} variable can assume only finitely (or countably) many values.
+       Examples include: family size, and number of engine cylinders.\vspace{2pt}
+  \end{itemize}
+\item \textbf{Qualitative} variables are non-numeric.  
+   \begin{itemize}
+      \item A qualitative variable can be \textbf{ordered} such as customer 
+          satisfaction (good, better or best)
+      \item or \textbf{unordered} such as eye color or automobile transmission type.
+   \end{itemize}
+\end{itemize}
+
+When working with a variable, it is important to understand what kind of variable
+it is.
+The kind of variable we are working with influences the statistical things that we 
+can do with it.
+We can compute averages, standard deviations and other numeric statistics for 
+quantitative variables.  We can't do this for qualitative variables.
+We can make histograms of any kind of variable.  If the variable is qualitative 
+but unordered, then the histogram boxes can be placed in any order.
+Variable type also determines the kinds of computer data structures used to store its
+values.\vspace{-5pt}
+\begin{center}
+{\footnotesize\begin{pspicture}(-1.5,0)(7.5,2.2)
+\psset{linewidth=0.02, nodesep=2pt, xunit=3}
+\rput(1,2){\rnode{Variables}{Variables}}
+\rput(0,1){\rnode{Qualitative}{Qualitative}}
+\rput(2,1){\rnode{Quantitative}{Quantitative}}
+\rput(1.5,0){\rnode{Discrete}{Discrete}}
+\rput(2.5,0){\rnode{Continuous}{Continuous}}
+\rput(-0.5,0){\rnode{Ordered}{Ordered}}
+\rput(0.5,0){\rnode{Unordered}{Unordered}}
+\ncline{Variables}{Qualitative}
+\ncline{Variables}{Quantitative}
+\ncline{Quantitative}{Discrete}
+\ncline{Quantitative}{Continuous}
+\ncline{Qualitative}{Ordered}
+\ncline{Qualitative}{Unordered}
+\end{pspicture}}
+\end{center}
+
+
+1. Classify each of the following variables as qualitative or quantitative;  
+if quantitative, as discrete or continuous;  if qualitative, as ordered or
+unordered.\vspace{-5pt}
+\begin{center}
+\begin{tabular}{lll}
+(a) occupation & (b) region of residence & (c) weight\\[5pt]
+(d) height     & (e) number of automobiles owned\span
+\end{tabular}
+\end{center}
+
+2. The following variables 
+are in  the \texttt{adult.csv} file of the NHANESIII data set.
+Classify each as qualitative or quantitative;  
+if quantitative, as discrete or continuous;  if qualitative, as ordered or
+unordered.\vspace{-5pt}
+\begin{center}
+{\setlength{\tabcolsep}{20pt}\begin{tabular}{llll}
+(a) \texttt{DMARACER} & (b) \texttt{HSAGEIR} & (c) \texttt{MXPLANG} & (d) \texttt{HFA8R}\\[5pt]
+(e) \texttt{HFA13}    & (f) \texttt{HFB1}    & (g) \texttt{HAB6S}   & (h) \texttt{SEQN}\\
+\end{tabular}}
+\end{center}
+
+3. The following variables 
+are in  the \texttt{exam.csv} file of the NHANESIII data set.
+Classify each as qualitative or quantitative;  
+if quantitative, as discrete or continuous;  if qualitative, as ordered or
+unordered.\vspace{-5pt}
+\begin{center}
+{\setlength{\tabcolsep}{20pt}\begin{tabular}{llll}
+(a) \texttt{BMPWT} & (b) \texttt{BMPHT} & (c) \texttt{PEP5R} & (d) \texttt{PEPPREG}\\[5pt]
+(e) \texttt{DMPCREGN}    & (f) \texttt{DMPPIR}  & (g) \texttt{DEPCS2}  & (h) \texttt{SEQN}\\
+\end{tabular}}
+\end{center}
+
+4. The following variables 
+are in  the \texttt{lab.csv} file of the NHANESIII data set.
+Classify each as qualitative or quantitative;  
+if quantitative, as discrete or continuous;  if qualitative, as ordered or
+unordered.\vspace{-5pt}
+\begin{center}
+{\setlength{\tabcolsep}{20pt}\begin{tabular}{llll}
+(a) \texttt{PHPCHM2} & (b) \texttt{PHPSNDA} & (c) \texttt{WCP} & (d) \texttt{RCP}\\[5pt]
+(e) \texttt{PBP}    & (f) \texttt{LCP}  & (g) \texttt{UIP}  & (h) \texttt{SEQN}\\
+\end{tabular}}
+\end{center}
+
+
+
+
+\vfill
+\eject
+
+\begin{center}
+\textbf{\large Solutions}
+\end{center}
+
+1. (a) occupation is a qualitative variable.  It's not a number.
+(b) region of residence is also qualitative.  It's not a number either.
+(c) weight is quantitative.  It's a continuous value (can be measured to many decimal places 
+if you have the right equipment).
+(d) height is quantitative and continuous just like weight is.
+(e) number of automobiles owned is quantitative and discrete (assume you can't 
+own fractions of a car!).
+\bigskip
+
+2. 
+
+(a) \texttt{DMARACER} is an unordered, qualitative variable that gives information
+about the subject's race.
+
+(b) \texttt{HSAGEIR} is a discrete, quantitative variable that gives the age
+of the subject in years.
+
+(c) \texttt{MXPLANG} is an unordered, qualitative variable that gives information
+about the language used in the interview.
+
+(d) \texttt{HFA8R} is a discrete, quantitative variable that gives information
+about the number of years of school completed by the subject.  Blank and Don't know
+are two possible responses that need to be omitted to compute statistics.
+
+(e) \texttt{HFA13} is an unordered, qualitative variable that gives information
+about whether or not the subject ever served in the U.S. armed forces.
+
+(f) \texttt{HFB1}  is an unordered, qualitative variable that gives information
+about whether or not the subject is covered by Medicare.
+
+(g) \texttt{HAB6S}  is a discrete, quantitative variable that gives the number
+of months since the subject last saw or talked to a medical doctor or other 
+health professional.
+
+(h) \texttt{SEQN} is the identification number of the subject.  Typically this would
+be viewed as an ordered, qualitative variable.
+\medskip
+
+
+3. (a) \texttt{BMPWT} is weight in kg.  If we eliminate the blank responses, this is a 
+continuous, quantitative variable.  
+
+(b) \texttt{BMPHT} is standing height in cm.  
+It is a  continuous, quantitative variable. 
+
+(c) \texttt{PEP5R} is central pulse rate
+in beats per minute.  It is a discrete, quantitative variable.
+
+(d) \texttt{PEPPREG} is an unordered, qualitative variable indicating 
+whether or not the subject is pregnant.  Blank and Don't know are also possible responses.
+
+(e) \texttt{DMPCREGN}  is the census region (NW, MW, S, W) of the subject.  It is 
+   an unordered, qualitative variable.
+
+(f) \texttt{DMPPIR}  is the subject's poverty income ratio.  It is a continuous,
+  quantitative variable.
+
+(g) \texttt{DEPCS2}  gives unordered, qualitative  information about a the upper left
+central incisor tooth.  
+
+(h) \texttt{SEQN} is the identification number of the subject.  Typically this would
+be viewed as an ordered, qualitative variable.
+\medskip
+
+4.
+
+(a) \texttt{PHPCHM2} is an unordered, qualitative variable indicating whether
+or not the subject has received chemotherapy treatment within the past four weeks.
+
+(b) \texttt{PHPSNDA} is an ordered, qualitative variable indicating the day that
+the participant last ate.
+
+(c) \texttt{WCP} is white blood cell count.
+It is a continuous,  quantitative variable.
+
+(d) \texttt{RCP} is red blood cell count.  
+It is a continuous,  quantitative variable.
+
+(e) \texttt{PBP} is lead level in the blood sample measured in ug/dL.  
+It is a continuous,  quantitative variable.
+
+(f) \texttt{LCP} is serum LDL cholesterol measured in mg/dL.
+It is a continuous,  quantitative variable.
+
+(g) \texttt{UIP}  is urinary iodine measured in ug/dL.  
+It is a continuous,  quantitative variable.
+
+(h) \texttt{SEQN} is the identification number of the subject.  Typically this would
+be viewed as an ordered, qualitative variable.
+\vfill
+\eject
+\end{document}

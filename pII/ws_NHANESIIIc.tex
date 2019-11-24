@@ -1,0 +1,232 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+%\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+\usepackage{pstricks,pst-grad,pst-func,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+\medskip
+
+\begin{center}
+\textbf{\large   NHANESIII Data Set:  Report II}
+\end{center}
+
+\newcommand{\SUBX}{\smallskip\hspace{10pt}}
+\newcommand{\BSK}{\vspace{.14in}}
+
+In a prior assignment you were asked to
+ review the NHANES code books then decide on four questions about the data that interest 
+you and that you would like to explore.  
+You were asked to include variables of each of the four 
+types (continuous, discrete, ordered and unordered). 
+
+For this assignment, please prepare an RMarkdown file that answers the questions below.
+Please include your R code.  Include text to explain what you are calculating and
+what the results mean.  Recall that the following commands read the NHANES data files
+into \texttt{R}.
+\vspace{-6pt}
+\begin{verbatim}
+adult = read.csv("adult.csv", header=TRUE)
+exam  = read.csv("exam.csv",  header=TRUE)
+lab   = read.csv("lab.csv",   header=TRUE)
+youth = read.csv("youth.csv", header=TRUE)
+\end{verbatim}\vspace{-6pt}
+Your operating system may require you to include full or partial path names rather
+than just the file names.
+\medskip
+
+\EXERCISE \textbf{Normal Curve}. The standard normal (Gaussian) distribution is an ideal histogram which we can often use
+as a model data.
+
+\begin{center}
+\begin{pspicture}(-3,-2.1)(3,1.8)
+\psset{xunit=1.5,yunit=4,linewidth=0.02}
+\psline(-3.5,0)(3.5,0)  
+  \psline(-3,0)(-3,-0.04) \rput[t](-3,-0.07){\small -3\hphantom{-}}
+  \psline(-2,0)(-2,-0.04) \rput[t](-2,-0.07){\small -2\hphantom{-}}
+  \psline(-1,0)(-1,-0.04) \rput[t](-1,-0.07){\small -1\hphantom{-}}
+  \psline(0,0)(0,-0.04)   \rput[t](0,-0.07){\small 0}
+  \psline(1,0)(1,-0.04)   \rput[t](1,-0.07){\small 1}
+  \psline(2,0)(2,-0.04)   \rput[t](2,-0.07){\small 2}
+  \psline(3,0)(3,-0.04)   \rput[t](3,-0.07){\small 3}
+  \rput[l](3.6,0){\small $x$}
+\psline(0,0)(0,0.5)
+  \psline(-0.12,0.5)(0,0.5)    \rput[r](-0.21,0.5){\small $0.5$}
+  \psline(-0.12,0.25)(0,0.25)  \rput[r](-0.21,0.25){\small $0.25$}
+\psGauss[linecolor=blue,linewidth=0.02,sigma=1,mue=0]{-3}{3}
+\pnode(-1,-0.15){A}\pnode(1,-0.15){B}
+\psbrace[braceWidth=0.02,braceWidthInner=5pt,braceWidthOuter=4pt](A)(B){\rput{90}(0.25,-0.05){\small 68\%}}
+%
+\pnode(-2,-0.15){C}\pnode(2,-0.15){D}
+\psbrace[braceWidth=0.02,braceWidthInner=27pt,braceWidthOuter=4pt](C)(D){\rput{90}(0.25,-0.05){\small 95\%}}
+%
+\pnode(-3,-0.15){E}\pnode(3,-0.15){F}
+\psbrace[braceWidth=0.02,braceWidthInner=50pt,braceWidthOuter=4pt](E)(F){\rput{90}(0.25,-0.1){\small 99.7\%}}
+\end{pspicture}
+\end{center}
+\bigskip
+\medskip
+
+
+\hspace{10pt} a) Does the continuous (quantitative) variable that you chose to study
+fit a normal curve?
+
+\hspace{20pt} a.i) As a first test, compute the fraction of the data that is
+within 1, 2 and 3 standard deviations of the mean. For example, \vspace{-6pt}
+\begin{verbatim}
+e1 = exam[exam$BMPBMI != 8888, ]
+e1bmi = e1$BMPBMI
+m  = mean(e1bmi, na.rm=T)
+s  = sd(e1bmi, na.rm=T)
+length(e1bmi[(m - s < e1bmi) & (e1bmi < m + s)]) / length(e1bmi)
+# Repeat for 2*s and 3*s
+\end{verbatim}
+Do the percents roughly fit 68\%, 95\% and 99.7\%?  If so, what does this tell you about how
+well the data fits a normal curve?
+\vfill
+\eject
+
+\hspace{20pt} a.ii) As a second test, make a QQ plot comparing the quantiles of your data
+to the quantiles of a normal curve.\vspace{-6pt}
+\begin{verbatim}
+qqnorm(e1bmi)
+\end{verbatim}
+If your data fits a normal curve, the QQ plot should be a straight line.  Comment on your plot
+and the conclusion you reached in a.i).
+
+\hspace{20pt} a.iii) The Kolmogorov-Smirnov test can be used to test the null hypothesis that
+a given data set was generated from a specified distribution.  A larger $p$-value for the test
+(e.g., at least 5\%) indicate that the data probably differs from the expected distribution
+simply due to chance.  A small $p$-value suggests that the difference is not due to chance
+and that the data probably came from some other distribution.
+Run the test on your data:\vspace{-6pt}
+\begin{verbatim}
+ks.test(e1bmi, "pnorm", m, s)
+\end{verbatim}
+Report the $p$-value and comment on its significance.  How does your result relate to your
+conclusions in a.i) and a.ii)?
+\medskip
+
+\hspace{10pt} b) Repeat part a) using the weight distribution variable
+\texttt{exam\$BMPWT}.
+\medskip
+\bigskip
+
+2. \textbf{Correlation}. 
+In many situations, we may seek to use measurements of one or more variables to predict
+the value of another variable.  For example, we could seek to predict the sale price of a 
+house based on the sale prices of other houses in the neighborhood, size of the house, 
+number of bedrooms, and interest rates.  We could predict the stopping distance of a car
+using speed, weight, and road conditions.  Standardized test scores, high school grade point
+average, and enrollment in advanced classes are used in college admissions because these
+variables can be used to estimate college success.
+
+The correlation coefficient $r$ is a measure of linear association between two lists
+$\{x_1, \dots, \,x_n\}$ and $\{y_1, \dots,\,y_n\}$ of variables. It is defined by 
+\begin{align*}
+r &=\frac{1}{n-1}\,\sum_{i=1}^n\,\left(\frac{x_i - \mbox{mean}_x}{\mbox{sd}_x}\right)\,
+  \left(\frac{y_i - \mbox{mean}_y}{\mbox{sd}_y}\right) =
+\mbox{mean of the $x$ and $y$ values measured in standard units}%\vspace{-20pt}
+\end{align*}\vspace{-15pt}
+
+Observations about $r$:
+\begin{itemize}
+\item The correlation $r$ is a number between $-1$ and $1$.
+%\item It is the average product of $z$-scores for the $X$ and $Y$ variables.
+\item It measures linear association between the lists.
+\item It measures the clustering of the $(x_i, y_i)$ points around a line.
+\item If $r$ is close to $1$ or $-1$, the points fit rather tightly along a line.
+%\item For values of $r$ near $0$, the points form more of a cloud with (perhaps) and up
+%   or down trend.
+%\item A negative correlation means that the cloud of $(x_i, y_i)$ points slopes down.
+\item The correlation between $X$ and $Y$ is equal to the correlation between $Y$ and $X$.
+\end{itemize}
+\smallskip
+
+\hspace{10pt} a) Make a plot of your two quantitative variables.  Be sure to label the axes.
+\vspace{-6pt}
+\begin{verbatim}
+plot( x variable, y variable, xlab="X axis label", ylab="Y axis label")
+\end{verbatim}
+Does there appear to be a linear association between the variables?  
+If so, is it strong (close to $\pm 1$) or weak (closer to 0)?
+\medskip
+
+\hspace{10pt} b) Compute the correlation between the two variables and comment on your 
+findings. What, if anything, do the sign and magnitude of the correlation indicate?\vspace{-6pt}
+\begin{verbatim}
+cor(x variable, y variable)
+cor(y variable, x variable)
+\end{verbatim}
+
+\hspace{10pt} c)  A strong correlation can indicate that one variable can cause the 
+other (e.g., between hours spent reading and student GPA).  It 
+can mean that there is some underlying common cause for both (e.g., between drinking and lung
+cancer where the confounding factor is an association between smoking and drinking).  
+It can also be simply a statistical artifact (e.g., between sunspot activity and stock returns
+over some conveniently selected time periods).  Does the correlation between your variables
+suggest a cause and effect relationship, an underlying confounding factor or a statistical
+artifact?
+\vfill
+\eject
+
+
+\end{document}
+

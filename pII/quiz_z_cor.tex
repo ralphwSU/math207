@@ -1,0 +1,291 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.7in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-func,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Quiz:  Normal Curve (Review) and Correlation}
+\end{center}\vspace{-18pt}
+
+\begin{center}
+\begin{tabular}{ccc}
+\begin{pspicture}(-3,-2.5)(4,1.75)
+\psframe[linewidth=0.02](-3.8,-1.1)(4.2,1.8)
+\psset{yunit=3,linewidth=0.02,arrowsize=3pt 2}
+%
+   \pscustom[fillstyle=solid,fillcolor=lightgray,sigma=1,linestyle=none]{
+     \psGauss{-3.5}{1.25}
+     \psline(1.25, 3.490343)(1.25,0)(-3.5,0) }
+   \psGauss[sigma=1,linecolor=blue,linewidth=0.5pt]{-3.5}{3.5}
+\psline(1.25,0.1826)(1.25,-0.22)   \rput[t](1.25,-0.25){\scriptsize 1.25}
+\rput[l](1.5,0.3){\scriptsize\texttt{pnorm}$(1.25)\approx 0.894$}
+\psline{->}(1.45,0.29)(0.5,0.2)
+%
+\psline(-3.5,0)(3.5,0)  
+  \psline(-3,0)(-3,-0.04) \rput[t](-3,-0.07){\scriptsize -3\hphantom{-}}
+  \psline(-2,0)(-2,-0.04) \rput[t](-2,-0.07){\scriptsize -2\hphantom{-}}
+  \psline(-1,0)(-1,-0.04) \rput[t](-1,-0.07){\scriptsize -1\hphantom{-}}
+  \psline(0,0)(0,-0.04)   \rput[t](0,-0.07){\scriptsize 0}
+  \psline(1,0)(1,-0.04)   \rput[t](1,-0.07){\scriptsize 1}
+  \psline(2,0)(2,-0.04)   \rput[t](2,-0.07){\scriptsize 2}
+  \psline(3,0)(3,-0.04)   \rput[t](3,-0.07){\scriptsize 3}
+  \rput[l](3.6,0){\scriptsize $x$}
+\psline(0,0)(0,0.5)
+  \psline(-0.12,0.5)(0,0.5)    \rput[r](-0.21,0.5){\scriptsize $0.5$}
+  \psline(-0.12,0.25)(0,0.25)  \rput[r](-0.21,0.25){\scriptsize $0.25$}
+\end{pspicture}
+&
+&
+\begin{pspicture}(-4,-2.5)(3,1.75)
+\psframe[linewidth=0.02](-3.8,-1.1)(4.2,1.8)
+\psset{yunit=3,linewidth=0.02,arrowsize=3pt 2}
+%
+   \pscustom[fillstyle=solid,fillcolor=lightgray,sigma=1,linestyle=none]{
+     \psGauss{-0.5}{1.25}
+     \psline(1.25, 3.490343)(1.25,0)(-0.5,0)(-0.5,0.352065)}
+   \psGauss[sigma=1,linecolor=blue,linewidth=0.5pt]{-3.5}{3.5}
+\psline(1.25,0.1826)(1.25,-0.22)   \rput[t](1.25,-0.25){\scriptsize 1.25}
+\psline(-0.5,0.352065)(-0.5,-0.22)   \rput[t](-0.5,-0.25){\scriptsize $-0.5$}
+\rput[l](0.8,0.45){\scriptsize$\mbox{\texttt{pnorm}}(1.25)-\mbox{\texttt{pnorm}}(-0.5)$}
+\rput[l](2.5,0.33){\scriptsize$\approx 0.586$}
+\psline{->}(2.1,0.32)(0.5,0.1)
+%
+\psline(-3.5,0)(3.5,0)  
+  \psline(-3,0)(-3,-0.04) \rput[t](-3,-0.07){\scriptsize -3\hphantom{-}}
+  \psline(-2,0)(-2,-0.04) \rput[t](-2,-0.07){\scriptsize -2\hphantom{-}}
+  \psline(-1,0)(-1,-0.04) \rput[t](-1,-0.07){\scriptsize -1\hphantom{-}}
+  \psline(0,0)(0,-0.04)   \rput[t](0,-0.07){\scriptsize 0}
+  \psline(1,0)(1,-0.04)   \rput[t](1,-0.07){\scriptsize 1}
+  \psline(2,0)(2,-0.04)   \rput[t](2,-0.07){\scriptsize 2}
+  \psline(3,0)(3,-0.04)   \rput[t](3,-0.07){\scriptsize 3}
+  \rput[l](3.6,0){\scriptsize $x$}
+\psline(0,0)(0,0.5)
+  \psline(-0.12,0.5)(0,0.5)    \rput[r](-0.21,0.5){\scriptsize $0.5$}
+  \psline(-0.12,0.25)(0,0.25)  \rput[r](-0.21,0.25){\scriptsize $0.25$}
+\end{pspicture}\\[-30pt]
+%%
+%%
+\begin{pspicture}(-3,-2.5)(4,1.75)
+\psframe[linewidth=0.02](-3.8,-1.1)(4.2,1.8)
+\psset{yunit=3,linewidth=0.02,arrowsize=3pt 2}
+%
+   \pscustom[fillstyle=solid,fillcolor=lightgray,sigma=1,linestyle=none]{
+     \psGauss{3.5}{1.25}
+     \psline(1.25, 3.490343)(1.25,0)(3.5,0) }
+   \psGauss[sigma=1,linecolor=blue,linewidth=0.5pt]{-3.5}{3.5}
+\psline(1.25,0.1826)(1.25,-0.22)   \rput[t](1.25,-0.25){\scriptsize 1.25}
+\rput[l](0.8,0.38){\scriptsize$1-\mbox{\texttt{pnorm}}(1.25)\approx 0.106$}
+\psline{->}(1.45,0.29)(1.5,0.04)
+%
+\psline(-3.5,0)(3.5,0)  
+  \psline(-3,0)(-3,-0.04) \rput[t](-3,-0.07){\scriptsize -3\hphantom{-}}
+  \psline(-2,0)(-2,-0.04) \rput[t](-2,-0.07){\scriptsize -2\hphantom{-}}
+  \psline(-1,0)(-1,-0.04) \rput[t](-1,-0.07){\scriptsize -1\hphantom{-}}
+  \psline(0,0)(0,-0.04)   \rput[t](0,-0.07){\scriptsize 0}
+  \psline(1,0)(1,-0.04)   \rput[t](1,-0.07){\scriptsize 1}
+  \psline(2,0)(2,-0.04)   \rput[t](2,-0.07){\scriptsize 2}
+  \psline(3,0)(3,-0.04)   \rput[t](3,-0.07){\scriptsize 3}
+  \rput[l](3.6,0){\scriptsize $x$}
+\psline(0,0)(0,0.5)
+  \psline(-0.12,0.5)(0,0.5)    \rput[r](-0.21,0.5){\scriptsize $0.5$}
+  \psline(-0.12,0.25)(0,0.25)  \rput[r](-0.21,0.25){\scriptsize $0.25$}
+\end{pspicture}
+&
+&
+\begin{pspicture}(-4,-2.5)(3,1.75)
+\psframe[linewidth=0.02](-3.8,-1.1)(4.2,1.8)
+\psset{yunit=3,linewidth=0.02,,arrowsize=3pt 2}
+%
+   \pscustom[fillstyle=solid,fillcolor=lightgray,sigma=1,linestyle=none]{
+     \psGauss{-3.5}{0.6744898}
+     \psline(0.6744898, 0.3177766)(0.6744898,0)(-3.5,0) }
+   \psGauss[sigma=1,linecolor=blue,linewidth=0.5pt]{-3.5}{3.5}
+\psline(0.6744898,0.3177766)(0.6744898,-0.22)   
+   \rput[tl](0.61,-0.23){\scriptsize\texttt{qnorm}$(0.75)\approx 0.67$}
+\rput[l](1.5,0.3){\scriptsize$\mbox{area}=0.75$}
+\psline{->}(1.45,0.29)(0.25,0.15)
+%
+\psline(-3.5,0)(3.5,0)  
+  \psline(-3,0)(-3,-0.04) \rput[t](-3,-0.07){\scriptsize -3\hphantom{-}}
+  \psline(-2,0)(-2,-0.04) \rput[t](-2,-0.07){\scriptsize -2\hphantom{-}}
+  \psline(-1,0)(-1,-0.04) \rput[t](-1,-0.07){\scriptsize -1\hphantom{-}}
+  \psline(0,0)(0,-0.04)   \rput[t](0,-0.07){\scriptsize 0}
+  \psline(1,0)(1,-0.04)   \rput[t](1,-0.07){\scriptsize 1}
+  \psline(2,0)(2,-0.04)   \rput[t](2,-0.07){\scriptsize 2}
+  \psline(3,0)(3,-0.04)   \rput[t](3,-0.07){\scriptsize 3}
+  \rput[l](3.6,0){\scriptsize $x$}
+\psline(0,0)(0,0.5)
+  \psline(-0.12,0.5)(0,0.5)    \rput[r](-0.21,0.5){\scriptsize $0.5$}
+  \psline(-0.12,0.25)(0,0.25)  \rput[r](-0.21,0.25){\scriptsize $0.25$}
+\end{pspicture}
+\end{tabular}\vspace{-.6in}
+\end{center}
+
+1. \textbf{Standard Normal Curve}:  Sketch and compute the specified area under the normal curve. 
+Write down the R command that you use.
+
+\hspace{10pt} a) $z < 0.8$
+\vspace{.4in}
+
+\hspace{10pt} b) $z > -0.8$
+\vspace{.5in}
+
+\hspace{10pt} c) $-0.8< z < 2.1$
+\vspace{.5in}
+
+\hspace{10pt} d) What $z$ is greater than 80\% of all $z$ scores?
+\vspace{.5in}
+
+2. \textbf{Test Scores}:  Suppose test scores average out to 520 with an sd of 20 and have
+a normal distribution.
+
+\hspace{10pt} a) What percent of the scores were below 536?
+\vspace{1.4in}
+
+\hspace{10pt} b) What percent were above 504?
+\vspace{1.4in}
+
+\hspace{10pt} c) What percent were between 504 and 562?
+\vspace{1.4in}
+
+\hspace{10pt} d) What score was greater than 80\% of all the test scores?
+\vspace{1.4in}
+
+
+3. \textbf{Measurements}: Errors in the measurement of a certain check weight average out to $0.0065$ kg plus or minus
+about $0.0002$~kg.  Assume that the histogram of measurement errors follows a normal 
+distribution.
+
+\hspace{10pt} a) What percent of the measurements were below 0.00666?
+\vspace{1.4in}
+
+\hspace{10pt} b) What percent were above $0.00634$?
+\vspace{1.4in}
+
+\hspace{10pt} c) What percent were between $0.00634$ and $0.00674$?
+\vspace{1.4in}
+
+\hspace{10pt} d) What measurement was greater than 80\% of all the measurements?
+%%%
+
+\vfill
+\eject
+
+4. For the $x$-$y$ data set below,
+
+(a) Draw the scatter plot ($x$-$y$ plot).
+
+(b) Compute the mean and sd for the $x$ values.
+
+(c) Compute the mean and sd for the $y$ values.
+
+(d)~Complete the table.
+
+(e)~Calculate the correlation $r$.\vspace{-5pt}
+\[r\; =\ \frac{1}{n-1}\;\sum_{i=1}^n\left(\frac{x_i - \mbox{mean}_x}{\mbox{sd}_x}\right)
+   \left(\frac{y_i - \mbox{mean}_y}{\mbox{sd}_y}\right)\;
+  = \;\frac{1}{n-1}\,\sum_{i=1}^n\; z_x\cdot z_y\]
+
+(f) Add the regression line to your sketch:\vspace{-10pt}
+  \[y\,-\,\mbox{mean}_y \; = \; r\;\;\frac{\mbox{sd}_y}{\mbox{sd}_x}\,
+   \left(x\, -\, \mbox{mean}_x\right)\]
+
+\begin{center}
+{\setlength{\tabcolsep}{40pt}\begin{tabular}{|c|c||c|c|c|}\hline
+x & y & $z_x$ & $z_y$ & $z_x\cdot z_y$\vphantom{\LARGE Y}\\ \hline
+1 & 1\vphantom{\LARGE Y} &&&\\[20pt]
+3 & 7 &&&\\[20pt]
+4 & 8 &&&\\[20pt]
+4 & 9 &&&\\[20pt]
+5 & 10 &&&\\[20pt]
+7 & 13 &&&\\[20pt]\hline
+\end{tabular}}
+\end{center}
+
+\vfill
+\eject
+\end{document}
+{\ }\bigskip
+
+2. In a study of the stability of IQ scores, a large group of individuals is
+tested once at age 18 and again at age 35.  The following results are obtained.
+
+\begin{center}
+\begin{tabular}{llll}
+age 18: & average score $\approx 100$, & $\mbox{sd}\approx 15$\\
+age 35: & average score $\approx 100$, & $\mbox{sd}\approx 15$,  & $r\approx 0.8$\\
+\end{tabular}
+\end{center}
+
+\hspace{20pt} a) Estimate the average score at age 35 for all the individuals who scored 115 at
+ age 18.
+\vspace{2in}
+
+\hspace{20pt} b) Predict the score at age 35 for an individual who scored 115 at age 18.
+\vspace{2in}
+
+\hspace{20pt} c) Predict the score at age 35 for an individual who scored 130 at age 18.
+\vfill
+\eject
+
+\end{document}
+

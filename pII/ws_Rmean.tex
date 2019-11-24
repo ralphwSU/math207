@@ -1,0 +1,241 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\ & Introduction to  Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Computing Mean and Median Using \texttt{R}}
+\end{center}
+
+\newcommand{\SUBX}{\hspace{10pt}}
+\newcommand{\HX}{\hspace{10pt}}
+\newcommand{\BSK}{\vspace{.14in}}
+
+\EXERCISE \textbf{Mean (Average) and Median}.
+You can use \texttt{R} to calculate the mean and median of a list of data.
+%that \texttt{R} produces. Explain to yourself what \texttt{R} thinks it
+%is doing.
+%\vspace{-5pt}
+
+\HX a) Enter the following \texttt{R} commands.  Why are the mean and median equal?
+
+\HX\HX  \texttt{>  x <- c(1,2,3)}
+
+\HX\HX  \texttt{>  mean(x)}
+
+\HX\HX  \texttt{>  median(x)}
+\smallskip
+
+\HX b) Enter the following \texttt{R} commands.  Why are the mean and median different?
+
+\HX\HX  \texttt{>  x <- c(1,2,4)}
+
+\HX\HX  \texttt{>  mean(x)}
+
+\HX\HX  \texttt{>  median(x)}
+\smallskip
+
+\HX b) Enter the following \texttt{R} commands a few times.   What do the commands do?
+ Why does the mean change?
+
+\HX\HX \texttt{>  x <- sample(1:6, 10, replace=TRUE)}
+
+\HX\HX \texttt{>  x}
+
+\HX\HX \texttt{>  mean(x)}
+\smallskip
+
+\EXERCISE \textbf{Histogram Example}.
+
+\HX a) Run the following three commands a few times.  How and why does the histogram change?  
+
+
+\HX\HX \texttt{>  x <- sample(1:6, 10, replace=TRUE)}
+
+\HX\HX \texttt{>  x}
+
+\HX\HX \texttt{>  hist(x, probability=TRUE, breaks=seq(0.5,6.5,1), main=''Die Tosses'', xlab=''Number of Dots'', ylab=''Percent'')}
+
+\HX  b) Increase the number of rolls from 10 to 100.  How and why does the histogram change?  
+\bigskip
+
+\EXERCISE \textbf{Bimodal Examples}. Many of the histograms we meet will look like
+the normal curve (bell curve).  Some appear to be mixtures of
+two (or more) normal curves.
+
+\HX a) Run the following in \texttt{R}.  Explain what the data set is and comment
+on the shape of the histogram.
+
+\HX\HX \texttt{> hist(faithful\$eruptions, breaks=15, probability=T)}
+
+\HX\HX \texttt{> ?faithful}
+
+\HX b) How big is the data set?
+
+\HX\HX \texttt{> length(faithful\$eruptions)}
+
+\HX\HX \texttt{> dim(faithful)}
+
+\HX c) Calculate the mean and median of the Old Faithful eruption durations.
+
+\HX d) Repeat a) -- c) using \texttt{quakes\$depth}.
+\vfill
+\eject
+
+\EXERCISE \textbf{Sampling from a uniform distribution}.  If a data set
+is uniformly distributed between $-1$ and $1$, its mean and median are zero.
+
+
+\HX a) Take a small random sample from a uniform distribution on $[-1, 1]$.
+Why is the histogram not quite uniform?  Why are the mean and median not exactly~$0$?
+
+\HX\HX \texttt{> x <- runif(n=10, min=-1, max=1)}
+
+\HX\HX \texttt{> hist(x, breaks=10, probability=T)}
+
+\HX\HX \texttt{> mean(x)}
+
+\HX\HX \texttt{> median(x)}
+
+\HX Repeat a) a few times to see how the sample changes.
+
+\HX Repeat a) using $n=100$ and $n=1000$.  What happens?
+\bigskip
+
+5. \textbf{Loading a Spreadsheet File}.
+
+\HX a) Open a web browser and use it to download the following file.
+\begin{center}
+\texttt{http://www.adjoint-functors.net/su/web/314/goldData.csv}
+\end{center}
+
+\HX b) Load the file into  \texttt{R} using the following command
+(you may need to specify the complete file path).
+
+%\HX\HX \texttt{>  g <- read.csv(``goldData.csv'')}
+
+\HX\HX \texttt{> g <- read.csv(``http://www.adjoint-functors.net/su/web/314/goldData.csv'')}
+
+\HX c) Now take a look at the first few rows of the first five columns of the data.
+Explain what the data contains.
+
+\HX\HX \texttt{>  head(g[1:5])}
+
+\HX d)  Take a look at the last few rows of the first five columns of the data.
+What does this tell you.
+
+\HX\HX \texttt{>  tail(g[1:5])}
+
+\HX e) Enter the following commands in \texttt{R}.  What are the commands doing?
+What does the histogram tell you?
+
+\HX\HX \texttt{>  gdollar <- g\$US.dollar}
+
+\HX\HX \texttt{>  g1 <- gdollar[1:(length(gdollar)-1)]}
+
+\HX\HX \texttt{>  goldReturns <- diff(gdollar)/g1}
+
+\HX\HX \texttt{>  hist(goldReturns, probability=TRUE, main=''Daily Gold Returns'', ylab=''Percent'')}
+
+\HX\HX f) Compute the mean return.  Comment on its sign and magnitude.
+
+\HX\HX g) Compute the median return.  Comment on its relationship to the mean.
+\vfill
+\eject
+\end{document}
+
+\EXERCISE \textbf{Standard Deviation}. You can use \texttt{R} to calculate the standard
+deviation of a list of numbers.  
+
+\HX a) Enter the following commands then calculate the mean and standard deviation by hand.
+
+\HX\HX \texttt{>  x <- c(9,9,10,10,10,12)}
+
+\HX\HX \texttt{>  mean(x)}
+
+\HX\HX \texttt{>  sd(x)}
+
+\HX\HX \texttt{>  sd(x)*sqrt(5/6)}
+\smallskip
+
+\HX b) The built-in \texttt{R} command \texttt{sd} calculates
+what our book calls \texttt{SD$^+$}.  It is 
+$\mbox{\texttt{SD}}^+=
+\displaystyle\sqrt{\frac{1}{n-1}\,\sum_{i=1}^n\,(x_i-\mbox{mean})^2}$.  
+The bult-in \texttt{R} function \mbox{sd} has $n-1$ in 
+the denominator rather than $n$.  Type the following to load a short program 
+that loads an implementation of \mbox{SD}.  
+
+\HX\HX \texttt{>  source("http://www.adjoint-functors.net/SD.R")}
+
+\HX\HX \texttt{>  SD(x)}
+\smallskip
+
+\HX\HX \texttt{>  x <- c(1, 3, 4, 5, 7)}
+
+\HX\HX \texttt{>  SD(x)}
+\vfill
+\eject
+
+
+
+\end{document}
+

@@ -1,0 +1,131 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.6in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Quiz:  The Normal Curve}
+\end{center}
+\newcommand{\Z}{\hphantom{0}}
+
+1. Sketch then, without using a calculator, estimate the specified area under the normal curve.
+
+\begin{center}
+\begin{tabular}{lcl}
+a) $z>2$ & \hspace{3in} & b) $z>2$\\[1in]
+c) $-1<z<2$ &           & d) $1<z<2$\\[1in]
+e) $z<10$   &           & f) $z<-7$\hphantom{\hspace{1in}}\\[1in]
+g) $-3<z<1$ &           & h) $|z|<1$\\[1in]
+\end{tabular}
+\end{center}
+
+2. Use the \texttt{pnorm} function in \texttt{R} to find the specified areas under the normal curve.
+Write down the commands that you use.
+\begin{center}
+\begin{tabular}{lcl}
+a) $z<-1.5$ & \hspace{3in} & b) $z>1.8$\\[.7in]
+c) $z<7.75$   &           & d) $z<-5.3$\hphantom{\hspace{1in}}\\[.7in]
+e) $-1.25<z<2.25$ &           & f) $1.8<z<2.0$\\[.7in]
+\end{tabular}
+\end{center}
+
+\vfill
+\eject
+
+3. Suppose that math SAT scores average out to 520 with a standard deviation of 20.
+Assume that the histogram of scores follows a normal distribution.
+
+\hspace{10pt} a) About what percent of scores were between 500 and 540?
+\vspace{.8in}
+
+\hspace{10pt} b) About what percent of scores were below 560?
+\vspace{.8in}
+
+\hspace{10pt} c) About what percent of scores were over 580?
+\vspace{.8in}
+
+\hspace{10pt} d) What score is better than 90\% of all scores? (Hint:  \texttt{qnorm}.)
+\vspace{1in}
+
+4. Errors in the measurement of a certain check weight average out to $0.0065$ kg plus or minus
+about $0.0002$~kg.  Assume that the histogram of measurement errors follows a normal 
+distribution.
+
+\hspace{10pt} a) What is the chance of getting an error measurement greater than 
+$0.0068$?
+\vspace{.8in}
+
+\hspace{10pt} b) What is the chance of getting an error measurement greater than 
+between $0.0064$ and $0.0066$?
+\vspace{.8in}
+
+\hspace{10pt} c) About what percent of measurements  were over $0.0070$?
+\vspace{.8in}
+
+\hspace{10pt} d) What measurement is larger than 90\% of all measurements? (Hint:  \texttt{qnorm}.)
+\vfill
+\eject
+
+\end{document}
+
+
+

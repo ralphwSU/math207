@@ -1,0 +1,276 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+\medskip
+
+\begin{center}
+  \textbf{\large   NHANESIII Data Set:  Report I}
+
+  --- Due Friday 27 September 2019 ---
+\end{center}
+
+\newcommand{\SUBX}{\smallskip\hspace{10pt}}
+\newcommand{\BSK}{\vspace{.14in}}
+
+In Report 0  you were asked to write your first report using R Markdown.
+In another exercise, you downloaded the NHANES III data set and code books then
+read the data into R.
+\medskip
+
+\EXERCISE \textbf{Start Your Report}. Open a new RMarkdown file
+(File $\to$ New File $\to$ RMarkdown).  Delete everything in the template file then
+type the following.\vspace{-6pt}
+\begin{verbatim}
+---
+title:  "Report_1"
+author: "your name"
+date:   "23 September 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\end{verbatim}
+
+\EXERCISE \textbf{Reading the Data into R}.
+
+\hspace{10pt} a) Type the following in your RMarkdown file:\vspace{-6pt}
+\begin{verbatim}
+## Reading the adult.csv file
+The NHANES data consists of four data files:  adult.csv, youth.csv, lab.csv and 
+exam.csv.  The adult file contains information about subjects who were over
+17 years old.  The youth file contains information about other subjects.  The
+lab and exam files contain additional data about both adults and youth.
+
+### Reading the adult.csv file
+The following command reads the adult.csv data file into R.
+```{r}
+adult = read.csv("/Users/username/Desktop/math207/adult.csv", header=TRUE)
+```
+The size of this data set is
+```{r}
+dim(adult)
+```
+This means that the file has 20,050 rows and 1238 columns.  So, there are
+20,050 adults in the data set and 1238 pieces of information about each in 
+this file.  The lab.csv and exam.csv files include additional information
+about these subjects.
+\end{verbatim}\vspace{-6pt}
+
+It is a good idea to knit your file frequently to catch errors early.
+\smallskip
+
+\hspace{10pt} b) Repeat part a) using the \texttt{youth.csv} file.
+Your new variable should be called \texttt{youth}.
+
+\hspace{10pt} c) Repeat part a) using the \texttt{lab.csv} file.
+Your new variable should be called \texttt{lab}.
+
+\hspace{10pt} d) Repeat part a) using the \texttt{exam.csv} file.
+Your new variable should be called \texttt{exam}.
+\vfill
+\eject
+
+\EXERCISE \textbf{First Explorations}. 
+
+\hspace{10pt} a) Add the following to your RMarkdown file.\vspace{-6pt}
+
+\begin{verbatim}
+## First Explorations
+The first variable of interest is SEQN.  It stores the anonymous ID
+numbers for the subjects.  Each subject has data stored in multiple files.
+SEQN allows us to merge this disparate information for participants of
+interest. Here are the first few ID numbers.
+```{r}
+head(adult$SEQN)
+```
+The following tells us that there is only one row in adult.csv for 
+subject number 4.
+```{r}
+dim(adult[adult$SEQN == 4,])
+```
+\end{verbatim}
+
+
+
+\hspace{10pt} b)  Add the following to your RMarkdown file.\vspace{-6pt}
+
+\begin{verbatim}
+### Variable DMARACER in the adult data file
+The variable DMARACER gives information about the race of the subjects.
+It is a qualitative, unordered variable but is recorded as a number:
+1 = white, 2 = black, 3 = other and 8 = Mexican-American of unknown race.
+We can confirm the distribution of DMARACER as follows:
+```{r}
+table(adult$DMARACER)
+```
+This indicates that there were 13,738 white subjects, 5664 black subjects,
+640 classified as other, and 8 classified as Mexican-American of unknown race.
+It agrees with page 67 of the ADULT-acc.pdf code book.
+\end{verbatim}
+
+\hspace{10pt} c) Repeat b) using the variable \texttt{DMARETHN}.
+
+\hspace{10pt} d) Repeat b) using the variable \texttt{DMAETHNR}.
+
+\hspace{10pt} e) Repeat b) using the variable \texttt{HSSEX}.
+
+\hspace{10pt} f) Repeat b) using the variable \texttt{HSFSIZER}.
+\vfill
+\eject
+
+\EXERCISE \textbf{Descriptive Statistics}. Add the following to your
+RMarkdown file.\vspace{-6pt}
+
+\begin{verbatim}
+## Descriptive Statistics
+There are two facets to statistics:  descriptive statistics and inferential
+statistics.   Descriptive statistics involves organizing, summarizing and
+visualizing data.  Inferential statistics involves making predictions.
+\end{verbatim}
+
+\hspace{10pt} a) Add the following to your RMarkdown file.\vspace{-6pt}
+
+\begin{verbatim}
+### Variable BMPWT in the exam data file
+Subjects' body measurements were taken in a home exam.  Variable BMPWT
+records subjects' weights in kg.  Some subjects did not have their weight
+recorded, however.  The BMPWT variable is recorded as 888888 for them.
+See page 198 of the exam-acc.pdf code book.  So, if we compute the average 
+weight without accounting for that fact:
+```{r}
+mean(exam$BMPWT)
+```
+we get 5135.477 kg.  That is a bit high for human patients.  We can extract
+the true weights and compute some statistics as follows:
+```{r}
+e1 = exam[exam$BMPWT != 888888, ]
+weights = e1$BMPWT
+mean(weights)
+median(weights)
+sd(weights)
+hist(weights, xlab="Weight (kg)", ylab="Percent per kg", col='blue', probability=T)
+```
+The histogram is not symmetric.  That is why the mean and median differ.
+\end{verbatim}
+
+\hspace{10pt} b) Repeat a) using the variable \texttt{BMPHT} from the exam data file.
+Note:  the error code for \texttt{BMPHT} is 88888 (not 888888).  Also replace 
+\begin{verbatim}
+weights = e1$BMPWT
+\end{verbatim}
+with the line 
+\begin{verbatim}
+heights = na.omit(e1$BMPHT)
+\end{verbatim}
+
+\hspace{10pt} c) Repeat b) using the variable \texttt{BMPRECUM} from the exam data file.
+\vfill
+\eject
+\end{document}
+
+
+\hspace{10pt} a) For each of the quantitative variables (at least one continuous
+and one discrete) that you chose, 
+compute the mean and standard deviation.  For example, variable \texttt{BMPWT} from
+the \texttt{exam.csv} file gives patients' weights.  The following is an attempt
+to compute the mean weight (in kg).\vspace{-6pt}
+\begin{verbatim}
+mean(exam$BMPWT)
+\end{verbatim}
+The answer is 5135.447 kg.  
+That is  high for human patients.  According to the documentation (page~198 of
+the exam code book), a value of 888888 means that the weight is blank.  We should exclude
+those values.\vspace{-6pt}
+\begin{verbatim}
+e1 = exam[exam$BMPWT != 888888, ]   # Extract the rows with only valid weights.
+mean(e1$BMPWT)
+\end{verbatim}\vspace{-5pt}
+What is the new mean and how many subjects were excluded?  What is the standard deviation?
+\medskip
+
+\hspace{10pt} b) Make a histogram of each of the quantitative variables (excluding
+the rows with blank or missing values as you did in a).   Include 
+appropriate axes labels.  Discuss the shapes of your histograms.
+\medskip
+
+\hspace{10pt} c) Make a bar plot for each of the qualitative variables
+ (excluding
+the rows with blank or missing values).  Be sure to include 
+appropriate axes labels.  What do the shapes of your bar plots tell you?
+For example, variable \texttt{HFB16B} (page 110 of the  adult code book) applies to patients
+without health insurance and gives reasons for being uninsured.  \vspace{-6pt}
+\begin{verbatim}
+n = sum(table(adult$HFB16B))  # Count the number of responses
+barplot(table(adult$HFB16B) / n, names.arg = c("Refused", "U/Cost", 
+   "U/Disc", "No E Cov", "E/Inel", "E/Cost", "Unwant", "Other", "Cost", 
+   "HFB14", "NA", "DK"), xlab="Main Reason for Being Uninsured")
+\end{verbatim}
+See the code book for explanations of these (or your) variables and responses.
+\vfill
+\eject
+
+
+\end{document}
+
