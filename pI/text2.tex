@@ -1,0 +1,349 @@
+\documentclass[t,xcolor=pst,dvips]{beamer}
+\mode<presentation>
+
+\usepackage{etex}
+
+\usetheme{Madrid}
+% other themes: Warsaw, AnnArbor, Antibes, Bergen, Berkeley, Berlin, Boadilla, boxes, CambridgeUS, Copenhagen, Darmstadt, default, Dresden, Frankfurt, Goettingen,
+% Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Maloe, Marburg, Montpellier, PaloAlto, Pittsburg, Rochester, Singapore, Szeged, classic
+
+\setbeamertemplate{navigation symbols}{\insertslidenavigationsymbol}
+
+\usecolortheme{dolphin}
+%\usecolortheme{seagull}
+% color themes: albatross, beaver, beetle, crane, default, dolphin, dov, fly, lily, orchid, rose, seagull, seahorse, sidebartab, structure, whale, wolverine
+
+%\usefonttheme{serif}
+% font themes: default, professionalfonts, serif, structurebold, structureitalicserif, structuresmallcapsserif
+
+% pdf is displayed in full screen mode automatically
+%\hypersetup{pdfpagemode=FullScreen}
+
+%\AtBeginSection[]
+%{
+%  \begin{frame}<beamer>
+%    \frametitle{Outline}
+%    \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+%}
+
+% define your own colours:
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{Green}{rgb}{0,1,0}
+\definecolor{magenta}{rgb}{1,0,.6}
+\definecolor{lightblue}{rgb}{0,.5,1}
+\definecolor{lightpurple}{rgb}{.6,.4,1}
+\definecolor{gold}{rgb}{.6,.5,0}
+\definecolor{orange}{rgb}{1,0.4,0}
+\definecolor{hotpink}{rgb}{1,0,0.5}
+\definecolor{newcolor2}{rgb}{.5,.3,.5}
+\definecolor{newcolor}{rgb}{0,.3,1}
+\definecolor{newcolor3}{rgb}{1,0,.35}
+\definecolor{darkgreen1}{rgb}{0, .35, 0}
+\definecolor{darkgreen}{rgb}{0, .6, 0}
+\definecolor{darkred}{rgb}{.75,0,0}
+
+\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
+\xdefinecolor{purpleish}{cmyk}{0.75,0.75,0,0}
+
+%\usepackage{beamerinnerthemerounded}
+% inner themes include circles, default, inmargin, rectangles, rounded
+
+%\usepackage{beamerouterthemesmoothbars}
+% outer themes include default, infolines, miniframes, shadow, sidebar, smoothbars, smoothtree, split, tree
+
+\useoutertheme[subsection=false]{smoothbars}
+
+% to have the same footer on all slides
+\setbeamertemplate{footline}[text line]{
+\includegraphics[height=15pt]{logo-high-res.eps}\hfill 
+\raisebox{5pt}{Math 314:  Statistics}\hfill 
+\raisebox{5pt}{Chapter 2:  Observational Studies}\hfill
+\raisebox{5pt}{\insertframenumber/\pageref{lastpage}}}
+%\setbeamertemplate{footline}[text line]{} % or empty footer
+
+% include packages
+\usepackage{subfigure}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage[all,knot]{xy}
+\xyoption{arc}
+\usepackage{url}
+\usepackage{multimedia}
+\usepackage{hyperref}
+%\usepackage{setspace}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+
+\title{Math 314:  Statistics}
+\subtitle{Chapter 2:  Observational Studies}
+\author{Ralph Wojtowicz}
+\institute{CME Department\\ Shepherd University}
+%\date{\scriptsize 24 August 2011}
+
+
+\begin{document}
+
+%\frame[plain]{
+%	\titlepage
+%}
+
+%\section[Outline]{}
+
+
+\begin{frame}[plain]
+\definecolor{myblue}{rgb}{0,0,0.6}
+\definecolor{grayA}{rgb}{0.95,0.95,0.95}
+\definecolor{grayB}{rgb}{0.98,0.98,0.98}
+\begin{center}
+
+\newcommand{\IMG}{
+\scalebox{0.63}{\begin{pspicture}(-2,-2)(2,2)
+\psframe(-1.5,-0.5)(8.5,5.25)
+\psset{xunit=1.4,yunit=1.2,nodesep=2pt}
+\rput(4,4){\rnode{Studies}{Studies}}
+\rput(5,3){\rnode{NoControls}{No Controls}}
+\rput(3,3){\rnode{Controls}{Controls}}
+\rput(4,2){\rnode{Historical}{Historical}}
+\rput(2,2){\rnode{Contemporaneous}{Contemporaneous}}
+\rput(1,1){\rnode{Controlled}{\begin{tabular}{c}Controlled\\ Experiment\end{tabular}}}
+\rput(3,1){\rnode{Observational}{\begin{tabular}{c}Observational\\ Studies\end{tabular}}}
+\rput(0,0){\rnode{Randomized}{Randomized}}
+\rput(2,0){\rnode{NotRandomized}{Not Randomized}}
+\ncline{Studies}{Controls}\ncline{Studies}{NoControls}
+\ncline{Controls}{Contemporaneous}\ncline{Controls}{Historical}
+\ncline{Contemporaneous}{Controlled}\ncline{Contemporaneous}{Observational}
+\ncline{Controlled}{Randomized}\ncline{Controlled}{NotRandomized}
+\end{pspicture}}}
+
+%\begin{pspicture}(0,0)(7,4.8)
+\begin{pspicture}(-6,-7)(6,2)
+\psframe[linewidth=0.02,linecolor=gray](-6.2,-7)(6.2,2.2)
+\psframe[linewidth=0.02,linecolor=gray](-6.15,-6.95)(6.15,2.15)
+\rput(0,1.2){\color{myblue}\large Math 314:  Statistics}
+\rput(0,0.2){\color{myblue}Chapter 2:  Observational Studies}
+\rput(-2.3,-3.5){\IMG}
+%\psframebox(0,0)(4,4)
+\rput(0,-4.2){\scriptsize Dr.~Ralph Wojtowicz}
+\rput(0,-4.7){\scriptsize CME Department}
+\rput(0,-5.4){\includegraphics[height=1cm]{logo-high-res.eps}}
+%
+%\rput(0,-6.5){\scriptsize 24 August 2011}
+\end{pspicture}
+\end{center}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\addtocounter{page}{-1}
+\addtocounter{framenumber}{-1}
+\frame{\tableofcontents}
+
+\section{Introduction}
+\subsection{Introduction}
+\begin{frame}[t]\frametitle{Introduction}
+{\small 
+\begin{itemize}
+\item \textbf{Controlled experiment}: Investigators decide who will be in the treatment group and who will 
+  be in the control group
+     \begin{itemize}
+     \item Example:  Salk vaccine trials discussed in Chapter 1
+     \item Example:  Coronary Drug Project discussed in Section 2.2
+     \item The control and treatment populations are similar --- except in the application of treatment
+     \end{itemize}
+\item \textbf{Observational study}: Subjects assign themselves to the groups
+     \begin{itemize}
+     \item Example:  Smoking studies
+%     \item The two populations differ in ways other than the treatment
+     \item \textbf{Association} between treatment and outcome is circumstantial evidence for causation.    
+     \item Association does not prove causation.  \textbf{Confounding} factors may exist.
+     \item Observational studies can be powerful tools but can also be misleading.% due to confounding.  
+       \begin{itemize}
+         \item Were the control and treatment groups similar?
+         \item Did the two populations differ in ways other than the treatment?
+       \end{itemize}
+     \item Technique:  compare small, more homogeneous groups (e.g.,~age, sex)
+     \end{itemize}
+\end{itemize}}
+\end{frame}
+
+\subsection[Studies]{Classification of Studies}
+\begin{frame}[t]\frametitle{Classification of Studies}
+{\footnotesize
+\begin{center}
+\begin{pspicture}(0,0)(7,4.8)
+\psset{xunit=1.4,yunit=1.2,nodesep=2pt}
+\rput(4,4){\rnode{Studies}{Studies}}
+\rput(5,3){\rnode{NoControls}{No Controls}}
+\rput(3,3){\rnode{Controls}{Controls}}
+\rput(4,2){\rnode{Historical}{Historical}}
+\rput(2,2){\rnode{Contemporaneous}{Contemporaneous}}
+\rput(1,1){\rnode{Controlled}{\begin{tabular}{c}Controlled\\ Experiment\end{tabular}}}
+\rput(3,1){\rnode{Observational}{\begin{tabular}{c}Observational\\ Studies\end{tabular}}}
+\rput(0,0){\rnode{Randomized}{Randomized}}
+\rput(2,0){\rnode{NotRandomized}{Not Randomized}}
+\ncline{Studies}{Controls}\ncline{Studies}{NoControls}
+\ncline{Controls}{Contemporaneous}\ncline{Controls}{Historical}
+\ncline{Contemporaneous}{Controlled}\ncline{Contemporaneous}{Observational}
+\ncline{Controlled}{Randomized}\ncline{Controlled}{NotRandomized}
+%\psframebox(0,0)(4,4)
+\end{pspicture}
+\end{center}}
+\bigskip
+
+{\small See page 28. Compare the figure on page 7.}
+\end{frame}
+
+\section{The Clofibrate Trial}
+\subsection{Clofibrate}
+\begin{frame}[t]\frametitle{Clofibrate}
+{\small
+\begin{itemize}
+\item Coronary Drug Project:  randomized, controlled double-blind experiment 
+  (placebo $=$ lactose) to evaluate heart attack prevention drugs
+\item 8,341 patients followed for five years (5,552 got treatment, 2,789 controls)
+\item Clofibrate:  a cholesterol reduction drug evaluated in the study
+\item Comparing 20\% to 21\% shows that clofibrate did not save lives.
+\item Many subjects did not take their medicine (non-adherers).
+\item Compare 15\% to 15\% (not to 21\% or 25\%)  to control for adherence.
+\end{itemize}}\vspace{-8pt}
+%
+\begin{center}
+{\newcommand{\Z}{\hphantom{0,}}\footnotesize\begin{tabular}{lcccc}
+& \Z\Z Clofibrate\span  & \Z\Z Placebo\span\\[2pt]\hline
+         & Number & Deaths & Number & Deaths\vphantom{\Large Y}\\
+Adherers     & \Z708 & 15\% & 1,813 & 15\%\\
+Non-adherers & \Z357 & 25\% & \Z882 & 28\%\\
+Total group  & 1,103 & 20\% & 2,789 & 21\%
+\end{tabular}} \vspace{-8pt}
+\end{center}
+{\small
+\begin{itemize}
+\item Conclusions:  (i) Clofibrate does not have an effect.  (ii) Adherers are different from non-adherers.
+\end{itemize}}
+\end{frame}
+
+\section{More Examples}
+\subsection{Confounding Factors and Associations}
+\begin{frame}[t]\frametitle{Confounding Factors and Associations}
+{\small
+\begin{itemize}
+\item Pellagra:  Among many associations between the 18${}^{th}$ century disease and other factors, lack of niacin
+  was found to be the underlying cause.
+\item Cervical Cancer and Circumcision: Human papilloma virus was found to be the underlying cause
+  and explained differences in cancer rates between particular populations in the 1950s.
+\item Ultrasound and low birthweight:  The confounding factor of problem pregnancy was found to 
+  explain an association between ultrasound and low birthweight.  Randomized controlled experiments 
+  showed that ultrasounds may be protective.
+\item The Samaritans and Suicide:  A confounding factor explained an association between the 
+  expansion of a volunteer welfare organization and a decrease in the English suicide rate 
+  in 1964--1970.
+\end{itemize}
+}
+\end{frame}
+
+
+\section{Sex Bias in Graduate Admissions}
+\subsection{Sex Bias in Graduate Admissions}
+\begin{frame}[t]\frametitle{}
+{\small
+\begin{itemize}
+\item Observational study on sex bias in admissions at UC, Berkeley in 1973
+   \begin{itemize}
+   \item 44\% of 8,442 male applicants were admitted
+   \item 35\% of 4,321 female applicants were admitted
+   \end{itemize}
+\item Compare admissions to the six largest majors:\vspace{-9pt}
+\end{itemize}}
+
+{\footnotesize
+\begin{center}
+\newcommand{\Z}{\hphantom{0}}
+\begin{tabular}{ccccc}
+      & \Z\Z\Z\Z\Z\Z Men\span   & \Z\Z\Z\Z\Z Women\span\\[3pt]
+      & Number of  & Percent  & Number of  & Percent\\
+Major & Applicants & Admitted & Applicants & Admitted\\[2pt]\hline
+A     & {\color{red}\textbf{825}}        
+                   & {\color{red}\textbf{62}}       
+                              & {\color{red}\textbf{108}}        
+                                           & {\color{red}\textbf{82}}\vphantom{\large Y}\\
+B     & 560        & 63       & 25         & 68\\
+C     & 325        & 37       & 593        & 34\\
+D     & 417        & 33       & 375        & 35\\
+E     & {\color{blue}\textbf{191}}        
+                   & {\color{blue}\textbf{28}}       
+                              & {\color{blue}\textbf{393}}        
+                                           & {\color{blue}\textbf{24}}\\
+F     & 373        & \Z6      & 341        & \Z7
+\end{tabular}\vspace{-16pt}
+\end{center}}
+%
+{\small
+\begin{itemize}
+\item Major A:  Less selective but few women and many men applied
+\item Major E:  Highly-selective but many women and few men applied
+\item Simpson's paradox:  Relationships between percentages in subgroups can 
+  be reversed when the subgroups are combined.
+\end{itemize}}
+
+\end{frame}
+
+\section{Confounding}
+\subsection{Confounding}
+\begin{frame}[t]\frametitle{Confounding}
+
+{\small
+\begin{itemize}
+\item \textbf{Confounding}:  A difference between the treatment and control groups --- other than the treatment ---
+   that affects the responses being studied
+\item Confounders must be assocated with both:
+   \begin{itemize} 
+     \item The disease/outcome and 
+     \item The exposure/treatment.
+   \end{itemize}
+\item Hidden confounders are a major problem in observational studies.
+\item Examples:
+   \begin{itemize}
+   \item NFIP polio vaccine study:  family income
+   \item Portacaval shunt studies:  health of patients selected for surgery
+   \item Coronary bypass surgery studies:  health of patients selected for surgery
+   \item Cervical cancer study: sexual activity
+   \end{itemize}
+\end{itemize}}
+
+\label{lastpage}
+\end{frame}
+
+\end{document} 
+
+
+
+
+
+\begin{pspicture}(-6,-7)(6,2)
+\psframe[linewidth=0.02,linecolor=gray](-6.2,-7)(6.2,2.2)
+\psframe[linewidth=0.02,linecolor=gray](-6.15,-6.95)(6.15,2.15)
+\rput(0,1.2){\color{myblue}\large Math 314:  Statistics}
+\rput(0,0.2){\color{myblue}Chapter 2:  Observational Studies}
+%
+\psframe[linewidth=0.02,fillstyle=solid,fillcolor=grayA](-2,-3)(2,-1)
+  \rput[tl](-1.9,-1.1){\tiny Population (parameters)}
+\psframe[linewidth=0.02,fillstyle=solid,fillcolor=grayB](-0.25,-2.75)(1.75,-2)
+  \rput[tl](-0.15,-2.1){\tiny Sample (statistics)}
+%
+\rput(0,-4.2){\scriptsize Dr.~Ralph Wojtowicz}
+\rput(0,-4.7){\scriptsize CME Department}
+\rput(0,-5.4){\includegraphics[height=1cm]{logo-high-res.eps}}
+%
+\rput(0,-6.5){\scriptsize 24 August 2011}
+\end{pspicture}

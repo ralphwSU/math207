@@ -1,0 +1,136 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.2,.2,.6}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Installing \texttt{R} and RStudio}
+\end{center}
+\medskip
+
+The \texttt{R} Environment for Statistical Computing 
+ is a free software environment for statistical computing and graphics.
+RStudio is a graphical user interface to \texttt{R}.  
+Both are used extensively in academics, industry and government.
+They are freely-available to download for Mac, Linux and Windows.
+We will use both extensively this semester.  Please follow the steps below
+to install and test them on your computer.
+\medskip
+
+
+\textbf{Install R}:
+
+\begin{itemize}
+\item Open a web browser to \href{https://www.r-project.org}{https://www.r-project.org}.
+\item Click on the \textit{download R} link near the top of the page.
+\item Scroll down the CRAN Mirrors page and select a U.S. site.
+\item Click on the \textit{Download for (Mac) OS X} link (or the link that is
+   appropriate to your computer's operating system).
+\item Once the download is complete, install the software.  On Mac, this involves
+  double-clicking on the downloaded image file.
+\end{itemize}
+\medskip
+
+\textbf{Test Your R Installation}:
+\begin{itemize}
+\item Double-click on the new R icon in your Applications menu.
+\item Once R has started, type \texttt{2+3} in the window then hit return.
+\item If the output is 5, then R is installed correctly.
+\end{itemize}
+\medskip
+
+\textbf{Install R Studio}:
+\begin{itemize}
+\item Open a web browser to \href{https://www.rstudio.com}{https://www.rstudio.com}.
+\item Click on the \textit{Download RStudio} link near the top of the page.
+\item Click on the RStudio Desktop, Open Source License, FREE Download link.
+\item Click download for your computer's operating system (e.g., Mac OSX).
+\item Once the download is complete, install the software.  On Mac, this involves
+  double-clicking on the downloaded image file.
+\end{itemize}
+\medskip
+
+
+\textbf{Test Your RStudio Installation}:
+\begin{itemize}
+\item Double-click on the new RStudio icon in your Applications menu.
+\item Once RStudio has started, type \texttt{2+3} in the command window then hit return.
+\item If the output is 5, then RStudio is installed correctly.
+\end{itemize}
+\medskip
+
+\textbf{Install MacTeX}:
+\begin{itemize}
+\item Open a web browser to \href{http://www.tug.org/mactex}{http://www.tug.org/mactex}.
+\item Click on the \textit{MacTeX Download} link near the top of the page.
+\item Click on the \textit{MacTeX.pkg} link to begin the (almost 4GB!) download.
+\item Once the download is complete, install the software.  On Mac, this involves
+  double-clicking on the downloaded image file.
+\item We won't use \TeX\ directly.  It is used by an R package to generate pdf 
+   versions of reports.
+\end{itemize}
+\medskip
+
+\vfill
+\eject
+
+\end{document}

@@ -1,0 +1,151 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-func,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\N}{\ensuremath\mathbb{N}}
+\newcommand{\Q}{\ensuremath\mathbb{Q}}
+\newcommand{\R}{\ensuremath\mathbb{R}}
+\newcommand{\C}{\ensuremath\mathbb{C}}
+\newcommand{\z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+\hspace{5in} & Math 207:  Statistics\\
+                & Discussion Exercises 1\\
+\end{tabular}
+}
+
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip\bigskip
+
+
+1. In the U.S. in 2000, there were 2.4 million deaths from all causes, compared to 1.9 million in 
+197 --- a 25\% increase.  True or false, and explain:  the data show that the public's health got 
+worse over the period 1970--2000.
+\vspace{.5in}
+
+2. Polio is an infectious disease;  for example, it seemed to spread when children went swimming together.  
+The NFIP study was not done blind:  could that bias the results?  Discuss briefly.
+\vspace{.5in}
+
+3. Some studies find an association between liver cancer and smoking.  However,
+alcohol consumption is a confounding variable.  This means ---
+
+\hspace{10pt} i) Alcohol causes liver cancer.
+
+\hspace{10pt} ii) Drinking is associated with smoking, and alcohol causes liver cancer.
+
+Choose one and explain briefly.
+\vspace{.5in}
+
+4. The Federal Bureau of Investigation reports state-level and national data on crimes
+
+\begin{itemize}
+\item An investigator compares the incidence of crime in Minnesota and in Michigan.  
+In 2001, there were 3,584 crimes in Minnesota, compared to 4,082 in Michigan.  
+He concludes that Minnesotans are more law-abiding.  After all, Michigan includes the big bad
+city of Detroit.  What do you say?\vspace{.5in}
+%
+\item An investigator compares the incidence of crime in the U.S. in 1991 and 2001.  In 1991, there
+were 28,000 crimes, compared to 22,000 in 2001.  She concludes that
+the U.S. became more law-abiding over that time period.  What do you say?
+\end{itemize}
+\vspace{.5in}
+
+5. The National Highway and Traffic Safety Administration analyzed thefts of new cars in 2002, as well 
+as sales figures for that year.
+
+\begin{itemize}
+\item There were 99 Corvettes stolen, and 26 Infiniti Q45 sedans.  Should you conclude
+that American thieves prefer American cars?  or is something missing from the equation?
+\vspace{.45in}
+%
+\item There were 50 BMW 7-series cars stolen, compared to 146 in the 3-series.  Should you conclude 
+that thieves prefer smaller cars, which are more
+economical to run and easier to park?  Or is something missing from the equation?
+\vspace{.45in}
+%
+\item There were 429 Liberty Jeeps stolen, compared to 207,991 sold, for a rate of 2 per 100,000.  
+True or false and explain:  the rate is low because the denominator is large.
+\end{itemize}
+
+\vfill
+\eject
+
+6. Ads for ADT Security system claim:\vspace{-5pt}
+\begin{quotation}
+When you go on vacation, burglars go to work $\dots$ According to  FBI statistics, 
+over 25\% of home burglaries occur between Memorial Day and Labor Day.\vspace{-5pt}
+\end{quotation}
+Do the statistics prove that burglars go to work when other people go on vacation?  
+Answer yes or no, and explain briefly.
+\vspace{.5in}
+
+7. California is evaluating a new program to rehabilitate prisoners before their release;  the object is to reduce
+the recidivism rate --- the percentage who will be back in prison within
+two years of release.  The program involves several months of 
+\lq\lq boot camp\rq\rq\ --- military-style basic training with very strict discipline.
+Admission to the program is voluntary.  According to a prison spokesman, \lq\lq Those who complete
+boot camp are less likely to return to prison than other inmates.\rq\rq\
+
+\begin{itemize}
+\item What is the treatment group in the prison spokesman's comparison?
+What is the control group?
+\vspace{.5in}
+%
+\item Is the prison spokesman's comparison based on an observational study  or
+a randomized controlled experiment?
+\vspace{.5in}
+%
+\item True or false:  the data show that boot camp worked.
+\end{itemize}
+
+
+\vfill
+\eject
+\end{document}

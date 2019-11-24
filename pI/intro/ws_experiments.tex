@@ -1,0 +1,196 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{myblue}{rgb}{0,0,0.6}
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{Green}{rgb}{0,1,0}
+\definecolor{magenta}{rgb}{1,0,.6}
+\definecolor{lightblue}{rgb}{0,.5,1}
+\definecolor{lightpurple}{rgb}{.6,.4,1}
+\definecolor{gold}{rgb}{.6,.5,0}
+\definecolor{orange}{rgb}{1,0.4,0}
+\definecolor{hotpink}{rgb}{1,0,0.5}
+\definecolor{newcolor2}{rgb}{.5,.3,.5}
+\definecolor{newcolor}{rgb}{0,.3,1}
+\definecolor{newcolor3}{rgb}{1,0,.35}
+\definecolor{darkgreen1}{rgb}{0, .35, 0}
+\definecolor{darkgreen}{rgb}{0, .6, 0}
+\definecolor{darkred}{rgb}{.75,0,0}
+\definecolor{grayA}{rgb}{0.95,0.95,0.95}
+\definecolor{grayB}{rgb}{0.98,0.98,0.98}
+
+\xdefinecolor{olive}{cmyk}{0.64,0,0.95,0.4}
+\xdefinecolor{purpleish}{cmyk}{0.75,0.75,0,0}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\ & Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Controlled Experiment Exercises}
+\end{center}
+
+1. The Salk vaccine field trial tables are shown below.\vspace{-3pt}
+\begin{center}{%\footnotesize
+\begin{tabular}{cc}
+Randomized controlled          & \\
+double-blind experiment        & NFIP study\\
+   \begin{tabular}{lcc}\hline
+                 & Size      & Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{darkgreen}Treatment  & \color{darkgreen}200,000   & {\color{blue}\textbf{28}}\\
+      \color{darkgreen}Control    & \color{darkgreen}200,000   & {\color{blue}\textbf{71}}\\
+      No consent & 350,000   & 46\\
+   \end{tabular}
+&
+   \begin{tabular}{lcc}
+\hline
+                 & Size        &  Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{darkgreen}Grade 2 (vaccine)\hfill        & \color{darkgreen}225,000 & 25\\
+      \color{gray}Grades 1 and 3 (control)        & \color{gray}725,000 & {\color{red}\textbf{54}}\\
+      Grade 2 (no consent)\hfill     & 125,000 & {\color{red}\textbf{44}}\\
+   \end{tabular}
+\end{tabular}}
+\end{center}\vspace{-2pt}
+
+\hspace{10pt} a) In the randomized controlled experiment, which numbers indicate the effectiveness of the vaccine?
+\vspace{.2in}
+
+\hspace{10pt} b) In the NFIP study, which numbers indicate the effectiveness of the vaccine?
+\vspace{.2in}
+
+\hspace{10pt} c) In the randomized controlled experiment, neither the no-consent group nor the control group 
+received the vaccine.  Why did their polio rates differ so significantly?
+\vspace{.5in}
+
+\hspace{10pt} d) In the NFIP study, the control and no-consent groups contracted polio at different rates?  Why?
+\vspace{.5in}
+
+\hspace{10pt} e) The sizes of the groups differ.  How does this impact our ability to interpret the results?
+\vspace{.5in}
+
+2. Data from the Salk vaccine field trial suggest that in 1954, the school districts in the NFIP 
+trial and in the randomized controlled experiment had similar 
+exposures to the polio virus.
+
+\hspace{10pt} a) The data also show that children in the two vaccine groups (for the randomized
+controlled experiment and the NFIP design) came from families with similar incomes and educational
+backgrounds.  Which two numbers confirm this finding?
+\vspace{.3in}
+
+\hspace{10pt} b) The data show that children in the two no-consent groups had similar family backgrounds.
+Which pair of numbers confirm this finding?
+\vspace{.3in}
+
+\hspace{10pt} c) The data show that children in the two control groups had different family
+backgrounds.  Which pair of numbers in the table confirm this finding?
+\vspace{.3in}
+
+\hspace{10pt} d) In the NFIP study, neither the control group nor the no-consent group got the 
+vaccine.  yet the no-consent group had a lower rate of polio.  Why?
+\vspace{.5in}
+
+\hspace{10pt} e) To show that the vaccine works, someone wants to compare the 44/100,000 in the
+NFIP study with the 25/100,000 in the vaccine group.  What's wrong with this idea?
+\vspace{.6in}
+
+3. The Salk vaccine field trials were conducted only in certain experimental areas (school districts),
+selected by the Public Health Service in consultation with local officials.  
+In these areas, there were about 3 million children in grades 1, 2, or 3; and there were about 
+11 million children in those grades in the United States.  In the experimental areas,
+the incidence of polio was about 25\% higher than in the rest of the country.  Did the Salk
+vaccine field trials cause children to get polio instead of preventing it?  
+\vspace{1in}
+
+4. In the randomized controlled Salk vaccine trial, those children whose parents refused to 
+participate got polio at the rate of 46 per 100,000.  On the other hand, those children whose
+parents consented to participation got polio at the slightly higher rate of 49 per 100,000
+in the treatment group and control group taken together.  
+Suppose that this field trial was repeated the following year.  On the basis of the figures, some parents
+refused to allow their children to participate in the experiment and be exposed to this higher riskof polio.
+Were they right?
+\vspace{1in}
+
+5. In and educational study, students choose to enroll in either an online statistics course or a face-to-face
+course.  At the end of the semester, all students are given a common final exam. Student grades on the final 
+exam are used to compare the effectiveness of the course formats.
+
+\hspace{10pt} a) Is this a controlled experiment or an observational study?
+\vspace{.3in}
+
+
+\hspace{10pt} b) What are some characteristics, other than course format, that differ between the two 
+groups?
+\vspace{.5in}
+
+6. A medical device company is testing a system that can turn hospital patients in their beds at regular intervals
+to avoid bed sores.  500 patients agree to participate in the study.  Of these 250 are randomly assigned
+to the treatment group and will be turned by the device.  The other 250 will be turned manually by hospital 
+staff.  Health care providers working with the treatment group, however, do not use the device consistently.
+Some use it to turn patients every two hours as directed while others sometimes use the device but other times
+turn patients manually.  
+
+\hspace{10pt} a) Is this a controlled experiment or an observational study?
+\vspace{.3in}
+
+\hspace{10pt} b) Suggest some reasons why providers may have used the device with different frequencies.
+\vfill
+\eject
+
+\end{document}

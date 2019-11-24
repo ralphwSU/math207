@@ -1,0 +1,212 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{upquote}
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+
+\begin{center}
+\textbf{\large  Introductory \texttt{R} Markdown Exercises}
+\end{center}
+
+We have seen how to use \texttt{R} in interactive mode using RStudio.  Typically
+we will use a tool called R Markdown to generate reports (web pages, pdfs, etc.)
+from RStudio.
+\medskip
+
+1. \textbf{First R Markdown Test}. Open  RStudio.
+
+\hspace{10pt} a) Select File $\to$ New File $\to$ R Markdown from the File menu.
+In the popup window, select HTML output.  Also in this window, enter your name and
+call the file RMarkdown1.  Click OK to create the file.
+
+\hspace{10pt} b) Now click the \texttt{Knit} button in R Studio to generate a web page.
+\medskip
+
+2. \textbf{Add Your Own R Markdown Content}.
+Now delete everything in the RMarkdown1 file and replace it
+with the following. Recompile with \texttt{Knit} when you are done. \vspace{-10pt}
+\begin{verbatim}
+---
+title: "RMarkdown1"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Here is my first experiment with R Markdown.
+```{r}
+2 + 3
+```
+\end{verbatim}
+
+3. \textbf{Inline R Code}.
+Add the following to the end of RMarkdown1 then recompile.\vspace{-10pt}
+\begin{verbatim}
+## Inline R Code
+We can add some code inside text:  2 + 3 = `r 2 + 3`.
+\end{verbatim}
+
+4.  \textbf{Statistical Sampling}.
+Add the following to the end of RMarkdown1 then recompile.\vspace{-10pt}
+\begin{verbatim}
+## Statistical Sampling
+Rolling a six-sided die is like randomly sampling numbered tickets
+from the box containing `r 1:6`. Let's roll 10 dice.
+```{r}
+sample(1:6, 10, replace = TRUE)
+sample(1:6, 10, replace = TRUE)
+sample(1:6, 10, replace = TRUE)
+```
+\end{verbatim}
+
+5. \textbf{Law of Large Numbers I}.
+Add the following to the end of RMarkdown1 then recompile.\vspace{-10pt}
+\begin{verbatim}
+## Law of Large Nubmers I
+Let's roll 100 dice and make a histogram of the results.
+```{r}
+x <- sample(1:6, 100, replace=TRUE)
+x
+table(x)
+barplot(table(x)/100, xlab="Outcome", ylab="Frequency")
+```
+\end{verbatim}
+Why was \texttt{table(x)} divided by 100?
+\vfill
+\eject
+6. \textbf{Law of Large Numbers II}.
+Repeat \#5 using 1000 dice then using 10,000 dice.
+\medskip
+\medskip
+
+7. \textbf{Working With a Data Frame}.  A data frame is similar to a spreadsheet.
+It is divided into rows and columns.  Each column stores data of a particular type
+(dates, strings, etc.).  Each row is, therefore, a list of values of the types
+stored in the rows.
+
+\hspace{10pt} a)  Add the following to the end of RMarkdown1 then recompile.\vspace{-10pt}
+\begin{verbatim}
+## Working With a Data Frame
+Let's look at the mtcars data set.
+```{r}
+class(mtcars)
+head(mtcars)
+```
+\end{verbatim}
+
+\hspace{10pt} b) We can compute statistics for numeric
+columns (either discrete or continuous).
+Add the following to the end of RMarkdown1 then recompile.\vspace{-10pt}
+\begin{verbatim}
+Now compute statistics for some of the columns.
+```{r}
+mean(mtcars$mpg)
+median(mtcars$mpg)
+sd(mtcars$mpg)
+var(mtcars$mpg)
+range(mtcars$mpg)
+```
+\end{verbatim}
+
+\hspace{10pt} c) Add code to RMarkdown1 to compute
+the statistics from b) for engine horsepower (column \texttt{hp}).
+\medskip
+
+\hspace{10pt} d) Find the car with the highest
+mileage (column \texttt{mpg}).\vspace{-10pt}
+\begin{verbatim}
+Find the car with the highest mileage.
+```{r}
+mtcars[mtcars$mpg == max(mtcars$mpg, ]
+```
+\end{verbatim}
+
+\hspace{10pt} e) Find the car(s) with the lowest mileage.
+\medskip
+
+\hspace{10pt} f) Add code to RMarkdown1 to explore the relationship between
+mileage and horsepower.\vspace{-10pt}
+\begin{verbatim}
+```{r}
+plot(mtcars$hp, mtcars$mpg, xlab="horsepower", ylab="mileage")
+cor(mtcars$hp, mtcars$mpg)
+```
+\end{verbatim}
+Are higher horsepower cars more or less fuel efficient than lower horsepower cars?
+
+\hspace{10pt} g) Explore the relationship between mileage and \texttt{qsec}.
+What does the variabe \texttt{qsec} mean?  Use \texttt{?mpg} in \texttt{R}
+to get help.
+\medskip
+\bigskip
+
+
+8. \textbf{Generating a pdf}. At the top of your RMarkdown file, change
+\texttt{html\U document} to \texttt{pdf\U document} then recompile.
+Note that you will need to have \TeX\ installed. See
+\href{http://www.tug.org/mactex}{http://www.tug.org/mactex}.
+\vfill
+\eject
+
+\end{document}

@@ -1,0 +1,281 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-func,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\N}{\ensuremath\mathbb{N}}
+\newcommand{\Q}{\ensuremath\mathbb{Q}}
+\newcommand{\R}{\ensuremath\mathbb{R}}
+\newcommand{\C}{\ensuremath\mathbb{C}}
+\newcommand{\z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+\hspace{5in} & Math 207:  Statistics\\
+                & Warmup Exercises\\
+\end{tabular}
+}
+
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+1.  Without using a calculator, 
+say whether each of the following is about 1\%, 10\%, 25\% or 50\% ---
+\begin{center}
+\begin{tabular}{clccl}
+(a) & 39 out of 398 & \hspace{2in}  & (b) 99 out of 407\\[10pt]
+(c) & 57 out of 209 &               & (d) 99 out of 197
+\end{tabular}
+\end{center}
+
+2. Among beginning statistics students in one university, 46 students
+out of 446 reported family incomes ranging from \$40,000 to \$50,000 a year.
+Answer the following without a calculator.
+\begin{enumerate}
+\item[(a)] About what percentage had family incomes in the range \$40,000 
+  to \$50,000?
+\item[(b)] Guess the percentate that had family incomes in the range \$45,000 to \$46,000
+   a year.
+\item[(c)] Guess the percentage that had family incomes in the range \$46,000 to
+   \$47,000 a year.
+\item[(d)] Guess the percentage that had family incomes in the range \$47,000 to
+   \$49,000 a year.
+\end{enumerate}
+
+\newcommand{\HS}{\hspace{30pt}}
+3. Draw a pair of axes and plot each of the following points:
+\[(1,1)\HS (2,2)\HS (3,3)\HS (4,4)\]
+What can you say about the points?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vfill
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+\hspace{5in} & Math 207:  Statistics\\
+                & Warmup Exercises\\
+\end{tabular}
+}
+
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+1.  Without using a calculator, 
+say whether each of the following is about 1\%, 10\%, 25\% or 50\% ---
+\begin{center}
+\begin{tabular}{clccl}
+(a) & 39 out of 398 & \hspace{2in}  & (b) 99 out of 407\\[10pt]
+(c) & 57 out of 209 &               & (d) 99 out of 197
+\end{tabular}
+\end{center}
+
+2. Among beginning statistics students in one university, 46 students
+out of 446 reported family incomes ranging from \$40,000 to \$50,000 a year.
+Answer the following without a calculator.
+\begin{enumerate}
+\item[(a)] About what percentage had family incomes in the range \$40,000 
+  to \$50,000?
+\item[(b)] Guess the percentate that had family incomes in the range \$45,000 to \$46,000
+   a year.
+\item[(c)] Guess the percentage that had family incomes in the range \$46,000 to
+   \$47,000 a year.
+\item[(d)] Guess the percentage that had family incomes in the range \$47,000 to
+   \$49,000 a year.
+\end{enumerate}
+
+3. Draw a pair of axes and plot each of the following points:
+\[(1,1)\HS (2,2)\HS (3,3)\HS (4,4)\]
+What can you say about the points?
+
+\eject
+{\ }
+
+Exercise: Simplify each of the following:
+\newcommand{\MHS}{\hbox{\hspace{1.75in}}}
+\begin{center}
+\begin{tabular}{cccc}
+a) $\frac{1}{3} + \frac{1}{2}$\MHS & b) $\frac{1}{4}+\frac{1}{2}+\frac{1}{5}$\MHS 
+  & c) $\frac{1/2}{2}$\\[2in]
+d) $\displaystyle\sqrt{\frac{4}{9}}$\MHS        & e) $\displaystyle\frac{1/2 + 1/5}{3}$\MHS   & 
+   f) $\displaystyle\sqrt{1-\left(\sqrt{3}/2\right)^2}$
+\end{tabular}
+\end{center}
+
+
+\vfill
+
+Exercise: Simplify each of the following:
+
+\begin{center}
+\begin{tabular}{cccc}
+a) $\frac{1}{3} + \frac{1}{2}$\MHS & b) $\frac{1}{4}+\frac{1}{2}+\frac{1}{5}$\MHS 
+  & c) $\frac{1/2}{2}$\\[2in]
+d) $\displaystyle\sqrt{\frac{4}{9}}$\MHS        & e) $\displaystyle\frac{1/2 + 1/5}{3}$\MHS   & 
+   f) $\displaystyle\sqrt{1-\left(\sqrt{3}/2\right)^2}$
+\end{tabular}
+\end{center}
+\vspace{1.25in}
+
+\eject
+
+%%%%%%%%%%%%%%%%%%%% VERSION 2
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+\hspace{5in} & Math 207:  Statistics\\
+                & Warmup Exercises\\
+%                & 11 January 2012
+\end{tabular}
+}
+
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip\bigskip
+
+{\color{blue} Solutions are in blue.}
+\medskip
+
+1.  Without using a calculator, 
+say whether each of the following is about 1\%, 10\%, 25\% or 50\% ---
+\begin{center}
+\begin{tabular}{clccl}
+(a) & 39 out of 398 & \hspace{2in}  & (b) 99 out of 407\\[10pt]
+(c) & 57 out of 209 &               & (d) 99 out of 197
+\end{tabular}
+\end{center}
+
+{\color{blue}
+%\textbf{Solutions:}
+
+(a) $\frac{39}{398}\approx \frac{40}{400}=\frac{4}{40} =\frac{1}{10} = 10\%$.
+
+(b) $\frac{99}{407}\approx \frac{100}{400}=\frac{1}{4}=25\%$.
+
+(c) $\frac{57}{209}\approx \frac{50}{200}=\frac{5}{20}=\frac{1}{4}=25\%$.
+
+(d) $\frac{99}{197}\approx \frac{100}{200}=\frac{1}{2}=50\%$.
+}
+\bigskip
+
+
+2. Among beginning statistics students in one university, 46 students
+out of 446 reported family incomes ranging from \$40,000 to \$50,000 a year.
+Answer the following without a calculator.
+\begin{enumerate}
+\item[(a)] About what percentage had family incomes in the range \$40,000 
+  to \$50,000?\\
+ {\color{blue} $\frac{46}{446}\approx \frac{46}{460}=\frac{1}{10}=10\%$.}
+\item[(b)] Guess the percentate that had family incomes in the range \$45,000 to \$46,000
+   a year.\\
+  {\color{blue} The total range from (a) was \$45,000 -- \$50,000.  So, the range for (b)
+    is $1/10$ of that range.  If we take $1/10$ of the 10\% total, then we get 1\%.
+    If we think about the boxes of a histogram.  the \$45K -- \$50K box has width 10 and area 10\%.
+    So it has height 1 ($w\times h = a$). The slice between \$45K and \$46K has width 1 and height 1.}
+\item[(c)] Guess the percentage that had family incomes in the range \$46,000 to
+   \$47,000 a year.\\
+  {\color{blue}  The range \$46,000 -- \$47,000 is $1/10$ of the total again.  So, its area is also 1\%.}
+\item[(d)] Guess the percentage that had family incomes in the range \$47,000 to
+   \$49,000 a year.\\
+{\color{blue} This interval has width 2 so the area is 2\%.}
+\end{enumerate}
+
+%\newcommand{\HS}{\hspace{30pt}}
+3. Draw a pair of axes and plot each of the following points:\vspace{-3pt}
+\[(1,1)\HS (2,2)\HS (3,3)\HS (4,4)\vspace{-5pt}\]
+What can you say about the points?
+
+\bigskip
+\begin{center}
+{\color{blue}\begin{pspicture}(0,0)(4,3)
+\psset{yunit=0.75,linecolor=blue}
+\psaxes(0,0)(4,0)(0,4)
+\psdot(1,1)\rput[l](1.2,1){$(1,1)$}
+\psdot(2,2)\rput[l](2.2,2){$(2,2)$}
+\psdot(3,3)\rput[l](3.2,3){$(3,3)$}
+\psdot(4,4)\rput[l](4.2,4){$(4,4)$}
+\rput[l](5,2){The points are all on a line.}
+\end{pspicture}}
+\end{center}
+
+\vfill
+\eject
+
+Exercise: Simplify each of the following:
+
+\renewcommand{\MHS}{\hphantom{\hspace{1.in}}}
+\begin{center}
+\begin{tabular}{llll}
+a) $\frac{1}{3} + \frac{1}{2}$\MHS & b) $\frac{1}{4}+\frac{1}{2}+\frac{1}{5}$\MHS 
+  & c) $\frac{1/2}{2}$\\[10pt]
+{\color{blue} a) $\frac{1}{3} + \frac{1}{2} = \frac{2}{6} + \frac{3}{6} = \frac{5}{6}$} &
+{\color{blue} b) $\frac{1}{4}+\frac{1}{2} + \frac{1}{5}=\frac{5}{20}+\frac{10}{20}+\frac{4}{20} = \frac{19}{20}$}
+&
+{\color{blue} c) $\frac{1/2}{2}=\frac{1/2}{2}\times \frac{2}{2} = \frac{(1/2)\times 2}{2\times 2}=\frac{1}{4}$}
+\\[1in]
+d) $\displaystyle\sqrt{\frac{4}{9}}$\MHS        & e) $\displaystyle\frac{1/2 + 1/5}{3}$\MHS   & 
+   f) $\displaystyle\sqrt{1-\left(\sqrt{3}/2\right)^2}$\\[10pt]
+{\color{blue} d) $\sqrt{\frac{4}{9}} = \frac{\sqrt{4}}{\sqrt{9}} = \frac{2}{3}$} &
+{\color{blue} e) $\displaystyle\frac{1/2 + 1/5}{3} = \frac{\frac{5}{10} + \frac{2}{10}}{3}
+    = \frac{7/10}{3} = \frac{7/10}{3}\times \frac{10}{10} = \frac{7}{30}$}
+\end{tabular}
+\end{center}
+
+{\color{blue} f) $\displaystyle\sqrt{1 - \left(\sqrt{3}/2\right)^2} = 
+    \sqrt{1 - \left(\frac{\sqrt{3}}{2}\right)^2} = 
+    \sqrt{1 - \left(\frac{3}{4}\right)} = 
+    \sqrt{\frac{1}{4}} = \frac{1}{2}$.  Notice that to do $\left(\frac{\sqrt{3}}{2}\right)^2$, 
+    we have to square the top and the bottom.  So, $(\sqrt{3})^2 = 3$ and $(2)^2 = 4$.
+\vspace{1.25in}
+
+
+\end{document}

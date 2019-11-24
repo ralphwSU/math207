@@ -1,0 +1,348 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\medskip
+
+\begin{center}
+\textbf{\large  Introductory \texttt{R} Exercises}
+\end{center}
+
+\newcommand{\SUBX}{\smallskip\hspace{10pt}}
+\newcommand{\BSK}{\vspace{.14in}}
+
+\EXERCISE \textbf{Arithmetic Operations}.
+Please enter the following commands in \texttt{R} then write down the output
+that \texttt{R} produces. Explain to yourself what \texttt{R} thinks it
+is doing.
+%\vspace{-5pt}
+
+\SUBX a) \texttt{2.0 + 3.1}
+\BSK
+
+\SUBX b) \texttt{2.0 * 3.1}
+\BSK
+
+\SUBX c) \texttt{3.0 $\widehat{\hspace{3pt}}$ 2.0}
+\BSK
+
+\SUBX d) \texttt{9.0  $\widehat{\hspace{3pt}}$  0.5}
+\BSK
+
+\SUBX e) \texttt{sqrt(9.0)}
+\BSK
+
+\SUBX f) \texttt{exp(1)}
+\BSK
+
+\SUBX g) \texttt{sin(pi)}
+\BSK
+
+\SUBX h) \texttt{cos(pi/2)}
+\BSK
+
+\SUBX i) \texttt{tan(pi/2)}
+\BSK
+
+\EXERCISE \textbf{Vector Operations}.
+Try the following in \texttt{R} and explain to yourself
+what \texttt{R} thinks it is doing.
+\vspace{-5pt}
+
+\SUBX a) \texttt{x <- c(1, 0, -2)}
+\BSK
+
+\SUBX b) \texttt{x}
+\BSK
+
+\SUBX c) \texttt{y <- c(-1, 4.5, 3)}
+\BSK
+
+\SUBX d) \texttt{x + y}
+\BSK
+
+\SUBX e) \texttt{x + 2}
+\BSK
+
+\SUBX f) \texttt{x*y}
+\BSK
+
+\SUBX g) \texttt{x  $\widehat{\hspace{3pt}}$  y}
+\BSK
+
+\SUBX h) \texttt{exp(x)}
+\BSK
+
+\SUBX i) \texttt{1:10}
+\BSK
+
+\SUBX j) \texttt{seq(1, 21, by=5)}
+\BSK
+
+\vfill
+\eject
+
+\EXERCISE \textbf{Statistics}.
+Try the following in \texttt{R} and explain to yourself
+what \texttt{R} thinks it is doing.
+
+\SUBX a) \texttt{x <- seq(-5, 5)} %\texttt{-5:5!
+\BSK
+
+\SUBX b) \texttt{mean(x)}
+\BSK
+
+\SUBX c) \texttt{sd(x)}
+\BSK
+
+\SUBX d) \texttt{var(x)}
+\BSK
+
+\SUBX e) \texttt{min(x)}
+\BSK
+
+\SUBX f) \texttt{max(x)}
+\BSK
+
+\SUBX g) \texttt{range(x)}
+\BSK
+
+\SUBX h) \texttt{length(x)}
+\BSK
+
+\SUBX i) \texttt{median(x)}
+\BSK
+
+\SUBX j) \texttt{sum(x)}
+\BSK
+
+\SUBX k) \texttt{prod(x)}
+\BSK
+
+\SUBX $\ell$) Repeat a)-- k) using \texttt{x <- square(seq(0, 2, by=0.2))}.  
+Compare your results.
+\vspace{.6in}
+
+\EXERCISE \textbf{Subsets}.  Try the following in \texttt{R} and explain to yourself
+what \texttt{R} thinks it is doing.
+
+\SUBX a) \texttt{a <- seq(10, 100, by = 10)}
+\BSK
+
+\SUBX b) \texttt{a}
+\BSK
+
+\SUBX c) \texttt{a[1]}
+\BSK
+
+\SUBX d) \texttt{a[5]}
+\BSK
+
+\SUBX e) \texttt{a[0]}
+\BSK
+
+\SUBX f) \texttt{a[c(2, 4, 6, 8)]}
+\BSK
+
+\SUBX g) \texttt{a[-c(2, 4, 6, 8)]}
+\BSK
+
+\SUBX h) \texttt{a[2:3] <- c(-333, -555)}
+\BSK
+\vfill
+\eject
+
+\EXERCISE \textbf{Booleans}.  Try the following in \texttt{R} and explain to yourself
+what \texttt{R} thinks it is doing.
+
+\SUBX a) \texttt{a <- seq(10, 100, by = 10)}
+\BSK
+
+\SUBX b) \texttt{a > 30}
+\BSK
+
+\SUBX c) \texttt{a[a > 30]}
+\BSK
+
+\SUBX d) \texttt{a == 50}
+\BSK
+
+\SUBX e) \texttt{a[a == 50]}
+\BSK
+
+\SUBX f) \texttt{a[a != 50]}
+\BSK
+
+\SUBX g) \texttt{a <= 30}
+\BSK
+
+\SUBX h) \texttt{a[a <= 30]}
+\BSK
+
+\SUBX i) \texttt{a[(a >= 50) \& (a <= 90)]}
+\BSK
+
+\SUBX j) \texttt{a[(a < 30) | (a > 70)]}
+\BSK
+
+\SUBX k) \texttt{a[(a <= 30) \& !(a < 20)]}
+\BSK
+
+\EXERCISE \textbf{Missing Values}. Try the following in \texttt{R} and explain to yourself
+what \texttt{R} thinks it is doing.
+
+\SUBX a) \texttt{x <- c(NA, 2, 3)}
+\BSK
+
+\SUBX b) \texttt{x}
+\BSK
+
+\SUBX c) \texttt{x + 8}
+\BSK
+
+\SUBX d) \texttt{x < 5}
+\BSK
+
+\SUBX e) \texttt{is.na(x)}
+\BSK
+
+\SUBX f) \texttt{mean(x)}
+\BSK
+
+\SUBX g) \texttt{mean(x, na.rm = TRUE)}
+\BSK
+
+\SUBX h) \texttt{x[is.na(x)] = 0}
+\BSK
+
+\SUBX i) \texttt{x}
+\BSK
+
+\SUBX j) \texttt{mean(x)}
+\BSK
+\vfill
+\eject
+
+\EXERCISE \textbf{Experiments}
+
+\SUBX a) Enter \texttt{sample(10, 4)} several times.  
+What is \texttt{R} doing?  
+\BSK
+
+\SUBX b) Repeat a) using different values in place of 10 and 4.  What happens
+  if you enter \texttt{sample(10, 11)}?
+\BSK
+
+\SUBX c) Enter \texttt{sample(c("H", "T"), 5, replace=TRUE)}.
+  What is \texttt{R} doing?
+\BSK
+
+\SUBX d) Use \texttt{R} to simulate flipping a coin 100 times.  1000 times. 
+\bigskip
+
+\EXERCISE \textbf{Graphics}
+
+\SUBX a) Enter the following and sketch the result.
+
+\hspace{20pt} \texttt{x <- seq(-4,4,by=0.1)}
+
+\hspace{20pt} 
+\texttt{plot(x, dnorm(x), type="l", cex.lab=1.5, cex.axis=1.5, xlim=c(-4,4), ylim=c(0,0.5))}
+\vspace{0.5in}
+
+\SUBX b) Explain what the \texttt{xlim} and \texttt{ylim} parts of the 
+  command above mean.
+\BSK\BSK
+
+\SUBX c) Experiment to try to figure out what the \texttt{cex.lab}
+and \texttt{cex.axis} parts of the command do.
+\bigskip
+
+\EXERCISE \textbf{Graphics II}.
+Do the following in \texttt{R}.
+
+\begin{verbatim}
+install.packages("ggplot2")  # You only need to install this once.
+library(ggplot2)             # Do this every time you want to use the package.
+
+?mpg
+head(mpg)
+summary(mpg)
+
+
+p <- ggplot(mpg, aes(x = displ, y = hwy))
+p <- p + geom_point() # add a plot layer with points
+print(p)
+
+p <- ggplot(mpg, aes(x = displ, y = hwy))
+p <- p + geom_point(aes(colour = class))
+print(p)
+
+p <- ggplot(mpg, aes(x = displ, y = hwy))
+p <- p + geom_point(aes(colour = class, size = cyl, shape = drv))
+print(p)
+\end{verbatim}
+
+\vfill
+\eject
+
+\end{document}
+
