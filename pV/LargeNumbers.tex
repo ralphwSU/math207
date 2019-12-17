@@ -1,0 +1,368 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.8in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-0.15in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large Law of Large Numbers}
+\end{center}
+
+John Kerrich was a mathematician who spent most of World War II in a German prison camp.  
+To pass the time, he carried out experiments in probability theory.  
+One involved tossing a coin 10,000 times.  The following is a fictional 
+discussion between Kerrich and an assistant preparing to meet the 
+King of Denmark after the war.\vspace{-10pt}
+\begin{center}
+\begin{tabular}{cc}
+\begin{pspicture}(1.5,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,0)(4,0)
+\rput[t](2.5,80){\textbf{Figure 1}}
+\rput(2.5,65){$\mbox{EV}_{\mbox{\scriptsize sum}} = n\times\mbox{AV}_{\mbox{\scriptsize box}}$}
+\rput(2.56,55){$\mbox{SE}_{\mbox{\scriptsize sum}} = \sqrt{n}\times\mbox{sd}_{\mbox{\scriptsize box}}$}
+\psline(1.000000, -1)(1.301030, 0)(1.477121, 2)(1.602060, 1)(1.698970, 0)(1.778151, -1)(1.845098, -3)(1.903090, -5)(1.954243, -5)(2.000000, -6)(2.301030, -2)(2.477121, -4)(2.602060, -1)(2.698970,  5)(2.778151, 12)(2.845098, 18)(2.903090, 13)(2.954243, 8)(3.000000, 2)(3.301030, 13)(3.477121, 10)(3.602060, 29)(3.698970, 33)(3.778151, 9)(3.845098, 16)(3.903090, 34)(3.954243, 38)(4.000000, 67)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-20}
+\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,20)(0.95,20)  \rput[r](0.92,20){20}
+\psline(1,40)(0.95,40)  \rput[r](0.92,40){40}
+\psline(1,60)(0.95,60)  \rput[r](0.92,60){60}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){80}
+\psline(1,-20)(1,80) % y axis
+\rput{90}(0.4,30){Number of Heads Minus}
+\rput{90}(0.6,30){Half the Number of Tosses}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+&
+\begin{pspicture}(3,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,30)(4,30)
+\rput[t](2.5,80){\textbf{Figure 2}}
+\rput(2.5,65){$\mbox{EV}_{\mbox{\scriptsize av}} = \mbox{AV}_{\mbox{\scriptsize box}}$}
+\rput(2.65,55){$\mbox{SE}_{\mbox{\scriptsize av}} = \mbox{sd}_{\mbox{\scriptsize box}}\,/\sqrt{n}$}
+\psline(1.000000, -20)(1.301030, 30)(1.477121, 63.3)(1.602060, 42.5)(1.698970, 30)(1.778151, 21.67)(1.845098, 8.57)(1.903090, -1.25)(1.954243, 2.22)(2.000000, 0)(2.301030, 25)(2.477121, 23.3)(2.602060, 28.75)(2.698970,  35)(2.778151, 40)(2.845098, 42.86)(2.903090, 38.125)(2.954243, 34.44)(3.000000, 31)(3.301030, 33.25)(3.477121, 31.67)(3.602060, 33.625)(3.698970, 33.3)(3.778151, 30.75)(3.845098, 31.14)(3.903090, 32.125)(3.954243, 32.111)(4.000000, 33.35)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-10}
+%\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,5)(0.95,5)  \rput[r](0.92,5){-5}
+\psline(1,30)(0.95,30)  \rput[r](0.92,30){0}
+\psline(1,55)(0.95,55)  \rput[r](0.92,55){5}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){10}
+\psline(1,-20)(1,80) % y axis
+%\rput{90}(0.45,30){Number of Heads Minus}
+\rput{90}(0.6,30){Percentage of Heads $-$ 50\%}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+\end{tabular}
+\end{center}\vspace{.8in}
+
+{\setlength\tabcolsep{3pt}\begin{tabular}{ll}
+\textit{Assistant.} & So you're going to tell the king about the law of averages.\\[3pt]
+\textit{Kerrich.} & Right.\\[3pt]
+\textit{Assistant.} & What's to tell?  I mean, everyone knows about the law of averages,
+   don't they?\\[3pt]
+\textit{Kerrich.} & OK.  Tell me what the law of averages says.\\[3pt]
+\textit{Assistant.} & Well, suppose you're tossing a coin.  If you get a lot of 
+    heads, then tails start coming up.  Or if you\\
+     &  get too many tails, the chance for heads goes up.  In the long run, the
+      number of heads and the \\ & number of tails even out.\\[3pt]
+\textit{Kerrich.} & It's not true.\\[3pt]
+\textit{Assistant.} & What do you mean, it's not true?\\[3pt]
+\textit{Kerrich.} & I mean, what you said is all wrong.  First of all, with a fair coin, the chance for heads stays at 50\%,\\
+   & no matter what happens. Whether there are two heads in a row or twenty, the chance of getting a\\
+   & head next time is still 50\%.\\[3pt]
+\textit{Assistant.} & I don't believe it.\\[3pt]
+\textit{Kerrich.} & All right.  Take a run of four heads, for example.  I went through the 
+  record of my first 2,000 tosses.\\
+   &   In 130 cases, the coin landed heads four times in a row; 69 of these runs were followed by a head,
+  and \\
+   &  only 61 by a tail. A run of heads just doesn't make tails more likely 
+   next time.\\[3pt]
+\textit{Assistant.} & You're always telling me these things I don't believe.  What are you 
+   going to tell the king?\\[3pt]
+\textit{Kerrich.} & Well, I tossed the coin 10,000 times, and I got about 5,000 heads.  
+   The exact number was 5,067.  The \\
+   & difference of 67 is less than 1\% of the number of tosses. \\[3pt]
+\textit{Assistant.} & Yes, but 67 heads is a lot of heads.  The king won't be impressed, if that's the best the law of averages\\ & can do.\\[3pt]
+\textit{Kerrich.} & What do you suggest?\\[3pt]
+\textit{Assistant.} & Toss the coin another 10,000 times.  With 20,000 tosses, the number of heads should be quite a bit \\
+   & closer to the expected number.  After all, eventually the number of heads and the number of tails  \\
+  & have to even out, right?\\[3pt]
+\textit{Kerrich.} & You said that before, and it's wrong.  Look at the data.  
+    In 1,000 tosses, the difference between the\\
+ &  number of heads and the expected number was 2.  With 2,000 tosses, the 
+    difference went up to 13.\\[3pt]
+\end{tabular}
+\vfill
+\eject
+{\ }
+
+\begin{tabular}{ll}
+\textit{Assistant.} & That was just a fluke.  By toss 3,000, the difference was 
+  only 10.\\[3pt]
+\textit{Kerrich.} & That's just another fluke.  At toss 4,000, the difference was 29.
+  At 5,000, it was 33.  Sure, it dropped\\
+   & back to 9 at toss 6,000, but look at Figure~1.  The chance error is climbing pretty steadily from 1,000\\
+   & to 10,000 tosses, and it's going straight up at the end.\\[3pt]
+\textit{Assistant.} & So where's the law of averages?\\[3pt]
+\textit{Kerrich.} & With a large number of tosses, the size of the difference between
+  the number of heads and the \\
+   & expected number is likely to be quite large in absolute terms. But compared to the 
+   number of tosses, \\
+   & the difference is likely to be quite small.  That's the law of averages.  
+   Just like I said, 67 is only a small\\ &  fraction of 10,000.\\[3pt]
+\textit{Assistant.} & I don't understand.\\[3pt]
+\textit{Kerrich.} & Look.  In 10,000 tosses you expect to get 5,000 heads, right?\\[3pt]
+\textit{Assistant.} & Right.\\[3pt]
+\textit{Kerrich.} & But not exactly.  You only expect to get around 5,000 heads.  I mean,
+  you could just as well get 5,001\\ & or 4,998 or
+    5,007.  The amount off 5,000 is what we call \lq\lq chance error.\rq\rq\\[3pt]
+\textit{Assistant.} & Can you be more specific?\\[3pt]
+\textit{Kerrich.} & Let me write an equation:\\[5pt]
+  & \hfil
+  $\mbox{number of heads} = \mbox{half the number of tosses} + \mbox{chance error}$\\[5pt]
+  & This error is likely to be large in absolute terms, but small compared to the 
+  number of tosses.
+   Look \\ & at Figure~2.  That's the law of averages, right there.\\[3pt]
+\textit{Assistant.} & Hmmmm.  But what would happen if you tossed the coin another 10,000 times?  Then you'd have \\
+  & 20,000 tosses to work with.\\[3pt]
+\textit{Kerrich.} & The chance error would go up, but not by a factor of two.  In absolute terms,
+   the chance error gets\\
+  & bigger.  But as a percentage of the number of tosses, it gets smaller. \\[3pt]
+\textit{Assistant.} & Tell me again what the law of averages says.\\[3pt]
+\textit{Kerrich.} & The number of heads will be around half the number of tosses, but it
+  will be off by some amount \\ & --- chance error.  As the number of tosses
+  goes up, the chance error gets bigger in absolute terms.  \\ & 
+  Compared to the number of tosses, it gets smaller.\\[3pt]
+\textit{Assistant.} & Can you give me some idea of how big the chance error is 
+  likely to be?\\[3pt]
+\textit{Kerrich.} & Well, with 100 tosses, the chance error is likely to be around 
+  5 in size.  
+  With 10,000 tosses, the chance \\ &error is likely to be around 50 in size. 
+  Multiplying the number of tosses by 100 only multiplies the likely\\ & size 
+of the chance error by $\sqrt{100} = 10$.\\[3pt]
+\textit{Assistant.} & What you're saying is that as the number of tosses goes up, the difference between the number of heads\\
+ &  and half the number of tosses gets bigger; but the difference between the percentage of heads and 50\%\\
+  &  get smaller.\\[3pt]
+\textit{Kerrich.} & That's it.\\[3pt]
+\end{tabular}}
+
+\vfill
+\eject
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large Quiz: Law of Large Numbers}
+\end{center}
+
+
+1. A coin is tossed and you win \$1 if there are more than 60\% heads.  Which 
+is better:  10 tosses or 100?
+\medskip
+
+2. As in \#1, but you win \$1 if there are more than 40\% heads.  
+\medskip
+
+3. As in \#1, but you win \$1 if there are between  40\% and 60\% heads.  
+\medskip
+
+4. As in \#1, but you win \$1 if there are exactly 50\% heads.  
+\medskip
+
+5.  Assume that $\mbox{sd}_{\mbox{\scriptsize box}}$ for coin-tossing is $0.5$.
+
+\hspace{10pt} a) The number of heads in 25 tosses will be around 
+   \underline{\hspace{1in}} give or take 
+   \underline{\hspace{1in}} or so.
+\vspace{.5in}
+
+\hspace{10pt} b) The percent of heads in 25 tosses will be around 
+   \underline{\hspace{1in}} give or take 
+   \underline{\hspace{1in}} or so.
+\vspace{.5in}
+%\vfill
+%\eject
+
+\hspace{10pt} c) The number of heads in 36 tosses will be around 
+   \underline{\hspace{1in}} give or take 
+   \underline{\hspace{1in}} or so.
+\vspace{.5in}
+
+\hspace{10pt} d) The percent of heads in 36 tosses will be around 
+   \underline{\hspace{1in}} give or take 
+   \underline{\hspace{1in}} or so.
+\vspace{.5in}
+
+\hspace{10pt} e) The number of heads in 100 tosses will be around 
+   \underline{\hspace{1in}} give or take 
+   \underline{\hspace{1in}} or so.
+\vspace{.5in}
+
+\hspace{10pt} f) The percent of heads in 100 tosses will be around 
+   \underline{\hspace{1in}} give or take 
+   \underline{\hspace{1in}} or so.
+\vspace{.5in}
+
+6. Nine hundred draws are made at random with replacement from the box
+\begin{pspicture}(0,0)(3,0.5)
+\psline(0,0.5)(0,-0.2)(3,-0.2)(3,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{3}}
+\end{pspicture}
+\medskip
+
+\hspace{10pt} a) How small can the sum be?  How large?
+\vspace{.4in}
+
+\hspace{10pt} b) How many times do you expect the ticket \psframebox{1} to turn up?
+The ticket \psframebox{3}?
+\vspace{.4in}
+\medskip
+
+\hspace{10pt} c) About how much do you expect the sum to be?
+\vspace{.5in}
+
+\hspace{10pt} d) Put a plus or minus on your answer to c).
+\vfill
+\eject
+
+\end{document}
+
+\begin{center}
+\begin{tabular}{cc}
+\begin{pspicture}(1.5,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,0)(4,0)
+\psline(1.000000, -1)(1.301030, 0)(1.477121, 2)(1.602060, 1)(1.698970, 0)(1.778151, -1)(1.845098, -3)(1.903090, -5)(1.954243, -5)(2.000000, -6)(2.301030, -2)(2.477121, -4)(2.602060, -1)(2.698970,  5)(2.778151, 12)(2.845098, 18)(2.903090, 13)(2.954243, 8)(3.000000, 2)(3.301030, 13)(3.477121, 10)(3.602060, 29)(3.698970, 33)(3.778151, 9)(3.845098, 16)(3.903090, 34)(3.954243, 38)(4.000000, 67)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-20}
+\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,20)(0.95,20)  \rput[r](0.92,20){20}
+\psline(1,40)(0.95,40)  \rput[r](0.92,40){40}
+\psline(1,60)(0.95,60)  \rput[r](0.92,60){60}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){80}
+\psline(1,-20)(1,80) % y axis
+\rput{90}(0.4,30){Number of Heads Minus}
+\rput{90}(0.6,30){Half the Number of Tosses}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+&
+\begin{pspicture}(3,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,0)(4,0)
+\psline(1.000000, -1)(1.301030, 0)(1.477121, 2)(1.602060, 1)(1.698970, 0)(1.778151, -1)(1.845098, -3)(1.903090, -5)(1.954243, -5)(2.000000, -6)(2.301030, -2)(2.477121, -4)(2.602060, -1)(2.698970,  5)(2.778151, 12)(2.845098, 18)(2.903090, 13)(2.954243, 8)(3.000000, 2)(3.301030, 13)(3.477121, 10)(3.602060, 29)(3.698970, 33)(3.778151, 9)(3.845098, 16)(3.903090, 34)(3.954243, 38)(4.000000, 67)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-20}
+\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,20)(0.95,20)  \rput[r](0.92,20){20}
+\psline(1,40)(0.95,40)  \rput[r](0.92,40){40}
+\psline(1,60)(0.95,60)  \rput[r](0.92,60){60}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){80}
+\psline(1,-20)(1,80) % y axis
+%\rput{90}(0.45,30){Number of Heads Minus}
+\rput{90}(0.6,30){Percentage of Heads $-$ 50\%}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+\end{tabular}
+\end{center}
+
+\vfill
+\eject
+\end{document}
