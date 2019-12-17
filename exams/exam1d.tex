@@ -1,0 +1,215 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{7in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.3in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+\hfill {\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam I}
+\end{center}
+No books, notes or calculators  are allowed on this exam.
+\bigskip
+
+1. (Hypothetical)  In a clinical trial, data collection usually starts at
+\lq\lq baseline,\rq\rq\ when the subjects are 
+recruited into the trial but before they are randomized to 
+treatment or control.  Data collection continues until the end of the followup.
+Two clinical trials on prevention of heart attacks report baseline data 
+on weight, shown below.  In one of these trial, the randomization did not work.
+Which  one and why? (15~points)\vspace{-5pt}
+\newcommand{\Zc}{\hphantom{0,}}
+\begin{center}
+\begin{tabular}{cc}
+\begin{tabular}{l}
+\\
+\\
+\rput(-12pt,-3pt){(i)}
+Treatment\vphantom{\Large Y}\\
+Control\\[10pt]
+\rput(-12pt,-3pt){(ii)}
+Treatment\\
+Control
+\end{tabular}
+&
+\begin{tabular}{ccc}
+Number of & Average &\\
+persons & weight    & sd\\\hline
+1,012   & 185 lb    & 28 lb\vphantom{\Large Y}\\
+\Zc800 & 173 lb    & 26 lb\\[10pt]
+1,006  & 202 lb    & 26 lb\\
+1,002   & 162 lb    & 25 lb
+\end{tabular}
+\end{tabular}
+\end{center}
+\vspace{3.5in}
+
+2. In a health study, subjects' heights has an average of 64 inches and sd of 3 inches.
+Make a rough sketch of the histogram of subjects' heights.  About what percent of the subjects
+were taller than 70 inches?
+ (10~points)
+\vfill
+\eject
+
+(20 points)
+
+3.  a) Find the mean, median and sd of the list 141, 150, 148, 150, 150, 157, 154.
+\vspace{2.6in}
+
+{\ }\hphantom{n. }b) Which numbers in the list are within 1 SD of the mean?
+\vspace{2.2in}
+
+
+(15 points)
+
+4. a) The Governor of California proposes to give all state employess a flat raise
+of \$1,000 per year.  What would this do to the average annual salary of state employees?  
+What would this do to the SD?
+\vspace{2in}
+
+{\ }\hphantom{n. }b) What would a 2.5\% increase in the salaries, across the board, do to the average
+annual salary and to the SD?
+\vfill
+\eject
+
+
+5. A histogram of monthly wages for part-time employees is shown below (densities are marked
+in parentheses).  Nobody earned more than \$1,000 per month.  (20 points)
+
+\begin{center}
+\begin{pspicture}(0,-0.8)(10,2.3)
+\psset{yunit=0.1}
+\psframe(0,0)(1,10)\rput[b](0.5,10.1){(10)}
+\psframe(1,0)(2,5)\rput[b](1.5,5.1){(5)}
+\psframe(5,0)(10,5)\rput[b](7.5,5.1){(5)}
+\psaxes[Dy=10](0,0)(10,20)
+\rput{90}(-1.1,10){\% per \$100}
+\rput(5,-10){Wages (hundreds of dollars)}
+\end{pspicture}
+\end{center}
+
+\hspace{10pt} a) The block
+over the class interval from \$200 to \$500 is missing. 
+Determine how tall it must be then add it to the 
+histogram.
+\vspace{3in}
+
+\hspace{10pt} b) About what percent of the employees earned between \$700 and \$900 per month?
+\vspace{1.75in}
+
+\hspace{10pt} c) About what percent of the employees earned more than \$200 per month?
+\vfill
+\eject
+
+
+
+6. The table below shows results from two experiments designed to test the Salk vaccine in  1954.
+(20 points)
+\vspace{-5pt}
+\begin{center}
+{%\footnotesize
+\begin{tabular}{cc}
+Randomized controlled          & \\
+double-blind experiment        & NFIP study\\
+   \begin{tabular}{lcc}\hline
+                 & Size      & Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Treatment  & \color{black}200,000   & {\color{black}{28}}\\
+      \color{black}Control    & \color{black}200,000   & {\color{black}{71}}\\
+      No consent & 350,000   & 46\\
+   \end{tabular}
+&\hspace{20pt}
+   \begin{tabular}{lcc}
+\hline
+                 & Size        &  Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Grade 2 (vaccine)\hfill        & \color{black}225,000 & 25\\
+      \color{black}Grades 1 and 3 (control)        & \color{black}725,000 & {\color{black}{54}}\\
+      Grade 2 (no consent)\hfill     & 125,000 & {\color{black}{44}}\\
+   \end{tabular}
+\end{tabular}}\vspace{-4pt}
+\end{center}
+{${}^*$Rate is number of cases per 100,000 subjects.}
+\smallskip
+
+\hspace{10pt} a) Describe the treatment and control groups and how they were selected 
+in the two experiments.  
+\vspace{1.75in}
+
+
+\hspace{10pt} b) What does \textit{consent} mean in the context of the experiments?
+\vspace{1.25in}
+
+\hspace{10pt} c) Which rates demonstrate the vaccine's effectiveness in the two experiments 
+(there are two rates to compare for each experiment)?  
+\vspace{1.25in}
+
+\hspace{10pt} d) Which experiment gave stronger evidence for the vaccine's effectiveness and why?
+\vspace{1.5in}
+
+%\hspace{10pt} e) What does \textit{double-blind} mean?
+%\vspace{1in}
+
+\hspace{10pt} e) What impact did the different sizes of the six groups have on your conclusions and why?
+
+
+
+\vfill
+\eject
+\end{document}
+

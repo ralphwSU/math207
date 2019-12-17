@@ -1,0 +1,333 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9.6in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.05in}
+\setlength{\voffset}{-0.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+%\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+\renewcommand{\enumhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\begin{document}
+\pagestyle{plain}
+\setlength{\baselineskip}{1.05\baselineskip}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+\begin{center}
+  \textbf{\large Math 207: Introduction to Statistics}
+\medskip
+
+\textbf{Course Topics}
+\bigskip\bigskip
+\end{center}
+
+\begin{itemize}
+\item Controlled experiments
+\item Descriptive statistics
+  \begin{itemize}
+  \item histograms and bar plots
+  \item mean, median, quartiles, percentiles and range
+  \item standard deviation and variance
+  \item $z$ scores
+  \end{itemize}
+\item The normal curve
+  \begin{itemize}
+  \item item
+  \end{itemize}
+\item Regression
+  \begin{itemize}
+  \item scatter plots 
+  \item correlation $r=\frac{1}{n-1}\,\sum_{i=1}^n\left(\frac{x_i-\mu_x}{\sigma_x}\right)\left(\frac{y_i-\mu_y}{\sigma_y}\right)$
+  \item properties of correlation
+  \item regression line equation:  $y-\mu_y = r\,\frac{\sigma_y}{\sigma_x}\,(x-\mu_x)$
+  \item item
+  \item normality of $P(Y\,\vert\,x)$
+  \item item
+  \end{itemize}
+\item Probability
+  \begin{itemize}
+  \item basic examples with coins, dice, cards and box models
+  \item frequency definition of probability and basic properties
+  \item conditional probability
+  \item multiplication rule and independence
+  \item addition rule and mutually exclusive events
+  \item binomial formula
+  \end{itemize}
+\item Sampling distributions
+  \begin{itemize}
+  \item item
+  \end{itemize}
+\item Hypothesis testing
+  \begin{itemize}
+  \item confidence intervals
+  \item $z$-test
+  \item $t$-test
+  \item two-sample $z$-test
+  \item $p$-values
+  \end{itemize}
+\end{itemize}
+
+\vfill
+\eject
+
+
+\begin{center}
+  \textbf{\large Math 207: Example Syllabi from Other Institutions}
+\bigskip\bigskip
+\end{center}
+
+
+\begin{tabular}{lcl}
+Institution & : & University of Illinois at Chicago\\
+Course      & : & Stat 101:  Introduction to Statistics\\
+%Credits     & : & 3\\
+Text        & : & \textit{Intro Stats} by De Veaux, Velleman and Bock, 5th edition\\
+\end{tabular}
+\bigskip
+
+\begin{tabular}{rll}
+1 &	Ch 1--2 & Displaying Data, Bar Chart,Histogram, Descriptive Statistics\\
+2 & 	Ch 3--4 &	Contingency Table, Boxplot\\
+3 &	Ch 5 	& Normal Distribution,\\
+4 & 	Ch 6--7 &	Scatter Plots, Correlation, Linear Regression,Multivariate Regression\\
+5 &	Ch 8 	& More about Regression, Exam 1\\
+6 &	Ch 9--11 &	Multiple Regression, Surveys, Experiments\\
+7 &	Ch 12 	& Probability\\
+8 &	Ch 12 	& Probability\\
+9 &	Ch 13 	& Sampling Distribution Models, Confidence Intervals Proportions\\
+10 &	Ch 14 	& Exam 2\\
+11 &	Ch 14 	& CLT, Confidence Intervals for Means\\
+12 &	Ch 15 	& Hypothesis testing\\
+13 &	Ch 16 	& More about Tests\\
+14 &	Ch 17 	& Comparing Two Populations\\
+15 &	Ch 18 	& Paired Samples, Review for Final Exam, Final Exam
+\end{tabular}
+
+\vfill
+\eject
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+
+\begin{center}
+  \textbf{\large Math 207: Example Syllabi from Other Institutions}
+\bigskip\bigskip
+\end{center}
+
+
+\begin{tabular}{lcl}
+Institution & : & Utah State University\\
+Course      & : & Stat 1040:  Introduction to Statistics\\
+%Credits     & : & 3\\
+Text        & : & \textit{Statistics} by Freedman, Pisani and Purves.  4th Ed.
+\end{tabular}
+\bigskip
+
+\begin{enumerate}
+\item Design  of  experiments:  controls,  randomization,  blind  and  double  blind,  placebos.  The  
+Salk  vaccine  trial,  historical  controls.  
+%
+\item Observational   studies:   association   and   causation,   confounding   factors,   the   clofibrate  
+trial,  sex-bias  in  graduate  admissions.  
+%
+\item Descriptive   statistics:   the   histogram,   the   density   scale,   cross-tabulation,   the   average  
+and   the   SD   and   their   relationship   to   the   histogram,   the   median,   the   normal  
+approximation  for  data,  percentiles,  percentiles  and  the  normal  curve,  measurement  
+error,  outliers,  bias  versus  chance  error,  plotting  points  and  lines,  the  slope  and  the  
+intercept  of  a  line.  
+%
+\item Correlation:   the   scatter   diagram,   the   correlation   coefficient,   properties   of   the  
+correlation   coefficient   (invariance   to   change   of   location   and   scale,   symmetry),  
+ecological  correlations,  correlation  does  not  imply  causation,  examples,  the  SD  line.  
+%
+\item Regression:  the  graph  of  averages,  regression  to  the  mean,  the  regression  method  for  
+individuals,   the   regression   fallacy,   there   are   two   regression   lines,   the   r.m.s.   error,  
+plotting   residuals,   heteroscedasticity,   looking   at   vertical   strips,   using   the   normal  
+curve  inside  vertical  strips,  the  slope  and  the  intercept,  the  method  of  least  squares,  
+does  regression  make  sense?  
+%  
+\item Probability:  the  long  run  argument,  conditional  probabilities,  the  multiplication  rule,  
+independence,   the   Collins   case,   listing   the   ways,   the   addition   rule   the   Paradox   of  
+Chevalier  de  Mere,  are  real  dice  fair?  The  binomial  formula.  
+%  
+\item Chance   variability:   What   does   the   law   of   averages   really   say?   Chance   processes,   the  
+sum   of   the   draws,   making   box   models,   the   expected   value   and   the   standard   error,  
+using   the   normal   curve,   probability   histograms,   the   normal   approximation   for  
+probability  histograms  and  its  scope.  
+%
+\item Sampling:  The  Literary  Digest  poll,  the  year  the  polls  elected  Dewey,  using  chance  in  
+survey  work,  how  well  do  probability  methods  work,  a  close  look  at  the  Gallup  poll,  
+telephone  surveys,  chance  error,  bias,  quota  samples,  samples  of  convenience.  
+%  
+\item Chance   errors   in   sampling:   the   standard   error,   the   correction   factor,   the   Gallup   poll,  
+the   accuracy   of   percentages,   confidence   intervals   and   their   interpretation,   the  
+accuracy  of  averages,  the  SE  and  expected  value  of  an  average.  
+%
+\item Tests   of   significance:   null   and   alternative   hypotheses,   test   statistics   and   significance  
+levels,  the  role  of  the  box  model,  zero-one  boxes,  the  one-sample  z-tests  and  t-tests,  
+the  standard  error  for  a  difference,  comparing  two  sample  averages,  comparing  two  
+proportions,   experiments,   the   $\chi^2$-tests   for   independence   and   goodness-of-fit,   how  
+Fisher   used   the   $\chi^2$-test   to   show   that   Mendel's   data   was   fudged,   was   the   result  
+significant?  Was  it  important?    Data  snooping,  the  importance  of  the  box  model.  
+\end{enumerate}
+
+\vfill
+\eject
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+
+\begin{center}
+  \textbf{\large Math 207: Example Syllabi from Other Institutions}
+\bigskip\bigskip
+\end{center}
+
+
+\begin{tabular}{lcl}
+Institution & : &  University of Minnesota at Morris\\
+Course      & : & Stats 1150:  Introduction to Statistics\\
+%Credits     & : & 3\\
+Text        & : & \textit{Introduction to the Practice of Statistics} by Moore and McCABE, G. P., 6th Edition
+\end{tabular}
+\bigskip
+
+
+{\small\setlength{\baselineskip}{0.97\baselineskip}
+ \begin{enumerate}
+\item Introduction: Definition and Uses of Statistics
+\item Looking at Data: Distributions
+   \begin{enumerate}
+                  \item Displaying Distributions (excluding Time Plots)
+                  \item Describing Distributions
+                  \item The Normal Distributions (excluding Assessing Normality, Quantile and Normal Plots)
+   \end{enumerate}
+\item Looking at Data: Relationships
+   \begin{enumerate}
+                  \item Scatterplots
+                  \item Correlation
+                  \item Least-Squares Regression
+                  \item Cautions about Regression and Correlation
+                  \item The question of Causation
+   \end{enumerate}
+\item Producing Data
+   \begin{enumerate}
+                  \item First Steps
+                  \item Design of Experiments
+                  \item Sampling Design
+                  \item Toward Statistical Inference
+   \end{enumerate}
+\item Probability: The Study of Randomness
+   \begin{enumerate}
+                  \item Randomness
+                  \item Probability Models
+                  \item Random Variables
+                  \item Mean and Variances of Random Variables
+                  \item Probability Laws
+   \end{enumerate}
+\item Sampling Distributions
+   \begin{enumerate}
+                  \item Counts and Proportions
+                  \item Sample Means
+   \end{enumerate}
+\item Introduction to Inference
+   \begin{enumerate}
+                  \item Estimating with Confidence
+                  \item Tests of Significance
+                  \item Use and Abuse of Tests (excluding Power and Inference as Decision)
+   \end{enumerate}
+\item Inference for Distributions
+   \begin{enumerate}
+                  \item Inference for the Mean of a Population
+                  \item Comparing Two Means
+   \end{enumerate}
+\item Inference for Count Data
+   \begin{enumerate}
+                  \item Inference for a Single Proportion
+                  \item Comparing Two Proportions
+   \end{enumerate}
+\item Inference for Two-Way Tables
+   \begin{enumerate}
+         \item Data Analysis for Two-Way (Relations in Categorical Data)    
+         \item Inference for Two-Way Tables
+         \item Formulas and Models for Two-Way Tables  
+    \end{enumerate}
+\item Inference for Regression
+   \begin{enumerate}
+                  \item Simple Linear Regression
+   \end{enumerate}
+\item Multiple Regression
+\item One-Way Analysis of Variance
+\item Two-Way Analysis of Variance
+\item Nonparametric Tests
+   \begin{enumerate}
+                  \item Wilcoxon Rank Sum Test
+                  \item The Wilcoxon Signed Rank Test
+                  \item The Kruskal-Wallace Test
+   \end{enumerate}
+\end{enumerate}}
+
+
+
+\vfill
+\eject
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+
+\begin{center}
+  \textbf{\large Math 207: Example Syllabi from Other Institutions}
+\bigskip\bigskip
+\end{center}
+
+
+\begin{tabular}{lcl}
+Institution & : & University of Illinois at Chicago\\
+Course      & : & Stat 101:  Introduction to Statistics\\
+%Credits     & : & 3\\
+Text        & : & \textit{Intro Stats} by De Veaux, Velleman and Bock, 5th edition\\
+\end{tabular}
+\bigskip
+
+%\begin{tabular}{rll}
+\vfill
+\eject
+
+
+\end{document}

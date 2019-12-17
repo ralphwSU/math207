@@ -1,0 +1,439 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.7in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.1in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+\hfill {\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam II Review Exercises (in-class version)}
+\end{center}
+\medskip
+
+1. \textbf{Standard Normal Curve}:  Sketch and compute the specified area under the normal curve. 
+Write down the R command that you use.
+
+\hspace{10pt} a) $z < 2$
+\vspace{.4in}
+
+\hspace{10pt} b) $z > 0$
+\vspace{.5in}
+
+\hspace{10pt} c) $1 < z < 2$
+\vspace{.5in}
+
+\hspace{10pt} d) What $z$ is greater than 99.9\% of all $z$ scores?
+\vspace{.5in}
+
+2. \textbf{Heights}:  Suppose that for a particular population
+subjects' heights average out to 64 inches with an sd of 6 inches and have
+a normal distribution.
+
+\hspace{10pt} a) What percent of the heights were below 72 inches?
+\vspace{1.1in}
+
+\hspace{10pt} b) What percent were above 60 inches?
+\vspace{1.1in}
+
+\hspace{10pt} c) What percent were between 60 and 72 inches?
+\vspace{1.1in}
+
+\hspace{10pt} d) What height was greater than 99.9\% of all the heights?
+\vfill
+\eject
+
+3. \textbf{Linear Regression}:
+In a land animals data set, body weights  average out to 4278 kg with an sd of 16,480 kg.
+Brain weights average out to 0.5 kg with an sd of 1.3 kg. The correlation is $-0.005$
+
+\hspace{20pt} a) Write down the equation for the regression line for predicting brain weight
+from animal weight.
+\vspace{1.0in}
+
+\hspace{20pt} b) Sketch the regression line. 
+\vspace{1.25in}
+
+\hspace{20pt} c) 
+Estimate the average brain size of an animals that weigh 1 kg (a guinea pig),
+465 kg (a cow) and 87,000 kg (brachiosaurus).  The true values are $0.0055$ kg, $0.423$ kg and $0.1545$ kg.
+Why does the regression line do such a poor job?
+\vspace{2.75in}
+
+\hspace{20pt} d) Estimate the weight of an animal with a brain size of $0.157$ kg (jaguar).
+The true value is  100~kg.
+\vfill
+\eject
+
+4. \textbf{Concept of Correlation}:
+
+\hspace{20pt} a) For a representative sample of people age 25 and older, would the correlation between
+age and systolic blood pressure be positive or negative?  Explain.
+\vspace{.5in}
+
+\hspace{20pt} b) The correlation between blood pressure and the number of cars that a person has ever owned 
+turns out to be positive.
+How do you account for this association?
+\vspace{.5in}
+
+\hspace{20pt} c)  Suppose that your internet bill is always 30\% of your phone bill.
+What can you say about the correlation?
+\vspace{.5in}
+
+\hspace{20pt} d)  Suppose that your power bill is always twice as much as your phone bill.
+What can you say about the correlation?
+\vspace{.5in}
+
+5. \textbf{Regression and the Normal Curve}: In the airquality data set, we find that\vspace{-5pt}
+\begin{align*}
+\mbox{average temperature}   & \approx \mbox{$78^{\circ}\mbox{F}$,}    & \mbox{sd} & \approx \mbox{$9^{\circ}\mbox{F}$}\\[3pt]
+\mbox{average solar radiation}  & \approx \mbox{186\; lang,}  & \mbox{sd} & \approx 90\; \mbox{lang}
+   \hspace{15pt} r\approx 0.28
+\end{align*}\vspace{-20pt}
+
+\hspace{10pt} a) Predict the wind speed on a day in which the high temperature is 90$^{\circ}\mbox{F}$.
+\vspace{.5in}
+
+\hspace{10pt} b) Among 90 degree days, about 95\% had radiation values in what range?
+\vspace{1in}
+
+6. \textbf{NHANESIII Data Set}:
+
+\hspace{10pt} a) In the exam data set, what information does the variable \texttt{PEP13E5A} give?
+What kind of variable is it?
+\vspace{.25in}
+
+
+\hspace{10pt} b) In the lab data set, what information does the variable \texttt{PLPSI} give?
+What kind of variable is it?  What are its units?
+\vspace{.4in}
+
+\hspace{10pt} c) In the lab data set, what information does the variable \texttt{HGP} give?
+Find the average of all the non-blank values (as you did for other variables in Report~2).
+
+{\color{blue}\begin{verbatim}
+lab =read.csv("/Users/ralphwojtowicz/Desktop/math207/data/lab.csv", header=TRUE)
+e1 = lab[lab$HGP != 88888, ]
+mean(e1$HGP, na.rm=TRUE)
+\end{verbatim}}
+
+\vfill
+\eject
+    
+7. \textbf{Computing the Correlation and RMS Error}.
+Here is some data:
+\begin{center}
+{\setlength{\tabcolsep}{40pt}\begin{tabular}{cc|cc|c}
+$x$ & $y$ & $z_x$ & $z_y$ & $z_x\,z_y$\\[2pt]\hline
+3   & 9 & & &\vphantom{\LARGE Y}\\[20pt]
+5   & 5 & & & \\[20pt]
+7   & 1 & & &\\[20pt]
+\end{tabular}}
+\end{center}
+\hspace{10pt} a) Complete the table then calculate the correlation.
+\vspace{1.5in}
+
+\hspace{10pt} b) Someone uses the line $y=2 - 3\,x$ to approximate the data.
+Compute the RMS error for this line.
+\vspace{1.5in}
+
+\hspace{10pt} c) What is the RMS error for the regression line?
+
+
+\vfill
+\eject
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%% HERE
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+\hfill {\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam II Review Exercises}
+\end{center}
+\medskip
+
+1. \textbf{Standard Normal Curve}:  Sketch and compute the specified area under the normal curve. 
+Write down the R command that you use.
+
+\hspace{10pt} a) $z < 0.5$.
+{\color{blue}Using R, \texttt{pnorm(0.5)=0.691 = 69.1\%}.}
+\vspace{.4in}
+
+\hspace{10pt} b) $z > 1.5$.
+{\color{blue}Using R, \texttt{1 - pnorm(1.5)=0.668 = 66.8\%}.}
+\vspace{.5in}
+
+\hspace{10pt} c) $-1.5< z < 0.5$.
+{\color{blue}Using R, \texttt{pnorm(0.5) - pnorm(-1.5)=0.625 = 62.5\%}.}
+\vspace{.5in}
+
+\hspace{10pt} d) What $z$ is greater than 25\% of all $z$ scores?
+{\color{blue}Using R, \texttt{qnorm(0.25)=-0.674}.}
+\vspace{.5in}
+
+2. \textbf{Blood Pressure}:  Suppose that for a particular population
+systolic blood pressures average out to 120 with an sd of 6 and have
+a normal distribution.
+
+\hspace{10pt} a) What percent of the scores were below 123?
+
+{\color{blue} If $x=123$, then $z=(123-120)/6=3/6=0.5$.  As in \#1a, the area is $69.1$\%.}
+\vspace{0.8in}
+
+\hspace{10pt} b) What percent were above 129?
+
+{\color{blue} If $x=129$, then $z=(129-120)/6=9/6=1.5$.  As in \#1b, the area is $66.8$\%.}
+\vspace{0.8in}
+
+\hspace{10pt} c) What percent were between 111 and 123?
+
+{\color{blue} The $z$ scores are $0.5$ and $(111-120)/6=-9/6=-1.5$.  As in \#1c, the area is $62.5$\%.}
+\vspace{0.8in}
+
+\hspace{10pt} d) What blood pressure was greater than 25\% of all the blood pressures?
+
+{\color{blue} As in \#1d, the $z$-score is $-0.674$.  Solve $-0.674 = (x-120)/6$ to get $x=116.0$.}
+\vfill
+\eject
+
+3. \textbf{Linear Regression}:
+In a certain class, midterm scores average out to 70 with an SD of 15, as do 
+scores on the final.  The correlation between midterm scores and final scores is 
+about~$0.50$.   
+
+\hspace{20pt} a) Write down the equation for the regression line for predicting the final exam score.
+
+{\color{blue} $y-70 = 0.5\,\frac{15}{15}\,(x-70)$ which simplifies to $y-70 = 0.5\,(x-70)$.}
+\vspace{0.6in}
+
+\hspace{20pt} b) Sketch the regression line.  {\color{blue} The line goes through the point
+  $(x,\,y)=(70,\, 70)$ and has $\mbox{slope}=0.5$.}
+\vspace{1.25in}
+
+\hspace{20pt} c) 
+Estimate the average final exam scores for students whose midterm scores were
+85, 40 and 70. %(10 points)
+
+{\color{blue}
+If $x=85$, then $y-70 = 0.5\,(85 - 70)=0.5\times 15 = 7.5$.  So, $y=77.5$.
+
+If $x=40$, then $y-70 = 0.5\,(40-70) = 0.5\times (-30) = -15$.  So, $y=55$.
+
+If $x=70$, then $y-70 = 0.5\,(70-70) = 0$.  So, $y=70$.}
+\vspace{2.0in}
+
+\hspace{20pt} d) Estimate the midterm score for a student who scored 90 on the final exam.
+
+{\color{blue}We need a new regression line!  Let $y=\mbox{final exam score}$ and 
+$x=\mbox{midterm score}$ as in the answers above.  Our new equation is
+\[x - 70 = 0.5\,(y-70)\]
+If $y = 90$, then $x-70=0.5\,(90-70) = 0.5\times 20 = 10$.  So, $x=80$.
+\medskip
+
+Warning:  If we used the equation from a), substituted $y=90$ then solved for $x$, we would 
+get $x=110$ which doesn't make sense.}
+\vfill
+\eject
+
+4. \textbf{Concept of Correlation}:
+
+\hspace{20pt} a) For a representative sample of people age 25 and older, would the correlation between
+education level (number of years completed in school) and income be positive or negative?  Explain.
+
+{\color{blue}It would be positive.  On average, completing more years in school (high school diploma, 
+bachelors degree, $\dots$) results in a better-paying job.}
+
+
+\hspace{20pt} b) The correlation between education level and blood pressure turns out to 
+be negative?  How do you account for this association?
+
+{\color{blue} Since higher education leads to a better salary and job, perhaps those with 
+higher education also have better health care.  Maybe they have studied nutrition.}
+
+
+\hspace{20pt} c)  Suppose that in a particular population, fathers were always 3" taller than their sons.
+What can you say about the correlation?
+
+{\color{blue} The correlation is equal to $1$.  All the data falls on the line $y=x + 3$ where $x$ is
+the son's height, $y$ is the father's height and both are measured in inches.}
+
+
+\hspace{20pt} d)  Suppose that in a particular population, sisters were always 2" shorter than their brothers.
+What can you say about the correlation?
+
+{\color{blue} The correlation is equal to $1$.  All the data falls on the line
+$y=x-2$ where $x$ is brother's height and $y$ is sisters height.}
+
+
+5. \textbf{Regression and the Normal Curve}: A survey of trees in a state park found that:
+follows. \vspace{-5pt}
+\begin{align*}
+\mbox{average girth}         & \approx \mbox{13 inches,}    & \mbox{sd} & \approx \mbox{3 inches}\\[3pt]
+\mbox{average height}  & \approx \mbox{76 feet,}  & \mbox{sd} & \approx \mbox{6 feet
+   \hspace{15pt}} r\approx 0.5
+\end{align*}\vspace{-20pt}
+
+\hspace{10pt} a) Predict the height of a tree that has an eight inch girth. 
+
+{\color{blue}The equation
+for the regression line is $\mbox{height} - 76= \mbox{0.5}\frac{6}{3}\,(\mbox{girth} - 13)$ which 
+simplifies to\\ $\mbox{height} - 76= \mbox{girth} - 13$ or simply $\mbox{height}=\mbox{girth} + 63$.
+So, if $\mbox{girth}=8$ inches, then $\mbox{height}=71$ feet.}
+\medskip
+
+\hspace{10pt} b) Among all trees with an eight inch girth, about 95\% had a height in what range?
+
+{\color{blue}The RMS for regression is $\mbox{sd}_y\,\sqrt{1-r^2}=6\,\sqrt{1-(0.5)^2}=6\,\sqrt{0.75}\approx 5.2$.
+  So, 95\% of the trees had heights in the range $71\pm 2\times 5.2$ feet
+  $=71\pm 10.4$ feet.}
+
+
+6. \textbf{NHANESIII Data Set}: Use the variable classes from our notes (unordered qualitative, 
+ ordered qualitative, discrete, continuous) not the ones from the text.
+
+\hspace{10pt} a) In the exam data set, what information does the variable \texttt{PEPPACE} give?
+What kind of variable is it?
+
+{\color{blue} It indicates whether or not the patient had a pacemaker (page 204).  It is an unordered, qualitative 
+variable (yes or no) although it is recorded as a number in the data set.}
+\smallskip
+
+
+\hspace{10pt} b) In the lab data set, what information does the variable \texttt{PBPSI} give?
+What kind of variable is it?  What are its units?
+
+{\color{blue} It gives information about lead levels in the blood. It is a continuous variable.
+The units are micro-moles per liter.}
+\medskip
+
+\hspace{10pt} c) In the exam data set, what information does the variable \texttt{BMPARML} give?
+Find the average of all the non-blank values (as you did for other variables in Report~2).
+
+{\color{blue}It is upper arm length measured in cm.
+\begin{verbatim}
+exam =read.csv("/Users/ralphwojtowicz/Desktop/math207/data/exam.csv", header=TRUE)
+e1 = exam[exam$BMPARML != 8888, ]
+mean(e1$BMPARML, na.rm=TRUE)
+\end{verbatim}
+The result is 30.3 cm.  See Report 1 for a similar example. Be sure to use the location of
+exam.csv on your own computer.  See page 200 of the exam data set
+for the error code.}
+
+\vfill
+\eject
+    
+7. \textbf{Computing the Correlation and RMS Error}.
+Here is some data:
+\begin{center}
+{\setlength{\tabcolsep}{40pt}\begin{tabular}{cc|cc|c}
+$x$ & $y$ & $z_x$ & $z_y$ & $z_x\,z_y$\\[2pt]\hline
+0   & 1 & $-1$ & $-1$& 1\vphantom{\LARGE Y}\\[20pt]
+2   & 5 & $0$  & $0$ & 0\\[20pt]
+4   & 9 & $1$  & $1$ & 1\\[20pt]
+\end{tabular}}
+\end{center}
+\hspace{10pt} a) Complete the table then calculate the correlation.
+
+{\color{blue}
+$\mbox{mean}_x = (0 + 2 + 4)/3 = 6/3 = 2$.  $\mbox{sd}_x=\sqrt{(4 + 0 + 4)/2}= sqrt{8/2}=\sqrt{4}=2$.
+If $x=0$, then $z=(0-2)/2 = -1$.  The other values are in the table.
+\medskip
+
+$\mbox{mean}_y = (1 + 5 + 9)/3=15/3=5$.  $\mbox{sd}_y=\sqrt{(16 + 0 + 16)/2}=\sqrt{32/2}=\sqrt{16}=4$.
+If $y=1$, then $z=(1-5)/4 = -1$.   The other values are in the table.
+\medskip
+
+$r=\sqrt{(1 + 0 + 1)/2}=\sqrt{1}=1$. }
+\bigskip
+
+\hspace{10pt} b) Someone uses the line $y=3\,x - 1$ to approximate the data.
+Compute the RMS error for this line.
+
+
+{\color{blue}
+\begin{center}
+\begin{tabular}{cccc}
+$x$ & $y$ & predicted $y$ & error\\\hline
+0 & 1 & $-1$ & $-2$\\
+2 & 5 & $5$  & 0\\
+4 & 9 & $11$ & 2\\
+\end{tabular}
+\end{center}
+
+The RMS error is $\sqrt{(4 + 0 + 4)/3}=\sqrt{8/3}\approx 1.6$}
+\bigskip
+
+\hspace{10pt} c) What is the RMS error for the regression line?
+
+{\color{blue} It is zero since the points fall on a line.  
+We can use the formula:  $\mbox{sd}_y\sqrt{1-r^2} = \mbox{sd}_y\,\sqrt{1-1} = 0$.}
+\vfill
+\eject
+
+\end{document}

@@ -1,0 +1,819 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{7in}
+\setlength{\textheight}{9.8in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.3in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+\newcommand{\threebox}[3]{\begin{pspicture}(0.2,0.2)(2.5,1.1)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){#1}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){#2}
+\psframe(2,0)(2.7,0.7)\rput(2.35,0.35){#3}
+\psline(-0.3,0.9)(-0.3,-0.2)(3,-0.2)(3,0.9)(-0.3,0.9)
+\end{pspicture}}
+
+\newcommand{\fivebox}[5]{\begin{pspicture}(0.2,0.2)(4.5,1.1)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){#1}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){#2}
+\psframe(2,0)(2.7,0.7)\rput(2.35,0.35){#3}
+\psframe(3,0)(3.7,0.7)\rput(3.35,0.35){#4}
+\psframe(4,0)(4.7,0.7)\rput(4.35,0.35){#5}
+\psline(-0.3,0.9)(-0.3,-0.2)(5,-0.2)(5,0.9)(-0.3,0.9)
+\end{pspicture}}
+
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+
+\begin{center}
+\textbf{\large  Exam III}
+\end{center}
+%No books, notes or electronic devices may be used on this exam.
+%\medskip
+
+1. Tickets are to be drawn at random with replacement from the box shown below.
+\begin{center}
+\begin{pspicture}(0,0)(3,0.5)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){7}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){13}
+\psline(-0.3,0.7)(-0.3,-0.2)(2,-0.2)(2,0.7)
+\end{pspicture}
+\end{center}
+
+\hspace{10pt} a) (10 points) Find the average and SD of the box.
+\vspace{2in}
+
+\hspace{10pt} b) (5 points)
+If you draw 100 tickets, what is the minimum value of the sum?  What is the maximum?
+\vspace{1.3in}
+
+\hspace{10pt} c) (10 points) The sum of 100 draws will be around \underline{\hspace{1in}} give or take
+\underline{\hspace{1in}} or so.
+\vspace{1.3in}
+
+\hspace{10pt} d) (5 points)
+If you draw 100 tickets, what is the minimum value of the average?  What is the maximum?
+\vspace{1.3in}
+
+\hspace{10pt} e) (10 points) The average of 100 draws will be around \underline{\hspace{1in}} give or take
+\underline{\hspace{1in}} or so.
+\vspace{1.3in}
+
+
+\vfill
+\eject
+
+2.  A box has 8 blue marbles and 2 green ones.  
+
+\hspace{20pt} a) (10 points) If you draw seven marbles with replacement, what is the chance of getting 
+exactly four blue ones?
+\vspace{1.9in}
+
+\hspace{10pt} b) (5 points) If you draw seven marbles with replacement, what is the chance of getting 
+ three or four blue ones?
+\vspace{2.3in}
+
+\hspace{10pt} c) (5 points) If you draw seven  \textit{without} replacement, what is the chance of 
+of getting  exactly three blue ones?
+\vspace{1.8in}
+
+
+3. (10 points) You plan to roll two dice.
+Let $A$ be the event: The sum of the dice will be an even number.
+Describe events $B$ for which
+$A$ and $B$ are
+
+\hspace{10pt} a)~independent
+\vspace{.3in}
+
+\hspace{10pt} b)~dependent,
+\vspace{.3in}
+
+\hspace{10pt} c)~mutually exclusive, 
+\vspace{.3in}
+
+\hspace{10pt} d) not mutually exlusive.
+\vfill
+\eject
+%\vspace{.3in}
+
+4. Compute the following probabilities.
+
+\hspace{10pt} a) (10 points) Cards are drawn without replacement from a deck.
+
+\hspace{20pt} i) What is the chance that the first card is a $\clubsuit$ or a 3?
+\vspace{.6in}
+
+\hspace{20pt} ii) What is the chance that the second card is a $\clubsuit$ given
+  that the first card was a $\clubsuit$?
+\vspace{.6in}
+
+\hspace{20pt} iii) What is the chance that the first three cards are face cards (J, Q, K)?
+\vspace{.6in}
+
+\hspace{10pt} b) (10 points) A coin is flipped five times.
+
+\hspace{20pt} i) What is the chance that tails appears all five times?
+\vspace{.6in}
+
+\hspace{20pt} ii) What is the chance that tails appears on the last flip given that the first four were heads?
+\vspace{.6in}
+
+\hspace{10pt} c) (10 points) 
+One ticket will be drawn at random from each of the two boxes shown below.\vspace{-5pt}
+\begin{center}
+\begin{tabular}{ccccc}
+(A) & 
+\begin{pspicture}(0,0)(4,0.5)
+\psline(0,0.5)(0,-0.2)(4,-0.2)(4,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{3}}
+\rput(3.5,0.15){\psframebox{3}}
+\end{pspicture}
+&\hspace{1in} &
+(B) &
+\begin{pspicture}(0,0)(3,0.5)
+\psline(0,0.5)(0,-0.2)(3,-0.2)(3,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{3}}
+\end{pspicture}
+\end{tabular}
+\end{center}
+Find the chance that:
+\smallskip
+
+\hspace{20pt} i) The number drawn from (A) equals the one from (B).
+\vspace{1in}
+
+\hspace{20pt} ii) The number drawn from (A) is larger than the one from (B).
+\vspace{1in}
+
+\hspace{20pt} iii) The number drawn from (A) is smaller than the one from (B).
+\vspace{1in}
+
+\vfill
+\eject
+
+ A standard deck of cards has the following properties.
+\begin{itemize}
+\item 52 cards
+\item 4 suits:  hearts $\heartsuit$, spades $\spadesuit$, clubs $\clubsuit$,
+  and diamonds $\diamondsuit$
+\item Hearts and diamonds are red.  Spades and clubs are black
+\item 13 cards of each suit:  2 -- 10, J, Q, K, and ace
+\item 4 cards of each rank:  2 -- 10, J, Q, K, and ace
+\item J, Q, and K are face cards
+\end{itemize}
+
+\textbf{Multiplication Rule for Probabilities}:  
+\begin{itemize}
+\item $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B\,\vert\,A)$.
+\item If $A$ and $B$ are independent, then $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B)$.
+\end{itemize}
+\textbf{Sum Rule for Probabilities}:
+\begin{itemize}
+\item $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B) - P(A\;\;\mbox{and}\;\;B)$
+\item If $A$ and $B$ are mutually exclusive, then $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B)$
+\end{itemize}  
+\bigskip
+
+
+\textbf{Binomial Formula}:
+The chance that an event will occur exactly $k$ times out of $n$ is given by 
+the binomial formula:
+\[\frac{n!}{k!\,(n-k)!}\,p^k\,(1-p)^{n-k}\]
+In this formula, $n$ is the number of trials, $k$ is the number of times
+the event is to occur, and $p$ is the probability that the event will occur
+on any particular trial.    The assumptions:
+\begin{itemize}
+\item The value of $n$ must be fixed in advance.
+\item $p$ must be the same from trial to trial.
+\item The trials must be independent.
+\end{itemize}
+
+The \textbf{mean} of a list of numbers $x_1$, $\dots$, $x_n$ is\vspace{-4pt}
+\[\mbox{mean} = \frac{1}{n}\,(x_1 + x_2 + \cdots + x_n) = \frac{1}{n}\,\sum_{i=1}^n\,x_i.\vspace{-4pt}\]
+The \textbf{population standard deviation} is\vspace{-4pt}
+\[\mbox{SD} = \sqrt{\frac{1}{n}\,\big((x_1-\mbox{mean})^2 + \cdots + (x_n - \mbox{mean})^2\big)}\vspace{-4pt}\]
+If we know the contents of a box of numbered tickets, we use SD.
+
+The \textbf{sample standard deviation} is\vspace{-4pt}
+\[\mbox{sd} = \sqrt{\frac{1}{n-1}\,\big((x_1-\mbox{mean})^2 + \cdots + (x_n - \mbox{mean})^2\big)}\vspace{-4pt}\]
+
+The figures below show how the standard error changes as the sample size increases.
+The figure on the right illustrates the Law of Averages.\vspace{-15pt}
+\begin{center}
+\begin{tabular}{cc}
+\begin{pspicture}(1.5,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,0)(4,0)
+%\rput[t](2.5,80){\textbf{Figure 1}}
+\rput(2.5,65){$\mbox{EV}_{\mbox{\scriptsize sum}} = n\times\mbox{AV}_{\mbox{\scriptsize box}}$}
+\rput(2.56,55){$\mbox{SE}_{\mbox{\scriptsize sum}} = \sqrt{n}\times\mbox{sd}_{\mbox{\scriptsize box}}$}
+\psline(1.000000, -1)(1.301030, 0)(1.477121, 2)(1.602060, 1)(1.698970, 0)(1.778151, -1)(1.845098, -3)(1.903090, -5)(1.954243, -5)(2.000000, -6)(2.301030, -2)(2.477121, -4)(2.602060, -1)(2.698970,  5)(2.778151, 12)(2.845098, 18)(2.903090, 13)(2.954243, 8)(3.000000, 2)(3.301030, 13)(3.477121, 10)(3.602060, 29)(3.698970, 33)(3.778151, 9)(3.845098, 16)(3.903090, 34)(3.954243, 38)(4.000000, 67)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-20}
+\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,20)(0.95,20)  \rput[r](0.92,20){20}
+\psline(1,40)(0.95,40)  \rput[r](0.92,40){40}
+\psline(1,60)(0.95,60)  \rput[r](0.92,60){60}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){80}
+\psline(1,-20)(1,80) % y axis
+\rput{90}(0.4,30){Number of Heads Minus}
+\rput{90}(0.6,30){Half the Number of Tosses}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+&
+\begin{pspicture}(3,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,30)(4,30)
+%\rput[t](2.5,80){\textbf{Figure 2}}
+\rput(2.5,65){$\mbox{EV}_{\mbox{\scriptsize av}} = \mbox{AV}_{\mbox{\scriptsize box}}$}
+\rput(2.65,55){$\mbox{SE}_{\mbox{\scriptsize av}} = \mbox{sd}_{\mbox{\scriptsize box}}\,/\sqrt{n}$}
+\psline(1.000000, -20)(1.301030, 30)(1.477121, 63.3)(1.602060, 42.5)(1.698970, 30)(1.778151, 21.67)(1.845098, 8.57)(1.903090, -1.25)(1.954243, 2.22)(2.000000, 0)(2.301030, 25)(2.477121, 23.3)(2.602060, 28.75)(2.698970,  35)(2.778151, 40)(2.845098, 42.86)(2.903090, 38.125)(2.954243, 34.44)(3.000000, 31)(3.301030, 33.25)(3.477121, 31.67)(3.602060, 33.625)(3.698970, 33.3)(3.778151, 30.75)(3.845098, 31.14)(3.903090, 32.125)(3.954243, 32.111)(4.000000, 33.35)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-10}
+%\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,5)(0.95,5)  \rput[r](0.92,5){-5}
+\psline(1,30)(0.95,30)  \rput[r](0.92,30){0}
+\psline(1,55)(0.95,55)  \rput[r](0.92,55){5}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){10}
+\psline(1,-20)(1,80) % y axis
+%\rput{90}(0.45,30){Number of Heads Minus}
+\rput{90}(0.6,30){Percentage of Heads $-$ 50\%}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+\end{tabular}
+\end{center}
+%\[\mbox{EV}_{\mbox{\scriptsize av}} = \mbox{mean}_{\mbox{\scriptsize box}}\hspace{1in}
+%  \mbox{SE}_{\mbox{\scriptsize av}} = \mbox{SD}_{\mbox{\scriptsize box}} \,/\, \sqrt{n}\]
+\vfill
+\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VERSION 2 %%%%%%%%%%%%%%%%%%
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\begin{center}
+\textbf{\large  Exam III}
+\end{center}
+
+1. Compute the following probabilities.
+
+\hspace{10pt} a) (10 points) Cards are drawn without replacement from a deck.
+
+\hspace{20pt} i) What is the chance that the first card is a face card (J, Q, K) or a $\heartsuit$?
+\vspace{.6in}
+
+\hspace{20pt} ii) What is the chance that the second card is a $5$ given
+  that the first card was a $5$?
+\vspace{.6in}
+
+\hspace{20pt} iii) What is the chance that the first three cards are aces?
+\vspace{.6in}
+
+\hspace{10pt} b) (10 points) A coin is flipped four times.
+
+\hspace{20pt} i) What is the chance that tails appears on the last flip given that the first three were heads?
+\vspace{.6in}
+
+\hspace{20pt} ii) What is the chance that tails appears all four times?
+\vspace{.6in}
+
+\hspace{10pt} c) (10 points) 
+One ticket will be drawn at random from each of the two boxes shown below.\vspace{-5pt}
+\begin{center}
+\begin{tabular}{ccccc}
+(A) & 
+\begin{pspicture}(0,0)(4,0.5)
+\psline(0,0.5)(0,-0.2)(4,-0.2)(4,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{2}}
+\rput(3.5,0.15){\psframebox{3}}
+\end{pspicture}
+&\hspace{1in} &
+(B) &
+\begin{pspicture}(0,0)(3,0.5)
+\psline(0,0.5)(0,-0.2)(3,-0.2)(3,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{3}}
+\end{pspicture}
+\end{tabular}
+\end{center}
+Find the chance that:
+\smallskip
+
+\hspace{20pt} i) The number drawn from (A) equals the one from (B).
+\vspace{1in}
+
+\hspace{20pt} ii) The number drawn from (A) is larger than the one from (B).
+\vspace{1in}
+
+\hspace{20pt} iii) The number drawn from (A) is smaller than the one from (B).
+\vfill
+\eject
+
+2. Tickets are to be drawn at random with replacement from the box shown below.
+\begin{center}
+\begin{pspicture}(0,0)(3,0.5)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){-2}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){2}
+\psline(-0.3,0.7)(-0.3,-0.2)(2,-0.2)(2,0.7)
+\end{pspicture}
+\end{center}
+
+\hspace{10pt} a) (10 points) Find the average and SD of the box.
+\vspace{2in}
+
+\hspace{10pt} b) (5 points)
+If you draw 400 tickets, what is the minimum value of the sum?  What is the maximum?
+\vspace{1.3in}
+
+\hspace{10pt} c) (10 points) The sum of 400 draws will be around \underline{\hspace{1in}} give or take
+\underline{\hspace{1in}} or so.
+\vspace{1.3in}
+
+\hspace{10pt} d) (5 points)
+If you draw 400 tickets, what is the minimum value of the average?  What is the maximum?
+\vspace{1.3in}
+
+\hspace{10pt} e) (10 points) The average of 400 draws will be around \underline{\hspace{1in}} give or take
+\underline{\hspace{1in}} or so.
+\vspace{1.3in}
+
+
+\vfill
+\eject
+3. (10 points) You plan to draw a card from a deck.
+Let $A$ be the event: The card will be a face card (J, Q, K).
+Describe events $B$ for which
+$A$ and $B$ are
+
+\hspace{10pt} a)~independent
+\vspace{.3in}
+
+\hspace{10pt} b)~dependent,
+\vspace{.3in}
+
+\hspace{10pt} c)~mutually exclusive, 
+\vspace{.3in}
+
+\hspace{10pt} d) not mutually exlusive.
+\vspace{.3in}
+
+4.  A box has 5 blue marbles and 9 green ones.  
+
+\hspace{20pt} a) (10 points) If you draw six marbles with replacement, what is the chance of getting 
+exactly five blue ones?
+\vspace{1.9in}
+
+\hspace{10pt} b) (5 points) If you draw six marbles with replacement, what is the chance of getting 
+ five or six blue ones?
+\vspace{2.3in}
+
+\hspace{10pt} c) (5 points) If you draw six  \textit{without} replacement, what is the chance of 
+of getting  exactly five blue ones?
+
+\vfill
+\eject
+%\vspace{.3in}
+ A standard deck of cards has the following properties.
+\begin{itemize}
+\item 52 cards
+\item 4 suits:  hearts $\heartsuit$, spades $\spadesuit$, clubs $\clubsuit$,
+  and diamonds $\diamondsuit$
+\item Hearts and diamonds are red.  Spades and clubs are black
+\item 13 cards of each suit:  2 -- 10, J, Q, K, and ace
+\item 4 cards of each rank:  2 -- 10, J, Q, K, and ace
+\item J, Q, and K are face cards
+\end{itemize}
+
+\textbf{Multiplication Rule for Probabilities}:  
+\begin{itemize}
+\item $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B\,\vert\,A)$.
+\item If $A$ and $B$ are independent, then $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B)$.
+\end{itemize}
+\textbf{Sum Rule for Probabilities}:
+\begin{itemize}
+\item $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B) - P(A\;\;\mbox{and}\;\;B)$
+\item If $A$ and $B$ are mutually exclusive, then $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B)$
+\end{itemize}  
+\bigskip
+
+
+\textbf{Binomial Formula}:
+The chance that an event will occur exactly $k$ times out of $n$ is given by 
+the binomial formula:
+\[\frac{n!}{k!\,(n-k)!}\,p^k\,(1-p)^{n-k}\]
+In this formula, $n$ is the number of trials, $k$ is the number of times
+the event is to occur, and $p$ is the probability that the event will occur
+on any particular trial.    The assumptions:
+\begin{itemize}
+\item The value of $n$ must be fixed in advance.
+\item $p$ must be the same from trial to trial.
+\item The trials must be independent.
+\end{itemize}
+
+The \textbf{mean} of a list of numbers $x_1$, $\dots$, $x_n$ is\vspace{-4pt}
+\[\mbox{mean} = \frac{1}{n}\,(x_1 + x_2 + \cdots + x_n) = \frac{1}{n}\,\sum_{i=1}^n\,x_i.\vspace{-4pt}\]
+The \textbf{population standard deviation} is\vspace{-4pt}
+\[\mbox{SD} = \sqrt{\frac{1}{n}\,\big((x_1-\mbox{mean})^2 + \cdots + (x_n - \mbox{mean})^2\big)}\vspace{-4pt}\]
+If we know the contents of a box of numbered tickets, we use SD.
+
+The \textbf{sample standard deviation} is\vspace{-4pt}
+\[\mbox{sd} = \sqrt{\frac{1}{n-1}\,\big((x_1-\mbox{mean})^2 + \cdots + (x_n - \mbox{mean})^2\big)}\vspace{-4pt}\]
+
+The figures below show how the standard error changes as the sample size increases.
+The figure on the right illustrates the Law of Averages.\vspace{-15pt}
+\begin{center}
+\begin{tabular}{cc}
+\begin{pspicture}(1.5,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,0)(4,0)
+%\rput[t](2.5,80){\textbf{Figure 1}}
+\rput(2.5,65){$\mbox{EV}_{\mbox{\scriptsize sum}} = n\times\mbox{AV}_{\mbox{\scriptsize box}}$}
+\rput(2.56,55){$\mbox{SE}_{\mbox{\scriptsize sum}} = \sqrt{n}\times\mbox{sd}_{\mbox{\scriptsize box}}$}
+\psline(1.000000, -1)(1.301030, 0)(1.477121, 2)(1.602060, 1)(1.698970, 0)(1.778151, -1)(1.845098, -3)(1.903090, -5)(1.954243, -5)(2.000000, -6)(2.301030, -2)(2.477121, -4)(2.602060, -1)(2.698970,  5)(2.778151, 12)(2.845098, 18)(2.903090, 13)(2.954243, 8)(3.000000, 2)(3.301030, 13)(3.477121, 10)(3.602060, 29)(3.698970, 33)(3.778151, 9)(3.845098, 16)(3.903090, 34)(3.954243, 38)(4.000000, 67)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-20}
+\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,20)(0.95,20)  \rput[r](0.92,20){20}
+\psline(1,40)(0.95,40)  \rput[r](0.92,40){40}
+\psline(1,60)(0.95,60)  \rput[r](0.92,60){60}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){80}
+\psline(1,-20)(1,80) % y axis
+\rput{90}(0.4,30){Number of Heads Minus}
+\rput{90}(0.6,30){Half the Number of Tosses}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+&
+\begin{pspicture}(3,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,30)(4,30)
+%\rput[t](2.5,80){\textbf{Figure 2}}
+\rput(2.5,65){$\mbox{EV}_{\mbox{\scriptsize av}} = \mbox{AV}_{\mbox{\scriptsize box}}$}
+\rput(2.65,55){$\mbox{SE}_{\mbox{\scriptsize av}} = \mbox{sd}_{\mbox{\scriptsize box}}\,/\sqrt{n}$}
+\psline(1.000000, -20)(1.301030, 30)(1.477121, 63.3)(1.602060, 42.5)(1.698970, 30)(1.778151, 21.67)(1.845098, 8.57)(1.903090, -1.25)(1.954243, 2.22)(2.000000, 0)(2.301030, 25)(2.477121, 23.3)(2.602060, 28.75)(2.698970,  35)(2.778151, 40)(2.845098, 42.86)(2.903090, 38.125)(2.954243, 34.44)(3.000000, 31)(3.301030, 33.25)(3.477121, 31.67)(3.602060, 33.625)(3.698970, 33.3)(3.778151, 30.75)(3.845098, 31.14)(3.903090, 32.125)(3.954243, 32.111)(4.000000, 33.35)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-10}
+%\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,5)(0.95,5)  \rput[r](0.92,5){-5}
+\psline(1,30)(0.95,30)  \rput[r](0.92,30){0}
+\psline(1,55)(0.95,55)  \rput[r](0.92,55){5}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){10}
+\psline(1,-20)(1,80) % y axis
+%\rput{90}(0.45,30){Number of Heads Minus}
+\rput{90}(0.6,30){Percentage of Heads $-$ 50\%}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+\end{tabular}
+\end{center}
+%\[\mbox{EV}_{\mbox{\scriptsize av}} = \mbox{mean}_{\mbox{\scriptsize box}}\hspace{1in}
+%  \mbox{SE}_{\mbox{\scriptsize av}} = \mbox{SD}_{\mbox{\scriptsize box}} \,/\, \sqrt{n}\]
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VERSION 3 %%%%%%%%%%%%%%%%%%
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+
+\begin{center}
+\textbf{\large  Exam III}
+\end{center}
+
+1. Compute the following probabilities.
+
+\hspace{10pt} a) (10 points) Cards are drawn without replacement from a deck.
+
+\hspace{20pt} i) What is the chance that the first card is a 10 or a $\diamondsuit$?
+\vspace{.6in}
+
+\hspace{20pt} ii) What is the chance that the second card is a face card (J, Q, K) given
+  that the first card was a face card.
+\vspace{.6in}
+
+\hspace{20pt} iii) What is the chance that the first four cards are $\clubsuit$?
+\vspace{.6in}
+
+\hspace{10pt} b) (10 points) A coin is flipped three times.
+
+\hspace{20pt} i) What is the chance that tails appears on the last flip given that the first two were  heads?
+\vspace{.6in}
+
+\hspace{20pt} ii) What is the chance that tails appears all three times?
+\vspace{.6in}
+
+\hspace{10pt} c) (10 points) 
+One ticket will be drawn at random from each of the two boxes shown below.\vspace{-5pt}
+\begin{center}
+\begin{tabular}{ccccc}
+(A) & 
+
+\begin{pspicture}(0,0)(3,0.5)
+\psline(0,0.5)(0,-0.2)(3,-0.2)(3,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{2}}
+\end{pspicture}
+&\hspace{1in} &
+(B) &
+\begin{pspicture}(0,0)(4,0.5)
+\psline(0,0.5)(0,-0.2)(4,-0.2)(4,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{2}}
+\rput(3.5,0.15){\psframebox{3}}
+\end{pspicture}
+\end{tabular}
+\end{center}
+Find the chance that:
+\smallskip
+
+\hspace{20pt} i) The number drawn from (A) equals the one from (B).
+\vspace{1in}
+
+\hspace{20pt} ii) The number drawn from (A) is larger than the one from (B).
+\vspace{1in}
+
+\hspace{20pt} iii) The number drawn from (A) is smaller than the one from (B).
+\vfill
+\eject
+
+2. Tickets are to be drawn at random with replacement from the box shown below.
+\begin{center}
+\begin{pspicture}(0,0)(3,0.5)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){0}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){8}
+\psline(-0.3,0.7)(-0.3,-0.2)(2,-0.2)(2,0.7)
+\end{pspicture}
+\end{center}
+
+\hspace{10pt} a) (10 points) Find the average and SD of the box.
+\vspace{2in}
+
+\hspace{10pt} b) (5 points)
+If you draw 25 tickets, what is the minimum value of the sum?  What is the maximum?
+\vspace{1.3in}
+
+\hspace{10pt} c) (10 points) The sum of 25 draws will be around \underline{\hspace{1in}} give or take
+\underline{\hspace{1in}} or so.
+\vspace{1.3in}
+
+\hspace{10pt} d) (5 points)
+If you draw 25 tickets, what is the minimum value of the average?  What is the maximum?
+\vspace{1.3in}
+
+\hspace{10pt} e) (10 points) The average of 25 draws will be around \underline{\hspace{1in}} give or take
+\underline{\hspace{1in}} or so.
+\vspace{1.3in}
+
+
+\vfill
+\eject
+3. (10 points) You plan to roll one die.
+Let $A$ be the event: The die shows an even number.
+Describe events $B$ for which
+$A$ and $B$ are
+
+\hspace{10pt} a)~independent
+\vspace{.3in}
+
+\hspace{10pt} b)~dependent,
+\vspace{.3in}
+
+\hspace{10pt} c)~mutually exclusive, 
+\vspace{.3in}
+
+\hspace{10pt} d) not mutually exlusive.
+\vspace{.3in}
+
+4.  A box has 10 blue marbles and 3 green ones.  
+
+\hspace{20pt} a) (10 points) If you draw five marbles with replacement, what is the chance of getting 
+exactly three blue ones?
+\vspace{1.9in}
+
+\hspace{10pt} b) (5 points) If you draw five marbles with replacement, what is the chance of getting 
+ two or three blue ones?
+\vspace{2.3in}
+
+\hspace{10pt} c) (5 points) If you draw five  \textit{without} replacement, what is the chance of 
+of getting  exactly two blue ones?
+
+\vfill
+\eject
+%\vspace{.3in}
+ A standard deck of cards has the following properties.
+\begin{itemize}
+\item 52 cards
+\item 4 suits:  hearts $\heartsuit$, spades $\spadesuit$, clubs $\clubsuit$,
+  and diamonds $\diamondsuit$
+\item Hearts and diamonds are red.  Spades and clubs are black
+\item 13 cards of each suit:  2 -- 10, J, Q, K, and ace
+\item 4 cards of each rank:  2 -- 10, J, Q, K, and ace
+\item J, Q, and K are face cards
+\end{itemize}
+
+\textbf{Multiplication Rule for Probabilities}:  
+\begin{itemize}
+\item $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B\,\vert\,A)$.
+\item If $A$ and $B$ are independent, then $P(A\;\;\mbox{and}\;\;B)=P(A)\,P(B)$.
+\end{itemize}
+\textbf{Sum Rule for Probabilities}:
+\begin{itemize}
+\item $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B) - P(A\;\;\mbox{and}\;\;B)$
+\item If $A$ and $B$ are mutually exclusive, then $P(A\;\;\mbox{or}\;\;B)=P(A)+P(B)$
+\end{itemize}  
+\bigskip
+
+
+\textbf{Binomial Formula}:
+The chance that an event will occur exactly $k$ times out of $n$ is given by 
+the binomial formula:
+\[\frac{n!}{k!\,(n-k)!}\,p^k\,(1-p)^{n-k}\]
+In this formula, $n$ is the number of trials, $k$ is the number of times
+the event is to occur, and $p$ is the probability that the event will occur
+on any particular trial.    The assumptions:
+\begin{itemize}
+\item The value of $n$ must be fixed in advance.
+\item $p$ must be the same from trial to trial.
+\item The trials must be independent.
+\end{itemize}
+
+The \textbf{mean} of a list of numbers $x_1$, $\dots$, $x_n$ is\vspace{-4pt}
+\[\mbox{mean} = \frac{1}{n}\,(x_1 + x_2 + \cdots + x_n) = \frac{1}{n}\,\sum_{i=1}^n\,x_i.\vspace{-4pt}\]
+The \textbf{population standard deviation} is\vspace{-4pt}
+\[\mbox{SD} = \sqrt{\frac{1}{n}\,\big((x_1-\mbox{mean})^2 + \cdots + (x_n - \mbox{mean})^2\big)}\vspace{-4pt}\]
+If we know the contents of a box of numbered tickets, we use SD.
+
+The \textbf{sample standard deviation} is\vspace{-4pt}
+\[\mbox{sd} = \sqrt{\frac{1}{n-1}\,\big((x_1-\mbox{mean})^2 + \cdots + (x_n - \mbox{mean})^2\big)}\vspace{-4pt}\]
+
+The figures below show how the standard error changes as the sample size increases.
+The figure on the right illustrates the Law of Averages.\vspace{-15pt}
+\begin{center}
+\begin{tabular}{cc}
+\begin{pspicture}(1.5,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,0)(4,0)
+%\rput[t](2.5,80){\textbf{Figure 1}}
+\rput(2.5,65){$\mbox{EV}_{\mbox{\scriptsize sum}} = n\times\mbox{AV}_{\mbox{\scriptsize box}}$}
+\rput(2.56,55){$\mbox{SE}_{\mbox{\scriptsize sum}} = \sqrt{n}\times\mbox{sd}_{\mbox{\scriptsize box}}$}
+\psline(1.000000, -1)(1.301030, 0)(1.477121, 2)(1.602060, 1)(1.698970, 0)(1.778151, -1)(1.845098, -3)(1.903090, -5)(1.954243, -5)(2.000000, -6)(2.301030, -2)(2.477121, -4)(2.602060, -1)(2.698970,  5)(2.778151, 12)(2.845098, 18)(2.903090, 13)(2.954243, 8)(3.000000, 2)(3.301030, 13)(3.477121, 10)(3.602060, 29)(3.698970, 33)(3.778151, 9)(3.845098, 16)(3.903090, 34)(3.954243, 38)(4.000000, 67)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-20}
+\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,20)(0.95,20)  \rput[r](0.92,20){20}
+\psline(1,40)(0.95,40)  \rput[r](0.92,40){40}
+\psline(1,60)(0.95,60)  \rput[r](0.92,60){60}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){80}
+\psline(1,-20)(1,80) % y axis
+\rput{90}(0.4,30){Number of Heads Minus}
+\rput{90}(0.6,30){Half the Number of Tosses}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+&
+\begin{pspicture}(3,0)(12,4)
+\psset{yunit=0.05, xunit=2.25}
+\psline[linestyle=dotted](1,30)(4,30)
+%\rput[t](2.5,80){\textbf{Figure 2}}
+\rput(2.5,65){$\mbox{EV}_{\mbox{\scriptsize av}} = \mbox{AV}_{\mbox{\scriptsize box}}$}
+\rput(2.65,55){$\mbox{SE}_{\mbox{\scriptsize av}} = \mbox{sd}_{\mbox{\scriptsize box}}\,/\sqrt{n}$}
+\psline(1.000000, -20)(1.301030, 30)(1.477121, 63.3)(1.602060, 42.5)(1.698970, 30)(1.778151, 21.67)(1.845098, 8.57)(1.903090, -1.25)(1.954243, 2.22)(2.000000, 0)(2.301030, 25)(2.477121, 23.3)(2.602060, 28.75)(2.698970,  35)(2.778151, 40)(2.845098, 42.86)(2.903090, 38.125)(2.954243, 34.44)(3.000000, 31)(3.301030, 33.25)(3.477121, 31.67)(3.602060, 33.625)(3.698970, 33.3)(3.778151, 30.75)(3.845098, 31.14)(3.903090, 32.125)(3.954243, 32.111)(4.000000, 33.35)
+\psset{linewidth=0.02}
+%
+\psline(1,-20)(0.95,-20)\rput[r](0.92,-20){-10}
+%\psline(1,0)(0.95,0)    \rput[r](0.92,0){0}
+\psline(1,5)(0.95,5)  \rput[r](0.92,5){-5}
+\psline(1,30)(0.95,30)  \rput[r](0.92,30){0}
+\psline(1,55)(0.95,55)  \rput[r](0.92,55){5}
+\psline(1,80)(0.95,80)  \rput[r](0.92,80){10}
+\psline(1,-20)(1,80) % y axis
+%\rput{90}(0.45,30){Number of Heads Minus}
+\rput{90}(0.6,30){Percentage of Heads $-$ 50\%}
+%
+\psline(1,-20)(1,-24)\rput[t](1,-26){10}
+\psline(2,-20)(2,-24)\rput[t](2,-26){100}
+\psline(3,-20)(3,-24)\rput[t](3,-26){1,000}
+\psline(4,-20)(4,-24)\rput[t](4,-26){10,000}
+\psline(1,-20)(4,-20) % x axis
+\rput(2.5,-40){Number of Tosses}
+\end{pspicture}
+\end{tabular}
+\end{center}
+%\[\mbox{EV}_{\mbox{\scriptsize av}} = \mbox{mean}_{\mbox{\scriptsize box}}\hspace{1in}
+%  \mbox{SE}_{\mbox{\scriptsize av}} = \mbox{SD}_{\mbox{\scriptsize box}} \,/\, \sqrt{n}\]
+\vfill
+\eject
+
+
+
+\end{document}

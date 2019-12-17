@@ -1,0 +1,587 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.7in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.1in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+\hfill {\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam II}
+\end{center}
+Please show your work and any R commands that you use.
+\medskip
+
+
+1. \textbf{Standard Normal Curve}:  Sketch and compute the specified area under the normal curve. 
+Write down the R command that you use. (15 points)
+
+\hspace{10pt} a) $z < -1$
+\vspace{.4in}
+
+\hspace{10pt} b) $z > 1.75$
+\vspace{.5in}
+
+\hspace{10pt} c) $-1 < z < 1.75$
+\vspace{.5in}
+
+\hspace{10pt} d) What $z$ is greater than 51\% of all $z$ scores?
+\vspace{.5in}
+
+2. \textbf{Normal Curve}:  Suppose that for a particular pet population
+subjects' weights average out to 52 pounds with an sd of 5 pounds and have
+a normal distribution. (15 points)
+
+\hspace{10pt} a) What percent of the weights were below 47 pounds?
+\vspace{.9in}
+
+\hspace{10pt} b) What percent were above 62 pounds?
+\vspace{.9in}
+
+\hspace{10pt} c) What percent were between 47 and 62 pounds?
+\vspace{.9in}
+
+\hspace{10pt} d) What weight was greater than 51\% of all the weights?
+\vfill
+\eject
+{\ }
+
+
+%\#7 page 144 (word problem about correlation)
+%\#8 page 155 (word problem about correlation)
+3. \textbf{Correlation}: (10 points) 
+
+\hspace{20pt} a) For a representative sample of cars, would the correlation between the
+age of the car and its gasoline economy (miles per gallon) be positive or negative?  Explain
+\vspace{1.5in}
+
+\hspace{20pt} b ) The correlation between gasoline economy and income of owner turns out to 
+be positive.  How do you account for this association?
+\vspace{1.5in}
+
+4. \textbf{RMS Error for a Line}: (15 points) Consider the following data.
+\begin{tabular}{|c|c|}\hline
+$x$ & $y$\\\hline
+0   & 2\\
+1   & 4\\
+2   & 3\\\hline
+\end{tabular}
+
+\hspace{10pt} a) Make a scatter plot of the data.  
+\vspace{2in}
+
+\hspace{10pt} b) An investigator uses the line $y=2\,x + 1$ to predict $y$ from $x$.
+Add the line to your sketch.
+\medskip
+
+\hspace{10pt} c) Calculate the RMS error for the line:
+$\displaystyle\sqrt{\frac{1}{n}\sum\left(\mbox{predicted $y$} - \mbox{actual $y$}\right)^2}$.
+
+\vfill
+\eject
+{\ }
+
+5. \textbf{Regression}: 
+(25 points) For people age 25 and over in the U.S. in 2005, the relationship between
+age and educational level (years of schooling completed) can be summarized as
+follows. \vspace{-5pt}
+\begin{align*}
+\mbox{average age}         & \approx \mbox{50 years,}    & \mbox{sd} & \approx \mbox{16 years}\\[3pt]
+\mbox{average educational level}  & \approx \mbox{13.2 years,}  & \mbox{sd} & \approx \mbox{3.0 years,
+   \hspace{15pt}} r\approx -0.2
+\end{align*}\vspace{-5pt}
+
+\hspace{20pt} a) Write down the equation for the regression line  to
+predict educational level from age.
+\vspace{1.4in}
+
+\hspace{20pt} b) Predict the educational level of a 75 year old subject.
+\vspace{1.4in}
+
+\hspace{20pt} c) About 68\% of the 75 year old subjects had educational levels in what range?
+\vspace{1.4in}
+
+\hspace{20pt} d) True or false:  For people age 25 and older in the U.S. in 2005, older people tended 
+to be less\vspace{-5pt}
+
+\hspace{20pt} \hphantom{a) }  educated than younger ones.  Explain.
+\vspace{1.4in}
+
+
+\hspace{20pt} e) True or false, and explain:  as you get older, you become less educated.  
+If this statement is false,\vspace{-4pt}
+
+\hspace{20pt} \hphantom{a) }
+what could account for the negative correlation?  
+\vfill
+\eject
+{\ }
+    
+6. \textbf{$z$-Scores}: (10 points) Test scores on a certain exam average out to 75 with a standard 
+deviation of 3.  One student scored 84.   Was that a very high score?  Moderately high?  
+Or about average?  Justify your answer.
+\vspace{3in}
+
+
+7. \textbf{NHANESIII Data Set}: (10 points)
+
+\hspace{10pt} a) In the exam data set, what information does the variable \texttt{PEP13E2A} give?
+What kind of variable is it?
+\vspace{2in}
+
+
+\hspace{10pt} b) In the lab data set, what information does the variable \texttt{HXPAXTMR} give?
+What kind of variable is it?
+\vfill
+\begin{center}
+{\footnotesize\begin{pspicture}(-1.5,0)(7.5,2.2)
+\psset{linewidth=0.02, nodesep=2pt, xunit=3}
+\rput(1,2){\rnode{Variables}{Variables}}
+\rput(0,1){\rnode{Qualitative}{Qualitative}}
+\rput(2,1){\rnode{Quantitative}{Quantitative}}
+\rput(1.5,0){\rnode{Discrete}{Discrete}}
+\rput(2.5,0){\rnode{Continuous}{Continuous}}
+\rput(-0.5,0){\rnode{Ordered}{Ordered}}
+\rput(0.5,0){\rnode{Unordered}{Unordered}}
+\ncline{Variables}{Qualitative}
+\ncline{Variables}{Quantitative}
+\ncline{Quantitative}{Discrete}
+\ncline{Quantitative}{Continuous}
+\ncline{Qualitative}{Ordered}
+\ncline{Qualitative}{Unordered}
+\end{pspicture}}
+\end{center}
+
+
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VERSION 2
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+\hfill {\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam II}
+\end{center}
+Please show your work and any R commands that you use.
+\medskip
+
+1. \textbf{$z$-Scores}: (10 points) Test scores on a certain exam average out to 78 with a standard 
+deviation of 2.  One student scored 88.   Was that a very high score?  Moderately high?  
+Or about average?  Justify your answer.
+\vspace{3in}
+
+
+2. \textbf{NHANESIII Data Set}: (10 points)
+
+\hspace{10pt} a) In the exam data set, what information does the variable \texttt{PEP8A} give?
+What kind of variable is it?
+\vspace{1.5in}
+
+
+\hspace{10pt} b) In the lab data set, what information does the variable \texttt{DMPCREGN} give?
+What kind of variable is it?
+\vfill
+\begin{center}
+{\footnotesize\begin{pspicture}(-1.5,0)(7.5,2.2)
+\psset{linewidth=0.02, nodesep=2pt, xunit=3}
+\rput(1,2){\rnode{Variables}{Variables}}
+\rput(0,1){\rnode{Qualitative}{Qualitative}}
+\rput(2,1){\rnode{Quantitative}{Quantitative}}
+\rput(1.5,0){\rnode{Discrete}{Discrete}}
+\rput(2.5,0){\rnode{Continuous}{Continuous}}
+\rput(-0.5,0){\rnode{Ordered}{Ordered}}
+\rput(0.5,0){\rnode{Unordered}{Unordered}}
+\ncline{Variables}{Qualitative}
+\ncline{Variables}{Quantitative}
+\ncline{Quantitative}{Discrete}
+\ncline{Quantitative}{Continuous}
+\ncline{Qualitative}{Ordered}
+\ncline{Qualitative}{Unordered}
+\end{pspicture}}
+\end{center}
+
+\eject
+{\ }
+
+3. \textbf{Standard Normal Curve}:  Sketch and compute the specified area under the normal curve. 
+Write down the R command that you use. (15 points)
+
+\hspace{10pt} a) $z > -1$
+\vspace{.6in}
+
+\hspace{10pt} a) $z < -1.2$
+\vspace{.6in}
+
+\hspace{10pt} c) $-1.2 < z < -1$
+\vspace{.6in}
+
+\hspace{10pt} d) What $z$ is \underline{less than} 30\% of all $z$ scores?
+\vspace{1in}
+
+4. \textbf{Normal Curve}:  Suppose that for a particular pet population
+subjects' weights average out to 8 pounds with an sd of 2 pounds and have
+a normal distribution. (15 points)
+
+\hspace{10pt} a) What percent of the weights were below 12 pounds?
+\vspace{1in}
+
+\hspace{10pt} b) What percent were above 10 pounds?
+\vspace{1in}
+
+\hspace{10pt} c) What percent were between 10 and 12 pounds?
+\vspace{1in}
+
+\hspace{10pt} d) What weight was \underline{less than} 30\% of all the weights?
+\vfill
+\eject
+{\ }
+
+5. \textbf{RMS Error for a Line}: (15 points) Consider the following data.
+\begin{tabular}{|c|c|}\hline
+$x$ & $y$\\\hline
+0   & 3\\
+1   & 4\\
+2   & 2\\\hline
+\end{tabular}
+
+\hspace{10pt} a) Make a scatter plot of the data.  
+\vspace{2in}
+
+\hspace{10pt} b) An investigator uses the line $y=5 - x$ to predict $y$ from $x$.
+Add the line to your sketch.
+\medskip
+
+\hspace{10pt} c) Calculate the RMS error for the line:
+$\displaystyle\sqrt{\frac{1}{n}\sum\left(\mbox{predicted $y$} - \mbox{actual $y$}\right)^2}$.
+\vspace{2.5in}
+
+
+6. \textbf{Correlation}: (10 points) 
+
+\hspace{20pt} a) For a representative sample of cars, would the correlation between the
+age of the car and its gasoline economy (miles per gallon) be positive or negative?  Explain
+\vspace{1.5in}
+
+\hspace{20pt} b ) The correlation between gasoline economy and income of owner turns out to 
+be positive?  How do you account for this association?
+
+
+\vfill
+\eject
+{\ }
+
+7. \textbf{Regression}: 
+(25 points) For people age 25 and over in the U.S. in 2005, the relationship between
+age and educational level (years of schooling completed) can be summarized as
+follows. \vspace{-5pt}
+\begin{align*}
+\mbox{average age}         & \approx \mbox{52 years,}    & \mbox{sd} & \approx \mbox{10 years}\\[3pt]
+\mbox{average educational level}  & \approx \mbox{12.5 years,}  & \mbox{sd} & \approx \mbox{2.5 years,
+   \hspace{15pt}} r\approx -0.3
+\end{align*}\vspace{-5pt}
+
+\hspace{20pt} a) Write down the equation for the regression line  to
+predict educational level from age.
+\vspace{1.4in}
+
+\hspace{20pt} b) Predict the educational level of a 60 year old subject.
+\vspace{1.4in}
+
+\hspace{20pt} c) About 95\% of the 60 year old subjects had educational levels in what range?
+\vspace{1.4in}
+
+\hspace{20pt} d) True or false:  For people age 25 and older in the U.S. in 2005, older people tended 
+to be less\vspace{-5pt}
+
+\hspace{20pt} \hphantom{a) }  educated than younger ones.  Explain.
+\vspace{1.4in}
+
+
+\hspace{20pt} e) True or false, and explain:  as you get older, you become less educated.  
+If this statement is false,\vspace{-4pt}
+
+\hspace{20pt} \hphantom{a) }
+what could account for the negative correlation?  
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%% VERSION 3
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+\hfill {\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam II}
+\end{center}
+Please show your work and any R commands that you use.
+\medskip
+
+
+1. \textbf{RMS Error for a Line}: (15 points) Consider the following data.
+\begin{tabular}{|c|c|}\hline
+$x$ & $y$\\\hline
+0   & 1\\
+1   & 3\\
+2   & 6\\\hline
+\end{tabular}
+
+\hspace{10pt} a) Make a scatter plot of the data.  
+\vspace{1.7in}
+
+\hspace{10pt} b) An investigator uses the line $y=1 + x$ to predict $y$ from $x$.
+Add the line to your sketch.
+\medskip
+
+\hspace{10pt} c) Calculate the RMS error for the line:
+$\displaystyle\sqrt{\frac{1}{n}\sum\left(\mbox{predicted $y$} - \mbox{actual $y$}\right)^2}$.
+\vspace{1.9in}
+
+
+2. \textbf{Correlation}: (10 points) 
+
+\hspace{20pt} a) For a representative sample of computers, would the correlation between the
+amount of memory and the age (in years) of the computer be positive or negative?  Explain.
+\vspace{1.1in}
+
+\hspace{20pt} b ) The correlation between amount of computer memory and the income of the owner turns out to 
+be positive.  How do you account for this association?
+\vfill
+\eject
+{\ }
+
+3. \textbf{$z$-Scores}: (10 points) Test scores on a certain exam average out to 70 with a standard 
+deviation of 10.  One student scored 85.   Was that a very high score?  Moderately high?  
+Or about average?  Justify your answer.
+\vspace{2.8in}
+
+
+4. \textbf{NHANESIII Data Set}: (10 points)
+
+\hspace{10pt} a) In the exam data set, what information does the variable \texttt{PEP5R} give?
+What kind of variable is it?
+\vspace{2in}
+
+
+\hspace{10pt} b) In the lab data set, what information does the variable \texttt{PHPFAST} give?
+What kind of variable is it?
+\vfill
+\begin{center}
+{\footnotesize\begin{pspicture}(-1.5,0)(7.5,2.2)
+\psset{linewidth=0.02, nodesep=2pt, xunit=3}
+\rput(1,2){\rnode{Variables}{Variables}}
+\rput(0,1){\rnode{Qualitative}{Qualitative}}
+\rput(2,1){\rnode{Quantitative}{Quantitative}}
+\rput(1.5,0){\rnode{Discrete}{Discrete}}
+\rput(2.5,0){\rnode{Continuous}{Continuous}}
+\rput(-0.5,0){\rnode{Ordered}{Ordered}}
+\rput(0.5,0){\rnode{Unordered}{Unordered}}
+\ncline{Variables}{Qualitative}
+\ncline{Variables}{Quantitative}
+\ncline{Quantitative}{Discrete}
+\ncline{Quantitative}{Continuous}
+\ncline{Qualitative}{Ordered}
+\ncline{Qualitative}{Unordered}
+\end{pspicture}}
+\end{center}
+
+\eject
+{\ }
+
+5. \textbf{Standard Normal Curve}:  Sketch and compute the specified area under the normal curve. 
+Write down the R command that you use. (15 points)
+
+\hspace{10pt} a) $z > 0.8$
+\vspace{.6in}
+
+\hspace{10pt} a) $z < 2$
+\vspace{.6in}
+
+\hspace{10pt} c) $0.8 < z < 2$
+\vspace{.6in}
+
+\hspace{10pt} d) What $z$ is greater than 40\% of all $z$ scores?
+\vspace{1in}
+
+6. \textbf{Normal Curve}:  Suppose that for a particular pet population
+subjects' ages average out to 8 years with an sd of 2 years and have
+a normal distribution. (15 points)
+
+\hspace{10pt} a) What percent of the pets were older than 3 years?
+\vspace{1in}
+
+\hspace{10pt} b) What percent were younger that 12 years?
+\vspace{1in}
+
+\hspace{10pt} c) What percent were between 3 and 12 years?
+\vspace{1in}
+
+\hspace{10pt} d) What age was greater than 40\% of all the ages?
+\vfill
+\eject
+{\ }
+
+
+7. \textbf{Regression}: 
+(25 points) For people age 25 and over in the U.S. in 2005, the relationship between
+age and educational level (years of schooling completed) can be summarized as
+follows. \vspace{-5pt}
+\begin{align*}
+\mbox{average age}         & \approx \mbox{60 years,}    & \mbox{sd} & \approx \mbox{12 years}\\[3pt]
+\mbox{average educational level}  & \approx \mbox{11.5 years,}  & \mbox{sd} & \approx \mbox{3.1 years,
+   \hspace{15pt}} r\approx -0.3
+\end{align*}\vspace{-10pt}
+
+\hspace{20pt} a) Write down the equation for the regression line  to
+predict educational level from age.
+\vspace{1.4in}
+
+\hspace{20pt} b) Predict the educational level of a 55 year old subject.
+\vspace{1.4in}
+
+\hspace{20pt} c) About 95\% of the 55 year old subjects had educational levels in what range?
+\vspace{1.4in}
+
+\hspace{20pt} d) True or false:  For people age 25 and older in the U.S. in 2005, older people tended 
+to be less\vspace{-5pt}
+
+\hspace{20pt} \hphantom{a) }  educated than younger ones.  Explain.
+\vspace{1.4in}
+
+
+\hspace{20pt} e) True or false, and explain:  as you get older, you become less educated.  
+If this statement is false,\vspace{-4pt}
+
+\hspace{20pt} \hphantom{a) }
+what could account for the negative correlation?  
+\vfill
+\eject
+
+
+\end{document}
+
+5. \textbf{RMS Error for a Line}: (15 points) Consider the following data.
+\begin{tabular}{|c|c|}\hline
+$x$ & $y$\\\hline
+0   & 3\\
+1   & 4\\
+2   & 2\\\hline
+\end{tabular}
+
+\hspace{10pt} a) Make a scatter plot of the data.  
+\vspace{2in}
+
+\hspace{10pt} b) An investigator uses the line $y=5 - x$ to predict $y$ from $x$.
+Add the line to your sketch.
+\medskip
+
+\hspace{10pt} c) Calculate the RMS error for the line:
+$\displaystyle\sqrt{\frac{1}{n}\sum\left(\mbox{predicted $y$} - \mbox{actual $y$}\right)^2}$.
+\vspace{2.5in}
+
+
+6. \textbf{Correlation}: (10 points) 
+
+\hspace{20pt} a) For a representative sample of cars, would the correlation between the
+weight of a  car and its gasoline economy (miles per gallon) be positive or negative?  Explain
+\vspace{1.5in}
+
+\hspace{20pt} b ) The correlation between gasoline economy and car length turns out to 
+be negative.  How do you account for this association?
+
+
+\vfill
+\eject
+{\ }
+
+
+
+6. (15 points) Suppose that the regression line of $y$ on $x$ 
+is \[y=\left(\frac{\sqrt{3}}{2}\right)\,\left(\frac{8}{\sqrt{3}}\right)\,(x-1)\] 
+where $\mbox{mean}_x=1$, $\mbox{mean}_y=0$, $\mbox{SD}_x=\sqrt{3}$, $\mbox{SD}_y=8$
+and $r=\sqrt{3}/2$.\vspace{3pt}
+
+\hspace{20pt} a) Calculate the RMS error for regression 
+$\mbox{RMS}=\mbox{SD}_y\,\sqrt{1-r^2}$.  
+\vspace{2in}
+
+\hspace{20pt} b) If $x=4$, then we expect 68\% of the $y$-values to be
+between \ \underline{\hspace{60pt}} \ \ and \  \underline{\hspace{60pt}} \ .
+\vspace{2in}
+
+
+
+\vfill
+\eject
+
+(15 points)

@@ -1,0 +1,511 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{7in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.3in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+%\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+\usepackage{pstricks,pst-grad,pst-func,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam I}
+\end{center}
+No books, notes or calculators  are allowed on this exam.
+\bigskip
+
+1. A 1994 study of young children found that those with more body fat tended to have
+more \lq\lq controlling\rq\rq\ parents.  The \textit{San Francisco Chronicle}  
+concluded that \lq\lq Parents of Fat Kids Should Lighten Up.\rq\rq\ (20 points)
+
+\hspace{10pt} a) Was this an observational study or a randomized, controlled experiment?
+Explain.
+\vspace{.9in}
+
+\hspace{10pt} b) Did the study find an association between parents' behavior
+and children's levels of body fat?  Explain.
+\vspace{.7in}
+
+\hspace{10pt} c) If controlling behavior causes obesity, could that explain the association?
+\vspace{1in}
+
+
+\hspace{10pt} d) Suppose there were a gene that caused obesity. Why would that \textit{not} explain
+the association? 
+\vspace{1in}
+
+
+2. In a health study, subjects' heights have an average of  64 inches and an sd of 3 inches.
+(15 points)
+
+\hspace{10pt} a) Make a rough sketch of the histogram of subjects' heights.
+Assume a normal (Gaussian) histogram.
+\vspace{1.5in}
+
+\hspace{10pt} b) About what percent of the subjects had heights between
+61 and 70 inches?  
+\vfill
+\eject
+
+(25 points)
+
+3.  a) Find the mean, median and sd of the list -4, 5, 3, 5, 5, 12, 9.
+\vspace{2.6in}
+
+{\ }\hphantom{n. }b) Which number(s) in the list are within 1 sd of the mean?
+\vspace{2.2in}
+
+{\ }\hphantom{n. }c) If you add 4 to each number in the list, what will the new
+mean and sd be?
+\vspace{2.2in}
+
+{\ }\hphantom{n. }d) If you multiply each number in the list by 4, what will the new
+mean and sd be?
+
+\vfill
+\eject
+
+
+4. A histogram of monthly wages for part-time employees is shown below (densities are marked
+in parentheses).  Nobody earned more than \$1,000 per month.  (15 points)
+
+\begin{center}
+\begin{pspicture}(0,-0.8)(10,2.3)
+\psset{yunit=0.1}
+\psframe(0,0)(1,10)\rput[b](0.5,10.1){(10)}
+\psframe(1,0)(2,4)\rput[b](1.5,4.1){(4)}
+\psframe(5,0)(10,10)\rput[b](7.5,10.1){(10)}
+\psaxes[Dy=10](0,0)(10,20)
+\rput{90}(-1.1,10){\% per \$100}
+\rput(5,-10){Wages (hundreds of dollars)}
+\end{pspicture}
+\end{center}
+
+\hspace{10pt} a) The block
+over the class interval from \$200 to \$500 is missing.
+Determine how tall it must be then add it to the 
+histogram.
+\vspace{3in}
+
+\hspace{10pt} b) About what percent of the employees earned between \$600 and \$800 per month?
+\vspace{1.75in}
+
+\hspace{10pt} c) About what percent of the employees earned more than \$200 per month?
+\vfill
+\eject
+
+5. Make a sketch then estimate the area under the normal curve. (5 points each)\vspace{-5pt}
+
+\begin{center}
+  a) to the right of $z=1$\hfill
+  b) to the left of $z=-6.5$\hfill
+  c) between $z=-1$ and $z=3$\hphantom{\hspace{.2in}}
+\end{center}
+\vspace{3in}
+
+6. (10 points) In class we discussed four types of variables:  ordered, unordered, 
+discrete and continuous:\vspace{-5pt}
+\begin{center}
+{\footnotesize\begin{pspicture}(-1.5,0)(7.5,2.2)
+\psset{linewidth=0.02, nodesep=2pt, xunit=3}
+\rput(1,2){\rnode{Variables}{Variables}}
+\rput(0,1){\rnode{Qualitative}{Qualitative}}
+\rput(2,1){\rnode{Quantitative}{Quantitative}}
+\rput(1.5,0){\rnode{Discrete}{Discrete}}
+\rput(2.5,0){\rnode{Continuous}{Continuous}}
+\rput(-0.5,0){\rnode{Ordered}{Ordered}}
+\rput(0.5,0){\rnode{Unordered}{Unordered}}
+\ncline{Variables}{Qualitative}
+\ncline{Variables}{Quantitative}
+\ncline{Quantitative}{Discrete}
+\ncline{Quantitative}{Continuous}
+\ncline{Qualitative}{Ordered}
+\ncline{Qualitative}{Unordered}
+\end{pspicture}}
+\end{center}
+
+In your own words, describe one variable of each of the four types.  Write down some values
+for each of your variables. 
+
+
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HERE
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam I}
+\end{center}
+No books, notes or calculators  are allowed on this exam.
+\bigskip
+
+1. A histogram of monthly wages for part-time employees is shown below (densities are marked
+in parentheses).  Nobody earned more than \$1,000 per month.  (15 points)
+
+\begin{center}
+\begin{pspicture}(0,-0.8)(10,2.3)
+\psset{yunit=0.1}
+\psframe(0,0)(1,20)\rput[b](0.5,20.1){(20)}
+\psframe(1,0)(2,12)\rput[b](1.5,12.1){(12)}
+\psframe(5,0)(10,7)\rput[b](7.5,7.1){(7)}
+\psaxes[Dy=10](0,0)(10,20)
+\rput{90}(-1.1,10){\% per \$100}
+\rput(5,-10){Wages (hundreds of dollars)}
+\end{pspicture}
+\end{center}
+
+\hspace{10pt} a) The block
+over the class interval from \$200 to \$500 is missing.
+Determine how tall it must be then add it to the 
+histogram.
+\vspace{2.7in}
+
+\hspace{10pt} b) About what percent of the employees earned between \$700 and \$1000 per month?
+\vspace{1.75in}
+
+\hspace{10pt} c) About what percent of the employees earned less than \$500 per month?
+\vfill
+\eject
+
+2. In a health study, subjects' heights have an average of  65 inches and an sd of 5 inches.
+(15 points)
+
+\hspace{10pt} a) Make a rough sketch of the histogram of subjects' heights.
+Assume a normal (Gaussian) histogram.
+\vspace{1.5in}
+
+\hspace{10pt} b) About what percent of the subjects had heights between
+55 and 75 inches?  
+\vspace{2in}
+
+3. A 1994 study of young children found that those with more body fat tended to have
+more \lq\lq controlling\rq\rq\ parents.  The \textit{San Francisco Chronicle}  
+concluded that \lq\lq Parents of Fat Kids Should Lighten Up.\rq\rq\ (20 points)
+
+\hspace{10pt} a) Was this an observational study or a randomized, controlled experiment?
+Explain.
+\vspace{.9in}
+
+\hspace{10pt} b) Did the study find an association between parents' behavior
+and children's levels of body fat?  Explain.
+\vspace{.7in}
+
+\hspace{10pt} c) If controlling behavior causes obesity, could that explain the association?
+\vspace{1in}
+
+
+\hspace{10pt} d) Suppose there were a gene that caused obesity. Why would that \textit{not} explain
+the association? 
+
+
+\vfill
+\eject
+
+(25 points)
+
+4.  a) Find the mean, median and sd of the list 6, 15, 13, 19, 15, 15, 22.
+\vspace{2.6in}
+
+{\ }\hphantom{n. }b) Which number(s) in the list are within 1 sd of the mean?
+\vspace{2.2in}
+
+{\ }\hphantom{n. }c) If you add 3 to each number in the list, what will the new
+mean and sd be?
+\vspace{2.2in}
+
+{\ }\hphantom{n. }d) If you multiply each number in the list by 3, what will the new
+mean and sd be?
+
+\vfill
+\eject
+
+
+
+
+
+5. (10 points) In class we discussed four types of variables:  ordered, unordered, 
+discrete and continuous:\vspace{-5pt}
+\begin{center}
+{\footnotesize\begin{pspicture}(-1.5,0)(7.5,2.2)
+\psset{linewidth=0.02, nodesep=2pt, xunit=3}
+\rput(1,2){\rnode{Variables}{Variables}}
+\rput(0,1){\rnode{Qualitative}{Qualitative}}
+\rput(2,1){\rnode{Quantitative}{Quantitative}}
+\rput(1.5,0){\rnode{Discrete}{Discrete}}
+\rput(2.5,0){\rnode{Continuous}{Continuous}}
+\rput(-0.5,0){\rnode{Ordered}{Ordered}}
+\rput(0.5,0){\rnode{Unordered}{Unordered}}
+\ncline{Variables}{Qualitative}
+\ncline{Variables}{Quantitative}
+\ncline{Quantitative}{Discrete}
+\ncline{Quantitative}{Continuous}
+\ncline{Qualitative}{Ordered}
+\ncline{Qualitative}{Unordered}
+\end{pspicture}}
+\end{center}
+
+In your own words, describe one variable of each of the four types.  Write down some values
+for each of your variables. 
+\vspace{4in}
+
+6. Make a sketch then estimate the area under the normal curve. (5 points each)\vspace{-5pt}
+
+\begin{center}
+  a) to the left of $z=1$\hfill
+  b) to the right of $z=-6.5$\hfill
+  c) between $z=-2$ and $z=3$\hphantom{\hspace{.2in}}
+\end{center}
+\vfill
+\eject
+
+The \textbf{mean} of a list of numbers is:
+\[\mbox{mean}\;=\; \frac{x_1+x_2+\cdots+x_n}{n}\; = \; \frac{1}{n}\sum_{i=1}^n\,x_i\]
+The \textbf{sample standard deviation} is
+\[\mbox{sd} = \sqrt{\frac{1}{n-1}\,\sum_{i=1}^n\,\left(x_i - \mbox{mean}_x\right)^2}\]
+Convert $x$ to \textbf{standard units} using:
+\[z = \frac{x - \mbox{mean}}{sd}\]
+\bigskip
+
+\begin{center}
+\begin{pspicture}(-3,-2.1)(3,1.1)
+\psset{yunit=3,linewidth=0.02}
+\psline(-3.5,0)(3.5,0)  
+  \psline(-3,0)(-3,-0.04) \rput[t](-3,-0.07){\scriptsize -3\hphantom{-}}
+  \psline(-2,0)(-2,-0.04) \rput[t](-2,-0.07){\scriptsize -2\hphantom{-}}
+  \psline(-1,0)(-1,-0.04) \rput[t](-1,-0.07){\scriptsize -1\hphantom{-}}
+  \psline(0,0)(0,-0.04)   \rput[t](0,-0.07){\scriptsize 0}
+  \psline(1,0)(1,-0.04)   \rput[t](1,-0.07){\scriptsize 1}
+  \psline(2,0)(2,-0.04)   \rput[t](2,-0.07){\scriptsize 2}
+  \psline(3,0)(3,-0.04)   \rput[t](3,-0.07){\scriptsize 3}
+  \rput[l](3.6,0){\scriptsize $x$}
+\psline(0,0)(0,0.5)
+  \psline(-0.12,0.5)(0,0.5)    \rput[r](-0.21,0.5){\scriptsize $0.5$}
+  \psline(-0.12,0.25)(0,0.25)  \rput[r](-0.21,0.25){\scriptsize $0.25$}
+\psGauss[linecolor=blue,linewidth=0.02,sigma=1,mue=0]{-3}{3}
+\pnode(-1,-0.15){A}\pnode(1,-0.15){B}
+\psbrace[braceWidth=0.02,braceWidthInner=5pt,braceWidthOuter=5pt](A)(B){\rput{90}(0.25,-0.05){\scriptsize 68\%}}
+%
+\pnode(-2,-0.15){C}\pnode(2,-0.15){D}
+\psbrace[braceWidth=0.02,braceWidthInner=25pt,braceWidthOuter=5pt](C)(D){\rput{90}(0.25,-0.05){\scriptsize 95\%}}
+%
+\pnode(-3,-0.15){E}\pnode(3,-0.15){F}
+\psbrace[braceWidth=0.02,braceWidthInner=45pt,braceWidthOuter=5pt](E)(F){\rput{90}(0.25,-0.1){\scriptsize 99.7\%}}
+\end{pspicture}
+\end{center}
+\vfill
+
+The \textbf{mean} of a list of numbers is:
+\[\mbox{mean}\;=\; \frac{x_1+x_2+\cdots+x_n}{n}\; = \; \frac{1}{n}\sum_{i=1}^n\,x_i\]
+The \textbf{sample standard deviation} is
+\[\mbox{sd} = \sqrt{\frac{1}{n-1}\,\sum_{i=1}^n\,\left(x_i - \mbox{mean}_x\right)^2}\]
+Convert $x$ to \textbf{standard units} using:
+\[z = \frac{x - \mbox{mean}}{sd}\]
+\bigskip
+
+\begin{center}
+\begin{pspicture}(-3,-2.1)(3,1.1)
+\psset{yunit=3,linewidth=0.02}
+\psline(-3.5,0)(3.5,0)  
+  \psline(-3,0)(-3,-0.04) \rput[t](-3,-0.07){\scriptsize -3\hphantom{-}}
+  \psline(-2,0)(-2,-0.04) \rput[t](-2,-0.07){\scriptsize -2\hphantom{-}}
+  \psline(-1,0)(-1,-0.04) \rput[t](-1,-0.07){\scriptsize -1\hphantom{-}}
+  \psline(0,0)(0,-0.04)   \rput[t](0,-0.07){\scriptsize 0}
+  \psline(1,0)(1,-0.04)   \rput[t](1,-0.07){\scriptsize 1}
+  \psline(2,0)(2,-0.04)   \rput[t](2,-0.07){\scriptsize 2}
+  \psline(3,0)(3,-0.04)   \rput[t](3,-0.07){\scriptsize 3}
+  \rput[l](3.6,0){\scriptsize $x$}
+\psline(0,0)(0,0.5)
+  \psline(-0.12,0.5)(0,0.5)    \rput[r](-0.21,0.5){\scriptsize $0.5$}
+  \psline(-0.12,0.25)(0,0.25)  \rput[r](-0.21,0.25){\scriptsize $0.25$}
+\psGauss[linecolor=blue,linewidth=0.02,sigma=1,mue=0]{-3}{3}
+\pnode(-1,-0.15){A}\pnode(1,-0.15){B}
+\psbrace[braceWidth=0.02,braceWidthInner=5pt,braceWidthOuter=5pt](A)(B){\rput{90}(0.25,-0.05){\scriptsize 68\%}}
+%
+\pnode(-2,-0.15){C}\pnode(2,-0.15){D}
+\psbrace[braceWidth=0.02,braceWidthInner=25pt,braceWidthOuter=5pt](C)(D){\rput{90}(0.25,-0.05){\scriptsize 95\%}}
+%
+\pnode(-3,-0.15){E}\pnode(3,-0.15){F}
+\psbrace[braceWidth=0.02,braceWidthInner=45pt,braceWidthOuter=5pt](E)(F){\rput{90}(0.25,-0.1){\scriptsize 99.7\%}}
+\end{pspicture}
+\end{center}
+\bigskip
+\eject
+
+\begin{center}
+\begin{pspicture}(0,0)(7,4.8)
+\psset{xunit=1.4,yunit=1.2,nodesep=2pt}
+\rput(4,4){\rnode{Studies}{Studies}}
+\rput(5,3){\rnode{NoControls}{No Controls}}
+\rput(3,3){\rnode{Controls}{Controls}}
+\rput(4,2){\rnode{Historical}{Historical}}
+\rput(2,2){\rnode{Contemporaneous}{Contemporaneous}}
+\rput(1,1){\rnode{Controlled}{\begin{tabular}{c}Controlled\\ Experiment\end{tabular}}}
+\rput(3,1){\rnode{Observational}{\begin{tabular}{c}Observational\\ Studies\end{tabular}}}
+\rput(0,0){\rnode{Randomized}{Randomized}}
+\rput(2,0){\rnode{NotRandomized}{Not Randomized}}
+\ncline{Studies}{Controls}\ncline{Studies}{NoControls}
+\ncline{Controls}{Contemporaneous}\ncline{Controls}{Historical}
+\ncline{Contemporaneous}{Controlled}\ncline{Contemporaneous}{Observational}
+\ncline{Controlled}{Randomized}\ncline{Controlled}{NotRandomized}
+%\psframebox(0,0)(4,4)
+\end{pspicture}
+\end{center}
+
+\vfill
+\begin{center}
+\begin{pspicture}(0,0)(7,4.8)
+\psset{xunit=1.4,yunit=1.2,nodesep=2pt}
+\rput(4,4){\rnode{Studies}{Studies}}
+\rput(5,3){\rnode{NoControls}{No Controls}}
+\rput(3,3){\rnode{Controls}{Controls}}
+\rput(4,2){\rnode{Historical}{Historical}}
+\rput(2,2){\rnode{Contemporaneous}{Contemporaneous}}
+\rput(1,1){\rnode{Controlled}{\begin{tabular}{c}Controlled\\ Experiment\end{tabular}}}
+\rput(3,1){\rnode{Observational}{\begin{tabular}{c}Observational\\ Studies\end{tabular}}}
+\rput(0,0){\rnode{Randomized}{Randomized}}
+\rput(2,0){\rnode{NotRandomized}{Not Randomized}}
+\ncline{Studies}{Controls}\ncline{Studies}{NoControls}
+\ncline{Controls}{Contemporaneous}\ncline{Controls}{Historical}
+\ncline{Contemporaneous}{Controlled}\ncline{Contemporaneous}{Observational}
+\ncline{Controlled}{Randomized}\ncline{Controlled}{NotRandomized}
+%\psframebox(0,0)(4,4)
+\end{pspicture}
+\end{center}
+
+\bigskip
+\bigskip
+
+\end{document}
+
+4. A histogram of monthly wages for part-time employees is shown below (densities are marked
+in parentheses).  Nobody earned more than \$1,000 per month.  (20 points)
+
+\begin{center}
+\begin{pspicture}(0,-0.8)(10,2.3)
+\psset{yunit=0.1}
+\psframe(0,0)(1,10)\rput[b](0.5,10.1){(10)}
+\psframe(1,0)(2,5)\rput[b](1.5,5.1){(5)}
+\psframe(5,0)(10,5)\rput[b](7.5,5.1){(5)}
+\psaxes[Dy=10](0,0)(10,20)
+\rput{90}(-1.1,10){\% per \$100}
+\rput(5,-10){Wages (hundreds of dollars)}
+\end{pspicture}
+\end{center}
+
+
+5. The table below shows results from two experiments designed to test the Salk vaccine in  1954.
+(20 points)
+\vspace{-5pt}
+\begin{center}
+{%\footnotesize
+\begin{tabular}{cc}
+Randomized controlled          & \\
+double-blind experiment        & NFIP study\\
+   \begin{tabular}{lcc}\hline
+                 & Size      & Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Treatment  & \color{black}200,000   & {\color{black}{28}}\\
+      \color{black}Control    & \color{black}200,000   & {\color{black}{71}}\\
+      No consent & 350,000   & 46\\
+   \end{tabular}
+&\hspace{20pt}
+   \begin{tabular}{lcc}
+\hline
+                 & Size        &  Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Grade 2 (vaccine)\hfill        & \color{black}225,000 & 25\\
+      \color{black}Grades 1 and 3 (control)        & \color{black}725,000 & {\color{black}{54}}\\
+      Grade 2 (no consent)\hfill     & 125,000 & {\color{black}{44}}\\
+   \end{tabular}
+\end{tabular}}\vspace{-4pt}
+\end{center}
+{${}^*$Rate is number of cases per 100,000 subjects.}
+\smallskip
+
+\hspace{10pt} a) Describe the treatment and control groups and how they were selected 
+in the two experiments.  
+\vspace{1.75in}
+
+
+\hspace{10pt} b) What does \textit{consent} mean in the context of the experiments?
+\vspace{1.25in}
+
+\hspace{10pt} c) Which rates demonstrate the vaccine's effectiveness in the two experiments 
+(there are two rates to compare for each experiment)?  
+\vspace{1.25in}
+
+\hspace{10pt} d) Which experiment gave stronger evidence for the vaccine's effectiveness and why?
+\vspace{1.5in}
+
+%\hspace{10pt} e) What does \textit{double-blind} mean?
+%\vspace{1in}
+
+\hspace{10pt} e) What impact did the different sizes of the six groups have on your conclusions and why?
+
+
+
+

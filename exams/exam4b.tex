@@ -1,0 +1,769 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,pst-func,calc,pst-3dplot}
+\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VERSION I %%%%%%%%%%%%%%%%
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %16 November 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Exam IV}
+\end{center}
+%No books, notes or electronic devices may be used on this exam.
+\medskip
+
+1. (25 points) A survey is conducted of 100 freshmen at public universities.
+It is found that these students work 11.5 hours a week for pay, 
+on average.  The SD of the data is 5.  
+
+\hspace{20pt} a) Find a 95\% confidence interval
+on the  hours  a week worked by freshmen at public universities.
+\vspace{2.5in}
+
+\hspace{20pt} b) True or false and explain:  There is a 95\% chance that
+if a second sample of 100 freshmen were taken
+the average of the sample would be in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} c) True or false and explain:  There is a 95\% chance that the
+average hours a week worked for pay among \textit{all} freshmen at public universities
+is in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} d) True or false and explain:  There is a 95\% chance that the
+average hours a week worked for pay among all 18--20 year olds
+is in the range you found in a).
+\vspace{1in}
+\vfill
+\eject
+{\ }
+
+
+
+2. (15 points)
+Would taking the average of 25 measurements divide the likely size of the chance error by a factor of 5, 10 or 25? Justify your answer.
+\vspace{2.5in}
+
+3. (15 points) A surveyor is measuring the distances between five points $A$, $B$, 
+$D$, and $E$ along a straight line.  She finds that each of the four distances measures one mile, give or take an inch or so.  The distance from $A$ to $E$ is about four miles; 
+but the estimate is likely to be off by around:  
+4~inches, 2~inches, 1~inch, 1/2~inch or 1/4~inch. Justify your answer.
+\vfill
+
+4. (20 points) Five hundred draws are made at random from the box
+\begin{center}
+\begin{pspicture}(0,0.1)(4,0.3)
+\psline(0,0.5)(0,0)(4,0)(4,0.5)
+\rput[l](0.15,0.3){60,000\ \framebox{0}\,s}
+\rput[l](2.15,0.3){20,000\ \framebox{1}\,s}
+\end{pspicture}
+\end{center}
+Note that $\sqrt{0.25\times 0.75}\,/\sqrt{500} \approx 0.02$. True or false? 
+\smallskip
+
+\begin{itemize}
+\item The expected value for the percentage of 1s among the draws is exactly 25\%.\\
+\item The expected value for the percentage of 1s among the draws is around 25\%, give
+or take 2\% or so.\\
+\item The percentage of 1s among the draws will be around 25\%, give or take 2\% or so.\\
+\item The percentage of 1s among the draws will be exactly 25\%.\\
+\item The percentage of 1s in the box is exactly 25\%.\\
+\item The percentage of 1s in the box is around 25\%, give or take 2\% or so.
+\end{itemize}
+
+\eject
+{\ }
+
+5.  (20 points) Based on the survey data in \#1, a news organization reports that the
+freshmen at public universities work~12 hours a week for pay, on average.
+Use a $z$-test to comment on this assertion.
+State the null and alternative hypotheses. Calculate the test statistic and 
+estimate the $P$ value.
+%z-test
+\vspace{6in}
+
+6. (10 points)  
+Fill in the blanks: 
+\bigskip
+
+The \underline{\hspace{60pt}} hypothesis says that the difference is due to chance
+but the \underline{\hspace{60pt}} says that the difference is real.  
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VERSION Ib %%%%%%%%%%%%%%%%
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %16 November 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Exam IV}
+\end{center}
+%No books, notes or electronic devices may be used on this exam.
+\medskip
+
+1. (25 points) A survey is conducted of 100 freshmen at public universities.
+It is found that these students work 7 hours a week for pay, 
+on average.  The SD of the data is 5.  
+
+\hspace{20pt} a) Find a 95\% confidence interval
+on the  hours  a week worked by freshmen at public universities.
+\vspace{2.5in}
+
+\hspace{20pt} b) True or false and explain:  There is a 95\% chance that
+if a second sample of 100 freshmen were taken
+the average of the sample would be in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} c) True or false and explain:  There is a 95\% chance that the
+average hours a week worked for pay among \textit{all} freshmen at public universities
+is in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} d) True or false and explain:  There is a 95\% chance that the
+average hours a week worked for pay among all 18--20 year olds
+is in the range you found in a).
+\vspace{1in}
+\vfill
+\eject
+{\ }
+
+
+
+2. (15 points)
+Would taking the sum of 25 measurements multiply
+the likely size of the chance error by a factor of 5, 10 or 25? Justify your answer.
+\vspace{2.5in}
+
+3. (15 points) A surveyor is measuring the distances between five points $A$, $B$, 
+$D$, and $E$ along a straight line.  She finds that each of the four distances measures one mile,
+give or take a two inches or so.  The distance from $A$ to $E$ is about four miles; 
+but the estimate is likely to be off by around:  
+8~inches, 4~inches, 2~inches, 1~inch or 1/2~inch. Justify your answer.
+\vfill
+
+4. (20 points) One hundred draws are made at random from the box
+\begin{center}
+\begin{pspicture}(0,0.1)(4,0.3)
+\psline(0,0.5)(0,0)(4,0)(4,0.5)
+\rput[l](0.15,0.3){30,000\ \framebox{0}\,s}
+\rput[l](2.15,0.3){30,000\ \framebox{1}\,s}
+\end{pspicture}
+\end{center}
+%Note that $\sqrt{0.25\times 0.75}\,/\sqrt{500} \approx 0.02$.
+True or false? 
+\smallskip
+
+\begin{itemize}
+\item The expected value for the percentage of 1s among the draws is exactly 50\%.\\
+\item The expected value for the percentage of 1s among the draws is around 50\%, give
+or take 5\% or so.\\
+\item The percentage of 1s among the draws will be around 50\%, give or take 5\% or so.\\
+\item The percentage of 1s among the draws will be exactly 50\%.\\
+\item The percentage of 1s in the box is exactly 50\%.\\
+\item The percentage of 1s in the box is around 50\%, give or take 5\% or so.
+\end{itemize}
+
+\eject
+{\ }
+
+5.  (20 points) Based on the survey data in \#1, a news organization reports that the
+freshmen at public universities work~10 hours a week for pay, on average.
+Use a $z$-test to comment on this assertion.
+State the null and alternative hypotheses. Calculate the test statistic and 
+estimate the $P$ value.
+%z-test
+\vspace{6in}
+
+6. (10 points)  
+Fill in the blanks: 
+\bigskip
+
+The \underline{\hspace{60pt}} hypothesis says that the difference is due to chance
+but the \underline{\hspace{60pt}} says that the difference is real.  
+\vfill
+\eject
+
+\vfill
+\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VERSION II %%%%%%%%%%%%%%%%
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %16 November 2011
+\end{tabular}
+}
+\begin{center}
+\textbf{\large  Exam IV}
+\end{center}
+%No books, notes or electronic devices may be used on this exam.
+\medskip
+
+1. (25 points) A survey is conducted of 100 freshmen at public universities.
+Among the surveyed  students, 50\%  work at least 15 hours per week for pay.
+
+\hspace{20pt} a) Find a 95\% confidence interval
+on the  percent of freshmen at public universities who work at least 15 hours per week for pay.
+\vspace{2.3in}
+
+\hspace{20pt} b) True or false and explain:  There is a 95\% chance that the
+percent among \textit{all} freshmen at public universities is in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} c) True or false and explain:  There is a 95\% chance that
+if a second sample of 100 freshmen were taken,
+the sample percent would be in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} d) True or false and explain:  There is a 95\% chance that the
+average hours a week worked for pay among all 18--20 year olds
+is in the range you found in a).
+\vspace{1in}
+\vfill
+\eject
+{\ }
+
+
+
+2. (10 points)
+Would taking the sum of 25 measurements multiply
+the likely size of the chance error by a factor of 5, 10 or 25? Justify your answer.
+\vspace{1.8in}
+
+3. (10 points) A surveyor is measuring the distances between five points $A$, $B$, $C$,
+$D$, and $E$ along a straight line.  She finds that each of the four distances measures one mile, give or
+take two inches or so.  The distance from $A$ to $E$ is about four miles; 
+but the estimate is likely to be off by around:  
+8~inches, 4~inches, 2~inches, 1~inch or 1/2~inch. Justify your answer.
+\[\xymatrix{
+A\ar@{-}[r] & B\ar@{-}[r] & C\ar@{-}[r] & D\ar@{-}[r] & E}\]
+\vspace{1.8in}
+
+4.  (15 points) The Zorro News Organization reports that  55\%
+of freshmen at public universities  work 15 hours a week for pay.
+If that is report is accurate, approximately what is the chance of getting a sample
+percent as low as 50\% (as we did in \#1) or lower?  Hint:  Use a $z$-test.
+\vfill
+\eject
+
+
+5. (20 points) Five hundred draws are made at random from the box
+\begin{center}
+\begin{pspicture}(0,0.1)(4,0.3)
+\psline(0,0.5)(0,0)(4,0)(4,0.5)
+\rput[l](0.15,0.3){60,000\ \framebox{0}\,s}
+\rput[l](2.15,0.3){20,000\ \framebox{1}\,s}
+\end{pspicture}
+\end{center}
+Note that $\sqrt{0.25\times 0.75}\,/\sqrt{500} \approx 0.02$. True or false?  Explain your conclusions.
+\smallskip
+
+\begin{itemize}
+\item[i.] The expected value for the percentage of 1s among the draws is exactly 25\%.\\[1in]
+\item[ii.] The expected value for the percentage of 1s among the draws is around 25\%, give
+or take 2\% or so.\\[1in]
+\item[iii.] The percentage of 1s among the draws will be around 25\%, give or take 2\% or so.\\[1in]
+\item[iv.] The percentage of 1s among the draws will be exactly 25\%.\\[1in]
+\item[v.] The percentage of 1s in the box is exactly 25\%.\\[1in]
+\item[vi.] The percentage of 1s in the box is around 25\%, give or take 2\% or so.
+\end{itemize}
+
+\vfill
+\eject
+
+6. (20 points) If a  particular scientific instrument is working correctly, it's averge measurement
+should be~9.  It is tested twice and the results are 9 and 11.  Run a $t$ test to see if the
+difference between the observed and expected averages is significant.  State the null and alternative hypotheses.
+
+
+\vfill
+\begin{tabular}{ccc}
+\begin{tabular}{|c|cccc|}\hline
+Degrees\vphantom{\LARGE Y} & &&&\\
+of      & &\rput(20pt, 10pt){$t$}&&\\
+Freedom & $-2.0$ & $-1.5$ & $-1.0$ & $-0.5$\\[3pt]\hline
+1       & $0.148$ & $0.187$ & $0.250$ & $0.352$\vphantom{\LARGE Y}\\
+2       & $0.092$ & $0.136$ & $0.211$ & $0.333$\\
+3       & $0.070$ & $0.115$ & $0.196$ & $0.326$\\\hline
+\end{tabular}
+&\hspace{1in} &
+\definecolor{lg}{rgb}{.6,.6,.6}
+\begin{pspicture}(-2.5,0.5)(2.5,1.5)
+\psframe[linewidth=0.02](-3.2,-0.88)(3.2,2.05)
+\rput(0,1.7){$t$ distribution with $2$ degrees of freedom}
+\psset{yunit=4}
+\pscustom[linestyle=none,fillstyle=solid,fillcolor=lg]{%
+\psTDist*[linewidth=0,linecolor=blue,nue=2]{-2.25}{-0.5}
+\psline(-0.5,0.2963)(-0.5,0)(-2.25,0)(-2.25,0.0533)
+}
+\psTDist[linecolor=blue,nue=2]{-2.25}{2.25}
+\psline{<->}(-2.5,0)(2.5,0)
+\psline(-0.5,0)(-0.5,-0.05)\rput[t](-0.5,-0.08){\footnotesize$-0.5\hphantom{-}$}
+\psline(-2,0)(-2,-0.05)    \rput[t](-2,-0.08){\footnotesize$-2\hphantom{-}$}
+\psline(-1,0)(-1,-0.05)   % \rput[tr](-1,-0.08){\footnotesize$-1$}
+\psline(0,0)(0,-0.05)      \rput[t]( 0,-0.08){\footnotesize$0$}
+\psline(1,0)(1,-0.05)      \rput[t]( 1,-0.08){\footnotesize$1$}
+\psline(2,0)(2,-0.05)      \rput[t]( 2,-0.08){\footnotesize$2$}
+\psbezier{->}(-6.13,-0.05)(-4,0.3)(-2,0.5)(-1,0.1)
+\end{pspicture}
+\end{tabular}
+
+\eject
+
+\begin{center}
+\textbf{\large Formula Sheet}
+\end{center}
+
+
+\begin{align*}
+\mbox{EV}_{\mbox{\footnotesize sum}} & = n\,\mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize sum}} & = \sqrt{n}\;\;\mbox{SD}_{\mbox{\footnotesize box}}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize av}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize av}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize \%}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize \%}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\noalign{Shortcut formula (if there are only two different kinds of numbers in the box):}
+\mbox{SD}_{\mbox{\footnotesize box}} &=
+  \left(\mbox{big \#} - \mbox{small \#}\right)\,\sqrt{
+  \left(\begin{array}{c}\mbox{fraction of}\\ \mbox{tickets with the}\\ \mbox{big number}\end{array}\right)
+  \left(\begin{array}{c}\mbox{fraction of}\\\mbox{tickets with the}\\\mbox{small number}\end{array}\right)}\\[10pt]
+%
+\mbox{95\% confidence interval} &= \mbox{observed} \;\pm\; 2\,\mbox{SE}\\[10pt]
+z &= \frac{\mbox{observed} - \mbox{expected}}{\mbox{standard error}}
+\end{align*}
+\vfill
+
+\begin{center}
+\textbf{\large Formula Sheet}
+\end{center}
+
+
+\begin{align*}
+\mbox{EV}_{\mbox{\footnotesize sum}} & = n\,\mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize sum}} & = \sqrt{n}\;\;\mbox{SD}_{\mbox{\footnotesize box}}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize av}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize av}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize \%}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize \%}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\noalign{Shortcut formula (if there are only two different kinds of numbers in the box):}
+\mbox{SD}_{\mbox{\footnotesize box}} &=
+  \left(\mbox{big \#} - \mbox{small \#}\right)\,\sqrt{
+  \left(\begin{array}{c}\mbox{fraction of}\\ \mbox{tickets with the}\\ \mbox{big number}\end{array}\right)
+  \left(\begin{array}{c}\mbox{fraction of}\\\mbox{tickets with the}\\\mbox{small number}\end{array}\right)}\\[10pt]
+%
+\mbox{95\% confidence interval} &= \mbox{observed} \;\pm\; 2\,\mbox{SE}\\[10pt]
+z &= \frac{\mbox{observed} - \mbox{expected}}{\mbox{standard error}}
+\end{align*}
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VERSION III %%%%%%%%%%%%%%%%
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %16 November 2011
+\end{tabular}
+}
+\begin{center}
+\textbf{\large  Exam IV}
+\end{center}
+%No books, notes or electronic devices may be used on this exam.
+\medskip
+
+1. (25 points) A survey is conducted of 100 freshmen at public universities.
+Among the surveyed  students, 20\% (or 1/5) work at least 15 hours per week for pay.
+
+\hspace{20pt} a) Find a 95\% confidence interval
+on the  percent of freshmen at public universities who work at least 15 hours per week for pay.
+\vspace{2.3in}
+
+\hspace{20pt} b) True or false and explain:  There is a 95\% chance that the
+percent among \textit{all} freshmen at public universities is in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} c) True or false and explain:  There is a 95\% chance that
+if a second sample of 100 freshmen were taken,
+the sample percent would be in the range you found in a).
+\vspace{1.5in}
+
+
+\hspace{20pt} d) True or false and explain:  There is a 95\% chance that 
+ among all 18--20 year olds, the percent who work at least 15 hours per week for pay 
+is in the range you found in a).
+\vspace{1in}
+\vfill
+\eject
+{\ }
+
+
+
+2. (15 points)
+Would taking the average of 25 measurements decrease
+the likely size of the chance error by a factor of 5, 10 or 25? Justify your answer.
+\vspace{1.5in}
+
+3. (15 points) A surveyor is measuring the distances between five points $A$, $B$, $C$,
+$D$, and $E$ along a straight line.  She finds that each of the four distances measures one mile, give or take an inch or so.  The distance from $A$ to $E$ is about four miles; 
+but the estimate is likely to be off by around:  
+4~inches, 2~inches, 1~inch, 1/2~inch or 1/4~inch. Justify your answer.\vspace{-5pt}
+
+\[\xymatrix{
+A\ar@{-}[r] & B\ar@{-}[r] & C\ar@{-}[r] & D\ar@{-}[r] & E}\]
+\vspace{2in}
+
+
+4.  (20 points) The Zorro News Organization reports that  50\%
+of freshmen at public universities  work 15 hours a week for pay.
+If that is report is accurate, approximately what is the chance of getting a sample
+percent as low as or lower than 20\% (as we did in \#1)?  Hint:  calculate $z$ then a $p$-value (area under the normal curve).
+\vfill
+\eject
+
+
+5. (25 points) Five hundred draws are made at random from the box
+\begin{center}
+\begin{pspicture}(0,0.1)(4,0.3)
+\psline(0,0.5)(0,0)(4,0)(4,0.5)
+\rput[l](0.15,0.3){60,000\ \framebox{0}\,s}
+\rput[l](2.15,0.3){20,000\ \framebox{1}\,s}
+\end{pspicture}
+\end{center}
+Note that $\sqrt{0.25\times 0.75}\,/\sqrt{500} \approx 0.02$. True or false?  Explain your conclusions.
+\smallskip
+
+\begin{itemize}
+\item[i.] The expected value for the percentage of 1s among the draws is exactly 25\%.\\[1in]
+\item[ii.] The expected value for the percentage of 1s among the draws is around 25\%, give
+or take 2\% or so.\\[1in]
+\item[iii.] The percentage of 1s among the draws will be around 25\%, give or take 2\% or so.\\[1in]
+\item[iv.] The percentage of 1s among the draws will be exactly 25\%.\\[1in]
+\item[v.] The percentage of 1s in the box is exactly 25\%.\\[1in]
+\item[vi.] The percentage of 1s in the box is around 25\%, give or take 2\% or so.
+\end{itemize}
+
+\vfill
+\eject
+
+\begin{center}
+\textbf{\large Formula Sheet}
+\end{center}
+
+
+\begin{align*}
+\mbox{EV}_{\mbox{\footnotesize sum}} & = n\,\mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize sum}} & = \sqrt{n}\;\;\mbox{SD}_{\mbox{\footnotesize box}}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize av}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize av}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize \%}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize \%}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\noalign{Shortcut formula (if there are only two different kinds of numbers in the box):}
+\mbox{SD}_{\mbox{\footnotesize box}} &=
+  \left(\mbox{big \#} - \mbox{small \#}\right)\,\sqrt{
+  \left(\begin{array}{c}\mbox{fraction of}\\ \mbox{tickets with the}\\ \mbox{big number}\end{array}\right)
+  \left(\begin{array}{c}\mbox{fraction of}\\\mbox{tickets with the}\\\mbox{small number}\end{array}\right)}\\[10pt]
+%
+\mbox{95\% confidence interval} &= \mbox{observed} \;\pm\; 2\,\mbox{SE}\\[10pt]
+z &= \frac{\mbox{observed} - \mbox{expected}}{\mbox{standard error}}
+\end{align*}
+\vfill
+\eject
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VERSION IV %%%%%%%%%%%%%%%%
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %16 November 2011
+\end{tabular}
+}
+\begin{center}
+\textbf{\large  Exam IV}
+\end{center}
+%No books, notes or electronic devices may be used on this exam.
+\medskip
+
+1. (25 points) A survey is conducted of 100 freshmen at public universities.
+Among the surveyed  students, 80\% (or 4/5) work at least 5 hours per week for pay.
+
+\hspace{20pt} a) Find a 95\% confidence interval
+on the  percent of freshmen at public universities who work at least 5 hours per week for pay.
+\vspace{2.3in}
+
+\hspace{20pt} b) True or false and explain:  There is a 95\% chance that the
+percent among \textit{all} freshmen at public universities is in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} c) True or false and explain:  There is a 95\% chance that
+if a second sample of 100 freshmen were taken,
+the sample percent would be in the range you found in a).
+\vspace{1.5in}
+
+\hspace{20pt} d) True or false and explain:  There is a 95\% chance that 
+ among all 18--20 year olds, the percent who work at least 5 hours per week for pay 
+is in the range you found in a).
+\vspace{1in}
+\vfill
+\eject
+{\ }
+
+
+
+2. (10 points)
+Would taking the average of 25 measurements decrease
+the likely size of the chance error by a factor of 5, 10 or 25? Justify your answer.
+\vspace{1.5in}
+
+3. (15 points) A surveyor is measuring the distances between five points $A$, $B$, $C$,
+$D$, and $E$ along a straight line.  She finds that each of the four distances measures one mile, give or take an inch or so.  The distance from $A$ to $E$ is about four miles; 
+but the estimate is likely to be off by around:  
+4~inches, 2~inches, 1~inch, 1/2~inch or 1/4~inch. Justify your answer.\vspace{-5pt}
+
+\[\xymatrix{
+A\ar@{-}[r] & B\ar@{-}[r] & C\ar@{-}[r] & D\ar@{-}[r] & E}\]
+\vspace{2in}
+
+
+4.  (20 points) The Zorro News Organization reports that  85\%
+of freshmen at public universities  work 5 hours a week for pay.
+If that is report is accurate, approximately what is the chance of getting a sample
+percent as low as or lower than 80\% (as we did in \#1)?  Hint:  calculate $z$ then a $p$-value (area under the normal curve).
+\vfill
+\eject
+
+
+5. (20 points) Five hundred draws are made at random from the box
+\begin{center}
+\begin{pspicture}(0,0.1)(4,0.3)
+\psline(0,0.5)(0,0)(4,0)(4,0.5)
+\rput[l](0.15,0.3){20,000\ \framebox{0}\,s}
+\rput[l](2.15,0.3){60,000\ \framebox{1}\,s}
+\end{pspicture}
+\end{center}
+Note that $\sqrt{0.25\times 0.75}\,/\sqrt{500} \approx 0.02$. True or false?  Explain your conclusions.
+\smallskip
+
+\begin{itemize}
+\item[i.] The expected value for the percentage of 1s among the draws is exactly 75\%.\\[1in]
+\item[ii.] The expected value for the percentage of 1s among the draws is around 75\%, give
+or take 2\% or so.\\[1in]
+\item[iii.] The percentage of 1s among the draws will be around 75\%, give or take 2\% or so.\\[1in]
+\item[iv.] The percentage of 1s among the draws will be exactly 75\%.\\[1in]
+\item[v.] The percentage of 1s in the box is exactly 75\%.\\[1in]
+\item[vi.] The percentage of 1s in the box is around 75\%, give or take 2\% or so.
+\end{itemize}
+
+\vfill
+\eject
+
+6. (10 points) Find the specified area under the normal curve.  Write down the \texttt{R} command that you use.
+
+\hspace{10pt} a) $z>1.35$ 
+\bigskip
+\bigskip\bigskip\bigskip
+
+\hspace{10pt} b) $z<-2$
+\bigskip
+\bigskip\bigskip\bigskip
+
+\hspace{10pt} c) $-1.5 < z < 3.5$
+\vfill
+
+
+
+\begin{center}
+\textbf{\large Formula Sheet}
+\end{center}
+
+
+\begin{align*}
+\mbox{EV}_{\mbox{\footnotesize sum}} & = n\,\mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize sum}} & = \sqrt{n}\;\;\mbox{SD}_{\mbox{\footnotesize box}}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize av}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize av}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize \%}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize \%}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\noalign{Shortcut formula (if there are only two different kinds of numbers in the box):}
+\mbox{SD}_{\mbox{\footnotesize box}} &=
+  \left(\mbox{big \#} - \mbox{small \#}\right)\,\sqrt{
+  \left(\begin{array}{c}\mbox{fraction of}\\ \mbox{tickets with the}\\ \mbox{big number}\end{array}\right)
+  \left(\begin{array}{c}\mbox{fraction of}\\\mbox{tickets with the}\\\mbox{small number}\end{array}\right)}\\[10pt]
+%
+\mbox{95\% confidence interval} &= \mbox{observed} \;\pm\; 2\,\mbox{SE}\\[10pt]
+z &= \frac{\mbox{observed} - \mbox{expected}}{\mbox{standard error}}
+\end{align*}
+
+\vfill
+\eject
+6. (10 points) Find the specified area under the normal curve.  Write down the \texttt{R} command that you use.
+
+\hspace{10pt} a) $z<2.15$ 
+\bigskip
+\bigskip\bigskip\bigskip
+
+\hspace{10pt} b) $z>-1.75$
+\bigskip
+\bigskip\bigskip\bigskip
+
+\hspace{10pt} c) $-1.25 < z < 2.5$
+\vfill
+
+
+
+\begin{center}
+\textbf{\large Formula Sheet}
+\end{center}
+
+
+\begin{align*}
+\mbox{EV}_{\mbox{\footnotesize sum}} & = n\,\mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize sum}} & = \sqrt{n}\;\;\mbox{SD}_{\mbox{\footnotesize box}}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize av}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize av}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\mbox{EV}_{\mbox{\footnotesize \%}} & = \mbox{AV}_{\mbox{\footnotesize box}}\\
+\mbox{SE}_{\mbox{\footnotesize \%}} & = \mbox{SD}_{\mbox{\footnotesize box}}\,\big{/}\sqrt{n}\\[10pt]
+%
+\noalign{Shortcut formula (if there are only two different kinds of numbers in the box):}
+\mbox{SD}_{\mbox{\footnotesize box}} &=
+  \left(\mbox{big \#} - \mbox{small \#}\right)\,\sqrt{
+  \left(\begin{array}{c}\mbox{fraction of}\\ \mbox{tickets with the}\\ \mbox{big number}\end{array}\right)
+  \left(\begin{array}{c}\mbox{fraction of}\\\mbox{tickets with the}\\\mbox{small number}\end{array}\right)}\\[10pt]
+%
+\mbox{95\% confidence interval} &= \mbox{observed} \;\pm\; 2\,\mbox{SE}\\[10pt]
+z &= \frac{\mbox{observed} - \mbox{expected}}{\mbox{standard error}}
+\end{align*}
+
+
+\vfill
+\eject
+
+\newcommand{\threebox}[3]{\begin{pspicture}(0.2,0.2)(2.5,1.1)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){#1}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){#2}
+\psframe(2,0)(2.7,0.7)\rput(2.35,0.35){#3}
+\psline(-0.3,0.9)(-0.3,-0.2)(3,-0.2)(3,0.9)(-0.3,0.9)
+\end{pspicture}}
+
+
+5. (25 points) One hundred draws will be made at random with replacement
+from the box shown below.
+\begin{center}
+\threebox{0}{0}{1}
+\end{center}
+\bigskip
+Note that $\mbox{SD}_{\scriptsize \mbox{box}}=\sqrt{2}\,/\,3 = 0.47$.
+\bigskip
+
+
+\hspace{20pt} a) 
+The number of 1s among the draws will be around \underline{\hspace{45pt}} 
+give or take \underline{\hspace{45pt}}  or so.
+\vspace{2.5in}
+
+\hspace{20pt} b) 
+The percentage of 1s among the draws will be around \underline{\hspace{45pt}} 
+give or take \underline{\hspace{45pt}}  or so.
+\vspace{2.5in}
+
+\hspace{20pt} c) Roughly what is the probability that the percentage of 1s will 
+be over 38\%.
+
+
+
+
+\end{document}
+

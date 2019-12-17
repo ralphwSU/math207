@@ -1,0 +1,482 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.9in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{-.15in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,pst-func,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Review Exercises}
+\end{center}
+
+
+1. Four hundred draws are made at random with replacement from a box
+of numbered tickets;  150 are positive.  Someone tells you that
+50\% of the tickets in the box show positive numbers.  Do you believe it?  
+Answer yes or no, and explain using a $P$-value.  Then find a 95\% confidence interval
+for the percent of positive tickets in the box.
+\vspace{1.8in}
+
+
+2. With a perfectly balanced roulette wheel, in the long run, 
+red numbers should turn up 18 times in 38.
+To test its wheel, one casino records the results of 400 plays, finding 200 red
+numbers.
+%To test its wheel, one casino records the results of 3,800 plays, finding 1,890 red
+%numbers.  
+Is that too many reds?  Or chance variation?
+Formulate the null and alternative hypotheses as 
+statements about a box model.
+Compute $z$ and $P$.
+\vspace{1.5in}
+
+3. Tuddenham and Snyder obtained the following results for 66 California children
+at ages 6 and 18.  \vspace{-6pt}
+\begin{center}
+\begin{tabular}{rclrcl}
+average height at age 6 & $\approx$ & 3 feet 10 inches, & SD &$\approx$ & 1.7 inches\\
+average height at age 18 & $\approx$ & 5 feet 10 inches, & SD &$\approx$ & 2.5 inches
+  \hspace{10pt} $r\approx 0.80$\\
+\end{tabular}\vspace{-6pt}
+\end{center}
+The scatter diagram is football-shaped.  
+
+(a) Find the regression line and RMS error for predicting height at 18 from height at 6.
+\vspace{1in}
+
+(b) Find the regression line and RMS error for predicting height at 6 from height at 18.
+\vspace{1in}
+
+(c) Of children who were 4 feet at age 6, 95\% of those had heights
+at age 18 in what range?
+
+\vfill
+\eject
+\newcommand{\BL}{\underbar{\hspace{.5in}}}
+
+
+
+%\#1 from page 455.
+4.
+Laser altimeters can measure elevation to within a few inches, without bias,
+and with no trend or pattern to the measurements.
+As part of an experiment, 25 readings were made on the elevation of a mountain peak.
+These averaged out to 81,411 inches, and their SD was 30 inches. 
+
+\hspace{20pt} a) The elevation of the mountain peak is estimated 
+as \BL; this estimate is likely to be off by\vspace{-4pt}
+
+\hspace{20pt}\hphantom{f) } \BL\ or so.
+\bigskip
+\bigskip
+
+\hspace{20pt} b) (T/F) 81,411$\pm$ 12 inches is a 95\%-confidence interval for the elevation
+of the mountain peak. 
+\bigskip
+\bigskip
+
+\hspace{20pt} c) (T/F) 81,411$\pm$ 12 inches is a 95\%-confidence interval for 
+average of the 25 readings.
+
+\hspace{20pt} d) (T/F) There is about a 95\% chance that the next reading will be in 
+the range 81,411 $\pm$ 12 inches.
+
+\hspace{20pt} e) (T/F) About 95\% of the readings were in the range 81,411 $\pm$ 12 inches.
+
+\hspace{20pt} f) If another 25 readings are made, there is about a 95\% chance that their
+average will be in the range\vspace{-4pt}
+
+\hspace{20pt}\hphantom{f) } 81,411 $\pm$ 12 inches.
+\bigskip\bigskip
+
+5. A coin is to be flipped 100 times. What is the chance of 
+getting exactly 97 heads?  Simplify your answer as much as possible.
+What is the chance of getting at least 97 heads?
+\vspace{1.5in}
+
+
+6.  A spectrophotometer is correctly calibrated if its average measurement is~70~ppm.
+Three test measurements are taken.  The values are 71, 83, and 74.  Use  a
+$t$-test to see whether the instrument is correctly calibrated.  
+State the null and alternative hypothesis. Calculate the $P$ value.
+(Hint:  $\sqrt{39}\approx 6$.)  Use the table and plot below to calculate
+areas under  $t$-distributions.
+\smallskip
+
+\begin{tabular}{ccc}
+\begin{tabular}{|c|cccc|}\hline
+Degrees\vphantom{\LARGE Y} & &&&\\
+of      & &\rput(20pt, 10pt){$t$}&&\\
+Freedom & $-2.0$ & $-1.5$ & $-1.0$ & $-0.5$\\[3pt]\hline
+1       & $0.148$ & $0.187$ & $0.250$ & $0.352$\vphantom{\LARGE Y}\\
+2       & $0.092$ & $0.136$ & $0.211$ & $0.333$\\
+3       & $0.070$ & $0.115$ & $0.196$ & $0.326$\\\hline
+\end{tabular}
+&\hspace{1in} &
+\definecolor{lg}{rgb}{.8,.8,.8}
+\begin{pspicture}(-2.5,0.5)(2.5,1.5)
+\psframe[linewidth=0.02](-3.2,-0.88)(3.2,2.05)
+\rput(0,1.7){$t$ distribution with $2$ degrees of freedom}
+\psset{yunit=4}
+\pscustom[linestyle=none,fillstyle=solid,fillcolor=lg]{%
+\psTDist*[linewidth=0,linecolor=blue,nue=2]{-2.25}{-0.5}
+\psline(-0.5,0.2963)(-0.5,0)(-2.25,0)(-2.25,0.0533)
+}
+\psTDist[linecolor=blue,nue=2]{-2.25}{2.25}
+\psline{<->}(-2.5,0)(2.5,0)
+\psline(-0.5,0)(-0.5,-0.05)\rput[t](-0.5,-0.08){\footnotesize$-0.5\hphantom{-}$}
+\psline(-2,0)(-2,-0.05)    \rput[t](-2,-0.08){\footnotesize$-2\hphantom{-}$}
+\psline(-1,0)(-1,-0.05)   % \rput[tr](-1,-0.08){\footnotesize$-1$}
+\psline(0,0)(0,-0.05)      \rput[t]( 0,-0.08){\footnotesize$0$}
+\psline(1,0)(1,-0.05)      \rput[t]( 1,-0.08){\footnotesize$1$}
+\psline(2,0)(2,-0.05)      \rput[t]( 2,-0.08){\footnotesize$2$}
+\psbezier{->}(-6.13,-0.05)(-4,0.3)(-2,0.5)(-1,0.1)
+\end{pspicture}
+\end{tabular}
+\vspace{2in}
+\vfill
+\eject
+
+%\#4 from page 506.
+7. A study reports that freshmen at public universities work 10.2 hours a week for pay,
+on average, and the SD is 8.5 hours;
+at private universities, the average is 8.1 hours and the SD is 6.9 hours.
+Assume these data are based on two independent simple random samples, each of
+size 1,000.  Is the difference between the
+averages due to chance?  If not, what else might explain it?
+\vspace{2in}
+
+8.
+Suppose that you take a large number of independent random samples from a box of numbered
+tickets.
+Fill in the blanks.
+
+\begin{itemize}
+\item[a)] The histogram of the averages of the samples will
+  will look approximately like a \underbar{\hspace{1.2in}}.\vspace{.2in}
+\item[b)] The histogram of the sums of the  samples will
+  will look approximately like a \underbar{\hspace{1.2in}}.\vspace{.2in}
+  
+\item[c)] Suppose that the tickets are all 0s and 1s.  The histogram of the
+  percent of 1s in the  samples will
+  will look approximately like a \underbar{\hspace{1.2in}}.
+\end{itemize}
+\medskip
+
+9.  One hundred draws will be made at random with replacement from
+the box
+\begin{center}
+\begin{tabular}{|cccccc|}
+0 &0 & 2 & 2 & 2 & 6\\\hline
+\end{tabular}
+\end{center}
+
+\hspace{10pt} a) What is the smallest that the sum can be?
+\vspace{.5in}
+
+\hspace{10pt} b) What is the largest that the sum can be?
+\vspace{.5in}
+
+\hspace{10pt} c) The sum of the draws will be around \underline{\hspace{1in}},
+give or take \underline{\hspace{1in}} or so.  %Justify your answers.
+\vspace{1in}
+
+\hspace{10pt} d) The chance that the sum will be less than 175 is around
+\underline{\hspace{1in}} \%.  Justify your answer.
+
+
+\vfill
+\eject
+
+10.  An experiment consists of rolling a die 900 times and recording how often
+the die shows 1 or 6.
+
+\hspace{10pt} a) Write down a box model to represent the experiment.
+\vspace{.5in}
+
+\hspace{10pt} b) Compute the mean and SD of the box.
+\vspace{1in}
+
+\hspace{10pt} c) What is the expected number of times the die will show a 1 or 6?
+\vspace{1in}
+
+\hspace{10pt} d) What expected percentage of times the die will show a 1 or 6?
+\vspace{1in}
+
+\hspace{10pt} e) The number of times that the die will show a 1 or a six 
+will be around \underline{\hspace{1in}},\vspace{10pt}
+
+\hspace{10pt}\hphantom{e) }give or take \underline{\hspace{1in}} or so.  %Justify your answers.
+\vspace{1.5in}
+
+\hspace{10pt} f) The chance that the percent of times will be between 31\% and 35\% is about
+\underline{\hspace{1in}} \%.  
+\vfill
+\eject
+
+\begin{center}
+\textbf{\large Solutions}
+\end{center}
+
+1. The observed fraction is $150/400=37.5\%$.  
+The null hypothesis is that 50\% of the tickets are positive and that the difference between
+the expected and observed values is due to chance.  If the null hypothesis is true, then
+the SD of the box is $\sqrt{0.5\times 0.5}=0.5$.  So, the expected value of the percent of
+positives is 50\% and the SE is $0.5/\sqrt{400}=2.5\%$.  That gives a $z$-score of 
+$(37.5-50)/2.5=-5$.  The $p$-value is $\mbox{pnorm}(-5)\approx 0.000003\%$.  That supports the 
+alternative hypothesis.  So, I don't believe the 50\% claim. 
+
+To get a 95\% confidence interval on the true percent of positives, use $37.5\%$ to compute 
+$\mbox{SD}=\sqrt{0.375\times (1-0.375)}=0.47$ and $\mbox{SE}=0.47/\sqrt{400}=2.35\%$.  So,
+the confidence interval is $37.5\% \pm 2\times 2.35\% = 37.5\% \pm 4.7\%$.
+\medskip
+
+2. The observed percent of reds is $200/400=50\%$.  The box model has 18 ones (representing the reds)
+and 20 zeros (representing the other possibilities).  The average of the box is $18/38 = 47.37\%$
+and its SD is $\sqrt{.4737\times (1-.4737)}\approx 0.5$.  The expected value for the percent of
+reds is 47.37\% and the SE for 400 spins is $0.5/\sqrt{400}=2.5\%$.  The null hypothesis is that
+the observed difference (50\% vs 47.37\%) is due to chance.  The alternative is that the 
+difference is not due to chance.  The $z$-score is $(50-47.37)/2.5 = 1.052$ and the
+$p$-value is $1 - \mbox{pnorm}(1.052)=14.6\%$.  This supports the null hypothesis.  The roulette
+wheel seems to be working correctly.
+\medskip
+
+3. a) Use the age 18 data for $y$ and the age 6 data for $x$. 
+The regression line is $y-70 = 0.8\times (2.5/1.7)\times (x - 46)$
+That is $ y - 70 = 1.18\,(x - 46)$.  The RMS error is $\mbox{SD}_y\sqrt{1-r^2}=
+2.5\,\sqrt{1- 0.8^2} = 1.5$ inches.
+
+b) Use the age 6 data for $y$ and the age 18 data for $x$. 
+The regression line is $y-46 = 0.8\times (1.7/2.5)\times (x - 70)$
+That is $ y - 46 = 0.544\,(x - 70)$.  The RMS error is $\mbox{SD}_y\sqrt{1-r^2}=
+1.7\,\sqrt{1- 0.8^2} = 1.02$ inches.
+
+c) Use the formulas from a).  If $x=48$ inches, then the predicted $y$ is
+72.36 inches.  95\% of the data should fall in the range $72.36\pm 2\times 1.5$ inches.
+\medskip
+
+4. a) First blank is the observed value:  81,411 inches.  The second blank is the 
+standard error:  $30/\sqrt{25}=6$ inches.
+
+b) True.  observed value $\pm$ 2 standard errors.
+
+c) False.  If we have 25 measurements, we can take their average.  There is no $\pm$.
+
+d)  False.  The SD for individual readings is 30 inches. So, this answer should be $\pm 60$ inches.
+
+e) False.  Same reason as d).
+ 
+f)  False.  We are 95\% sure that the true value will be in a confidence interval.  We don't
+have that confidence that the next average reading will be in our previous confidence interval.
+\medskip
+
+5. For exactly 97 heads, 
+$\displaystyle \frac{100!}{97!\, 3!}\,\left(\frac{1}{2}\right)^{97}\,\left(\frac{1}{2}\right)^{3}
+=\frac{100\cdot 99\cdot 98}{3\cdot 2}\left(\frac{1}{2}\right)^{100}
+=161,\!700\left(\frac{1}{2}\right)^{100}$  It's a really small number.  In R you can compute it
+with $\mbox{dbinom}(97, 100, 0.5)$.
+
+For 97 or more heads, 
+$\displaystyle \frac{100!}{97!\, 3!}\,\left(\frac{1}{2}\right)^{97}\left(\frac{1}{2}\right)^{3}
+\; +\;\frac{100!}{98!\, 2!}\,\left(\frac{1}{2}\right)^{98}\,\left(\frac{1}{2}\right)^{2} \;+\;
+\frac{100!}{99!\, 1!}\,\left(\frac{1}{2}\right)^{99}\,\left(\frac{1}{2}\right)^{1}\; +\;
+\frac{100!}{100!\, 0!}\,\left(\frac{1}{2}\right)^{100}\,\left(\frac{1}{2}\right)^{0}$
+which is $(161,\!700 + 4950 + 100 + 1)\,(1/2)^{100}$.
+\medskip
+
+6.  The observed average is $(71 + 83 + 74)/3 = 76$.  The observed sd is
+$\sqrt{\frac{(71-76)^2 + (83-76)^2 + (74-76)^2}{2}}=6.2$.  The standard error (SE)
+is $6.2/\sqrt{3}=3.6$.  
+The null hypothesis is that
+the difference between the observed (76) and expected (70) averages is due to chance.
+The alternative is that the difference is not due to chance.  The test statistic
+is $(76-70)/3.6 = 1.7$.  The $p$-value is $1 - \mbox{pt}(1.7, \, \mbox{df}=2)=11.6\%$.
+This supports the null hypothesis.
+\medskip
+
+7. This is a two-sample $z$-test.  Box $A$ contains work hours for freshmen at public universities.
+Box $B$ contains work hours for freshmen at private universities.  The sample from box $A$ had
+average 10.2 hours and SD of 8.5 hours. The sample from box $B$ had average 8.1 hours and SD of 6.9
+hours.  The SEs for the two boxes are estimated to be $8.5/\sqrt{1000}=0.27$ hours and
+$6.9/\sqrt{1000}=0.22$ hours.  The SE for the difference is $\sqrt{0.27^2 + 0.22^2} = 0.35$ hours.
+This gives a $z$-score of $(10.2 - 8.1)/0.35 = 6$.  The $p$-value is $1-\mbox{pnorm}(6)\approx 0$.
+So, the difference is probably not due to chance.
+\vfill
+\eject
+
+8. By the Central Limit Theorem, the answer for each blank is \textit{normal curve}.
+\medskip
+
+9. a) $100\times 0 = 0$.
+
+b) $100\times 6 = 600$.
+
+c) The mean and SD of the box are both $2$.  The expected value of the sum is 
+$100\times 2 = 200$.  The standard error for the sum is $\sqrt{100}\times 2 = 20$.
+
+d) Convert 175 to a  $z$-score:  $(175-200)/20 = -1.25$.  So the answer is 
+$\mbox{pnorm}(-1.25)=10.6\%$.
+\medskip
+
+10. a) The box has 4 zeros (representing 2, 3, 4 and 5) and 2 ones (representing 1 and 6).
+
+b) The mean is $1/3$ and the SD is $\sqrt{2}/3 = 0.47$.  
+
+c) The expected value of the sum is $900\times (1/3) = 300$.  
+
+d) The expected value of the percent is 33.3\%.
+
+e)  The SE for the sum is $\sqrt{900}\, \sqrt{2}/3 = 30\,\sqrt{2}/3 = 10\sqrt{2}=14.1$.
+So, the answer is $300\pm 14.1$.
+
+f) The SE for the percent is $0.47/\sqrt{900} = 1.6\%$.
+Convert 31\% and 35\% to $z$-scores:  
+$(31-33.3)/1.6=-1.4$ and $(35-33.3)/1.6=1.1$.  So, the answer is
+$\mbox{pnorm}(1.1) - \mbox{pnorm}(-1.4)=78.4\%$.
+\vfill
+\eject
+\end{document}
+
+2.  The spinner for a game-of-chance is tested to see if it is balanced
+by spinning it $50$ times. 
+Use the data in the table below to test the null hypothesis that that spinner is
+fair (i.e.,~that the differences between the observed and expected frequencies are
+due to chance). Compute the $P$-value and discuss its significance.
+\begin{center}
+\begin{tabular}{ccc}
+\begin{pspicture}(-2,-2)(2,2)
+\pswedge*[linecolor=lightgray](0,0){2}{0}{72}
+\pswedge[hatchcolor=lightgray,fillstyle=crosshatch](0,0){2}{72}{144}
+\pswedge*[linecolor=white](0,0){2}{144}{216}
+\pswedge[hatchcolor=white,fillstyle=crosshatch*,fillcolor=lightgray](0,0){2}{216}{288}
+\pswedge[hatchcolor=lightgray,fillstyle=crosshatch](0,0){2}{288}{360}
+\pscircle(0,0){2}
+\SpecialCoor
+\rput{126}(1.6;36){\textbf{A}}
+\rput{198}(1.6;108){\textbf{B}}
+\rput{270}(1.6;180){\textbf{C}}
+\rput{-18}(1.6;252){\textbf{D}}
+\rput{54}(1.6;-36){\textbf{E}}
+\psset{linewidth=3pt}
+\psline{*->}(1.0;-20)(1.4;160)
+\pscircle[fillstyle=solid,linewidth=0.04,fillcolor=white](0,0){0.15}
+\end{pspicture}
+&
+\hspace{1in}
+&
+\begin{pspicture}(-2,-2)(2,2)
+\rput(0,0){\begin{tabular}{|c|c|}\hline
+        & observed\vphantom{\Large Y}\\
+  value & frequency\\[2pt]\hline
+    A   &  \Z8\vphantom{\Large Y}\\
+    B   &  12\\
+    C   & \Z7\\
+    D   & \Z9\\
+    E   & 14\\\hline
+\end{tabular}}
+\end{pspicture}
+\end{tabular}
+\end{center}
+\vfill
+{\small
+\begin{tabular}{|c|rrrrrrr|}\hline
+df & 0.5 & 1.0 & 1.5 & 2.0\rput(-19pt,20pt){Table entries are area to the right of the given $\chi^2$ value} & 2.5 & 3.0 & 3.5\vphantom{\Large Y}\\\hline
+1 &  0.48 & 0.32 & 0.22 & 0.16 & 0.11 & 0.08 & 0.06\vphantom{\Large Y}\\
+2 &  0.78 & 0.61 & 0.47 & 0.37 & 0.29 & 0.22 & 0.17\\
+3 &  0.92 & 0.80 & 0.68 & 0.57 & 0.48 & 0.39 & 0.32\\
+4  & 0.97 & 0.91 & 0.83 & 0.74 & 0.64 & 0.56 & 0.48\\
+5  & 0.99 & 0.96 & 0.91 & 0.85 & 0.78 & 0.70 & 0.62\\
+6  & 1.00 & 0.99 & 0.96 & 0.92 & 0.87 & 0.81 & 0.74\\\hline
+\end{tabular}}
+\eject
+
+\end{document}
+
+
+\#3 from page 444.  (Hypothetical)  The British Imperial Yard is sent to Paris for calibration
+against The Meter.  The length is determined 100 times.  This sequence of
+measurements averages out to 91.4402 cm, and the SD is 800 microns (a \textit{micron}
+is a millionth of a meter).
+
+\hspace{20pt} a) Is a single reading off by around 80 microns, or 800 microns?
+\bigskip
+
+\hspace{20pt} b) Is the average of all 100 readings off by around 80 microns, or 800 microns?
+\bigskip
+
+\hspace{20pt} c) Find a 95\%-confidence interval for the exact length of the
+Imperial Yard.
+\vspace{.5in}
+
+\#5 from page 253.
+The Bureau is about to weigh a one-kilogram checkweight 100 times, and take
+the average of the measurements.  They are willing to assume the
+Gauss model, with no bias, and on the basis of past experience they 
+estimate the SD of the error box to be 50 micrograms.
+
+\hspace{20pt} a) The average of all 100 measurements is likely to be off
+the exact weight by \BL\ or so.
+\bigskip
+
+\hspace{20pt} b) The SD of all 100 measurements is likely to be around \BL.
+\bigskip
+\bigskip
+
+\hspace{20pt} c) Estimate the probability that the average of all 100 measurements
+will be within 10 micrograms of the exact weight.
+\vspace{.7in}

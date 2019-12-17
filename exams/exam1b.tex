@@ -1,0 +1,425 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %19 September 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam I}
+\end{center}
+
+1. (Hypothetical)  In a clinical trial, data collection usually starts at
+\lq\lq baseline,\rq\rq\ when the subjects are 
+recruited into the trial but before they are randomized to 
+treatment or control.  Data collection continues until the end of the followup.
+Two clinical trials on prevention of heart attacks report baseline data 
+on weight, shown below.  In one of these trial, the randomization did not work.
+Which  one and why? (15~points)\vspace{-15pt}
+\newcommand{\Zc}{\hphantom{0,}}
+\begin{center}
+\begin{tabular}{cc}
+\begin{tabular}{l}
+\\
+\\
+\rput(-12pt,-3pt){(i)}
+Treatment\vphantom{\Large Y}\\
+Control\\[10pt]
+\rput(-12pt,-3pt){(ii)}
+Treatment\\
+Control
+\end{tabular}
+&
+\begin{tabular}{ccc}
+Number of & Average &\\
+persons & weight    & SD\\\hline
+1,012   & 185 lb    & 25 lb\vphantom{\Large Y}\\
+\Zc997  & 143 lb    & 26 lb\\[10pt]
+\Zc800  & 166 lb    & 27 lb\\
+1,002   & 162 lb    & 25 lb
+\end{tabular}
+\end{tabular}
+\end{center}
+\vspace{2.5in}
+
+2. In 2005, men averaged about 540 on the Math SAT.  
+Sketch a graph of the histogram of SAT scores.
+Estimate the percentage of 
+men who scored over 660.  About what range includes 95\% of the SAT scores?
+You may assume (i) that the histogram 
+followed the normal curve and (ii)~the SD was about 120. (30~points)
+\vfill
+\eject
+
+3. For the list 1, 3, 5, 7, 9, the mean is 5 and the SD is about 2.8.
+
+\hspace{20pt} a) What are the median, minimum, maximum, 25th percentile and the 75th percentile?
+(10 points)
+\vspace{2in}
+
+\hspace{20pt} b) What are the mean and SD of the list 5, 7, 9, 11, 13?  
+Explain briefly by relating this list to that in a).
+Explain briefly. (10 points)
+\vspace{2in}
+
+
+\hspace{20pt} c) Calculate the $z$-score for each of the data points in b). (10 points)
+\vspace{2in}
+
+\hspace{20pt} d) What are the mean and SD of the list 2, 6, 10, 14, 18?  Explain briefly. (5 points)
+\vfill
+\eject
+
+
+4. The table below shows results from two experiments designed to test the Salk vaccine in  1954.
+\vspace{-5pt}
+\begin{center}
+{%\footnotesize
+\begin{tabular}{cc}
+Randomized controlled          & \\
+double-blind experiment        & NFIP study\\
+   \begin{tabular}{lcc}\hline
+                 & Size      & Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Treatment  & \color{black}200,000   & {\color{black}{28}}\\
+      \color{black}Control    & \color{black}200,000   & {\color{black}{71}}\\
+      No consent & 350,000   & 46\\
+   \end{tabular}
+&\hspace{20pt}
+   \begin{tabular}{lcc}
+\hline
+                 & Size        &  Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Grade 2 (vaccine)\hfill        & \color{black}225,000 & 25\\
+      \color{black}Grades 1 and 3 (control)        & \color{black}725,000 & {\color{black}{54}}\\
+      Grade 2 (no consent)\hfill     & 125,000 & {\color{black}{44}}\\
+   \end{tabular}
+\end{tabular}}\vspace{-4pt}
+\end{center}
+{${}^*$Rate is number of cases per 100,000 subjects.}
+\smallskip
+
+Describe the treatment and control groups and how they were selected 
+in the two experiments.  
+What does \textit{consent} mean in the context of the experiments?
+Which rates demonstrate the vaccine's effectiveness in the two experiments 
+(there are two rates to compare for each experiment)?  
+Which experiment gave stronger evidence for the vaccine's effectiveness and why?
+What does \textit{double-blind} mean?
+What impact did the different sizes of the six groups have on your conclusions and why?
+(20 points)
+
+
+\vfill
+\eject
+
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %19 September 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam I}
+\end{center}
+
+1. (Hypothetical).  In a clinical trial, data collection usually starts at
+\lq\lq baseline,\rq\rq\ when the subjects are 
+recruited into the trial but before they are randomized to 
+treatment or control.  Data collection continues until the end of the followup.
+Two clinical trials on prevention of heart attacks report baseline data 
+on weight, shown below.  In one of these trial, the randomization did not work.
+Which  one and why?  (15~points)\vspace{-15pt}
+\begin{center}
+\begin{tabular}{cc}
+\begin{tabular}{l}
+\\
+\\
+\rput(-12pt,-3pt){(i)}
+Treatment\vphantom{\Large Y}\\
+Control\\[10pt]
+\rput(-12pt,-3pt){(ii)}
+Treatment\\
+Control
+\end{tabular}
+&
+\begin{tabular}{ccc}
+Number of & Average &\\
+persons & weight    & SD\\\hline
+1,012   & 185 lb    & 25 lb\vphantom{\Large Y}\\
+\Zc997  & 143 lb    & 26 lb\\[10pt]
+\Zc995  & 166 lb    & 27 lb\\
+1,017   & 163 lb    & 25 lb
+\end{tabular}
+\end{tabular}
+\end{center}
+\vspace{2.5in}
+
+2. In 2005, men averaged about 540 on the Math SAT.  
+Sketch a graph of the histogram of SAT scores.  Estimate the percentage of 
+men who scored over~420.  You may assume (i) that the histogram 
+followed the normal curve and (ii)~the SD was about~120.  (30~points)
+\vfill
+\eject
+
+
+3. For the list 1, 3, 5, 7, 9, the mean is 5 and the SD is about 2.8.
+
+\hspace{20pt} a) What are the median, minimum, maximum, 25th percentile and the 75th percentile?
+(10 points)
+\vspace{2in}
+
+\hspace{20pt} b) What are the mean and SD of the list 5, 7, 9, 11, 13?  
+Explain briefly by relating this list to that in a). (10 points)
+\vspace{2in}
+
+\hspace{20pt} c) Calculate the $z$-score for each of the data points in b). (10 points)
+\vspace{2in}
+
+\hspace{20pt} c) What are the mean and SD of the list 2, 6, 10, 14, 18?  Explain briefly. (5 points)
+\vfill
+\eject
+
+
+4. The table below shows results from two experiments designed to test the Salk vaccine in  1954.
+\vspace{-5pt}
+\begin{center}
+{%\footnotesize
+\begin{tabular}{cc}
+Randomized controlled          & \\
+double-blind experiment        & NFIP study\\
+   \begin{tabular}{lcc}\hline
+                 & Size      & Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Treatment  & \color{black}200,000   & {\color{black}{28}}\\
+      \color{black}Control    & \color{black}200,000   & {\color{black}{71}}\\
+      No consent & 350,000   & 46\\
+   \end{tabular}
+&\hspace{20pt}
+   \begin{tabular}{lcc}
+\hline
+                 & Size        &  Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Grade 2 (vaccine)\hfill        & \color{black}225,000 & 25\\
+      \color{black}Grades 1 and 3 (control)        & \color{black}725,000 & {\color{black}{54}}\\
+      Grade 2 (no consent)\hfill     & 125,000 & {\color{black}{44}}\\
+   \end{tabular}
+\end{tabular}}\vspace{-4pt}
+\end{center}
+{${}^*$Rate is number of cases per 100,000 subjects.}
+\smallskip
+
+Describe the treatment and control groups and how they were selected 
+in the two experiments.  
+What does \textit{consent} mean in the context of the experiments?
+Which rates demonstrate the vaccine's effectiveness in the two experiments 
+(there are two rates to compare for each experiment)?  
+Which experiment gave stronger evidence for the vaccine's effectiveness and why?
+What does \textit{double-blind} mean?
+What impact did the different sizes of the six groups have on your conclusions and why?
+(20 points)
+
+
+\vfill
+\eject
+\end{document}
+
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %19 September 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Exam I}
+\end{center}
+\medskip
+
+1. For the $(x,y)$ data shown in the table, do the following.
+
+\hspace{20pt} (a) Draw a scatter plot. (10 points)
+
+\hspace{20pt} (b) Calculate the correlation coefficient. (10 points)
+
+\hspace{20pt} (c) Find an equation for the SD line. (10 points)
+
+\hspace{20pt} (d) Plot the SD line.  (5 points)
+
+\rput(14.3,2){\begin{tabular}{|r|lllllll|}\hline
+$x$ & 1 & 2 & 3 & 4 & 5 & 6 & 7\vphantom{\Large Y}\\[3pt]
+$y$ & 6 & 7 & 5 & 4 & 3 & 1 & 2\\[1pt]\hline
+\end{tabular}}
+
+\vfill
+\eject
+2. (Hypothetical).  In a clinical trial, data collection usually starts at
+\lq\lq baseline,\rq\rq\ when the subjects are 
+recruited into the trial but before they are randomized to 
+treatment or control.  Data collection continues until the end of the followup.
+Two clinical trials on prevention of heart attacks report baseline data 
+on weight, shown below.  In one of these trial, the randomization did not work.
+Which  one and why?  (15~points)\vspace{-15pt}
+\begin{center}
+\begin{tabular}{cc}
+\begin{tabular}{l}
+\\
+\\
+\rput(-12pt,-3pt){(i)}
+Treatment\vphantom{\Large Y}\\
+Control\\[10pt]
+\rput(-12pt,-3pt){(ii)}
+Treatment\\
+Control
+\end{tabular}
+&
+\begin{tabular}{ccc}
+Number of & Average &\\
+persons & weight    & SD\\\hline
+1,012   & 169 lb    & 25 lb\vphantom{\Large Y}\\
+\Zc997  & 167 lb    & 26 lb\\[10pt]
+\Zc995  & 188 lb    & 27 lb\\
+1,017   & 148 lb    & 25 lb
+\end{tabular}
+\end{tabular}
+\end{center}
+\vspace{1.5in}
+
+3. In 2005, women averaged about 500 on the Math SAT.  
+Sketch a graph of the histogram of SAT scores.
+Estimate the percentage of 
+women who scored over~620.  
+About what range includes 95\% of the SAT scores?
+You may assume (i) that the histogram 
+followed the normal curve and (ii)~the SD was about~120.  (30~points)
+\vspace{2.25in}
+
+4. For the list 1, 3, 5, 7, 9, the mean is 5 and the SD is about 2.8.
+
+\hspace{20pt} a) What are the median, minimum, maximum, 25th percentile and the 75th percentile?
+(5 points)
+\vspace{1in}
+
+\hspace{20pt} b) What are the mean and SD of the list 4, 6, 8, 10, 12?  
+Explain briefly by relating this list to that in a).
+Explain briefly. (5 points)
+\vspace{0.75in}
+
+\hspace{20pt} c) What are the mean and SD of the list 3, 9, 15, 21, 27?  Explain briefly. (5 points)
+\vfill
+\eject
+
+
+4. The table below shows results from two experiments designed to test the Salk vaccine in  1954.
+\vspace{-5pt}
+\begin{center}
+{%\footnotesize
+\begin{tabular}{cc}
+Randomized controlled          & \\
+double-blind experiment        & NFIP study\\
+   \begin{tabular}{lcc}\hline
+                 & Size      & Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Treatment  & \color{black}200,000   & {\color{black}{28}}\\
+      \color{black}Control    & \color{black}200,000   & {\color{black}{71}}\\
+      No consent & 350,000   & 46\\
+   \end{tabular}
+&\hspace{20pt}
+   \begin{tabular}{lcc}
+\hline
+                 & Size        &  Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{black}Grade 2 (vaccine)\hfill        & \color{black}225,000 & 25\\
+      \color{black}Grades 1 and 3 (control)        & \color{black}725,000 & {\color{black}{54}}\\
+      Grade 2 (no consent)\hfill     & 125,000 & {\color{black}{44}}\\
+   \end{tabular}
+\end{tabular}}\vspace{-4pt}
+\end{center}
+{${}^*$Rate is number of cases per 100,000 subjects.}
+\smallskip
+
+Describe the treatment and control groups and how they were selected 
+in the two experiments.  
+What does \textit{consent} mean in the context of the experiments?
+Which rates demonstrate the vaccine's effectiveness in the two experiments 
+(there are two rates to compare for each experiment)?  
+Which experiment gave stronger evidence for the vaccine's effectiveness and why?
+What does \textit{double-blind} mean?
+What impact did the different sizes of the six groups have on your conclusions and why?
+(20 points)
+
+\vfill
+\eject
+
+\end{document}

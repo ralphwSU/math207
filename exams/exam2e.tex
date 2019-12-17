@@ -1,0 +1,309 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %19 October 2011
+\end{tabular}
+}
+
+\begin{center}
+\textbf{\large  Exam II}
+\end{center}
+No books, notes or electronic devices may be used on this exam.
+\medskip
+
+1. (35 points) In a certain class, midterm scores average out to 75 with an SD of 15.  Scores
+on the final average out to 70 with an SD of 15.
+The correlation between midterm scores and final scores is 
+about~$0.50$.   
+
+\hspace{20pt} a) Write down the equation for the regression line to predict final exam score
+from midterm score. %(10 points)
+\vspace{1.2in}
+
+\hspace{20pt} b) Sketch the regression line. %(5 points)
+\vspace{1.5in}
+
+\hspace{20pt} c) 
+Estimate the  final exam scores for students whose midterm scores were
+85, 45 and 75. %(10 points)
+\vspace{2.5in}
+
+\hspace{20pt} d) Estimate the midterm score for a student who scored 90 on the final exam.
+%(5 points)
+\vfill
+\eject
+{\ }
+
+
+%\#7 page 144 (word problem about correlation)
+%\#8 page 155 (word problem about correlation)
+2. (15 points) 
+
+\hspace{20pt} a) For a representative sample of cars, would the correlation between the
+age of the car and its gasoline economy (miles per gallon) be positive or negative?  Explain
+\vspace{1.75in}
+
+\hspace{20pt} b ) The correlation between gasoline economy and income of owner turns out to 
+be positive?  How do you account for this association?
+\vspace{2in}
+
+
+
+
+3. (10 points) Test scores on a certain exam average out to 75 with a standard 
+deviation of 10.  One student scored 84.   Was that a very high score?  Moderately high?  
+Or about average?  Justify your answer.
+\vfill
+\eject
+
+ (15 points)\vspace{-15pt}
+
+4. Consider the following data.
+\begin{tabular}{|c|c|}\hline
+$x$ & $y$\\\hline
+0   & 2\\
+1   & 4\\
+2   & 3\\\hline
+\end{tabular}
+
+\hspace{10pt} a) Make a scatter plot of the data.  
+\vspace{1.5in}
+
+\hspace{10pt} b) An investigator uses the line $y=2\,x + 1$ to predict $y$ from $x$.
+Add the line to your sketch.
+\medskip
+
+\hspace{10pt} c) Calculate the RMS error for the line:
+$\displaystyle\sqrt{\frac{1}{n}\sum\left(\mbox{predicted $y$} - \mbox{actual $y$}\right)^2}$.
+\vspace{2.8in}
+
+
+5. (10 points) For women age 25 and over in the U.S. in 2005, the relationship between
+age and educational level (years of schooling completed) can be summarized as
+follows. 
+\begin{align*}
+\mbox{average age}         & \approx \mbox{50 years,}    & \mbox{SD} & \approx \mbox{16 years}\\[3pt]
+\mbox{average education level}  & \approx \mbox{13.2 years,}  & \mbox{SD} & \approx \mbox{3.0 years,
+   \hspace{15pt}} r\approx -0.2
+\end{align*}
+
+\hspace{20pt} a) True or false:  For women age 25 and older in the U.S. in 2005, older women tended 
+to be less\vspace{-5pt}
+
+\hspace{20pt} \hphantom{a) }  educated than younger ones.
+\vspace{.5in}
+
+\hspace{20pt} b) True or false, and explain:  as you get older, you become less educated.  
+If this statement is false,\vspace{-4pt}
+
+\hspace{20pt} \hphantom{a) }
+what could account for the negative correlation?  
+\vfill
+\eject
+
+
+6. (15 points) Suppose that the regression line of $y$ on $x$ 
+is \[y=\left(\frac{\sqrt{3}}{2}\right)\,\left(\frac{8}{\sqrt{3}}\right)\,(x-1)\] 
+where $\mbox{mean}_x=1$, $\mbox{mean}_y=0$, $\mbox{SD}_x=\sqrt{3}$, $\mbox{SD}_y=8$
+and $r=\sqrt{3}/2$.\vspace{3pt}
+
+\hspace{20pt} a) Calculate the RMS error for regression 
+$\mbox{RMS}=\mbox{SD}_y\,\sqrt{1-r^2}$.  What can you say about the RMS\vspace{-4pt}
+
+\hspace{20pt}\hphantom{b) } for the SD line?
+\vspace{3in}
+
+\hspace{20pt} b) If $x=4$, then we expect 95\% of the $y$-values to be
+between \ \underline{\hspace{60pt}} \ \ and \  \underline{\hspace{60pt}} \ .
+\vspace{2in}
+
+\vfill
+\eject
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %19 October 2011
+\end{tabular}
+}
+
+\begin{center}
+\textbf{\large  Exam II}
+\end{center}
+No books, notes or electronic devices may be used on this exam.
+\medskip
+
+1. (35 points) In a certain class, midterm scores average out to 70 with an SD of 15.  Scores
+on the final average out to 75 with an SD of 15.
+The correlation between midterm scores and final scores is 
+about~$0.50$.   
+
+\hspace{20pt} a) Write down the equation for the regression line to predict final exam score
+from midterm score. %(10 points)
+\vspace{1.2in}
+
+\hspace{20pt} b) Sketch the regression line. %(5 points)
+\vspace{1.5in}
+
+\hspace{20pt} c) 
+Estimate the  final exam scores for students whose midterm scores were
+80, 40 and 70. %(10 points)
+\vspace{2.5in}
+
+\hspace{20pt} d) Estimate the midterm score for a student who scored 95 on the final exam.
+%(5 points)
+\vfill
+\eject
+{\ }
+
+
+%\#7 page 144 (word problem about correlation)
+%\#8 page 155 (word problem about correlation)
+2. (15 points) 
+
+\hspace{20pt} a) For a representative sample of cars, would the correlation between the
+age of the car and its gasoline economy (miles per gallon) be positive or negative?  Explain
+\vspace{1.75in}
+
+\hspace{20pt} b ) The correlation between gasoline economy and income of owner turns out to 
+be positive?  How do you account for this association?
+\vspace{2in}
+
+
+
+
+3. (10 points) Test scores on a certain exam average out to 75 with a standard 
+deviation of 3.  One student scored 84.   Was that a very high score?  Moderately high?  
+Or about average?  Justify your answer.
+\vfill
+\eject
+
+ (15 points)\vspace{-15pt}
+
+4. Consider the following data.
+\begin{tabular}{|c|c|}\hline
+$x$ & $y$\\\hline
+0   & 2\\
+1   & 4\\
+2   & 3\\\hline
+\end{tabular}
+
+\hspace{10pt} a) Make a scatter plot of the data.  
+\vspace{1.5in}
+
+\hspace{10pt} b) An investigator uses the line $y=2\,x + 1$ to predict $y$ from $x$.
+Add the line to your sketch.
+\medskip
+
+\hspace{10pt} c) Calculate the RMS error for the line:
+$\displaystyle\sqrt{\frac{1}{n}\sum\left(\mbox{predicted $y$} - \mbox{actual $y$}\right)^2}$.
+\vspace{2.8in}
+
+
+5. (10 points) For women age 25 and over in the U.S. in 2005, the relationship between
+age and educational level (years of schooling completed) can be summarized as
+follows. 
+\begin{align*}
+\mbox{average age}         & \approx \mbox{50 years,}    & \mbox{SD} & \approx \mbox{16 years}\\[3pt]
+\mbox{average education level}  & \approx \mbox{13.2 years,}  & \mbox{SD} & \approx \mbox{3.0 years,
+   \hspace{15pt}} r\approx -0.2
+\end{align*}
+
+\hspace{20pt} a) True or false:  For women age 25 and older in the U.S. in 2005, older women tended 
+to be less\vspace{-5pt}
+
+\hspace{20pt} \hphantom{a) }  educated than younger ones.
+\vspace{.5in}
+
+\hspace{20pt} b) True or false, and explain:  as you get older, you become less educated.  
+If this statement is false,\vspace{-4pt}
+
+\hspace{20pt} \hphantom{a) }
+what could account for the negative correlation?  
+\vfill
+\eject
+
+
+6. (15 points) Suppose that the regression line of $y$ on $x$ 
+is \[y=\left(\frac{\sqrt{3}}{2}\right)\,\left(\frac{8}{\sqrt{3}}\right)\,(x-1)\] 
+where $\mbox{mean}_x=1$, $\mbox{mean}_y=0$, $\mbox{SD}_x=\sqrt{3}$, $\mbox{SD}_y=8$
+and $r=\sqrt{3}/2$.\vspace{3pt}
+
+\hspace{20pt} a) Calculate the RMS error for regression 
+$\mbox{RMS}=\mbox{SD}_y\,\sqrt{1-r^2}$.  What can you say about the RMS\vspace{-4pt}
+
+\hspace{20pt}\hphantom{b) } for the SD line?
+\vspace{3in}
+
+\hspace{20pt} b) If $x=4$, then we expect 68\% of the $y$-values to be
+between \ \underline{\hspace{60pt}} \ \ and \  \underline{\hspace{60pt}} \ .
+\vspace{2in}
+
+
+
+\vfill
+\eject
+
+
+
+\end{document}
