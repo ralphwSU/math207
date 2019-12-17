@@ -1,0 +1,112 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.69cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %7 September 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Quiz 2}
+\end{center}
+\medskip
+
+
+1. (a) For each list below, calculate the mean and the SD.
+
+\hspace{10pt} (i) 1, 3, 4, 5, 7\vspace{2.5in}
+
+\hspace{10pt} (ii) 6, 8, 9, 10, 12\vspace{1.5in}
+
+\hphantom{1. } (b) How is list (ii) related to list (i)?  How does this
+relationship carry over to the mean?  the SD?
+\vspace{1.2in}
+
+2. Convert the values in 1(a)(i) to standard units.
+\vfill
+\eject
+{\ }
+
+3. Find the area under the normal curve.
+
+\hspace{10pt} a) between $-3$ and $1$
+\vspace{1.2in}
+
+\hspace{10pt} b) between $1$ and $3$
+\vspace{1.2in}
+
+\hspace{10pt} c) left of $z=2.5$
+\vspace{1.2in}
+
+\hspace{10pt} d) between $z=-2.5$ and  $z=2.5$
+\vspace{1.2in}
+
+4. Scores on an exam average out to 500 with an SD of 10.  Assume the  scores follow a
+normal curve.
+
+\hspace{10pt} a) About what percent of the scores were below 520?
+\vspace{1.2in}
+
+\hspace{10pt} b) What score is better than 75\% of all scores?
+\vfill
+\eject
+
+\end{document}
+

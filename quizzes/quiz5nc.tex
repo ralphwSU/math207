@@ -1,0 +1,282 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.79cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & %7 October 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Probability Calculation Exercises}
+\end{center}
+
+1. Three cards are dealt from a well-shuffled deck.
+\smallskip
+
+\hspace{20pt} a) Find the chance that all the cards are diamonds.
+\vspace{0.75in}
+
+\hspace{20pt} b) Find the chance that none of the cards are diamonds.
+\vspace{0.75in}
+
+\hspace{20pt} c) Find the chance that the cards are not all diamonds.
+\vspace{0.75in}
+
+\hspace{20pt} d) Find the chance that the third card is a 10.
+\vspace{0.75in}
+
+\hspace{20pt} e) Find the chance that the third card is a 10 given that the first two 
+were $J\clubsuit$ and $2\heartsuit$.
+\vspace{0.75in}
+
+\hspace{20pt} f) Find the chance that the second card is a three or a $\spadesuit$.
+\vspace{0.75in}
+
+\hspace{20pt} g) Let $A$ be the event that the first card is a $\clubsuit$. 
+Describe an event $B$ for which $A$ and $B$ are\vspace{-3pt}
+
+\hspace{20pt} \hphantom{g) } independent.
+\vspace{1in}
+
+\hspace{20pt} h) Let $A$ be the event that the first card is a $\clubsuit$. 
+Describe an event $B$ for which $A$ and $B$ are mutually\vspace{-3pt}
+
+\hspace{20pt} \hphantom{g) } exclusive.
+\vfill
+\eject
+
+2. One ticket will be drawn at random from each of the two boxes shown below.
+\begin{center}
+\begin{tabular}{ccccc}
+(A) & 
+\begin{pspicture}(0,0)(3,0.5)
+\psline(0,0.5)(0,-0.2)(3,-0.2)(3,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{3}}
+\end{pspicture}
+&\hspace{1in} &
+(B) &
+\begin{pspicture}(0,0)(4,0.5)
+\psline(0,0.5)(0,-0.2)(4,-0.2)(4,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{3}}
+\rput(3.5,0.15){\psframebox{4}}
+\end{pspicture}
+\end{tabular}
+\end{center}
+
+Find the chance that:
+\smallskip
+
+\hspace{20pt} a) The number drawn from (A) is larger than the one from (B).
+\vspace{1in}
+
+\hspace{20pt} b) The number drawn from (A) equals the one from (B).
+\vspace{1in}
+
+\hspace{20pt} c) The number drawn from (A) is smaller than the one from (B).
+\vspace{1in}
+
+\newcommand{\ticket}[2]{\psframe(0,0)(0.5,0.5)\psframe(0.5,0)(1,0.5)\rput(0.25,0.25){#1}\rput(0.75,0.25){#2}}
+3. In the box shown below, each ticket should have two numbers:
+\begin{center}
+\begin{pspicture}(0,0)(15,0.5)
+\rput(0,0){\ticket{1}{}}
+\rput(2,0){\ticket{1}{2}}
+\rput(4,0){\ticket{1}{2}}
+\rput(6,0){\ticket{1}{3}}
+\rput(8,0){\ticket{3}{1}}
+\rput(10,0){\ticket{3}{2}}
+\rput(12,0){\ticket{3}{}}
+\rput(14,0){\ticket{3}{}}
+\psline(-0.2,0.6)(-0.2,-0.2)(15.2,-0.2)(15.2,0.6)
+\end{pspicture}
+\end{center}
+
+A ticket will be drawn at random.  Can you fill in the blanks so that 
+the two numbers are independent?
+\vspace{1in}
+
+4. A box has 9 green beads and one red bead.  Three beads are drawn at random with replacement.
+Find the probability that a two red beads will be drawn.
+
+\vfill
+\eject          
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.79cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & \\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  More Probability Exercises}
+\end{center}
+
+1. Three cards are dealt from a well-shuffled deck.
+\smallskip
+
+\hspace{20pt} a) Find the chance that none of the cards are hearts.
+\vspace{0.75in}
+
+\hspace{20pt} b) Find the chance that all the cards are hearts.
+\vspace{0.75in}
+
+\hspace{20pt} c) Find the chance that the third card is a 7.
+\vspace{0.75in}
+
+\hspace{20pt} d) Find the chance that the cards are not all hearts.
+\vspace{0.75in}
+
+\hspace{20pt} e) Find the chance that the third card is a 7 given that the first two 
+were $K\heartsuit$ and $3\spadesuit$.
+\vspace{0.75in}
+
+\hspace{20pt} f) Find the chance that the second card is an ace or a $\heartsuit$.
+\vspace{0.75in}
+
+\hspace{20pt} g) Let $A$ be the event that the first card is a $\diamondsuit$. 
+Describe an event $B$ for which $A$ and $B$ are\vspace{-3pt}
+
+\hspace{20pt} \hphantom{g) } independent.
+\vspace{1in}
+
+\hspace{20pt} h) Let $A$ be the event that the first card is a $\spadesuit$. 
+Describe an event $B$ for which $A$ and $B$ are mutually\vspace{-3pt}
+
+\hspace{20pt} \hphantom{g) } exclusive.
+\vfill
+\eject
+
+2. One ticket will be drawn at random from each of the two boxes shown below.
+\begin{center}
+\begin{tabular}{ccccc}
+(A) & 
+\begin{pspicture}(0,0)(4,0.5)
+\psline(0,0.5)(0,-0.2)(4,-0.2)(4,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{3}}
+\rput(3.5,0.15){\psframebox{4}}
+\end{pspicture}
+&\hspace{1in} &
+(B) &
+\begin{pspicture}(0,0)(3,0.5)
+\psline(0,0.5)(0,-0.2)(3,-0.2)(3,0.5)
+\rput(0.5,0.15){\psframebox{1}}
+\rput(1.5,0.15){\psframebox{2}}
+\rput(2.5,0.15){\psframebox{3}}
+\end{pspicture}
+\end{tabular}
+\end{center}
+
+Find the chance that:
+\smallskip
+
+\hspace{20pt} a) The number drawn from (A) equals the one from (B).
+\vspace{1in}
+
+\hspace{20pt} b) The number drawn from (A) is larger than the one from (B).
+\vspace{1in}
+
+\hspace{20pt} c) The number drawn from (A) is smaller than the one from (B).
+\vspace{1in}
+
+3. In the box shown below, each ticket should have two numbers:
+\begin{center}
+\begin{pspicture}(0,0)(15,0.5)
+\rput(0,0){\ticket{5}{}}
+\rput(2,0){\ticket{5}{2}}
+\rput(4,0){\ticket{5}{2}}
+\rput(6,0){\ticket{5}{3}}
+\rput(8,0){\ticket{3}{1}}
+\rput(10,0){\ticket{3}{2}}
+\rput(12,0){\ticket{3}{}}
+\rput(14,0){\ticket{3}{}}
+\psline(-0.2,0.6)(-0.2,-0.2)(15.2,-0.2)(15.2,0.6)
+\end{pspicture}
+\end{center}
+
+A ticket will be drawn at random.  Can you fill in the blanks so that 
+the two numbers are independent?
+\vspace{1in}
+
+4. A box has 8 green beads and two red beads.  Three beads are drawn at random with replacement.
+Find the probability that a two green beads will be drawn.
+
+\vfill
+\eject          
+
+
+
+\end{document}
+

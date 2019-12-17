@@ -1,0 +1,196 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+\newcommand{\HH}{\hspace{20pt} \hphantom{a)} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.79cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & 11 November 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Quiz 7}
+\end{center}
+
+1. With a perfectly balanced roulette wheel, in the long run, 
+red numbers should turn up 18 times in 38.
+To test its wheel, one casino records the results of 3,800 plays, finding 1,890 red
+numbers.  Is that too many reds?  Or chance variation?
+
+\hspace{20pt} a) Formulate the null and alternative hypotheses as 
+statements about a box model.
+\vspace{1.5in}
+
+\hspace{20pt} b) The null says that the percentage of reds in the box is
+\underline{\hspace{30pt}}.  The alternative says that the\vspace{-4pt}
+
+\HH percentage of reds in the box is 
+\underline{\hspace{30pt}}.
+\bigskip
+\bigskip
+
+
+\hspace{20pt} c) True or false and explain:
+If the $z$ score for the test is $2.9$ and the $P$-value is $0.2$\%
+then there is\vspace{-4pt}
+
+\HH only a $0.2$\% chance that the null hypothesis is true.
+\vspace{.5in}
+
+2. A news agency conducts a political poll of 400 registered voters and finds that
+  2/3 favor the Workers' Party candidate.  
+
+\hspace{20pt} a) Find a 95\% confidence interval on 
+  the percentage of all registered voters who favor that candidate.\vspace{-4pt}
+
+\HH (Hint $\sqrt{(2/3)\,(1/3)}\approx 0.47$.)
+\vspace{2in}
+
+\hspace{20pt} b) In the election, it turns out that the Workers' Party candidate loses.
+Give two possible explanations.
+
+\vfill
+\eject
+{\ }
+
+3. One kind of plant has only blue flowers and white flowers.  According to a 
+genetic model, the offsprings of a certain cross have a 75\% chance
+to be blue-flowering.  One hundred seeds of such a cross are raised, and
+71 turn out to be blue-flowering.  Are the data consistent with the model?  
+Answer yes or no,  explain briefly and justify your 
+answer. (Hint:  $\sqrt{(1/4)*(3/4)} \approx 0.4$.)
+\vfill
+\eject
+
+\href{http://www.shepherd.edu}{\includegraphics[height=1.75cm]{logo-high-res.eps}}
+\vspace{-1.79cm}
+
+{\small
+\begin{tabular}{cl}
+& Math 314\\
+& Statistics\\
+\hspace{5.28in} & 11 November 2011
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Quiz 7}
+\end{center}
+
+1. With a perfectly balanced roulette wheel, in the long run, 
+red numbers should turn up 18 times in 38.
+To test its wheel, one casino records the results of 3,800 plays, finding 1,890 red
+numbers.  Is that too many reds?  Or chance variation?
+
+\hspace{20pt} a) Formulate the null and alternative hypotheses as 
+statements about a box model.
+\vspace{1.5in}
+
+\hspace{20pt} b) The null says that the percentage of reds in the box is
+\underline{\hspace{30pt}}.  The alternative says that the\vspace{-4pt}
+
+\HH percentage of reds in the box is 
+\underline{\hspace{30pt}}.
+\bigskip
+\bigskip
+
+
+\hspace{20pt} c) True or false and explain:
+If the $z$ score for the test is $2.9$ and the $P$-value is $0.2$\%
+then there is\vspace{-4pt}
+
+\HH only a $0.2$\% chance that the null hypothesis is true.
+\vspace{.5in}
+
+2. A news agency conducts a political poll of 400 registered voters and finds that
+  1/3 favor the Coffee Party candidate.  
+
+\hspace{20pt} a) Find a 95\% confidence interval on 
+  the percentage of all registered voters who favor that candidate.\vspace{-4pt}
+
+\HH (Hint $\sqrt{(2/3)\,(1/3)}\approx 0.47$.)
+\vspace{2in}
+
+\hspace{20pt} b) In the election, it turns out that the Coffee Party candidate wins.
+Give two possible explanations.
+
+\vfill
+\eject
+{\ }
+
+3. One kind of plant has only blue flowers and white flowers.  According to a 
+genetic model, the offsprings of a certain cross have a 75\% chance
+to be blue-flowering.  One hundred seeds of such a cross are raised, and
+79 turn out to be blue-flowering.  Are the data consistent with the model?  
+Answer yes or no,  explain briefly and justify your 
+answer. (Hint:  $\sqrt{(1/4)*(3/4)} \approx 0.4$.)
+\vfill
+\eject
+
+
+
+\end{document}
+
+
+
+
+\hspace{20pt} c) Compute $z$ and $P$.
+\vspace{3.5in}
+
+\hspace{20pt} d) Were there too many reds?  Justify your answer.

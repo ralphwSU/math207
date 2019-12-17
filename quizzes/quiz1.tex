@@ -1,0 +1,298 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Quiz 1}
+\end{center}
+\medskip
+\newcommand{\Z}{\hphantom{0}}
+
+1. A fair die is rolled 10 times.  The number of dots showing on the rolls
+was:  2, 1, 4, 4, 2, 4, 1, 3, 1, 5. On the back side of this page, 
+draw a histogram of this data.
+\vspace{.5in}
+
+2. A hypothetical population distribution is shown in the table below.
+
+{\ }\hspace{10pt}\begin{tabular}{cc}
+       & Percent of\\
+Age    & Population\\\hline
+0--5   & 20\vphantom{\Large Y}\\  % width=5, height=4
+\Z6--12  & 18\\  % width=6, height=3
+13--18 & 10\\  % width=5, height=2
+19--34 & 30\\  % width=15, height=2
+35--45 & 10\\  % width=10, height=1
+46--56 & \Z5\\ % width=10, height=1/2
+57--71 & \Z7   % width=14, height=1/2
+\end{tabular}
+\vspace{.5in}
+
+\hspace{5pt} a) Draw a histogram of the population distribution.  Label
+both the axes.
+
+\hspace{5pt} b) About what percent  of the population is between 31 and 33 years old?
+\vspace{.5in}
+
+%\hspace{5pt} c) About what percent  of the population is between 44 and 46 years old?
+%\vspace{.5in}
+
+3. (Hypothetical.)  In a clinical trial, data collection usually starts 
+at \lq\lq baseline,\rq\rq\ when the subjects are recruited into the trial 
+but before they are assigned to treatment or control.  Data collection continues 
+until the end of followup.  Two clinical trials on prevention of heart attacks 
+report baseline data on smoking, shown below.  In one of these trials, 
+the randomization did not work.  Which one was it and and how can you tell?
+\vspace{-12pt}
+\newcommand{\Zc}{\hphantom{0,}}
+\begin{center}
+\begin{tabular}{cc}
+\begin{tabular}{l}
+\\
+\\
+\rput(-12pt,-3pt){(i)}
+Treatment\vphantom{\Large Y}\\
+Control\\[10pt]
+\rput(-12pt,-3pt){(ii)}
+Treatment\\
+Control
+\end{tabular}
+&
+\begin{tabular}{cc}
+Number of & Percent\\
+persons & who smoked\\\hline
+1,012  & 49.3\%\vphantom{\Large Y}\\
+\Zc997  & 69.0\%\\[10pt]
+\Zc995  & 59.3\%\\
+1,017   & 59.0\%
+\end{tabular}
+\end{tabular}
+\end{center}
+\vfill
+\eject
+
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Quiz 1}
+\end{center}
+\medskip
+
+1. A hypothetical population distribution is shown in the table below.
+
+{\ }\hspace{10pt}\begin{tabular}{cc}
+       & Percent of\\
+Age    & Population\\\hline
+0--5   & 10\vphantom{\Large Y}\\  % 2
+\Z6--12  & 12\\                   % 2
+13--18 & 15\\                     % 3
+19--34 & 45\\                     % 4
+35--45 & 10\\                     % 1
+46--56 & \Z5\\                    % 1/2
+57--69 & \Z3                      % 1/4
+\end{tabular}
+\vspace{.5in}
+
+\hspace{5pt} a) Draw a histogram of the population distribution.  Label
+both the axes.
+
+\hspace{5pt} b) About what percent  of the population is between 8 and 11 years old?
+\vspace{.5in}
+
+%\hspace{5pt} c) About what percent  of the population is between 44 and 46 years old?
+%\vspace{.5in}
+
+2. A fair die is rolled 10 times.  The number of dots showing on the rolls
+was:  5, 3, 1, 6, 5, 3, 4, 3, 4, 4. On the back side of this page, 
+draw a histogram of this data.
+\vspace{.5in}
+
+
+3. (Hypothetical.)  In a clinical trial, data collection usually starts 
+at \lq\lq baseline,\rq\rq\ when the subjects are recruited into the trial 
+but before they are assigned to treatment or control.  Data collection continues 
+until the end of followup.  Two clinical trials on prevention of heart attacks 
+report baseline data on smoking, shown below.  In one of these trials, 
+the randomization did not work.  Which one was it and and how can you tell?
+\vspace{-12pt}
+\begin{center}
+\begin{tabular}{cc}
+\begin{tabular}{l}
+\\
+\\
+\rput(-12pt,-3pt){(i)}
+Treatment\vphantom{\Large Y}\\
+Control\\[10pt]
+\rput(-12pt,-3pt){(ii)}
+Treatment\\
+Control
+\end{tabular}
+&
+\begin{tabular}{cc}
+Number of & Percent\\
+persons & who smoked\\\hline
+1,012  & 59.3\%\vphantom{\Large Y}\\
+\Zc997  & 59.0\%\\[10pt]
+\Zc995  & 49.3\%\\
+1,017   & 69.0\%
+\end{tabular}
+\end{tabular}
+\end{center}
+\vfill
+\eject
+
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Quiz 1}
+\end{center}
+\medskip
+
+1. (Hypothetical.)  In a clinical trial, data collection usually starts 
+at \lq\lq baseline,\rq\rq\ when the subjects are recruited into the trial 
+but before they are assigned to treatment or control.  Data collection continues 
+until the end of followup.  Two clinical trials on prevention of heart attacks 
+report baseline data on smoking, shown below.  In one of these trials, 
+the randomization did not work.  Which one was it and and how can you tell?
+\vspace{-12pt}
+\begin{center}
+\begin{tabular}{cc}
+\begin{tabular}{l}
+\\
+\\
+\rput(-12pt,-3pt){(i)}
+Treatment\vphantom{\Large Y}\\
+Control\\[10pt]
+\rput(-12pt,-3pt){(ii)}
+Treatment\\
+Control
+\end{tabular}
+&
+\begin{tabular}{cc}
+Number of & Percent\\
+persons & who smoked\\\hline
+1,012  & 49.3\%\vphantom{\Large Y}\\
+\Zc997  & 69.0\%\\[10pt]
+\Zc995  & 59.3\%\\
+1,017   & 59.0\%
+\end{tabular}
+\end{tabular}
+\end{center}
+\vspace{1in}
+
+2. A hypothetical population distribution is shown in the table below.
+
+{\ }\hspace{10pt}\begin{tabular}{cc}
+       & Percent of\\
+Age    & Population\\\hline
+0--5   & 5\vphantom{\Large Y}\\  % width=5, height=1
+\Z6--12  & 12\\  % width=6, height=2
+13--18 & 10\\  % width=5, height=2
+19--34 & 15\\  % width=15, height=1
+35--45 & 30\\  % width=10, height=3
+46--56 & 20\\ % width=10, height=2
+57--73 & \Z8   % width=16, height=1/2
+\end{tabular}
+\vspace{.5in}
+
+\hspace{5pt} a) Draw a histogram of the population distribution.  Label
+both the axes.
+
+\hspace{5pt} b) About what percent of the population is between 41 and 44 years old?
+\vspace{.5in}
+
+%\hspace{5pt} c) About what percent  of the population is between 44 and 46 years old?
+%\vspace{.5in}
+
+3. A fair die is rolled 10 times.  The number of dots showing on the rolls
+was:  5, 6, 4, 5, 3, 3, 1, 5, 2, 2. On the back side of this page, 
+draw a histogram of this data.
+
+\vfill
+\eject
+
+\end{document}
+

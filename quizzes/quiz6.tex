@@ -1,0 +1,186 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+\begin{center}
+\textbf{\large  Quiz:  Central Limit Theorem}
+\end{center}
+
+\newcommand{\zobox}[2]{\begin{pspicture}(-0.2,0.2)(2.4,1.3)
+\rput[r](-0.08,0.35){\small #1\vphantom{,'}}\psframe(0.0,0.05)(0.5,0.65)\rput(0.25,0.35){0}
+   \rput[l](0.58,0.35){s\vphantom{',1}}
+\rput[r](1.74,0.35){\small #2\vphantom{,'}}\psframe(1.8,0.05)(2.3,0.65)\rput(2.05,0.35){1}
+   \rput[l](2.38,0.35){s\vphantom{',1}}
+%\psframe(1,0.05)(1.6,0.65)\rput(1.3,0.35){1}\rput[bl](1.64,0.64){\scriptsize #2}
+\psline(-0.9,0.9)(-0.9,-0.2)(2.8,-0.2)(2.8,0.9)(-0.9,0.9)
+\end{pspicture}}
+\newcommand{\threebox}[3]{\begin{pspicture}(0.2,0.2)(2.5,1.1)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){#1}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){#2}
+\psframe(2,0)(2.7,0.7)\rput(2.35,0.35){#3}
+\psline(-0.3,0.9)(-0.3,-0.2)(3,-0.2)(3,0.9)(-0.3,0.9)
+\end{pspicture}}
+
+\newcommand{\Zc}{\hphantom{0,}}
+
+
+
+1. Complete the following table for the coin-tossing game.\vspace{-15pt}
+\begin{center}
+{\setlength{\tabcolsep}{15pt}\begin{tabular}{cc|cc|ccc}
+              &\hbox{\hspace{.3in}}& \ \hspace{.5in}Number of heads\span &\hbox{\hspace{.1in}}
+    & \ Percent of heads\span\\[5pt]
+Number of     && Expected       &     && Expected & \\
+Tosses        && Value          & SE  && Value & SE\\[3pt]\hline
+&& & && &\\
+\Zc\Z\Z\Zc100 && 50 & 5 && 50\% & 5\%\vphantom{\LARGE Y}\\[.2in]
+\Zc\Z\Z2,500 &&    &   &&      &\\[.2in]
+\Zc\Z10,000  &&    &   &&      &\\[.2in]
+1,000,000    &&    &   &&      &\\[.2in]
+\end{tabular}}
+\end{center}
+\vspace{1.2in}
+
+2. Would taking the average of 25 measurements divide the likely size of the chance error by a factor of 5, 10 or 25? Justify your answer.
+\vspace{1in}
+
+3. A population of 1000 has 470 voters for candidate $A$ and 530 voters for candidate $B$.
+A newspaper plans to poll a certain number of voters to try to estimate the percentage of 
+voters for $A$.  Here is a box model.\vspace{-20pt}
+
+\begin{center}
+\zobox{530}{470}
+\end{center}\vspace{-5pt}
+
+\hspace{20pt} a) Compute $\mbox{EV}_{\scriptsize\%}$ and $\mbox{SD}_{\scriptsize\%}$
+\vspace{1.5in}
+
+\hspace{20pt} b) 
+Compute 
+$\mbox{SE}_{\scriptsize\%}$ for $n=16$, $n=25$, $n=49$ and $n=100$.  \vspace{-3pt}
+%\hspace{20pt}\hphantom{a) } Note:  $1/8\approx 0.13$ and $1/14\approx 0.07$.
+\vfill
+\eject
+{\ }
+
+
+4. Nine hundred draws will be made at random with replacement
+from the box shown below.
+\begin{center}
+\threebox{0}{0}{1}
+\end{center}
+\medskip
+
+\hspace{10pt} a) 
+The number of 1s among the draws will be around \underline{\hspace{45pt}} 
+give or take \underline{\hspace{45pt}}  or so.
+\vspace{1.25in}
+
+\hspace{10pt} b) The chance of getting between 280 and 320 1s is \underline{\hspace{45pt}}.
+\vspace{1.25in}
+
+\hspace{10pt} c) What is the chance that the number of 1s will be less than 270?
+\vspace{1.1in}
+
+\hspace{10pt} d) 
+The percentage of 1s among the draws will be around \underline{\hspace{45pt}} 
+give or take \underline{\hspace{45pt}}  or so.
+\vspace{1.25in}
+
+\hspace{10pt} e) The chance of getting between 30\% and 36\% 1s is \underline{\hspace{45pt}}.
+\vspace{1.25in}
+
+
+\hspace{10pt} f) What is the probability that the percentage of 1s will 
+be over 35\%.
+
+
+
+\vfill
+\eject
+
+
+
+\end{document}
+
+1. A population of 1000 has 470 voters for candidate $A$ and 530 voters for candidate $B$.
+A newspaper plans to poll a certain number of voters to try to estimate the percentage of 
+voters for $B$.  Here is a box model.
+
+\begin{center}
+\zobox{530}{470}
+\end{center}
+
+\hspace{20pt} a) Compute $\mbox{EV}_{\scriptsize\%}$ for the box.
+\vspace{.5in}
+
+\hspace{20pt} b) Given that $\mbox{SD}_{\scriptsize box}\approx 0.5$, compute 
+$\mbox{EV}_{\scriptsize\%}$ for $n=16$, $n=25$, $n=49$ and $n=100$.  \vspace{-3pt}
+
+\hspace{20pt}\hphantom{a) } Note:  $1/8\approx 0.13$ and $1/14\approx 0.07$.
+\vspace{1.5in}
+
+
+\vfill
+\eject
+
+\end{document}
+
