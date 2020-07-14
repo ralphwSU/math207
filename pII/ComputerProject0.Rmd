@@ -1,0 +1,77 @@
+---
+author: "Your Name"
+title: "RMarkdown 0"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+# Descriptive Statistics
+
+The summary command in R computes descriptive statistics for the columns os a data set:
+
+```{r}
+summary(airquality)
+```
+
+\newpage
+
+# Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure}
+plot(airquality$Temp, airquality$Ozone, xlab="Temperature", ylab="Ozone", col='blue')
+```
+
+\newpage
+
+# Histograms
+
+Here is a histogram with a density scale on the vertical axis.
+
+```{r}
+hist(mtcars$mpg, col='green', xlab="Miles Per Gallon", ylab="Percent per mpg", main='', breaks=10)
+```
+
+\newpage
+
+# Bar Plots
+
+Roll 100 dice:
+
+```{r}
+n = 100
+x = sample(1:6, n, replace=TRUE)
+x
+```
+
+Now tabulate the results:
+```{r}
+table(x)
+```
+
+Finally, make a bar plot:
+```{r}
+barplot(table(x) / n, xlab="Number of Dots", ylab="Percent", col='purple')
+```
+
+\newpage
+
+# Equations
+
+You can typeset equations in line $y=m\,x + b$
+or in display mode:
+$$r = 
+\frac{1}{n-1}\,\sum_{i=1}^n \left(\frac{x_i - \mu_x}{\sigma_x}\right)
+\left(\frac{y_i - \mu_y}{\sigma_y}\right)$$
