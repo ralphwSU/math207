@@ -1,0 +1,149 @@
+---
+author: "Your Name"
+title: "Computer Project 4: Hypothesis Testing"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(strtoi(substr(Sys.getenv("USER"), 1, 1), base=36))
+secret.mean = 48.5
+secret.sd   = 5
+```
+
+# $z$-Test Examples
+
+We think the average of the contents of a box is 50.
+Let's take some samples then test the hypothesis.
+
+## Sample Size = 10
+
+Here are the results of a sample of size 10.
+
+```{r}
+n = 10
+x = rnorm(n, mean=secret.mean, sd=secret.sd)
+x
+```
+
+Compute the mean of our sample:
+```{r}
+m = mean(x)
+m
+```
+
+and the SD of the sample:
+
+```{r}
+s = sd(x) * sqrt((length(x)-1)/length(x))
+s
+```
+
+Let's run a z-test to see if `r m` is close enough to 50.
+First we need the SE for the average:
+
+```{r}
+se = s / sqrt(n)
+se
+```
+
+Now compute the z-score:
+
+```{r}
+z = (m - 50)/se
+z
+```
+
+The $p$-value is the chance of getting a z-score that is as extreme or more
+extreme than the observed value.  _Use either pnorm(z) or 1 - pnorm(z) below
+to compute the p-value:_
+
+```{r}
+# Use pnorm(z) or 1 - pnorm(z) here
+```
+
+The null hypothesis is that the difference between `r m` and 50 is due to chance.
+_What is the alternative hypothesis?  Do the data support the null hypothesis or the alternative?_
+
+\newpage
+
+
+## Sample Size = 100
+
+Here are the results of a sample of size 100
+
+```{r}
+n = 100
+x = rnorm(n, mean=secret.mean, sd=secret.sd)
+x
+```
+
+Compute the mean of our sample:
+```{r}
+m = mean(x)
+m
+```
+
+and the SD of the sample:
+
+```{r}
+s = sd(x) * sqrt((length(x)-1)/length(x))
+s
+```
+
+Let's run a z-test to see if `r m` is close enough to 50.
+First we need the SE for the average:
+
+```{r}
+se = s / sqrt(n)
+se
+```
+
+Now compute the z-score:
+
+```{r}
+z = (m - 50)/se
+z
+```
+
+The $p$-value is the chance of getting a z-score that is as extreme or more
+extreme than the observed value.  _Use either pnorm(z) or 1 - pnorm(z) below
+to compute the p-value:_
+
+```{r}
+# Use pnorm(z) or 1 - pnorm(z) here
+```
+
+The null hypothesis is that the difference between `r m` and 50 is due to chance.
+_What is the alternative hypothesis? Do the data support the null hypothesis or the alternative?_
+
+\newpage
+
+# t-Test Example
+
+R has a built-in t-test command.  Let's use it to run the $n=100$ hypothesis test that
+we did above.
+
+```{r}
+t.test(x, mu=50)
+```
+
+The output gives us the t-score, the degrees of freedom, the p-value and a 95%
+confidence interval.
+
+_Use the p-value to explain if the data supports the null or alternative hypothesis.
+Is 50 included in the confidence interval?_
+
+
+
+
+
+
+
+
+
+
+
+
+
