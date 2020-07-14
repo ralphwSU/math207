@@ -1,0 +1,224 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+%\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+
+\setlength{\baselineskip}{1.1\baselineskip}
+\bigskip
+
+\newcommand{\BL}{\underbar{\hspace{.5in}}}
+\begin{center}
+\textbf{\large Review Exercises}
+\end{center}
+1. For entering freshmen at a certain university, scores on the 
+Math SAT and Verbal SAT can be summarized as follows.\vspace{-4pt}
+\begin{center}
+\begin{tabular}{lll}
+$\mbox{average M-SAT} = 555$, & $\mbox{SD}=125$, & \\
+$\mbox{average V-SAT} = 543$, & $\mbox{SD}=115$, & $r=0.66$\vspace{-4pt}
+\end{tabular}
+\end{center}
+The scatter diagram is football-shaped.  One student is chosen at random and has
+an M-SAT score of 600. You would guess his V-SAT is \BL\ points,
+and would have about a 68\% chance to be right within \BL\ points.
+\vspace{1.25in}
+
+
+2. A die is rolled 6 times.  Find the chance that the first number
+rolled comes up three more times ---
+
+\hspace{20pt} a) If the first roll is an ace.
+\vspace{.7in}
+
+\hspace{20pt} b) If the first roll is an six.
+\vspace{.7in}
+
+\hspace{20pt} c) If you don't know what happens on the first roll.
+\vspace{1in}
+
+3. A die will be rolled 20 times.  The sum
+\[\mbox{number of ones rolled} + \mbox{number of sixes rolled}\]
+will be around \BL, give or take \BL\ or so.
+
+\vfill
+\eject
+{\ }
+
+4. A box contains 10,000 marbles:  6,000 are red and 4,000 
+are blue;  500 marbles are drawn at random without replacement.
+
+\hspace{20pt} a) Suppose that there are 218 blue marbles in the sample.
+Find the expected value for the percentage of blues in the sample, the observed value, the
+chance error, and the standard error.
+\vspace{1.5in}
+
+\hspace{20pt} b) Suppose there are 191 blue marbles in the sample.  Repeat a).
+\vspace{1.5in}
+
+5.
+The town of Hayward California has about 5,000 registered voters.
+A political scientist takes a simple random sample of 500 of these voters.
+In the sample, the breakdown by party affiliation is:
+\begin{center}
+\begin{tabular}{lr}
+Republican & 115\\
+Democrat & 331\\
+Independent & 54
+\end{tabular}
+\end{center}
+
+\hspace{20pt} a) Among all registered voters in Hayward, the percentage of independents is 
+estimated as \BL.
+\vspace{.5in}
+
+\hspace{20pt} b) This estimate is likely to be off by \BL\ or so.
+\vspace{.5in}
+
+\hspace{20pt} c) The range from \BL\ to \BL\ is a 95\% confidence interval for the 
+percentage of independents.
+\vspace{.5in}
+
+\hspace{20pt} d) Repeat a)--c) for Democrats.
+
+\vfill
+\eject
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\bigskip
+
+\begin{center}
+\textbf{\large  Confidence Intervals (III)}
+\end{center}
+
+1. (Hypothtical)  The British Imperial Yard is sent to Paris for calibration
+against The Meter.  The length is determined 100 times.  This sequence of
+measurements averages out to 91,4402 cm, and the SD is 800 microns (a \textit{micron}
+is a millionth of a meter).
+
+\hspace{20pt} a) Is a single reading off by around 80 microns, or 800 microns?
+\bigskip
+
+\hspace{20pt} b) Is the average of all 100 readings off by around 80 microns, or 800 microns?
+\bigskip
+
+\hspace{20pt} c) Find a 95\%-confidence interval for the exact length of the
+Imperial Yard.
+\vspace{.5in}
+
+2. 
+The Bureau is about to weigh a one-kilogram checkweight 100 times, and take
+the average of the measurements.  They are willing to assume the
+Gauss model, with no bias, and on the basis of past experience they 
+estimate the SD of the error box to be 50 micrograms.
+
+\hspace{20pt} a) The average of all 100 measurements is likely to be off
+the exact weight by \BL\ or so.
+\bigskip
+
+\hspace{20pt} b) The SD of all 100 measurements is likely to be around \BL.
+\bigskip
+\bigskip
+
+\hspace{20pt} c) Esimate the probability that the average of all 100 measurements
+will be within 10 micrograms of the exact weight.
+\vspace{.7in}
+
+3. 
+Laser altimeters can measure elevation to within a few inches, without bias,
+and with no trend or pattern to the measurements.
+As part of an experiment, 25 readings were made on the elevation of a mountain peak.
+These averaged out to 81,411 inches, and their SD was 30 inches. 
+
+\hspace{20pt} a) The elevation of the mountain peak is estimated 
+as \BL; this estimate is likely to be off by\vspace{-4pt}
+
+\hspace{20pt}\hphantom{f) } \BL\ or so.
+\bigskip
+\bigskip
+
+\hspace{20pt} b) (T/F) 81,411$\pm$ 12 inches is a 95\%-confidence interval for the elevation
+of the mountain peak. 
+\bigskip
+\bigskip
+
+\hspace{20pt} c) (T/F) 81,411$\pm$ 12 inches is a 95\%-confidence interval for 
+average of the 25 readings.
+
+\hspace{20pt} d) (T/F) There is about a 95\% chance that the next reading will be in 
+the range 81,411 $\pm$ 12 inches.
+
+\hspace{20pt} e) (T/F) About 95\% of the readings were in the range 81,411 $\pm$ 12 inches.
+
+\hspace{20pt} f) If another 25 readings are made, there is about a 95\% chance that their
+average will be in the range\vspace{-4pt}
+
+\hspace{20pt}\hphantom{f) } 81,411 $\pm$ 12 inches.
+\vfill
+\eject
+
+
+\end{document}
+

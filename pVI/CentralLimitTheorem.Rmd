@@ -1,0 +1,264 @@
+---
+title: "Central Limit Theorem"
+author: 
+date:
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# The Central Limit Theorem
+
+The Central Limit Theorem says that:  When drawing with replacement from a
+box, the probability histogram for the sum (and the average) will follow
+the normal curve, even if the contents of the box do not.  The histogram
+must be put into standard units, and the number of draws must be reasonably
+large.
+
+For a sum, the mean and standard deviation of this normal curve are:
+\[\mbox{EV}_{\mbox{sum}} = n\cdot \mbox{AV}_{\mbox{box}}\]
+and
+\[\mbox{SE}_{\mbox{sum}} = \sqrt{n}\cdot \mbox{SD}_{\mbox{box}}\]
+For an average, the mean and standard deviation of this normal curve are:
+\[\mbox{EV}_{\mbox{av}} =\mbox{AV}_{\mbox{box}}\]
+and
+\[\mbox{SE}_{\mbox{av}} = \frac{\mbox{SD}_{\mbox{box}}}{\sqrt{n}}\]
+
+The Central Limit Theorem is one reason that the normal curve plays such a central role in this course.
+
+# Function Definitions
+If you look in the Rmd file, you will see some functions defined in this
+section.  They are used later in these notes to run simulations and make plots but are not printed here.
+```{r echo=FALSE}
+boxSimulation <- function(box, draws, repetitions) {
+    y <- 1:repetitions;
+    for (i in 1:repetitions)
+      y[i] = sum(sample(box, draws, replace=TRUE))
+    y;
+  }
+```
+
+```{r echo=FALSE}
+boxHistogram <- function(box, draws, repetitions, ymax=1.0, color="gray", breaks="Sturges", ylim=c(0, 1)) {
+    y <- 1:repetitions;
+        for (i in 1:repetitions)
+          y[i] = sum(sample(box, draws, replace=TRUE))
+        hist(y,
+             prob=TRUE, # Generate a probability histogram 
+             ylim=c(0, ymax), # Limits on the y axis
+             ylab="",        # Label for the y axis
+             main=paste(repetitions, "Repetitions"),  # Title for the graphic
+             xlab=paste("Sum of ", draws, "draws from a box"), # x label
+             col=color,      # Color for the bars
+             breaks=breaks)  # Where to put breaks for the bars
+}
+```
+
+```{r echo=FALSE}
+diceSimulation <- function(repetitions, dice=2, diceSum=TRUE)
+  {
+    y <- 1:repetitions;
+    if (diceSum == TRUE)
+      for (i in 1:repetitions)
+        y[i] = sum(sample(1:6, dice, replace=TRUE))
+    else
+      for (i in 1:repetitions)
+        y[i] = prod(sample(1:6, dice, replace=TRUE));
+    y;
+}
+
+diceHistogram <- function(repetitions, dice=2, ymax=0.3, diceSum=TRUE, color="gray")
+  {
+    y <- 1:repetitions;
+    if (diceSum == TRUE)
+      {
+        for (i in 1:repetitions)
+          y[i] = sum(sample(1:6, dice, replace=TRUE))
+        hist(y, breaks=0.5+(1:(6*dice)), prob=TRUE,
+             ylim=c(0,ymax), xlab=paste("Sum of Spots on", dice, "dice"),
+             ylab="", col=color, main=paste(repetitions, "Repetitions"))
+      }
+    else
+      {
+        for (i in 1:repetitions)
+          y[i] = prod(sample(1:6, dice, replace=TRUE));      
+        hist(y, breaks=0.5+(0:(10+6^dice)), prob=TRUE,
+             ylim=c(0,ymax), xlab=paste("Product of Spots on", dice, "dice"),
+             ylab="", col=color, main=paste(repetitions, "Repetitions"))
+      }
+  }
+
+```
+
+Here is a function for computing the _population standard deviation_ of a box. It has $n$ in the denominator rather than $n-1$.  The _sample standard deviation_
+uses $n-1$.
+```{r}
+SD <- function(box) {
+  n = length(box)
+  return (sd(box) * sqrt((n-1)/n))
+}
+```
+
+\newpage
+
+# Flipping Coins: and the Normal Curve
+Flipping coins and counting the number of heads is like taking the sum
+of a random sample (with replacement) from a 
+box with two tickets 1 (for heads) and 0 (for tails).
+
+## Five Coins:  Sum of the Number of Heads Follows a Normal Curve
+The following simulates flipping five coins 100 times.
+```{r}
+data = boxSimulation(c(0, 1), 5, 100)
+data
+table(data)
+```
+
+Here are histograms of repetitions of this experiment:
+```{r}
+boxHistogram(c(0,1), 5, 100, breaks=-0.5+(0:6))
+```
+\newpage
+```{r}
+boxHistogram(c(0,1), 5, 100, breaks=-0.5+(0:6))
+boxHistogram(c(0,1), 5, 100, breaks=-0.5+(0:6))
+```
+
+It looks a bit like a normal curve but changes from one sample to another.
+Let's flip five coins 1000 times.
+```{r}
+boxHistogram(c(0,1), 5, 1000, breaks=-0.5+(0:6))
+boxHistogram(c(0,1), 5, 1000, breaks=-0.5+(0:6))
+boxHistogram(c(0,1), 5, 1000, breaks=-0.5+(0:6))
+```
+
+\newpage
+
+## Ten Coins: Sum of the Number of Heads Follows a Normal Curve
+The following simulates flipping five coins 100 times.
+```{r}
+data = boxSimulation(c(0, 1), 10, 100)
+data
+table(data)
+```
+
+Here are histograms of repetitions of this experiment:
+```{r}
+ymax=0.5
+boxHistogram(c(0,1), 10, 100, breaks=-0.5+(0:11), ymax=ymax, col='blue')
+```
+\newpage
+```{r}
+boxHistogram(c(0,1), 10, 100, breaks=-0.5+(0:11), ymax=ymax, col='blue')
+boxHistogram(c(0,1), 10, 100, breaks=-0.5+(0:11), ymax=ymax, col='blue')
+```
+
+It looks a bit like a normal curve but changes from one sample to another.
+Let's flip 10 coins 10,000 times.
+```{r}
+boxHistogram(c(0,1), 10, 10000, breaks=-0.5+(0:11), ymax=ymax, col='blue')
+boxHistogram(c(0,1), 10, 10000, breaks=-0.5+(0:11), ymax=ymax, col='blue')
+boxHistogram(c(0,1), 10, 10000, breaks=-0.5+(0:11), ymax=ymax, col='blue')
+```
+\newpage
+
+# Rolling Dice
+
+We can simulate rolling dice and taking the sum )of the numbers shown.
+
+## Two Dice: Sum of the Number of Dots Follows a Normal Curve
+We could compute the frequencies using the 6 x 6 table of possible outcomes.
+```{r}
+data = diceSimulation(100)
+data
+table(data)
+```
+
+Let's look at histograms of 100 trials taking the sum of two dice.
+```{r}
+diceHistogram(100)
+```
+\newpage
+```{r}
+diceHistogram(100)
+diceHistogram(100)
+```
+
+The results vary a bit each time we run 100 trials.  If we run 1000 trials, the 
+results will be closer to the expected values.
+```{r}
+diceHistogram(1000)
+diceHistogram(1000)
+```
+
+\newpage
+
+## Three Dice:  Sum of the Number of Sots Follows a Normal Curve
+Let's try the experiment with three dice.
+```{r}
+diceHistogram(10000, dice=3, color="green")
+```
+\newpage
+```{r}
+diceHistogram(10000, dice=3, color="green")
+diceHistogram(10000, dice=3, color="green")
+```
+
+\newpage
+
+# Sampling from a Box.
+
+Some times it can take a very large sample size before the probability
+histogram follows a normal curve very closely.
+
+## Sample of Size 25 from {1, 2, 9} 
+```{r}
+boxHistogram(c(1,2,9), 25, 100, ymax=0.1, breaks=160, col='red')
+```
+\newpage
+```{r}
+boxHistogram(c(1,2,9), 25, 1000, ymax=0.1, breaks=160, col='red')
+boxHistogram(c(1,2,9), 25, 10000, ymax=0.1, breaks=160, col='red')
+boxHistogram(c(1,2,9), 25, 100000, ymax=0.1, breaks=160, col='red')
+```
+
+\newpage
+
+## Sample of Size 50 from {1, 2, 9} 
+```{r}
+boxHistogram(c(1,2,9), 50, 1000, ymax=0.04, breaks=160, col='orange')
+```
+\newpage
+```{r}
+boxHistogram(c(1,2,9), 50, 10000, ymax=0.04, breaks=160, col='orange')
+boxHistogram(c(1,2,9), 50, 100000, ymax=0.04, breaks=160, col='orange')
+```
+
+\newpage
+
+# Product
+
+The Central Limit Theorem says that when drawing with replacement from a
+box, the probability histogram for the sum (and the average) will follow
+the normal curve, even if the contents of the box do not.  It doesn't say
+anything about the product or some other combination of the sample values.
+
+## Product of Dice Rolls
+
+If we roll two dice and take the product, we can get certain values
+between $1=1\times 1$ and $36=6\times 6$.  Here is data generated
+from 100 trials.
+```{r}
+diceSimulation(100, diceSum=FALSE)
+```
+
+Here are histograms from two such experiments:
+```{r}
+diceHistogram(1000, diceSum=FALSE, col='purple')
+diceHistogram(10000, diceSum=FALSE, col='purple')
+```
+
+These don't look like normal curves at all.  Why not?
+

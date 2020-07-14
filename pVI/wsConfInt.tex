@@ -1,0 +1,187 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-1in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+%\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.4,.4,.4}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcommand{\Z}{\hphantom{0}}
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.79cm}
+
+{{\ }\hfill\small
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+\bigskip
+
+\begin{center}
+\textbf{\large  Confidence Intervals}
+\end{center}
+
+If we have a box of numbered tickets and know the distribution of the numbers, then
+we can use the expected value and standard error, together with the Central Limit Theorem,
+to estimate the chance that a random sample of size $n$ will have sum (or average) in a
+specified range.
+\medskip
+
+\psframe(-0.2,0.5)(6.5in, -4.5in)
+\textbf{Example}:  A box contains 500 \psframebox{1}\,s, 500 \psframebox{9}\,s 
+and 280 \psframebox{5}\,s.
+We take a random sample of size $n=100$.  
+
+\hspace{10pt} a) The sum of the random sample will be around \underline{\hspace{.5in}}
+give or take about \underline{\hspace{.5in}}.
+
+There are 1280 tickets in the box.  We can use R to get the mean and SD.\vspace{-6pt}
+\begin{verbatim}
+> x = c(rep(1, 500), rep(9, 500), rep(5, 280))
+> mean(x)
+[1] 5
+> sd(x)*sqrt(1279/1280)
+[1] 3.53
+\end{verbatim}
+The expected value of the sum is
+$\mbox{EV}_{\mbox{\footnotesize sum}}=n\cdot \mbox{AV}_{\mbox{\footnotesize box}} = 100\times 5 = 500$.
+The standard error for the sum is
+$\mbox{SE}_{\mbox{\footnotesize sum}}=\sqrt{n}\cdot \mbox{SD}_{\mbox{\footnotesize box}} = \sqrt{100}\times 3.53
+= 35.3$.
+\medskip
+
+\hspace{10pt} b) What is the chance that the sum will be between 470 and 530?
+
+The $z$ scores are $z_1 = (470-500)/35.3 = -0.85$ and $z_2=(530-500)/35.3 = 0.85$.  By the
+Central Limit Theorem, we can assume that the sample sum has a normal distribution.
+The area under the normal curve between $\pm 0.85$ is $\mbox{pnorm}(0.85) - \mbox{pnorm}(-0.85)=
+60.5\%$.
+\medskip
+
+\hspace{10pt} c) The average of the random sample will be around \underline{\hspace{.5in}}
+give or take about \underline{\hspace{.5in}}.
+
+The expected value of the average is
+$\mbox{EV}_{\mbox{\footnotesize av}}=\mbox{AV}_{\mbox{\footnotesize box}} = 5$.
+The standard error for the average is\\
+$\mbox{SE}_{\mbox{\footnotesize av}}= \mbox{SD}_{\mbox{\footnotesize box}}/\sqrt{n} =
+3.53/\sqrt{100} = 0.35$.
+\medskip
+  
+\hspace{10pt} b) What is the chance that the average will be between 4.5 and 5.5?
+
+The $z$-scores are $z_1= (4.5-5)/0.35 = -1.43$ and $z_2 = (5.5-5)/0.35=1.43$.
+So the chance is about $\mbox{pnorm}(1.43) - \mbox{pnorm}(-1.43) = 84.7\%$.
+
+%\newcommand{\HH}{\hspace{20pt}\hphantom{a) } }
+%
+\newcommand{\twobox}[2]{\begin{pspicture}(-0.3,0.2)(2,1.3)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){#1}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){#2}
+\psline(-0.3,0.9)(-0.3,-0.2)(2,-0.2)(2,0.9)(-0.3,0.9)
+\end{pspicture}}
+%
+\newcommand{\threebox}[3]{\begin{pspicture}(0.2,0.2)(2.5,1.3)
+\psframe(0,0)(0.7,0.7)\rput(0.35,0.35){#1}
+\psframe(1,0)(1.7,0.7)\rput(1.35,0.35){#2}
+\psframe(2,0)(2.7,0.7)\rput(2.35,0.35){#3}
+\psline(-0.3,0.9)(-0.3,-0.2)(3,-0.2)(3,0.9)(-0.3,0.9)
+\end{pspicture}}
+
+\newcommand{\VS}{\vspace{.3in}}
+\bigskip
+
+What if we don't know the contents of the box?  That is usually the case in real life
+and the reason why we take random samples.  A \textit{confidence interval} gives an
+estimate of the average of the numbers on the tickets.  Suppose we take a 
+random sample of size $n$. Let $M$ be the average for the sample and let  $S$ be
+the sample standard deviation.  A 95\% confidence interval on the true average of the tickets is
+\[M \; \pm\; 2\,S/\sqrt{n}\]
+
+1. A box has 100,000 tickets.  40,000 are have a~1 on them and the rest have
+a~0 on them.  A simple random sample of 500 is taken.  Calculate the expected
+value of the percentage of 1s in the sample and the standard error of the 
+percentage.
+\vfill
+\eject
+
+2. In a certain city, there are 100,000 persons age 18 to 24.  
+A simple random sample of 500 people is drawn, of whom 194 turn out to be 
+currently enrolled in college.  Estimate the percentage of all persons 
+age 18 to 24 in that city who are currently enrolled in college.
+Put a give-or-take number on the estimate.
+\vspace{1.4in}
+
+3. In a simple random sample of 100 graduates from a certain college, 48 were earning
+\$50,000 a year or more.  Estimate the percentage of all graduates of that
+college earning \$50,000 a year or more.  Put a give-or-take number on the estimate.
+\vspace{1.4in}
+
+4. Use the data in \#2 to 
+find a 95\% confidence interval on the percentage of persons age 18 to 24
+who are currently enrolled in college.
+\vspace{1.2in}
+
+5. Use the data in \#3 to find a find a 95\% confidence interval on the
+percentage of all graduates from that college earning \$50,000 a year or more.
+\vspace{1.2in}
+
+6. Suppose the sample in \#2 had turned up 204 persons currently 
+enrolled in college.  Find a new 95\% confidence interval
+on the percentage of persons age 18 to 24
+who are currently enrolled in college.
+\vspace{1.2in}
+
+7. Suppose the sample in \#3 had turned up 45 graduates earning
+\$50,000 or more.  Find a new 95\% confidence interval on the
+percentage of all graduates from that college earning \$50,000 a year or more.
+
+\vfill
+\eject
+
+\end{document}
+

@@ -1,0 +1,248 @@
+---
+author: "Your Name"
+title: "Computer Project 3: Random Sampling"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(strtoi(substr(Sys.getenv("USER"), 1, 1), base=36))
+```
+
+# Box with Known Contents
+
+## Mean and SD of the Box 
+
+Here is the box model from Exercise 11 on page 329.
+
+```{r}
+box <- c(1, 2, 2, 5)
+box
+```
+
+Compute the mean of the box:
+```{r}
+m <- mean(box)
+m
+```
+
+and the SD of the box:
+
+```{r}
+s <- sd(box) * sqrt(3/4)
+s
+```
+
+## EV (expected value) and SE (standard error) of the Sum Sample of Size 100
+
+If we take a random sample (with replacement) of size 100, the EV of the sum is:
+
+```{r}
+n <- 100
+ev <- n * m
+ev
+```
+
+and the SE of the sum is:
+```{r}
+se <- sqrt(n) * s
+se
+```
+
+\newpage
+
+## Results of a Random Sample of Size 100
+
+Randomly select 100 tickets without replacement.
+
+```{r}
+x <- sample(box, n, replace=TRUE)
+x
+```
+
+Now find the sum of the sample:
+
+```{r}
+sum(x)
+```
+
+Compute the z-score for the observed sum:
+```{r}
+z <- (sum(x) - ev) / se
+z
+```
+
+_How likely is it to get a sum as extreme or more extreme than the 
+value we observed?  Use either pnorm(z) or 1 - pnorm(z) to answer:_
+
+```{r}
+# Type your R command here in the Rmd file (either pnorm(z) or 1 - pnorm(z))
+```
+
+_Is the sum that you got very low, about average  or very high?  Use the z-score
+or pnorm output to answer. _
+
+
+\newpage
+
+## Results of a Random Sample of Size 10,000
+
+
+Recalculate the EV for the sum:
+
+```{r}
+n <- 10000
+ev <- n * m
+ev
+```
+
+and the SE for the sum:
+
+```{r}
+se <- sqrt(n) * s
+se
+```
+
+Randomly select `r n` tickets without replacement.
+
+```{r}
+x <- sample(box, n, replace=TRUE)
+```
+
+Now find the sum of the sample:
+
+```{r}
+sum(x)
+```
+
+Compute the z-score for the sum:
+```{r}
+z <- (sum(x) - ev) / se
+z
+```
+
+_How likely is it to get a sum as extreme or more extreme than the 
+value we observed?  Use either pnorm(z) or 1 - pnorm(z) to answer:_
+
+```{r}
+# Type your R command here in the Rmd file (either pnorm(z) or 1 - pnorm(z))
+```
+
+_Is the sum that you got very low, about average  or very high? 
+How did your answers for n=100 and n=10,000 differ?  Is that what you
+would expect?_
+
+\newpage
+
+# Confidence Intervals
+
+Let's create a mystery box.  It contains 25,000 zeros and 1s but we don't 
+know how many of each:
+```{r}
+n <- 5
+box <- rep(sample(0:1, n, replace=T), 25000/n)
+```
+
+## Sample of Size 100
+
+We don't have time to count all the 0s and 1s so let's take a small sample from
+the box:
+
+```{r}
+n <- 100
+x <- sample(box, n, replace = TRUE)
+x
+```
+
+The fraction of 1s in our sample is:
+```{r}
+m <- mean(x)
+m
+```
+
+We want a $\pm$ on this estimate.  Use the observed fraction to estimate the SD of
+the box: 
+
+```{r}
+s <- (1 - 0) * sqrt(m * (1-m))  # Using the shortcut method.
+s
+```
+
+and the SE of the percent:
+```{r}
+se <- s / sqrt(n)
+se
+```
+
+A 95\% confidence interval on the fraction of 1s is:
+```{r}
+c(m - 2*se, m + 2*se)
+```
+
+_What are we 95\% confident about?  Could the true fraction of 1s be outside this range?_
+
+\newpage
+
+## Sample of Size 1000
+
+Let's try a bigger sample:
+```{r}
+n <- 1000
+x <- sample(box, n, replace = TRUE)
+```
+
+The fraction of 1s in our sample is:
+```{r}
+m <- mean(x)
+m
+```
+
+We want a $\pm$ on this estimate.  Use the observed fraction to estimate the SD of
+the box: 
+
+```{r}
+s <- (1 - 0) * sqrt(m * (1-m))  # Using the shortcut method.
+s
+```
+
+and the SE for the percent:
+```{r}
+se <- s / sqrt(n)
+se
+```
+
+A 95\% confidence interval on the fraction of 1s is:
+```{r}
+c(m - 2*se, m + 2*se)
+```
+
+_What are we 95\% confident about?  Could the true fraction of 1s be outside this range?
+Is this confidence interval wider or narrower than the first one we computed?  Why?_
+
+\newpage
+
+
+The true fraction of 1s in the box is:
+```{r}
+mean(box)
+```
+
+_Is this value in your confidence intervals?_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
