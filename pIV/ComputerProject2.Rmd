@@ -1,0 +1,164 @@
+---
+author: "Your Name"
+title: "Computer Project 2: Probability"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Flipping Coins
+
+For a fair coin, the chance of getting tails is 1/2.
+
+## Counting the number of tails
+
+Let's experiment with the total number of tails in $n$ trials.
+
+###  Total number of tails in a small number of coin flips
+
+Suppose we flip 10 coins (with 1 = Tails and 0 = Heads).
+Here are six samples of size 10.
+
+```{r}
+n      = 10
+trials = 6
+for (i in 1:trials) {
+   print(sample(c(0, 1), n, replace=TRUE))
+}
+```
+
+Let's count the number of tails then subtract the expected number of tails.  The expected number
+of tails is half the number of coin flips. 
+```{r}
+for (i in 1:trials) {
+   print(sum(sample(c(0, 1), n, replace=TRUE))  -  n/2)
+}
+```
+
+Based on the calculations, approximately what is the $\pm$ on the difference between
+the total number of tails and  the expected total? (Remember:  95\% of the area under
+a normal curve is $\pm 2$SD.)  In other words, approximately what is the SD of the list
+of numbers shown above?
+
+_Include your answer here._
+
+\newpage
+
+### Total number of tails in a large number of coin flips
+
+
+Let's repeat the experiment with 10,000 coins.
+```{r}
+n = 10000
+for (i in 1:trials) {
+   print(sum(sample(c(0, 1), n, replace=TRUE))  -  n/2)
+}
+```
+
+Based on the calculations, approximately what is the $\pm$ on the difference between
+the total number of tails and  expected total?
+
+_Include your answer here._
+
+
+Does the $\pm$ on the number of tails increase or decrease with the number of trails?
+Briefly justify your conclusion.
+
+_Include your answer here._
+
+\newpage
+
+## Fraction of tails
+
+Now let's look at the fraction of tails in $n$ trials.
+
+###  Fraction of tails in a small number of coin flips
+
+Suppose we flip 10 coins and compute the fraction of tails (with 1 = Tails and 0 = Heads).
+```{r}
+n      = 10
+trials = 6
+for (i in 1:trials) {
+   print(sum(sample(c(0, 1), n, replace=TRUE)) / n)
+}
+```
+
+The expected fraction of  tails is 0.5.
+Let's compute the difference between the observed fraction and the expected fraction:
+```{r}
+n      = 10
+trials = 6
+for (i in 1:trials) {
+   print(sum(sample(c(0, 1), n, replace=TRUE)) / n  - 0.5)
+}
+```
+
+
+Based on the calculations, approximately what is the $\pm$ on the difference between
+the observed fraction of tails and the expected fraction (0.5)?  In other words, approximately
+what is the SD of the list of numbers shown above?
+
+_Include your answer here._
+
+\newpage
+
+### Fraction of tails in a large number of coin flips
+
+
+The expected fraction of tails is 0.5.  Let's repeat the experiment
+with a larger number of coins.
+```{r}
+n = 10000
+for (i in 1:trials) {
+   print(sum(sample(c(0, 1), n, replace=TRUE)) / n  - 0.5)
+}
+```
+
+Based on the calculations, approximately what is the $\pm$ on the difference between
+the observed fraction of tails and 0.5
+
+_Include your answer here._
+
+
+Does the $\pm$ on the difference between the observed fraction of tails and 0.5
+increase or decrease with the number of trails? Briefly justify your conclusion.
+
+_Include your answer here._
+
+
+\newpage
+
+# Binomial Formula
+
+If we roll a die, the chance of getting a 4 is $1/6$.  If we roll 60 dice
+we expect to get about ten 4s. The number of ways of getting exactly ten 4s out
+of 60 rolls is:
+
+```{r}
+n = 60
+k = 10
+choose(n, k)
+```
+
+
+The chance of getting exactly ten 4s is given by the binomial formula:
+
+```{r}
+p = 1/6
+dbinom(k, size=n, prob=p)
+```
+
+
+The chance of getting ten or fewer 4s is:
+
+```{r}
+pbinom(k, size=n, prob=p)
+```
+
+Why do the  two probabilities differ so much?
+
+_Include your answer here._
+
