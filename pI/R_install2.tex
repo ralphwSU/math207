@@ -1,0 +1,309 @@
+\documentclass[10pt]{article}
+
+% Specify the margins and text size.
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\hoffset}{.05in}
+\setlength{\voffset}{-.8in}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+
+% Load some fonts and symbol packages
+\usepackage{latexsym}
+\usepackage{pifont}       % contains 'star' symbol for counterinsurgency handbook title
+\usepackage{yfonts} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}     % actually, this is loaded by pstricks
+\usepackage[T1]{fontenc}
+\usepackage{ifthen}
+\usepackage{pstricks,pst-grad,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
+%\usepackage[all]{xy}
+%\usepackage{animate}
+
+% The hyperref package inserts links into the pdf.
+\definecolor{MyLinkColor}{rgb}{.1,.2,1}
+\definecolor{MyCiteColor}{rgb}{.1,1,.2}
+\definecolor{MyURLColor}{rgb}{.2,.2,.6}
+\usepackage[backref=true,pagebackref=false,hyperindex,colorlinks=true,
+  linkcolor=MyLinkColor,urlcolor=MyURLColor]{hyperref}
+
+
+% The tweaklist package is something I found on the web.  It provides a simple interface
+% for making changes to spacing used in the itemize and enumerate environments.  Comment
+% this out if you don't care to use tweaklist.
+\usepackage{tweaklist}
+\renewcommand{\itemhook}{\setlength{\parskip}{2pt}\setlength{\parsep}%
+{1pt}\setlength{\topsep}{0pt}\setlength{\itemsep}{0pt}}
+
+\newcommand{\U}{\underline{\hspace{5pt}}}
+
+\usepackage{listings}
+\newcounter{EX}\setcounter{EX}{1}
+\newcommand{\EXERCISE}{\arabic{EX}.\stepcounter{EX} }
+
+\begin{document}
+\pagestyle{empty}
+\lstset{language=R, showspaces=false, showstringspaces=false}
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-0.4in}
+
+{\small \hfill
+%\begin{tabular}{cl}
+%& Math 207\\
+%& Introduction to Statistics\\
+%\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+
+\begin{center}
+\textbf{\large Technology Plan}
+\end{center}\vspace{-5pt}
+
+\textbf{Objectives}:
+Create a statement for students that lets them know what technology they will need to have and what technology skills they will need to be successful
+Make technological choices that will serve students well as their careers progress
+\medskip
+
+\textbf{Task}:
+Write a technology plan for the distance/hybrid course you plan to teach.  This should explain to students how technology will be used to support instruction and learning in your course.  What technologies will you use?  What support do you and your students need to be successful?  Is there a YouTube tutorial that will help your students get started?
+\medskip
+
+Technology is a central component of data science, computer science and some applied mathematics 
+courses whether they are distance/hybrid or face-to-face.  This subject has been a particular
+challenge to me for many years.  There are two reasons for this: (1)~use of computational tools
+instead of manual calculations can inhibit development of students' mathematical skill and understanding
+and (2)~making software available to students requires computing resources and technology 
+support (e.g., someone to install and maintain the software assuming not all students can do this on
+their own).  
+As a graduate student at the University of Illinois, I taught in 
+the Calculus \& Mathematica program.  This was a discovery-based course in which students used
+\textit{Mathematica}, a powerful, commercial software package, to work through 
+calculus laboratory activities in class.  
+See \href{https://www.wolfram.com/mathematica}{www.wolfram.com/mathematica}.
+The associated lessons were written by research mathematicians at Illinois and Ohio State.  
+They included deep insights and innovative graphics to illustrate concepts.  
+I found that students in this course, however, were extremely weak in their ability to 
+do calculations by hand even for trivial calculus problems.  As a result, I began including 
+a significant hand-written component to my courses.  Over the years I have seen a significant
+decline in students' ability to compute with fractions and solve simple equations without
+resorting to a calculator. (I'm currently fighting that battle at home with my 7th graders!)
+
+After leaving Illinois for my first teaching position, \textit{Mathematica} was no longer available 
+to me  (its license fee is high).  Similarly, when I worked in industry, it was
+effectively not available to me (we had a small number of licenses at a 100$+$ employee 
+company).  My experience with other commercial software products is similar.
+In universities and business, I have been required at different times to use Matlab, Minitab, 
+Maple, SAS, Microsoft Office  and the Microsoft Windows operating system.  In every instance, that 
+required tool was not available to me (unless I wanted to pay for it personally) in some subsequent
+position.  
+
+I am a strong advocate for the use of open-source software.  Not only is it consistently available
+to me in diverse work environments, I have found it to be a more reliable work partner.  
+In the classroom, I try to provide students with  opportunities to use computational tools
+that they will have access to throughout their careers rather than tools that a commercial
+vendor makes available to academics so that users will pay license fees in the future
+(or collect data on us now while we are using their products).
+The tools that I use 
+include the Linux operating system rather than Windows or Mac, \LaTeX\ rather than 
+commercial word processors, and data science and mathematics applications such as
+the R environment for statistical computing, programming languages such as Python and Java,
+the PostgreSQL database, the QGIS geospatial mapping application and others.  These
+are also the tools that I turn to when working on research and consulting projects.
+
+Institutional and corporate computing services tend not to provide
+technical support for open-source tools.  At one company where I worked, the attitude 
+of IT seemed to be \lq\lq Who will we sue if we get hacked?\rq\rq\  As a result, I have
+spent many hours over the years learning to provide my own IT support with open-source tools.
+It has been challenging but interesting and of enduring value in my career.  At Shepherd 
+University, I managed a computer lab where I could ensure students had access to course software
+(at least when they were in the lab).  At Shenandoah, it is a great benefit that students all
+have their own laptops.  Understanding the unique issues that can arise in installing software 
+(e.g., R and PostgreSQL which are not supported by IT) 
+on particular students computers can be a challenge for me, however.
+\vfill
+\eject
+
+In Math 207 I use the R environment for statistical computing
+(\href{https://www.r-project.org}{https://www.r-project.org}) and the 
+RStudio graphical interface (\href{https://www.rstudio.com}{https://www.rstudio.com}).
+I have been using these in similar courses since 2011.  Last year at Shenandoah I 
+experimented with project assignments using R and a the National Health and Examination
+Survey (NHANES) data set (\href{https://www.cdc.gov/nchs/nhanes}{https://www.cdc.gov/nchs/nhanes}).
+An example is included at the end of this assignment.
+Some students found these quite challenging and a few seemed frustrated.  
+However, several other students took quickly to these projects
+and wrote solutions above and beyond what was 
+required. 
+For an  online course, it will be especially important for me to develop examples 
+and \lq smaller steps\rq\ that
+allow more students to make rapid initial progress.  
+
+\begin{itemize}
+\item In the first week of class, I have students install R and R Studio.  My instruction sheet
+is included on the next page.  
+\item Once students have the software installed, I have them complete a worksheet that 
+illustrates basic use of R as a calculator, graphing tool and platform for doing statistical
+  computations and running simulations (e.g., flip 10 coins 1000 times and make a histogram of the 
+  results).
+%\item As a teaching tool, R provides the ability to quickly visualize 
+\item Within the first month, I assign a project in which students read the NHANES data set
+  into R then compute descriptive statistics and plot histograms of specified variables and
+  variables of interest to them (the data set contains thousands of variables recorded for 
+  over 30,000 subjects).   For an on-campus course, I have students generate pdf reports as
+  outputs to their labs.  This requires installation of another software application that R 
+  uses.  For an online course, I will have students turn in their R files instead since my
+  ability to help them install software will be more limited.
+\item As the semester progresses, I will assign R worksheets once or twice per week 
+  that show students the R commands related to our class concepts and allow them to 
+  experiment with examples.
+\item I also plan to continue assigning R projects with the NHANES data set.  These start
+   with examples that I include in the R lab file.  Students are asked to write comments
+   responding to questions in the file (e.g., The correlation between age and systolic 
+   blood pressure measurements among subjects in the study was 0.15.  Comment on the 
+   sign and magnitude of this value.).  As the semester progresses, I ask more challenging
+   questions (e.g., Select two quantitative variables of interest to you.  Compute the 
+   regression line, plot the data and the regression line and and comment on the results.)
+\item For these R projects, I will have students turn in their R files (rather than a pdf) on 
+   Canvas.
+\item I have prepared the full NHANESIII data set as a zip file that students can download
+from Canvas.
+%\item 
+\end{itemize}
+
+\vfill
+\eject
+
+
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-1.69cm}
+
+{\small \hfill
+\begin{tabular}{cl}
+& Math 207\\
+& Introduction to Statistics\\
+\end{tabular}
+}
+
+
+\begin{center}
+\textbf{\large  Installing \texttt{R} and RStudio}
+\end{center}
+\medskip
+
+The \texttt{R} Environment for Statistical Computing 
+ is a free software environment for statistics and graphics.
+RStudio is a graphical user interface to \texttt{R}.  
+Both are used extensively in academics, industry and government.
+They are freely-available to download for Mac, Linux and Windows.
+We will use both in this course.  Please follow the steps below
+to install and test them on your computer.
+\medskip
+
+
+\textbf{Install R}:
+
+\begin{itemize}
+\item Open a web browser to \href{https://www.r-project.org}{https://www.r-project.org}.
+\item Click on the \textit{download R} link near the top of the page.
+\item Scroll down the CRAN Mirrors page and select any U.S. site.
+\item Click on 
+   the \textit{Download for (Mac) OS X} link (or the link that is
+   appropriate to your computer's operating system).
+\item Once the download is complete, install the software.  On Mac, this involves
+  double-clicking on the downloaded image file.
+\end{itemize}
+\medskip
+
+
+\textbf{Install R Studio}:
+\begin{itemize}
+\item Open a web browser to \href{https://www.rstudio.com}{https://www.rstudio.com}.
+\item Click on the \textit{Download RStudio} link near the top of the page.
+\item Click on the RStudio Desktop, Open Source License, FREE Download link.
+\item Click download for your computer's operating system (e.g., Mac OSX).
+\item Once the download is complete, install the software.  On Mac, this involves
+  double-clicking on the downloaded image file.
+\end{itemize}
+\medskip
+
+Here is a video that demonstrates installing R and R Studio on Mac OS X:\vspace{-10pt}
+\begin{center}
+\href{https://www.youtube.com/watch?v=GLLZhc_5enQ}{https://www.youtube.com/watch?v=GLLZhc\U 5enQ}
+\end{center}
+\bigskip
+
+\textbf{RStudio Cloud}:  As an alternative to installing and running R and RStudio on your
+machine, you can use the RStudio Cloud interface.  Just open \vspace{-8pt}
+\begin{center}
+\href{https://rstudio.cloud}{https://rstudio.cloud}\vspace{-8pt}
+\end{center}
+in a web browser, sign up for an account and start using RStudio!
+
+\vfill
+\eject
+
+
+\vfill
+\eject
+\href{http://www.su.edu}{\includegraphics[height=1.75cm]{sulogo.eps}}
+\vspace{-.4in}
+
+{\small \hfill
+%\begin{tabular}{cl}
+%& Math 207\\
+%& Introduction to Statistics\\
+%\end{tabular}
+}
+\setlength{\baselineskip}{1.05\baselineskip}
+
+
+
+\begin{center}
+\textbf{\large Relationship to the International Society for Technology Education  Standards}
+\end{center}
+
+
+\begin{enumerate}
+\item \textbf{Empowered Learner}. Students leverage technology to take an active role in choosing, achieving and demonstrating competency in their learning goals, informed by the learning sciences.
+\item 
+\textbf{Digital Citizen}. Students recognize the rights, responsibilities and opportunities of living, learning and working in an interconnected digital world, and they act and model in ways that are safe, legal and ethical.
+\item 
+  \textbf{Knowledge Constructor}.
+  Students critically curate a variety of resources using digital tools to construct knowledge, produce creative artifacts and make meaningful learning experiences for themselves and others.
+\item 
+\textbf{Innovative Designer}.
+Students use a variety of technologies within a design process to identify and solve problems by creating new, useful or imaginative solutions.
+\item 
+\textbf{Computational Thinker}.
+Students develop and employ strategies for understanding and solving problems in ways that leverage the power of technological methods to develop and test solutions.
+\item 
+\textbf{Creative Communicator}.
+Students communicate clearly and express themselves creatively for a variety of purposes using the platforms, tools, styles, formats and digital media appropriate to their goals.
+\item 
+\textbf{Global Collaborator}.
+Students use digital tools to broaden their perspectives and enrich their learning by collaborating with others and working effectively in teams locally and global
+\end{enumerate}
+\bigskip
+
+The use of R and, in particular, projects involving real data sets, do seem to 
+align with certain standars of the International Society for Technology Education.
+
+\begin{itemize}
+\item Having students select variables of interest in the NHANES data set, perform
+analysis  and discuss their findings aligns with standard~1.
+\item Use of a large, real-world data set aligns with standard 5.
+\item Having students interpret numerical and graphical results in projects and 
+  smaller assignments aligns with standard~6.
+\end{itemize}
+
+\vfill
+\eject
+
+\end{document}

@@ -30,6 +30,7 @@
 
 % define your own colours:
 \definecolor{Red}{rgb}{1,0,0}
+\definecolor{lightred}{rgb}{1,.6,.6}
 \definecolor{myblue}{rgb}{0,0,0.6}
 \definecolor{Blue}{rgb}{0,0,1}
 \definecolor{Green}{rgb}{0,1,0}
@@ -63,8 +64,9 @@
 \setbeamertemplate{footline}[text line]{
 \raisebox{3pt}{\includegraphics[height=15pt]{su-long.eps}}\hfill 
 \raisebox{5pt}{Math 207:  Statistics}\hfill 
-\raisebox{5pt}{Controlled Experiments}\hfill
-\raisebox{5pt}{\insertframenumber/\pageref{lastpage}}}
+\raisebox{5pt}{Chapters 1--2: Controlled Experiments}\hfill
+%\raisebox{5pt}{\insertframenumber/\pageref{lastpage}}}
+\raisebox{5pt}{\insertframenumber/\inserttotalframenumber}}
 %\setbeamertemplate{footline}[text line]{} % or empty footer
 
 % include packages
@@ -100,7 +102,7 @@
 \psframe[linewidth=0.02,linecolor=gray](-6.2,-7)(6.2,2.2)
 \psframe[linewidth=0.02,linecolor=gray](-6.15,-6.95)(6.15,2.15)
 \rput(0,1.2){\color{myblue}\large Math 207:  Statistics}
-\rput(0,0.2){\color{myblue}Controlled Experiments}
+\rput(0,0.2){\color{myblue}Chapters 1--2: Controlled Experiments}
 %
 \psframe[linewidth=0.02,fillstyle=solid,fillcolor=grayA](-2,-3)(2,-1)
   \rput[tl](-1.9,-1.1){\tiny Population (parameters)}
@@ -128,22 +130,22 @@
 \label{polio}
 
 \begin{itemize}
-\item Viral infectious disease: victims are typically children
-\item Can effect nervous system causing muscle weakness or paralysis 
-\item Most cases cause no symptoms but can spread the disease
-\item Major epidemics across the world between 1910 and 1956
-\item Vaccines discovered in 1950s have made polio rare in most countries
+\item<2-> Viral infectious disease: victims are typically children
+\item<2-> Can effect nervous system causing muscle weakness or paralysis 
+\item<3-> Most cases cause no symptoms but can spread the disease
+\item<4-> Major epidemics across the world between 1910 and 1956
+\item<5-> Vaccines discovered in 1950s have made polio rare in most countries
 \end{itemize}
 
 \begin{center}
 {\small\setlength{\tabcolsep}{0.2in}\begin{tabular}{ccc}
 %{\includegraphics[height=1.1in]{polio_victim.eps}}
-{\includegraphics[height=1.1in]{polioDM.eps}}
+\uncover<2->{\includegraphics[height=1.1in]{polioDM.eps}}
 & %\hspace{.4in}
-\raisebox{-0.1in}{\includegraphics[height=1.2in,  bb=0 75 412 386, clip]{polioStatistics.eps}}
+\uncover<4->{\raisebox{-0.1in}{\includegraphics[height=1.2in,  bb=0 75 412 386, clip]{polioStatistics.eps}}}
 & %\hspace{.4in}
-{\includegraphics[height=1.1in]{jonas-salk.eps}}\\
-Polio Victim & Infection Statistics & Jonas Salk
+\uncover<5->{\includegraphics[height=1.1in]{jonas-salk.eps}}\\
+\uncover<2->{Polio Victim} & \uncover<4->{Infection Statistics} & \uncover<5->{Jonas Salk}
 \end{tabular}}
 \end{center}
 
@@ -151,49 +153,92 @@ Polio Victim & Infection Statistics & Jonas Salk
 
 \subsection{Vaccine Trial Design Proposals}
 \begin{frame}[t]\frametitle{Vaccine Trial Design Proposals}
-{\small 
+{\footnotesize
 
 \begin{itemize}
-\item 1954: Salk vaccine ready to tested outside the laboratory
-\item Public Health Service and National Foundation for Infantile Paralysis (NFIP) 
-  designed the experiments
-\item Trials involved 2,000,000 grade 1--3 children in school districts across the US
+\item<2-> 1954: Salk vaccine ready to be tested outside the laboratory
+\item<3-> Vaccine Trial Design Proposals:
    \begin{itemize}
-      \item 500,000 vaccinated
-      \item 1,000,000 deliberately left unvaccinated, as controls
-      \item 500,000 refused vaccination
-   \end{itemize}
-\item Vaccine Trial Design Proposals
-   \begin{itemize}
-   \item Vaccinate a large number of children in 1954 and compare the polio incidence rate to that in 1953
+   \item<4-> \footnotesize
+     Vaccinate a large number of children in 1954 and compare the polio incidence rate to that in 1953
           (not used:  see the graph on slide~\pageref{polio})
-   \item Vaccinate all grade 2 children whose parents consent; leave children in grades 1 and 3 as controls
+   \item<5-> \footnotesize
+   Vaccinate all grade 2 children whose parents consent; leave children in grades 1 and 3 as controls
           (used in some school districts)
-   \item From the set $X$ of children whose parents consent, randomly select some for vaccination; leave
+   \item<6-> \footnotesize
+   From the set $X$ of children whose parents consent, randomly select some for vaccination; leave
          others in $X$ as controls
          (used in some school districts)
    \end{itemize}
-\end{itemize}}
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{ccc}
+\uncover<5->{NFIP Study} & & \uncover<6->{Public Health Services Study}\\
+\uncover<5->{\begin{pspicture}(0,0)(4,3)
+\psset{linewidth=0.02,linecolor=gray}
+\psframe*[linecolor=lightgray](0,2)(4,3)
+   \rput(2,2.5){control}
+\psframe*[linecolor=lightgray](0,0)(4,1)
+   \rput(2,0.5){control}
+%
+\psframe*[linecolor=lightred](2.4,1)(4,2)
+   \rput(3.2,1.5){no-consent}
+\rput(1.3,1.5){\begin{tabular}{c}consent\\ treatment\end{tabular}}
+%
+\psframe(0,0)(4,3)
+\psline[linecolor=black,linewidth=0.02](0,1)(4,1)
+\psline[linecolor=black,linewidth=0.02](0,2)(4,2)
+\psline[linecolor=black,linewidth=0.02](2.4,1)(2.4,2)
+\rput(-0.2,0.5){1}\rput(-0.2,1.5){2}\rput(-0.2,2.5){3}
+\rput{90}(-0.7,1.5){Grade}
+\psframe[linecolor=black](0,0)(4,3)
+\end{pspicture}}
+& \hspace{.5in} &
+\uncover<6->{\begin{pspicture}(0,0)(4,3)
+\psset{linewidth=0.02,linecolor=gray}
+\psframe*[linecolor=lightred](2.4,0)(4,3)
+   \rput{-90}(3.2,1.5){no-consent}
+%\pspolygon*[linecolor=lightgray](0,3)(2.4,3)(2.4,0)
+\psframe*[linecolor=lightgray](1.2,0)(2.4,3)
+\psline(0,1)(4,1)
+\psline(0,2)(4,2)
+\rput(-0.2,0.5){1}\rput(-0.2,1.5){2}\rput(-0.2,2.5){3}
+\rput{90}(-0.7,1.5){Grade}
+%\psline[linestyle=dashed,linecolor=black,linewidth=0.02](1.2,3)(1.2,0)
+\psline[linecolor=black,linewidth=0.02](1.2,3)(1.2,0)
+%\rput{-51.3}(1,1){treatment}
+\rput{-90}(0.6,1.5){treatment}
+%\rput{-51.3}(1.6,2){control}
+\rput{-90}(1.8,1.5){control}
+\psline[linecolor=black,linewidth=0.02](2.4,0)(2.4,3)
+\rput(1.2,0.5){consent}
+\psframe[linecolor=black](0,0)(4,3)
+\end{pspicture}}
+\end{tabular}
+\end{center}
+}
 
 \end{frame}
+
 
 \subsection{Complicating Factors}
 \begin{frame}[t]\frametitle{Complicating Factors}
 {\small
-Challenges
+\textbf{Challenges}:
 \begin{itemize}
-\item Children could not be vaccinated without parental consent
-\item Higher-income parents were more likely to give consent
+\item \footnotesize Children could not be vaccinated without parental consent
+\item \footnotesize Higher-income parents were more likely to give consent
 \item Children of higher-income families were more vulnerable to polio
 \item Some cases are difficult to diagnose
 \item Infection rate can vary from grade to grade
 \end{itemize}
 \medskip
 
-Solutions
+\textbf{Solutions}:
 \begin{itemize}
-\item Treatment and control groups should be as similar as possible, except for the treatment.
-\item Use randomness rather than human judgment to assign subjects to groups and avoid bias.
+\item \footnotesize Treatment and control groups should be as similar as possible, except for the treatment.
+\item \footnotesize Use randomness rather than human judgment to assign subjects to groups and avoid bias.
 \end{itemize}}
 \end{frame}
  
@@ -203,37 +248,83 @@ Solutions
 \begin{center}
 {\footnotesize
 \begin{tabular}{cc}
-Randomized controlled          & \\
-double-blind experiment        & NFIP study\\
-   \begin{tabular}{lcc}\hline
-                 & Size      & Rate${}^*$\vphantom{\LARGE Y}\\
-      \color{darkgreen}Treatment  & \color{darkgreen}200,000   & {\color{blue}\textbf{28}}\\
-      \color{darkgreen}Control    & \color{darkgreen}200,000   & {\color{blue}\textbf{71}}\\
-      No consent & 350,000   & 46\\
-   \end{tabular}
-&
-   \begin{tabular}{lcc}
+\uncover<2->{NFIP Study} & \uncover<3->{Public Health Services Study}\\
+\uncover<2->{\begin{tabular}{lcc}
 \hline
                  & Size        &  Rate${}^*$\vphantom{\LARGE Y}\\
       \color{darkgreen}Grade 2 (vaccine)\hfill        & \color{darkgreen}225,000 & 25\\
       \color{gray}Grades 1 and 3 (control)        & \color{gray}725,000 & {\color{red}\textbf{54}}\\
       Grade 2 (no consent)\hfill     & 125,000 & {\color{red}\textbf{44}}\\
-   \end{tabular}
+   \end{tabular}}
+&
+\uncover<3->{\begin{tabular}{lcc}\hline
+                 & Size      & Rate${}^*$\vphantom{\LARGE Y}\\
+      \color{darkgreen}Treatment  & \color{darkgreen}200,000   & {\color{blue}\textbf{28}}\\
+      \color{darkgreen}Control    & \color{darkgreen}200,000   & {\color{blue}\textbf{71}}\\
+      No consent & 350,000   & 46\\
+   \end{tabular}}
 \end{tabular}}\vspace{-2pt}
 \end{center}
-{\scriptsize ${}^*$Rate is number of cases per 100,000 subjects.
-  $\mbox{\color{darkgreen}Green}=\mbox{consent}$  $\mbox{\color{gray}Gray}=\mbox{consent}+\mbox{no consent}$}
+\uncover<2->{\scriptsize ${}^*$Rate is number of cases per 100,000 subjects.
+  %$\mbox{\color{darkgreen}Green}=\mbox{consent}$  
+  % $\mbox{\color{lightgray}Gray}=\mbox{consent}+\mbox{no consent}$
+}
 
-{\small\begin{itemize}
-\item Blue values demonstrate vaccine effectiveness: Could the 
-  ${\color{blue}\textbf{71}}\to {\color{blue}\textbf{28}}$ difference be due to the 50/50 
-  selection chance?
-\item Red values demonstrate that the NFIP study treatment and control groups differed 
-  in their vulnerability %(only consenting families in treatment group)
-\item ${\color{blue}\textbf{71}}\to {\color{blue}\textbf{28}}$ 
-    vs ${\color{red}\textbf{54}}\to 25$ shows bias in NFIP study due to confounding
-\item Average of blue values (50) differs from 46: children of consenting parents 
-  were more vulnerable
+{\footnotesize\begin{center}
+\begin{tabular}{ccc}
+\uncover<2->{NFIP Study} & & \uncover<3->{Public Health Services Study}\\
+\uncover<2->{\begin{pspicture}(0,0)(4,2.1)
+\psset{linewidth=0.02,linecolor=gray,yunit=0.7}
+\psframe*[linecolor=lightgray](0,2)(4,3)
+   \rput(2,2.5){control}
+\psframe*[linecolor=lightgray](0,0)(4,1)
+   \rput(2,0.5){control}
+%
+\psframe*[linecolor=lightred](2.4,1)(4,2)
+   \rput(3.2,1.5){no-consent}
+\rput(1.3,1.5){\begin{tabular}{c}consent\\ treatment\end{tabular}}
+%
+\psframe(0,0)(4,3)
+\psline[linecolor=black,linewidth=0.02](0,1)(4,1)
+\psline[linecolor=black,linewidth=0.02](0,2)(4,2)
+\psline[linecolor=black,linewidth=0.02](2.4,1)(2.4,2)
+\rput(-0.2,0.5){1}\rput(-0.2,1.5){2}\rput(-0.2,2.5){3}
+\rput{90}(-0.7,1.5){Grade}
+\psframe[linecolor=black](0,0)(4,3)
+\end{pspicture}}
+& \hspace{.5in} &
+\uncover<3->{\begin{pspicture}(0,0)(4,2.1)
+\psset{linewidth=0.02,linecolor=gray,yunit=0.7}
+\psframe*[linecolor=lightred](2.4,0)(4,3)
+   \rput{-90}(3.2,1.5){no-consent}
+%\pspolygon*[linecolor=lightgray](0,3)(2.4,3)(2.4,0)
+\psframe*[linecolor=lightgray](1.2,0)(2.4,3)
+\psline(0,1)(4,1)
+\psline(0,2)(4,2)
+\rput(-0.2,0.5){1}\rput(-0.2,1.5){2}\rput(-0.2,2.5){3}
+\rput{90}(-0.7,1.5){Grade}
+%\psline[linestyle=dashed,linecolor=black,linewidth=0.02](1.2,3)(1.2,0)
+\psline[linecolor=black,linewidth=0.02](1.2,3)(1.2,0)
+%\rput{-51.3}(1,1){treatment}
+\rput{-90}(0.6,1.5){treatment}
+%\rput{-51.3}(1.6,2){control}
+\rput{-90}(1.8,1.5){control}
+\psline[linecolor=black,linewidth=0.02](2.4,0)(2.4,3)
+\rput(1.2,0.35){consent}
+\psframe[linecolor=black](0,0)(4,3)
+\end{pspicture}}
+\end{tabular}
+\end{center}}
+
+{\scriptsize\begin{itemize}
+\item<4-> Blue values demonstrate vaccine effectiveness: Could the 
+  ${\color{blue}\textbf{71}}\to {\color{blue}\textbf{28}}$ be due to chance?
+%difference be due to the 50/50    selection chance?
+\item<5-> Red values demonstrate that difference between  NFIP  treatment and control groups.
+% differed   in their vulnerability %(only consenting families in treatment group)
+\item<6-> ${\color{blue}\textbf{71}}\to {\color{blue}\textbf{28}}$ 
+    vs ${\color{red}\textbf{54}}\to 25$ shows bias in NFIP study due to confounding.
+\item<7-> Average of blue values (50) differs from 46: PHS consent group was more vulnerable.
 %\item Compre 46 to 44
 \end{itemize}}
 %Exercises:  3 on page 25, 
@@ -455,7 +546,7 @@ Total group  & 1,103 & 20\% & 2,789 & 21\%
 \begin{frame}[t]\frametitle{Confounding Factors and Associations}
 {\small
 \begin{itemize}
-\item Pellagra:  Among many associations between the 18${}^{th}$ century disease and other factors, lack of niacin
+\item Pellagra:  Among many associations between the 19--20${}^{th}$ century disease and other factors, lack of niacin
   was found to be the underlying cause.
 \item Cervical Cancer and Circumcision: Human papilloma virus was found to be the underlying cause
   and explained differences in cancer rates between particular populations in the 1950s.

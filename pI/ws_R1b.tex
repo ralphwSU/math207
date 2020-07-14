@@ -70,9 +70,8 @@
 \newcommand{\BSK}{\vspace{.14in}}
 
 \EXERCISE \textbf{Arithmetic Operations}.
-Please enter the following commands in \texttt{R} then write down the output
-that \texttt{R} produces. Explain to yourself what \texttt{R} thinks it
-is doing.
+Please enter the following commands in the RStudio console then look at the output
+that \texttt{R} produces. Explain to yourself what \texttt{R} thinks it is doing.
 %\vspace{-5pt}
 
 \SUBX a) \texttt{2.0 + 3.1}
@@ -122,7 +121,7 @@ what \texttt{R} thinks it is doing.
 \SUBX e) \texttt{x + 2}
 \BSK
 
-\SUBX f) \texttt{x*y}
+\SUBX f) \texttt{x * y}
 \BSK
 
 \SUBX g) \texttt{x  $\widehat{\hspace{3pt}}$  y}
@@ -305,16 +304,36 @@ What is \texttt{R} doing?
 \hspace{20pt} \texttt{x <- seq(-4,4,by=0.1)}
 
 \hspace{20pt} 
-\texttt{plot(x, dnorm(x), type="l", cex.lab=1.5, cex.axis=1.5, xlim=c(-4,4), ylim=c(0,0.5))}
+\texttt{plot(x, dnorm(x), type="$\ell$", cex.lab=1.5, cex.axis=1.5, xlim=c(-4,4), ylim=c(0,0.5))}
 \vspace{0.5in}
 
 \SUBX b) Explain what the \texttt{xlim} and \texttt{ylim} parts of the 
   command above mean.
 \BSK\BSK
 
-\SUBX c) Experiment to try to figure out what the \texttt{cex.lab}
-and \texttt{cex.axis} parts of the command do.
+\SUBX c)  \texttt{?airquality} will give you information about the airquality data set.
+\BSK
+
+\SUBX d) Try the following in R. Is the ozone level higher on hot or 
+   cool days?
+
+\hspace{20pt} \texttt{plot(airquality\$Temp, airquality\$Ozone)}.  
+\BSK\BSK
+
+\SUBX e) Try the following in \texttt{R}. Is the ozone level higher on windy
+   or calm days?
+
+\hspace{20pt} \texttt{plot(airquality\$Wind, airquality\$Ozone)}.  
+\BSK\BSK
+
+%
+%Experiment to try to figure out what the \texttt{cex.lab}
+%and \texttt{cex.axis} parts of the command do.
 \bigskip
+
+\vfill
+\eject
+\end{document}
 
 \EXERCISE \textbf{Graphics II}.
 Do the following in \texttt{R}.
