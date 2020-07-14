@@ -18,7 +18,8 @@ files contain additional data about both adults and youth.
 ### Reading the adult.csv file
 The following command reads the adult.csv file into R.
 ```{r}
-adult = read.csv("/Users/ralphwojtowicz/Desktop/math207/data/adult.csv", header=TRUE)
+dataDir = "/home/ralphw/su2/math207/nhanes/"
+adult = read.csv(paste(dataDir,"adult.csv", sep=''), header=TRUE)
 ```
 
 The size of this data set is
@@ -32,7 +33,7 @@ in the data set and 1238 pieces of information about each in this file.  The lab
 ### Reading the youth.csv file
 The following command reads the youth.csv file into R.
 ```{r}
-youth = read.csv("/Users/ralphwojtowicz/Desktop/math207/data/youth.csv", header=TRUE)
+youth = read.csv(paste(dataDir, "youth.csv", sep=''), header=TRUE)
 ```
 
 The size of this data set is
@@ -45,7 +46,7 @@ This means that the file has 13,944 rows and 687 columns.
 ### Reading the exam.csv file
 The following command reads the exam.csv file into R.
 ```{r}
-exam = read.csv("/Users/ralphwojtowicz/Desktop/math207/data/exam.csv", header=TRUE)
+exam = read.csv(paste(dataDir, "exam.csv", sep=''), header=TRUE)
 ```
 
 The exam of this data set is
@@ -59,7 +60,7 @@ There are 31,311 rows and 2368 columns in the exam file.
 
 The following command reads the lab.csv file into R.
 ```{r}
-lab = read.csv("/Users/ralphwojtowicz/Desktop/math207/data/lab.csv", header=TRUE)
+lab = read.csv(paste(dataDir, "lab.csv", sep=''), header=TRUE)
 ```
 
 The size of this data set is

@@ -1,0 +1,155 @@
+---
+author: "Your Name"
+title: "Computer Project 1: Regression"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Predicting Pollution Levels from Daily High Temperature
+
+The airquality data set has daily air quality measurements in New York, May to 
+September 1973.  Here is a plot of ozone levels (in ppb) as a function of 
+daily high temperature (degrees F).
+
+```{r}
+plot(airquality$Temp, airquality$Ozone, col='blue', xlab="Temperature", ylab="Pollution")
+```
+
+_Based on the graph, would you say the correlation is positive or negative? Is the magnitude
+close to 1, 0 or something in between?_
+
+\newpage
+
+## Correlation
+
+Here is the correlation.
+
+```{r}
+cor(airquality$Temp, airquality$Ozone, use='complete.obs')
+```
+
+_What does the correlation tell you about the association between temperature
+and ozone?  Is it positive or negative?  Is it a strong or weak association?_
+
+\newpage
+
+## Regression
+
+Here is a calculation of the regression line.
+```{r}
+model <- lm(airquality$Ozone ~ airquality$Temp)
+summary(model)
+```
+
+Now plot the data with the regression line.
+
+```{r}
+plot(airquality$Temp, airquality$Ozone, col='blue', xlab="Temperature", ylab="Pollution")
+abline(model, col='green')
+```
+
+_Use the output to write down the equation for the regression line.
+Does the data seem to fit the line well or would it be better to use a quadratic or some other
+curve?_
+
+\newpage
+
+# Predicting Pollution Levels from Wind Speed
+
+Here is a plot of ozone levels (in ppb) as a function of 
+wind speed (mph).
+
+```{r}
+plot(airquality$Wind, airquality$Ozone, col='blue', xlab="Wind Speed", ylab="Pollution")
+```
+
+_Based on the graph, would you say the correlation is positive or negative? Is the magnitude
+close to 1, 0 or something in between?_
+
+\newpage
+
+## Correlation
+
+Here is the correlation.
+
+```{r}
+cor(airquality$Wind, airquality$Ozone, use='complete.obs')
+```
+
+_What does the correlation tell you about the association between wind speed
+and ozone?  Is it positive or negative?  Is it a strong or weak association?_
+
+\newpage
+
+## Regression
+
+Here is a calculation of the regression line.
+```{r}
+model <- lm(airquality$Ozone ~ airquality$Wind)
+summary(model)
+```
+
+Now plot the data with the regression line.
+
+```{r}
+plot(airquality$Wind, airquality$Ozone, col='blue', xlab="Wind Speed", ylab="Pollution")
+abline(model, col='green')
+```
+
+_Use the output to write down the equation for the regression line.
+Does the data seem to fit the line well or would it be better to use a quadratic or some other
+curve?_
+
+\newpage
+
+# Predicting Pollution Levels from Solar Radiation
+
+Here is a plot of ozone levels (in ppb) as a function of 
+solar radiation level (in lang).
+
+```{r}
+plot(airquality$Solar.R, airquality$Ozone, col='blue', xlab="Solar Radiation", ylab="Pollution")
+```
+
+_Based on the graph, would you say the correlation is positive or negative? Is the magnitude
+close to 1, 0 or something in between?_
+
+\newpage
+
+## Correlation
+
+Here is the correlation.
+
+```{r}
+cor(airquality$Solar.R, airquality$Ozone, use='complete.obs')
+```
+
+_What does the correlation tell you about the association between solar radiation
+and ozone?  Is it positive or negative?  Is it a strong or weak association?_
+
+\newpage
+
+## Regression
+
+Here is a calculation of the regression line.
+```{r}
+model <- lm(airquality$Ozone ~ airquality$Solar.R)
+summary(model)
+```
+
+Now plot the data with the regression line.
+
+```{r}
+plot(airquality$Solar.R, airquality$Ozone, col='blue', xlab="Solar Radiation", ylab="Pollution")
+abline(model, col='green')
+```
+
+_Use the output to write down the equation for the regression line.
+Does the data seem to fit the line well or would it be better to use a quadratic or some other
+curve? Which of the three variables would be the most helpful in predicting ozone levels?  
+Which the least?  Explain your conclusions._
+

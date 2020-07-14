@@ -57,8 +57,8 @@
 
 % to have the same footer on all slides
 \setbeamertemplate{footline}[text line]{
-\includegraphics[height=15pt]{logo-high-res.eps}\hfill 
-\raisebox{5pt}{Math 314:  Statistics}\hfill 
+\includegraphics[height=15pt]{sulogolong.eps}\hfill 
+\raisebox{5pt}{Math 207:  Introduction to Statistics}\hfill 
 \raisebox{5pt}{Chapter 8: Correlation}\hfill
 \raisebox{5pt}{\insertframenumber/\pageref{lastpage}}}
 %\setbeamertemplate{footline}[text line]{} % or empty footer
@@ -76,10 +76,10 @@
 \usepackage{hyperref}
 \usepackage{setspace}
 
-\title{Math 314:  Statistics}
+\title{Math 207:  Introduction to Statistics}
 \subtitle{Chapter 8:  Correlation}
 \author{Ralph Wojtowicz}
-\institute{CME Department\\ Shepherd University}
+\institute{Mathematics Department\\ Shenandoah University}
 %\date{\scriptsize 1 February 2012}
 
 \usepackage{pstricks,pst-grad,pst-func,pst-text,pst-node,multido,pst-plot,calc,pst-3dplot}
@@ -128,12 +128,12 @@
 \rput(0,-1.85){\includegraphics[height=4.2cm,bb=-0 -0 515 350,clip]{ozoneLine.eps}}
 \psframe[linewidth=0.02,linecolor=gray](-6.2,-7)(6.2,2.2)
 \psframe[linewidth=0.02,linecolor=gray](-6.15,-6.95)(6.15,2.15)
-\rput(0,1.4){\color{myblue}\large Math 314:  Statistics}
+\rput(0,1.4){\color{myblue}\large Math 207:  Statistics}
 \rput(0,0.6){\color{myblue}Chapter 8:  Correlation}
 %\psframebox(0,0)(4,4)
 \rput(0,-4.4){\scriptsize Dr.~Ralph Wojtowicz}
-\rput(0,-4.9){\scriptsize CME Department}
-\rput(0,-5.6){\includegraphics[height=1cm]{logo-high-res.eps}}
+%\rput(0,-4.9){\scriptsize CME Department}
+\rput(0,-5.6){\includegraphics[height=2cm]{sulogolong.eps}}
 %
 %\rput(0,-6.5){\scriptsize 1 February 2012}
 \end{pspicture}
@@ -170,8 +170,8 @@
 \includegraphics[height=4cm,bb=-0 -0 515 350,clip]{ozone.eps}
 \end{frame}
 
-\section{The Correlation Coefficient}
-\subsection{The Correlation Coefficient}
+\section{Correlation Coefficient}
+\subsection{Correlation Coefficient}
 \begin{frame}[t]\frametitle{The Correlation Coefficient}
 {\small
 \begin{itemize}
@@ -197,15 +197,186 @@ r &=\frac{1}{n}\,\sum_{i=1}^n\,\left(\frac{x_i - \mbox{mean}_x}{\mbox{SD}_x}\rig
 }
 \end{frame}
 
+\subsection{Magnitude}
+\begin{frame}
+\frametitle{Magnitude of the Correlation Coefficient}
+
+\begin{center}
+\begin{pspicture}(0,0)(10,7)
+%\psframe(0,0)(10,6)
+\psline[linewidth=0.1,linecolor=purple]{<->}(0,6.5)(10,6.5)
+\psline(5,6.7)(5,6.3)\rput(5,6.9){0.0}
+\psline(0,6.7)(0,6.3)\rput(0,6.9){-1.0}
+\psline(10,6.7)(10,6.3)\rput(10,6.9){1.0}
+%
+\rput(9,3){\includegraphics[height=1in]{cor1.eps}}    \rput(9,3.6){\footnotesize $r=1$}
+\rput(7,1){\includegraphics[height=1in]{cor_p9.eps}}  \rput(7,2.3){\footnotesize $r=0.9$}
+\rput(6,5){\includegraphics[height=1in]{cor_p4.eps}}  \rput(6,3.7){\footnotesize $r=0.4$}
+%
+\rput(4,1){\includegraphics[height=1in]{cor_neg_p7.eps}} \rput(4,2.3){\footnotesize $r=-0.7$}
+\rput(3,5){\includegraphics[height=1in]{cor_neg_p9.eps}} \rput(3.2,3.7){\footnotesize $r=-0.9$}
+\rput(1,3){\includegraphics[height=1in]{cor_neg1.eps}} \rput(1,3.6){\footnotesize $r=-1$}
+\end{pspicture}
+\end{center}
+
+\end{frame}
+
+\subsection{Calculation}
+\begin{frame}
+\frametitle{Computing $r$}
+\newcommand{\Z}{\hphantom{0}}
+\newcommand{\VP}{\vphantom{\Large Y}}
+\newcommand{\M}{\hphantom{$-$}}
+\scriptsize
+{\ }\vspace{-17pt}
+
+\begin{center}
+$\displaystyle r=\frac{1}{n}\sum \left(\frac{x_i - \mbox{mean}_x}{\mbox{SD}_x}\right)\!
+   \left(\frac{y_i - \mbox{mean}_y}{\mbox{SD}_y}\right)$\hspace{10pt}
+\begin{tabular}{|rr|ccc|}\hline
+$x$ & $y$ & $z_x$ & $z_y$ & $z_x\,z_y$ \\[2pt]\hline
+$1$   & $5$   & $-3/2$\M  & $-1/2$\M & $3/4$ \VP\\
+$3$   & $9$   & $-1/2$\M  & $1/2$   & $-1/4$\M \\
+$4$   & $7$   & $0$     & $0$     & $0$        \\
+$5$   & $1$   & $1/2$   & $-3/2$\M  & $-3/4$\M  \\
+$7$   & $13$  & $3/2$   & $3/2$   & $9/4$       \\\hline
+\end{tabular}\vspace{-8pt}
+\end{center}
+\tiny
+\uncover<2->{\begin{align*}
+\mbox{mean}(x) & = \frac{1}{5}\,(1 + 3 + 4 + 5 + 7) = 4 \hspace{14pt}
+\mbox{SD}(x)    = \sqrt{\frac{(1-4)^2 + (3-4)^2 + (4-4)^2 + (5-4)^2 + (7-4)^2}{5}} 
+   %\sqrt{\frac{9 + 1 + 0 + 1 + 9}{5}} = 
+    %\sqrt{\frac{20}{5}}=\sqrt{4} 
+                =2\\[-1pt]
+\mbox{mean}(y) &=\frac{1}{5}\,(5 + 9 + 7 + 1 + 13) = 7 \hspace{10pt}
+\mbox{SD}(y)   =\sqrt{\frac{(5-7)^2 + (9-7)^2 + (7-7)^2 + (1-7)^2 + (13-7)^2}{5}}
+     %= \sqrt{\frac{4 + 4 + 0 + 36 + 36}{5}} 
+   %= \sqrt{\frac{80}{5}}  
+  = 4
+\end{align*}}\vspace{-2pt}
+\begin{itemize}
+\item<3-> Convert the $x$ values to standard units.  For example,\vspace{-3pt}
+\[x = 1\mbox{\hspace{10pt}becomes\hspace{10pt}} z_x = \frac{1-4}{2} = -3/2
+\mbox{\hspace{20pt}and\hspace{20pt}}
+x = 3\mbox{\hspace{10pt}becomes\hspace{10pt}} z_x = \frac{3-4}{2} = -1/2\]
+\item<4-> Convert the $y$ values to standard units:
+For example,\vspace{-3pt}
+\[y=5\mbox{\hspace{10pt}becomes\hspace{10pt}} z_y=\frac{5-7}{4} = -1/2
+\mbox{\hspace{20pt}and\hspace{20pt}}
+y=9\mbox{\hspace{10pt}becomes\hspace{10pt}}  z_y = \frac{9-7}{4} = 1/2\vspace{-5pt}\]
+\item<5-> Compute the products $z_x\,z_y$.
+\item<6-> Compute the correlation coefficient:
+{\color{blue}$r = \frac{1}{5}\,\left(\frac{3}{4} - \frac{1}{4} + 0 - \frac{3}{4} + \frac{9}{4}\right)
+  = \frac{1}{5}\,\frac{8}{4} = \frac{2}{5} = 0.4$}
+\item<7-> In R:\begin{tabular}{l}
+\texttt{x <- c(1, 3, 4, 5, 7)}\\
+\texttt{y <- c(5, 9, 7, 1, 13)}\\
+\texttt{cor(x, y)}
+\end{tabular}
+\end{itemize}
+
+\end{frame}
+
 \section{The SD Line}
 \subsection{The SD Line}
 \begin{frame}[t]\frametitle{The SD Line}
 {\small
 \begin{itemize}
-\item Given lists $x_1$, $\dots$, $x_n$ and $y_1$, $\dots$, $y_n$, the SD line 
+\item Given lists $x_1$, $\dots$, $x_n$ and $y_1$, $\dots$, $y_n$, the SD line  
    \begin{itemize}
    \item Is a linear approximation to the cloud of $(x_i, y_i)$ points
-   \item Is defined below ($r$ is the  correlation coefficient):
+   \item Is defined by\vspace{-10pt}
+\[\left(y - \mbox{mean}_y\right) = \left(\mbox{sign $r$}\right)\,
+   \left(\frac{\mbox{SD}_y}{\mbox{SD}_x}\right)\,\left(x - \mbox{mean}_x\right)\vspace{-3pt}\]
+ where $r$ is the  correlation coefficient.\vspace{2pt}
+   \item It goes through the point of averages:  $(\mbox{mean}_x,\; \mbox{mean}_y)$.
+   \item It's slope is $\pm\;\frac{\mbox{\scriptsize SD}_y}{\mbox{\scriptsize SD}_x}$.
+   \end{itemize}
+\item For every increase of 1 $\mbox{SD}_x$ in the $x$-direction, there is an increase of 1 
+$\mbox{SD}_y$   in the $y$-direction.
+\item If  $r>0$, the slope of the SD line is $\hphantom{-}
+\frac{\mbox{\scriptsize SD}_y}{\mbox{\scriptsize SD}_x}$.
+\item If  $r<0$, the slope of the SD line is $-\frac{\mbox{\scriptsize SD}_y}{\mbox{\scriptsize SD}_x}$.
+\end{itemize}
+}
+\end{frame}
+
+\subsection{Calculation}
+\begin{frame}
+\frametitle{SD Line Calculation}
+\newcommand{\Z}{\hphantom{0}}
+\newcommand{\VP}{\vphantom{\Large Y}}
+\newcommand{\M}{\hphantom{$-$}}
+{\ }\vspace{-28pt}
+
+{\scriptsize
+\begin{center}
+\begin{tabular}{|rr|ccc||cc|}\hline
+    &     &       &       &           & $y$ values   & \VP\\
+    &     &       &       &           &  predicted  & SD\\
+$x$ & $y$ & $z_x$ & $z_y$ & $z_x\,z_y$ & by SD line  & error\\[2pt]\hline
+$1$   & $5$   & $-3/2$\M  & $-1/2$\M  & $3/4$       &  1  & 4\VP\\
+$3$   & $9$   & $-1/2$\M  & $1/2$   & $-1/4$\M      &  5  & 4\\
+$4$   & $7$   & $0$     & $0$     & $0$         &  7  & 0\\
+$5$   & $1$   & $1/2$   & $-3/2$\M  & $-3/4$\M      &  9  & $-8$\M\\
+$7$   & $13$  & $3/2$   & $3/2$   & $9/4$       &  13 & 0\\ \hline
+\end{tabular}\vspace{-10pt}
+\end{center}
+
+\begin{itemize}
+\item SD line equation:\\
+$\displaystyle \left(y - \mbox{mean}_y\right) = \left(\mbox{sign $r$}\right)\,
+   \left(\frac{\mbox{SD}_y}{\mbox{SD}_x}\right)\,\left(x - \mbox{mean}_x\right)$
+\item Subsitute the values from Slide 5:\\[3pt]
+$\displaystyle\left(y - 7\right) = (+1)\,
+   \left(\frac{4}{2}\right)\,\left(x - 4\right)$\\[5pt]
+which simplifies to\\[2pt]
+{\color{blue}$(y-7) = 2\,(x-4)$}
+\end{itemize}
+}
+
+\rput(9.2,1.7){\begin{pspicture}(0,0)(4,4)
+\psset{xunit=0.57143, yunit=0.30769}
+\psline[linewidth=0.02](0,0)(7,0)
+\rput(1,-0.7){\scriptsize 1}
+\rput(2,-0.7){\scriptsize 2}
+\rput(3,-0.7){\scriptsize 3}
+\rput(4,-0.7){\scriptsize 4}
+\rput(5,-0.7){\scriptsize 5}
+\rput(6,-0.7){\scriptsize 6}
+\rput(7,-0.7){\scriptsize 7}
+%
+\psline[linewidth=0.02](0,0)(0,13)
+\rput[r](-0.2,1){\scriptsize 1}
+\rput[r](-0.2,2){\scriptsize 2}
+\rput[r](-0.2,3){\scriptsize 3}
+\rput[r](-0.2,4){\scriptsize 4}
+\rput[r](-0.2,5){\scriptsize 5}
+\rput[r](-0.2,6){\scriptsize 6}
+\rput[r](-0.2,7){\scriptsize 7}
+\rput[r](-0.2,8){\scriptsize 8}
+\rput[r](-0.2,9){\scriptsize 9}
+\rput[r](-0.2,10){\scriptsize 10}
+\rput[r](-0.2,11){\scriptsize 11}
+\rput[r](-0.2,12){\scriptsize 12}
+\rput[r](-0.2,13){\scriptsize 13}
+%
+\psline[linecolor=blue,linewidth=0.02](1,1)(7,13)\rput[br](6.1,11.5){\scriptsize SD line}
+\psline[linecolor=darkgreen,linewidth=0.02,linestyle=dashed](1,4.6)(7,9.4)
+    \rput[lt](5.5,7.9){\scriptsize Regression line}
+\psdot(1,5)
+\psdot(3,9)
+\psdot*[linecolor=red](4,7)
+\psdot(5,1)
+\psdot(7,13)
+\end{pspicture}}
+
+\label{lastpage}
+\end{frame}
+
+\end{document}
+
 \vspace{-4pt}
    \end{itemize}
 \end{itemize}
@@ -221,9 +392,3 @@ r &=\frac{1}{n}\,\sum_{i=1}^n\,\left(\frac{x_i - \mbox{mean}_x}{\mbox{SD}_x}\rig
 \texttt{>[1] 4}\hspace{37pt}   \texttt{>[1] 7}\\
 \texttt{> \$slope}\hspace{30pt}\texttt{> \$correlation}\\
 \texttt{>[1] 2}\hspace{37pt}   \texttt{>[1] 0.4}\\
-\end{itemize}
-}
-\label{lastpage}
-\end{frame}
-
-\end{document}
